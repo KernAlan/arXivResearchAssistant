@@ -1,7 +1,7 @@
 from sendgrid import SendGridAPIClient
 from sendgrid.helpers.mail import Mail, Email, To, Content
 
-from datetime import date
+from datetime import date, datetime, timedelta
 
 import argparse
 import yaml
@@ -10,6 +10,7 @@ from dotenv import load_dotenv
 import openai
 from relevancy import generate_relevance_score, process_subject_fields
 from download_new_papers import get_papers
+from output_manager import DigestOutputManager
 
 
 # Hackathon quality code. Don't judge too harshly.
@@ -221,7 +222,7 @@ category_map = {
 }
 
 
-def generate_body(topic, categories, interest, threshold):
+def generate_body(topic, categories, interest, threshold, config):
     if topic == "Physics":
         raise RuntimeError("You must choose a physics subtopic.")
     elif topic in physics_topics:
@@ -230,6 +231,7 @@ def generate_body(topic, categories, interest, threshold):
         abbr = topics[topic]
     else:
         raise RuntimeError(f"Invalid topic {topic}")
+    
     if categories:
         for category in categories:
             if category not in category_map[topic]:
@@ -242,12 +244,13 @@ def generate_body(topic, categories, interest, threshold):
         ]
     else:
         papers = get_papers(abbr)
+        
     if interest:
         relevancy, hallucination = generate_relevance_score(
             papers,
             query={"interest": interest},
+            model_config=config["model"],
             threshold_score=threshold,
-            num_paper_in_prompt=16,
         )
         body = "<br><br>".join(
             [
@@ -271,43 +274,50 @@ def generate_body(topic, categories, interest, threshold):
 
 
 if __name__ == "__main__":
-    # Load the .env file.
-    load_dotenv()
     parser = argparse.ArgumentParser()
-    parser.add_argument(
-        "--config", help="yaml config file to use", default="config.yaml"
-    )
+    parser.add_argument("--commit", action="store_true",
+                       help="Commit digest to git repository")
+    parser.add_argument("--output-dir", default="digests",
+                       help="Directory to save digest files")
+    parser.add_argument("--config", help="yaml config file to use", 
+                       default="config.yaml")
     args = parser.parse_args()
+    
+    # Load config
     with open(args.config, "r") as f:
         config = yaml.safe_load(f)
-
-    if "OPENAI_API_KEY" not in os.environ:
-        raise RuntimeError("No openai api key found")
-    openai.api_key = os.environ.get("OPENAI_API_KEY")
-
-    topic = config["topic"]
-    categories = config["categories"]
-    from_email = os.environ.get("FROM_EMAIL")
-    to_email = os.environ.get("TO_EMAIL")
-    threshold = config["threshold"]
-    interest = config["interest"]
-    body = generate_body(topic, categories, interest, threshold)
-    with open("digest.html", "w") as f:
-        f.write(body)
-    if os.environ.get("SENDGRID_API_KEY", None):
-        sg = SendGridAPIClient(api_key=os.environ.get("SENDGRID_API_KEY"))
-        from_email = Email(from_email)  # Change to your verified sender
-        to_email = To(to_email)
-        subject = date.today().strftime("Personalized arXiv Digest, %d %b %Y")
-        content = Content("text/html", body)
-        mail = Mail(from_email, to_email, subject, content)
-        mail_json = mail.get()
-
-        # Send an HTTP POST request to /mail/send
-        response = sg.client.mail.send.post(request_body=mail_json)
-        if response.status_code >= 200 and response.status_code <= 300:
-            print("Send test email: Success!")
-        else:
-            print("Send test email: Failure ({response.status_code}, {response.text})")
-    else:
-        print("No sendgrid api key found. Skipping email")
+    
+    # Load the .env file for OpenAI key only
+    load_dotenv()
+    if "OPENAI_API_KEY" not in os.environ and "GROQ_API_KEY" not in os.environ:
+        raise RuntimeError("No API key found")
+    
+    # Initialize managers
+    output_manager = DigestOutputManager(base_dir=args.output_dir)
+    
+    # Generate digest
+    body = generate_body(
+        topic=config["topic"],
+        categories=config.get("categories", []),
+        interest=config.get("interest", ""),
+        threshold=config.get("threshold", 0),
+        config=config
+    )
+    
+    # Create full HTML
+    html_content = f"""
+    <html>
+    <body>
+    <h1>ArXiv Digest - {datetime.now().strftime('%Y-%m-%d')}</h1>
+    {body}
+    </body>
+    </html>
+    """
+    
+    # Save locally
+    filepath = output_manager.save_digest(html_content)
+    print(f"Saved digest to {filepath}")
+    
+    # Optionally commit to git
+    if args.commit:
+        output_manager.commit_to_git(filepath)

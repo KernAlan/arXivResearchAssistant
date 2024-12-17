@@ -1,173 +1,176 @@
-"""
-run:
-python -m relevancy run_all_day_paper \
-  --output_dir ./data \
-  --model_name="gpt-3.5-turbo-16k" \
-"""
-import time
+"""Paper relevancy scoring using LLMs"""
 import json
-import os
-import random
-import re
-import string
 from datetime import datetime
+from typing import List, Dict, Tuple, Optional
+import logging
+import asyncio
+from concurrent.futures import ThreadPoolExecutor
+import aiohttp
+import os
+import backoff
 
-import numpy as np
+from openai import AsyncOpenAI
 import tqdm
-import utils
+import time
 
+from . import config
+from . import utils
 
-def encode_prompt(query, prompt_papers):
-    """Encode multiple prompt instructions into a single string."""
-    prompt = open("src/relevancy_prompt.txt").read() + "\n"
-    prompt += query['interest']
+logger = logging.getLogger(__name__)
 
-    for idx, task_dict in enumerate(prompt_papers):
-        (title, authors, abstract) = task_dict["title"], task_dict["authors"], task_dict["abstract"]
-        if not title:
-            raise
-        prompt += f"###\n"
-        prompt += f"{idx + 1}. Title: {title}\n"
-        prompt += f"{idx + 1}. Authors: {authors}\n"
-        prompt += f"{idx + 1}. Abstract: {abstract}\n"
-    prompt += f"\n Generate response:\n1."
-    print(prompt)
-    return prompt
-
-
-def post_process_chat_gpt_response(paper_data, response, threshold_score=8):
-    selected_data = []
-    if response is None:
-        return []
-    json_items = response['message']['content'].replace("\n\n", "\n").split("\n")
-    pattern = r"^\d+\. |\\"
-    import pprint
+@backoff.on_exception(
+    backoff.expo,
+    (aiohttp.ClientError, asyncio.TimeoutError),
+    max_tries=3,
+    max_time=30
+)
+async def score_batch_async(
+    client: AsyncOpenAI,
+    batch: List[Dict],
+    interest: str,
+    model_config: Dict,
+    is_quick_scoring: bool = True
+) -> Tuple[List[Dict], bool]:
+    """Score a single batch of papers asynchronously"""
     try:
-        score_items = [
-            json.loads(re.sub(pattern, "", line))
-            for line in json_items if "relevancy score" in line.lower()]
-    except Exception:
-        pprint.pprint([re.sub(pattern, "", line) for line in json_items if "relevancy score" in line.lower()])
-        raise RuntimeError("failed")
-    pprint.pprint(score_items)
-    scores = []
-    for item in score_items:
-        temp = item["Relevancy score"]
-        if isinstance(temp, str) and "/" in temp:
-            scores.append(int(temp.split("/")[0]))
+        # Create appropriate prompt
+        if is_quick_scoring:
+            prompt = utils.create_quick_scoring_prompt(interest, batch)
+            temperature = 0.3
         else:
-            scores.append(int(temp))
-    if len(score_items) != len(paper_data):
-        score_items = score_items[:len(paper_data)]
-        hallucination = True
-    else:
-        hallucination = False
-
-    for idx, inst in enumerate(score_items):
-        # if the decoding stops due to length, the last example is likely truncated so we discard it
-        if scores[idx] < threshold_score:
-            continue
-        output_str = "Title: " + paper_data[idx]["title"] + "\n"
-        output_str += "Authors: " + paper_data[idx]["authors"] + "\n"
-        output_str += "Link: " + paper_data[idx]["main_page"] + "\n"
-        for key, value in inst.items():
-            paper_data[idx][key] = value
-            output_str += str(key) + ": " + str(value) + "\n"
-        paper_data[idx]['summarized_text'] = output_str
-        selected_data.append(paper_data[idx])
-    return selected_data, hallucination
-
-
-def find_word_in_string(w, s):
-    return re.compile(r"\b({0})\b".format(w), flags=re.IGNORECASE).search(s)
-
-
-def process_subject_fields(subjects):
-    all_subjects = subjects.split(";")
-    all_subjects = [s.split(" (")[0] for s in all_subjects]
-    return all_subjects
-
-def generate_relevance_score(
-    all_papers,
-    query,
-    model_name="gpt-3.5-turbo-16k",
-    threshold_score=8,
-    num_paper_in_prompt=4,
-    temperature=0.4,
-    top_p=1.0,
-    sorting=True
-):
-    ans_data = []
-    request_idx = 1
-    hallucination = False
-    for id in tqdm.tqdm(range(0, len(all_papers), num_paper_in_prompt)):
-        prompt_papers = all_papers[id:id+num_paper_in_prompt]
-        # only sampling from the seed tasks
-        prompt = encode_prompt(query, prompt_papers)
-
-        decoding_args = utils.OpenAIDecodingArguments(
+            prompt = utils.create_scoring_prompt(interest, batch)
+            temperature = model_config.get("temperature", 0.7)
+        
+        response = await client.chat.completions.create(
+            model=model_config["name"],
+            messages=[
+                {"role": "system", "content": "You are a helpful assistant."},
+                {"role": "user", "content": prompt}
+            ],
             temperature=temperature,
-            n=1,
-            max_tokens=128*num_paper_in_prompt, # The response for each paper should be less than 128 tokens. 
-            top_p=top_p,
+            timeout=30.0
         )
-        request_start = time.time()
-        response = utils.openai_completion(
-            prompts=prompt,
-            model_name=model_name,
-            batch_size=1,
-            decoding_args=decoding_args,
-            logit_bias={"100257": -100},  # prevent the <|endoftext|> from being generated
-        )
-        print ("response", response['message']['content'])
-        request_duration = time.time() - request_start
+        
+        threshold = 5 if is_quick_scoring else model_config.get("threshold", 7.5)
+        return utils.process_scoring_response(batch, response, threshold)
+        
+    except Exception as e:
+        logger.error(f"Batch scoring failed: {str(e)}")
+        return [], True
 
-        process_start = time.time()
-        batch_data, hallu = post_process_chat_gpt_response(prompt_papers, response, threshold_score=threshold_score)
-        hallucination = hallucination or hallu
-        ans_data.extend(batch_data)
-
-        print(f"Request {request_idx+1} took {request_duration:.2f}s")
-        print(f"Post-processing took {time.time() - process_start:.2f}s")
-
-    if sorting:
-        ans_data = sorted(ans_data, key=lambda x: int(x["Relevancy score"]), reverse=True)
+async def score_papers_async(
+    papers: List[Dict],
+    interest: str,
+    model_config: Optional[Dict] = None,
+    threshold: float = 7.5,
+    batch_size: int = 8,
+    max_concurrent: int = 5
+) -> Tuple[List[Dict], bool]:
+    """Score papers using concurrent processing"""
+    model_config = model_config or config.get_model_config()
+    client = AsyncOpenAI(
+        api_key=os.environ.get("OPENAI_API_KEY"),
+        timeout=aiohttp.ClientTimeout(total=60),
+        max_retries=3
+    )
     
-    return ans_data, hallucination
-
-def run_all_day_paper(
-    query={"interest":"", "subjects":["Computation and Language", "Artificial Intelligence"]},
-    date=None,
-    data_dir="../data",
-    model_name="gpt-3.5-turbo-16k",
-    threshold_score=8,
-    num_paper_in_prompt=8,
-    temperature=0.4,
-    top_p=1.0
-):
-    if date is None:
-        date = datetime.today().strftime('%a, %d %b %y')
-        # string format such as Wed, 10 May 23
-    print ("the date for the arxiv data is: ", date)
-
-    all_papers = [json.loads(l) for l in open(f"{data_dir}/{date}.jsonl", "r")]
-    print (f"We found {len(all_papers)}.")
-
-    all_papers_in_subjects = [
-        t for t in all_papers
-        if bool(set(process_subject_fields(t['subjects'])) & set(query['subjects']))
+    logger.info(f"Scoring {len(papers)} papers with {max_concurrent} concurrent requests")
+    
+    # Initialize variables
+    all_quick_scores = []
+    had_hallucination = False
+    
+    # Add delay between batches
+    async def process_batch_with_delay(batch):
+        async with semaphore:
+            result = await score_batch_async(client, batch, interest, model_config, True)
+            await asyncio.sleep(0.5)
+            return result
+    
+    # Process in smaller chunks to avoid overwhelming the API
+    chunk_size = 50
+    
+    for chunk_start in range(0, len(papers), chunk_size):
+        chunk = papers[chunk_start:chunk_start + chunk_size]
+        batches = [
+            chunk[i:i + batch_size * 2] 
+            for i in range(0, len(chunk), batch_size * 2)
+        ]
+        
+        # Process chunk with semaphore
+        semaphore = asyncio.Semaphore(max_concurrent)
+        tasks = [process_batch_with_delay(batch) for batch in batches]
+        
+        for result in tqdm.tqdm(
+            asyncio.as_completed(tasks),
+            total=len(tasks),
+            desc=f"Quick scoring chunk {chunk_start//chunk_size + 1}"
+        ):
+            scores, hallu = await result
+            all_quick_scores.extend(scores)
+            had_hallucination = had_hallucination or hallu
+            
+        # Add delay between chunks
+        await asyncio.sleep(1.0)
+    
+    # Keep top papers
+    top_papers = sorted(all_quick_scores, key=lambda x: x["score"], reverse=True)[:20]
+    logger.info(f"Selected top {len(top_papers)} papers for detailed scoring")
+    
+    # After quick scoring
+    logger.info(
+        f"Quick scoring results:\n"
+        f"  Papers processed: {len(papers)}\n"
+        f"  Papers scored: {len(all_quick_scores)}\n"
+        f"  Score distribution: "
+        + ', '.join(
+            f"{s}:{len([p for p in all_quick_scores if p.get('score') == s])}"
+            for s in range(1,11)
+        )
+    )
+    
+    # Second stage: Detailed scoring
+    final_scores = []
+    
+    # Create batches for detailed scoring
+    detail_batches = [
+        top_papers[i:i + batch_size]
+        for i in range(0, len(top_papers), batch_size)
     ]
-    print(f"After filtering subjects, we have {len(all_papers_in_subjects)} papers left.")
-    ans_data = generate_relevance_score(all_papers_in_subjects, query, model_name, threshold_score, num_paper_in_prompt, temperature, top_p)
-    utils.write_ans_to_file(ans_data, date, output_dir="../outputs")
-    return ans_data
+    
+    # Process detailed scoring concurrently
+    tasks = [
+        process_batch_with_delay(batch) 
+        for batch in detail_batches
+    ]
+    
+    for result in tqdm.tqdm(
+        asyncio.as_completed(tasks),
+        total=len(tasks),
+        desc="Detailed scoring"
+    ):
+        scores, hallu = await result
+        final_scores.extend(scores)
+        had_hallucination = had_hallucination or hallu
+    
+    # After detailed scoring
+    logger.info(
+        f"Detailed scoring results:\n"
+        f"  Papers processed: {len(top_papers)}\n"
+        f"  Papers above threshold: {len(final_scores)}\n"
+        f"  Score distribution: "
+        + ', '.join(
+            f"{s}:{len([p for p in final_scores if p.get('score') == s])}"
+            for s in range(1,11)
+        )
+    )
+    
+    if had_hallucination:
+        logger.warning("Some responses may contain hallucinations")
+    
+    logger.info(f"Final selection: {len(final_scores)} papers above threshold {threshold}")
+    return sorted(final_scores, key=lambda x: x["score"], reverse=True), had_hallucination
 
-
-if __name__ == "__main__":
-    query = {"interest":"""
-    1. Large language model pretraining and finetunings
-    2. Multimodal machine learning
-    3. Do not care about specific application, for example, information extraction, summarization, etc.
-    4. Not interested in paper focus on specific languages, e.g., Arabic, Chinese, etc.\n""",
-    "subjects":["Computation and Language"]}
-    ans_data = run_all_day_paper(query)
+def score_papers(*args, **kwargs) -> Tuple[List[Dict], bool]:
+    """Synchronous wrapper for async scoring function"""
+    return asyncio.run(score_papers_async(*args, **kwargs))

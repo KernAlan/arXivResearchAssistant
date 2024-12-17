@@ -1,27 +1,42 @@
-# For physics topics, use the specific subtopics, e.g. "Astrophysics"
-topic: "Computer Science"
-# An empty list here will include all categories in a topic
-# Use the natural language names of the topics, found here: https://arxiv.org
-# Including more categories will result in more calls to the large language model
-categories: ["Artificial Intelligence", "Computation and Language"]
+# System Configuration
+system:
+  arxiv_topics:
+    "Computer Science": "cs"
+    "Mathematics": "math"
+    "Physics": "physics"
+    "Quantitative Biology": "q-bio"
+    "Quantitative Finance": "q-fin"
+    "Statistics": "stat"
+    "Electrical Engineering": "eess"
+    "Economics": "econ"
+  
+  physics_subtopics:
+    "Astrophysics": "astro-ph"
+    "Condensed Matter": "cond-mat"
+    "General Relativity": "gr-qc"
+    "High Energy Physics - Experiment": "hep-ex"
+    "High Energy Physics - Theory": "hep-th"
+    "Mathematical Physics": "math-ph"
+    "Nuclear Theory": "nucl-th"
+    "Quantum Physics": "quant-ph"
 
-# Relevance score threshold. abstracts that receive a score less than this from the large language model
-# will have their papers filtered out.
-#
-# Must be within 1-10
-threshold: 7
+# User Configuration
+user:
+  topic: "Computer Science"
+  categories: [
+    "Artificial Intelligence", 
+    "Computation and Language", 
+    "Machine Learning"
+  ]
 
-# A natural language statement that the large language model will use to judge which papers are relevant 
-#
-# For example:
-#     "I am interested in complexity theory papers that establish upper bounds"
-#     "gas chromatography, mass spectrometry"
-#     "making lots of money"
-#
-# This can be empty, which just return a full list of papers with no judgement or filtering,
-# in whatever order arXiv responds with.
+# Model Configuration
+model:
+  name: "gpt-4"
+  provider: "openai"
+  papers_per_batch: 8
+  temperature: 0.7
+  threshold: 7.5  # Relevance score threshold (1-10)
+
+# Interest Profile
 interest: |
-  1. Large language model pretraining and finetunings
-  2. Multimodal machine learning
-  3. Do not care about specific application, for example, information extraction, summarization, etc.
-  4. Not interested in paper focus on specific languages, e.g., Arabic, Chinese, etc.
+  I am an applied AI engineer focused on implementing LLM-based solutions for business problems...
