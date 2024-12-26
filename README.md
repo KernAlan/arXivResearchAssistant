@@ -1,7 +1,7 @@
 ArXiv Research Assistant
 ====================
 
-Daily digest of new arXiv papers relevant to AI engineering.
+Daily digest of new arXiv papers, configured to your interests.
 
 Setup
 -----
