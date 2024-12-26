@@ -1,12 +1,125 @@
 """Configuration management for ArxivDigest"""
-import os
-from pathlib import Path
-from typing import Dict, Any, Optional
-import yaml
+from typing import Dict, Any
 
 class Config:
+    # System prompts
+    SUMMARY_SYSTEM_PROMPT = """You are a research assistant writing a quick email to your boss, an AI engineer.
+    
+Write a super casual, friendly summary of today's most relevant papers (relevance/importance 8+). Imagine you're chatting with your boss at the coffee machine.
+
+Your response should be exactly in this format:
+"Hey boss, found [number] cool papers today that I think you'll love:
+<ol>
+<li>Quick, practical takeaway about the first paper - focus on why it matters!</li>
+<li>Another exciting find, keeping it simple and focused on impact...</li>
+</ol>"
+
+Key rules:
+- No technical jargon or symbols (**, etc.)
+- No paper titles or author names
+- No detailed numbers or statistics
+- Just plain, conversational English
+- Focus on why each paper matters for real-world use
+- Maximum 5 papers
+- Keep each bullet point to one simple sentence
+"""
+
+    QUICK_SCORING_PROMPT = """For each paper below, evaluate its relevance to production AI engineering and its importance as a breakthrough.
+
+Return a JSON object with scores array like this:
+{{
+    "scores": [
+        {{"Relevancy score": 0, "Importance score": 0}},
+        {{"Relevancy score": 0, "Importance score": 0}}
+    ]
+}}
+
+My interests are:
+{interest}
+
+Papers to evaluate:
+{papers}
+"""
+
+    # ArXiv Configuration
+    ARXIV_CONFIG = {
+        "max_results": 200,
+        "sort_by": "submittedDate",
+        "sort_order": "descending",
+        "base_url": "http://export.arxiv.org/api/query",
+        "default_lookback_days": 3,
+        "categories": {
+            'cs.AI': 'Artificial Intelligence'
+        }
+    }
+
+    # Paper Processing Configuration
+    PAPER_CONFIG = {
+        "min_papers": 5,  # Minimum papers to include in digest
+        "max_papers": 50,  # Maximum papers to show in final digest
+        "summary_papers": 5,  # Number of papers to highlight in summary
+        "keyword_match_threshold": 1,  # Number of secondary keywords needed to match
+    }
+
+    # Filtering Configuration
+    FILTERING_KEYWORDS = {
+        "primary": {
+            'rag', 'retrieval augmented', 'vector database', 'vector store',
+            'llm application', 'ai agent', 'prompt engineering',
+            'production deployment', 'enterprise ai', 'business case',
+            'ai system', 'llm system', 'ai engineering', 'agents',
+            'agent', 'agentic framework', 'orchestration', 'LangGraph',
+            'Langchain', 'graph database', 'embedding model', 'benchmark',
+            'fine tuning'
+        },
+        "secondary": {
+            'production', 'deployment', 'enterprise', 'business',
+            'implementation', 'integration', 'infrastructure',
+            'cost', 'performance', 'scaling', 'monitoring',
+            'reliability', 'observability', 'evaluation',
+            'embeddings', 'orchestration', 'automation',
+            'real-world', 'case study', 'industry', 'agents',
+            'agent', 'agentic framework', 'LangGraph', 'Langchain',
+            'graph database', 'embedding model', 'benchmark', 'fine tuning'
+        }
+    }
+
+    # Model Configuration
+    MODEL_CONFIG = {
+        "name": "gpt-4o-mini",
+        "provider": "openai",
+        "papers_per_batch": 8,
+        "temperature": 0.7,
+        "threshold": 7.5,
+        "max_tokens": 1800,
+        "top_p": 1.0
+    }
+
+    # User Configuration
+    DEFAULT_USER_CONFIG = {
+        "topic": "Computer Science",
+        "categories": [
+            "Artificial Intelligence"
+        ]
+    }
+    
+    # Default interest profile
+    DEFAULT_INTEREST = """
+    I am an applied AI engineer focused on implementing LLM-based solutions for business problems. 
+    I am most interested in how LLMs can be used to solve business problems.
+    Particularly this means understanding how to orchestrate LLMs, how to make them more reliable, how to make them more cost effective,
+    how to store memories and state, how to architect retrieval better, and how to generally simulate human intelligence and human-like behavior
+    for market problems. But I am also generally interested in all things AI and how the landscape is evolving.
+    """
+    
+    # File paths and directories
+    PATHS = {
+        "data_dir": "data",  # Directory for storing data files
+        "last_run_file": "data/last_run.txt",  # File to store last run date
+        "digests_dir": "digests"  # Directory for storing digests
+    }
+    
     _instance = None
-    _config = None
     
     def __new__(cls):
         if cls._instance is None:
@@ -14,44 +127,17 @@ class Config:
         return cls._instance
     
     def __init__(self):
-        if self._config is None:
-            self.load_config()
-    
-    def load_config(self, config_path: str = "config.yaml"):
-        """Load configuration from YAML file"""
-        with open(config_path, "r") as f:
-            self._config = yaml.safe_load(f)
-    
-    @property
-    def system(self) -> Dict[str, Any]:
-        """Get system configuration"""
-        return self._config["system"]
+        self.user_config = self.DEFAULT_USER_CONFIG.copy()
+        self.model_config = self.MODEL_CONFIG.copy()
+        self.interest = self.DEFAULT_INTEREST
     
     @property
     def user(self) -> Dict[str, Any]:
-        """Get user configuration"""
-        return self._config["user"]
+        return self.user_config
     
     @property
     def model(self) -> Dict[str, Any]:
-        """Get model configuration"""
-        return self._config["model"]
-    
-    def get_topic_abbreviation(self, topic: str) -> str:
-        """Get arXiv abbreviation for topic"""
-        if topic == "Physics":
-            raise ValueError("Must specify a physics subtopic")
-        elif topic in self.system["physics_subtopics"]:
-            return self.system["physics_subtopics"][topic]
-        elif topic in self.system["arxiv_topics"]:
-            return self.system["arxiv_topics"][topic]
-        else:
-            raise ValueError(f"Invalid topic: {topic}")
-    
-    def validate(self) -> bool:
-        """Validate configuration"""
-        required_keys = ["system", "user", "model"]
-        return all(key in self._config for key in required_keys)
+        return self.model_config
 
 # Global config instance
 config = Config() 

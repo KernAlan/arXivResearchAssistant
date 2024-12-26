@@ -26,7 +26,7 @@ jobs:
         pip install -r requirements.txt
     - name: Generate Digest 
       run: |
-        python src/action.py
+        python -m src.cli generate-digest --commit
       env:
         OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
         SENDGRID_API_KEY: ${{ secrets.SENDGRID_API_KEY }}

@@ -1,3 +1,4 @@
+"""Utility functions for ArXiv Digest"""
 import dataclasses
 import logging
 import math
@@ -12,6 +13,7 @@ import datetime
 import pytz
 from bs4 import BeautifulSoup as bs
 import urllib.request
+from .config import config
 
 logger = logging.getLogger(__name__)
 
@@ -49,19 +51,7 @@ def openai_completion(
     return_text: bool = False,
     **decoding_kwargs,
 ):
-    """Modern OpenAI API completion function.
-    
-    Args:
-        prompts: Single prompt or list of prompts
-        decoding_args: Decoding arguments
-        model_name: Name of the model to use
-        provider: 'openai' or 'groq'
-        sleep_time: Time to sleep between retries
-        batch_size: Number of prompts per batch
-        max_instances: Maximum number of prompts to process
-        return_text: If True, return only the text content
-        decoding_kwargs: Additional kwargs for completion
-    """
+    """Make OpenAI API calls with batching and retries."""
     # Initialize client
     client = setup_client(provider)
     
@@ -88,9 +78,10 @@ def openai_completion(
                 completion_args = {
                     "model": model_name,
                     "messages": [
-                        {"role": "system", "content": "You are a helpful assistant."},
+                        {"role": "system", "content": "You are a helpful assistant. Respond only with JSON."},
                         {"role": "user", "content": batch[0]}
                     ],
+                    "response_format": {"type": "json_object"},  # Force JSON response
                     **dataclasses.asdict(decoding_args),
                     **decoding_kwargs
                 }
@@ -217,141 +208,75 @@ def process_scoring_response(papers: list, response, threshold: float = 7.5) -> 
     scored_papers = []
     had_hallucination = False
     
-    # Parse response into lines
-    content = response.choices[0].message.content
-    logger.debug(f"Raw LLM response: {content}")
-    
-    lines = [l.strip() for l in content.split("\n") if l.strip()]
-    
-    # Extract scores
-    try:
-        items = []
-        for line in lines:
-            if "relevancy score" not in line.lower():
-                continue
-                
-            # Handle different response formats
-            try:
-                if ". {" in line:
-                    json_str = line.split(". ", 1)[1]
-                else:
-                    json_str = line
-                
-                item = json.loads(json_str)
-                items.append(item)
-            except (IndexError, json.JSONDecodeError) as e:
-                logger.warning(f"Failed to parse line: {line}")
-                continue
-                
-    except Exception as e:
-        logger.warning(f"Failed to parse LLM response: {str(e)}")
-        return [], True
-        
-    # Check for hallucination
-    if len(items) != len(papers):
-        logger.warning(f"Mismatch in number of scores ({len(items)}) and papers ({len(papers)})")
-        items = items[:len(papers)]
-        had_hallucination = True
-    
-    # Process each paper
-    for paper, item in zip(papers, items):
-        try:
-            # Parse score
-            score = item["Relevancy score"]
-            if isinstance(score, str) and "/" in score:
-                score = float(score.split("/")[0])
-            else:
-                score = float(score)
-                
-            # Skip if below threshold
-            if score < threshold:
-                continue
-                
-            # Add score to paper
-            paper_with_score = paper.copy()
-            paper_with_score["score"] = score
-            scored_papers.append(paper_with_score)
-            
-        except (KeyError, ValueError) as e:
-            logger.warning(f"Failed to process paper score: {str(e)}")
-            continue
-    
-    # Add debug logging
-    content = response.choices[0].message.content
-    logger.debug(f"Raw response content:\n{content}")
-    
-    # After parsing scores
-    if items:
-        logger.debug(f"Parsed scores: {items}")
+    # Get content from response
+    if hasattr(response, 'choices'):
+        content = response.choices[0].message.content
     else:
-        logger.warning("No scores parsed from response")
+        content = response.content
+    
+    try:
+        # Parse JSON response
+        data = json.loads(content)
+        
+        # Handle both single and batch scoring
+        if isinstance(data.get('scores'), list):
+            scores = data['scores']
+        else:
+            scores = [data['scores']] if 'scores' in data else []
+            
+        if len(scores) != len(papers):
+            logger.warning(f"Mismatch in number of scores ({len(scores)}) and papers ({len(papers)})")
+            scores = scores[:len(papers)]
+            had_hallucination = True
+        
+        for paper, score in zip(papers, scores):
+            try:
+                # Handle different score formats
+                if isinstance(score, dict):
+                    relevance = float(str(score.get("Relevancy score", 0)).split("/")[0])
+                    importance = float(str(score.get("Importance score", 0)).split("/")[0])
+                elif isinstance(score, (list, tuple)) and len(score) >= 2:
+                    relevance, importance = map(float, score[:2])
+                else:
+                    logger.warning(f"Unexpected score format: {score}")
+                    continue
+                
+                # Skip if below threshold (using relevance for threshold)
+                if relevance < threshold:
+                    continue
+                
+                paper_with_scores = paper.copy()
+                paper_with_scores["relevance"] = relevance
+                paper_with_scores["importance"] = importance
+                scored_papers.append(paper_with_scores)
+                
+            except (KeyError, ValueError, TypeError) as e:
+                logger.warning(f"Failed to process paper scores: {str(e)}")
+                continue
+                
+    except json.JSONDecodeError as e:
+        logger.warning(f"Failed to parse JSON response: {str(e)}")
+        had_hallucination = True
     
     return scored_papers, had_hallucination
 
-def get_topic_abbreviation(topic: str) -> str:
-    """Convert topic name to arXiv abbreviation."""
-    from . import config  # Import here to avoid circular imports
-    
-    if topic == "Physics":
-        raise ValueError("Must specify a physics subtopic")
-    elif topic in config.PHYSICS_SUBTOPICS:
-        return config.PHYSICS_SUBTOPICS[topic]
-    elif topic in config.ARXIV_TOPICS:
-        return config.ARXIV_TOPICS[topic]
-    else:
-        raise ValueError(f"Invalid topic: {topic}")
-
 def create_quick_scoring_prompt(interest: str, papers: list) -> str:
-    """Create a minimal prompt for initial quick scoring.
+    """Create a minimal prompt for initial quick scoring."""
+    paper_texts = []
+    for paper in papers:
+        title = f"Title: {paper['title']}"
+        abstract = f"Abstract: {paper['abstract'][:200]}..."
+        paper_texts.append(f"{title}\n{abstract}\n")
     
-    Args:
-        interest: Interest statement from config
-        papers: List of papers to score
-    """
-    prompt = """Rate these papers from 1-10 based on relevance to my interests.
-Respond with only scores in JSON format like:
-1. {"Relevancy score": 8}
-2. {"Relevancy score": 3}
-
-My interests are:
-"""
-    
-    # Add interest statement
-    prompt += interest + "\n\n"
-    
-    # Add papers (title and brief abstract only)
-    for i, paper in enumerate(papers, 1):
-        prompt += f"{i}. Title: {paper['title']}\n"
-        # Take first 200 characters of abstract for quick assessment
-        brief_abstract = paper['abstract'][:200] + "..."
-        prompt += f"   Abstract: {brief_abstract}\n\n"
-    
-    return prompt
+    return config.QUICK_SCORING_PROMPT.format(
+        interest=interest,
+        papers="\n".join(paper_texts)
+    )
 
 def filter_ai_papers(papers: list, config: dict) -> list:
     """Pre-filter papers related to applied AI/LLMs"""
-    
-    # Define filtering keywords (could move to config.yaml if needed)
-    primary_keywords = {
-        'rag', 'retrieval augmented', 'vector database', 'vector store',
-        'llm application', 'ai agent', 'prompt engineering',
-        'production deployment', 'enterprise ai', 'business case',
-        'ai system', 'llm system', 'ai engineering', 'agents',
-        'agent', 'agentic framework', 'orchestration', 'LangGraph',
-        'Langchain', 'graph database', 'embedding model', 'benchmark',
-        'fine tuning'
-    }
-    
-    secondary_keywords = {
-        'production', 'deployment', 'enterprise', 'business',
-        'implementation', 'integration', 'infrastructure',
-        'cost', 'performance', 'scaling', 'monitoring',
-        'reliability', 'observability', 'evaluation',
-        'embeddings', 'orchestration', 'automation',
-        'real-world', 'case study', 'industry', 'agents',
-        'agent', 'agentic framework', 'LangGraph', 'Langchain',
-        'graph database', 'embedding model', 'benchmark', 'fine tuning'
-    }
+    primary_keywords = config.FILTERING_KEYWORDS["primary"]
+    secondary_keywords = config.FILTERING_KEYWORDS["secondary"]
     
     filtered_papers = []
     primary_matches = 0
