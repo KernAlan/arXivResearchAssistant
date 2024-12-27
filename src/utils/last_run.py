@@ -21,7 +21,8 @@ def get_last_run_date() -> datetime:
             with open(config.PATHS["last_run_file"], 'r') as f:
                 last_run = datetime.fromisoformat(f.read().strip())
                 logger.info(f"Last run was at: {last_run}")
-                return last_run
+                # Use the last run date minus 1 day to capture any new papers
+                return last_run - timedelta(days=1)
     except Exception as e:
         logger.warning(f"Error reading last run date: {e}")
     
