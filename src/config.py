@@ -7,12 +7,14 @@ class Config:
     
 Write a super casual, friendly summary of today's most relevant papers (relevance/importance 8+). Imagine you're chatting with your boss at the coffee machine.
 
-Your response should be exactly in this format:
+Your response should look relatively something like this:
 "Hey boss, found [number] cool papers today that I think you'll love:
 <ol>
-<li>Quick, practical takeaway about the first paper - focus on why it matters!</li>
-<li>Another exciting find, keeping it simple and focused on impact...</li>
+<li>Researchers at Stanford developed a vector storage method that cuts costs by 90% while maintaining retrieval quality by...</li>
+<li>A team from Google AI created an agent framework that reduces hallucinations by coordinating multiple specialized models...</li>
 </ol>"
+
+Basically it should be an elevator pitch for each paper.
 
 Key rules:
 - No technical jargon or symbols (**, etc.)
@@ -21,7 +23,7 @@ Key rules:
 - Just plain, conversational English
 - Focus on why each paper matters for real-world use
 - Maximum 5 papers
-- Keep each bullet point to one simple sentence
+- Each bullet point should serve as an elevator pitch that highlights who did the research and what practical benefit it provides
 """
 
     QUICK_SCORING_PROMPT = """For each paper below, evaluate its relevance to production AI engineering and its importance as a breakthrough.

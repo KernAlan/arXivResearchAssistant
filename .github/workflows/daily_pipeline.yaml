@@ -14,8 +14,12 @@ on:
 jobs:
   generate_digest:
     runs-on: ubuntu-latest
+    permissions:
+      contents: write  # Needed for pushing to the repository
     steps:
     - uses: actions/checkout@v4
+      with:
+        fetch-depth: 0  # Fetch all history for proper commits
     - name: Set up Python 3.9
       uses: actions/setup-python@v4
       with:
@@ -29,6 +33,13 @@ jobs:
         python -m src.cli generate --commit
       env:
         OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+    - name: Configure Git
+      run: |
+        git config --global user.name "GitHub Actions"
+        git config --global user.email "actions@github.com"
+    - name: Push Changes
+      run: |
+        git push origin HEAD:${GITHUB_REF}
     - name: Upload Artifact
       uses: actions/upload-artifact@v4
       with:
