@@ -26,7 +26,7 @@ jobs:
         pip install -r requirements.txt
     - name: Generate Digest 
       run: |
-        python -m src.cli generate-digest --commit
+        python -m src.cli generate --commit
         timestamp=$(date +"%Y%m%d_%H%M%S")
         mkdir -p digests
         cp digest.html "digests/digest_${timestamp}.html"
