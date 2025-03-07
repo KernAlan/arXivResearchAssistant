@@ -17,9 +17,6 @@ Your response should look relatively something like this:
 Basically it should be an elevator pitch for each paper.
 
 Key rules:
-- No technical jargon or symbols (**, etc.)
-- No paper titles or author names
-- No detailed numbers or statistics
 - Just plain, conversational English
 - Focus on why each paper matters for real-world use
 - Maximum 5 papers
