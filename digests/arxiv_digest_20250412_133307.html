@@ -1,0 +1,436 @@
+
+    <!DOCTYPE html>
+    <html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>ArXiv Research Digest</title>
+        <style>
+            
+body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    line-height: 1.5;
+    color: #2d3748;
+    margin: 0;
+    padding: 20px;
+    background: #f7fafc;
+}
+
+.digest {
+    max-width: 800px;
+    margin: 0 auto;
+    background: white;
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+}
+
+.header {
+    margin-bottom: 2rem;
+    padding-bottom: 1rem;
+    border-bottom: 2px solid #e2e8f0;
+}
+
+.header h2 {
+    margin: 0;
+    color: #2d3748;
+}
+
+.header p {
+    margin: 0.5rem 0 0;
+    color: #718096;
+}
+
+.highlights {
+    background: #f8fafc;
+    padding: 1.5rem;
+    border-radius: 8px;
+    margin-bottom: 3rem;
+    border: 1px solid #e2e8f0;
+}
+
+.highlights h3 {
+    color: #2d3748;
+    margin: 0 0 1rem 0;
+    font-size: 1.25rem;
+}
+
+.summary {
+    white-space: pre-line;
+    line-height: 1.6;
+}
+
+.summary ol {
+    padding-left: 1.5rem;
+    margin: 1rem 0;
+}
+
+.summary li {
+    margin-bottom: 0.75rem;
+    padding-left: 0.5rem;
+}
+
+.papers {
+    margin-top: 3rem;
+}
+
+.papers h3 {
+    color: #2d3748;
+    margin-bottom: 1.5rem;
+    padding-bottom: 1rem;
+    border-bottom: 2px solid #e2e8f0;
+}
+
+.paper {
+    margin-bottom: 2rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid #e2e8f0;
+}
+
+.paper:last-child {
+    border-bottom: none;
+}
+
+.paper h3 {
+    margin: 0 0 0.5rem;
+    color: #2d3748;
+}
+
+.paper .scores {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 0.5rem;
+}
+
+.paper .score {
+    padding: 0.25rem 0.5rem;
+    border-radius: 4px;
+    font-size: 0.875rem;
+}
+
+.paper .relevance {
+    background: #e6fffa;
+    color: #047481;
+}
+
+.paper .importance {
+    background: #ebf4ff;
+    color: #1a56db;
+}
+
+.paper .abstract {
+    color: #4a5568;
+    margin: 0.5rem 0;
+}
+
+.paper .meta {
+    font-size: 0.875rem;
+    color: #718096;
+}
+
+.paper .meta a {
+    color: #4299e1;
+    text-decoration: none;
+}
+
+.paper .meta a:hover {
+    text-decoration: underline;
+}
+
+        </style>
+    </head>
+    <body>
+        
+<div class="digest">
+    <div class="header">
+        <h2>ArXiv Research Digest</h2>
+        <p>Found 20 relevant papers out of 200 new submissions</p>
+    </div>
+    
+    <div class="highlights">
+        <h3>🔥 Key Highlights</h3>
+        Hey boss, found 5 cool papers today that I think you'll love:
+
+<ol>
+<li>A team from Stanford came up with a game-changing method for continual learning in LLMs that keeps the model from forgetting previous tasks while learning new ones. Their adaptive singular value decomposition approach minimizes interference without adding extra parameters, which means we can scale better without sacrificing performance. Super practical for applications needing ongoing updates!</li>
+
+<li>Researchers at Google introduced the Knowledge Graph of Thoughts (KGoT), an innovative AI assistant that combines LLM reasoning with dynamic knowledge graphs. This setup boosts task success rates by 29% while cutting costs by over 36x compared to traditional models. Perfect for making AI assistants more affordable and effective!</li>
+
+<li>A group of scientists analyzed how multi-agent LLM systems manage context and response consistency. They created a framework that helps optimize scalability and response times, especially under noisy conditions. This could help us design more robust architectures for collaborative AI systems!</li>
+
+<li>There’s a fascinating paper on using zero-shot LLMs for road pavement monitoring. They developed a model that assesses road conditions just by analyzing images, achieving high accuracy even compared to expert evaluations. This could revolutionize how we handle infrastructure maintenance with city-scale applications!</li>
+
+<li>Lastly, there's a study on benchmarking the adversarial robustness of LLMs against bias elicitation. They propose a framework that uses LLMs to assess bias in responses, helping identify vulnerabilities and improve fairness in AI models. This is crucial for ensuring our systems are safe and equitable!</li>
+</ol>
+
+Let me know if you want to dive deeper into any of these!
+    </div>
+    
+    <div class="papers">
+        <h3>📄 Detailed Papers</h3>
+        
+<div class="paper">
+    <h3>Sculpting Subspaces: Constrained Full Fine-Tuning in LLMs for Continual   Learning</h3>
+    <div class="scores">
+        <span class="score relevance">Relevance: 10/10</span>
+        <span class="score importance">Importance: 10/10</span>
+    </div>
+    <div class="abstract">Continual learning in large language models (LLMs) is prone to catastrophic forgetting, where adapting to new tasks significantly degrades performance on previously learned ones. Existing methods typically rely on low-rank, parameter-efficient updates that limit the model's expressivity and introduce additional parameters per task, leading to scalability issues. To address these limitations, we propose a novel continual full fine-tuning approach leveraging adaptive singular value decomposition (SVD). Our method dynamically identifies task-specific low-rank parameter subspaces and constrains updates to be orthogonal to critical directions associated with prior tasks, thus effectively minimizing interference without additional parameter overhead or storing previous task gradients. We evaluate our approach extensively on standard continual learning benchmarks using both encoder-decoder (T5-Large) and decoder-only (LLaMA-2 7B) models, spanning diverse tasks including classification, generation, and reasoning. Empirically, our method achieves state-of-the-art results, up to 7% higher average accuracy than recent baselines like O-LoRA, and notably maintains the model's general linguistic capabilities, instruction-following accuracy, and safety throughout the continual learning process by reducing forgetting to near-negligible levels. Our adaptive SVD framework effectively balances model plasticity and knowledge retention, providing a practical, theoretically grounded, and computationally scalable solution for continual learning scenarios in large language models.</div>
+    <div class="meta">
+        <a href="http://arxiv.org/abs/2504.07097v1" target="_blank">View on arXiv</a>
+    </div>
+</div>
+
+
+<div class="paper">
+    <h3>Affordable AI Assistants with Knowledge Graph of Thoughts</h3>
+    <div class="scores">
+        <span class="score relevance">Relevance: 10/10</span>
+        <span class="score importance">Importance: 10/10</span>
+    </div>
+    <div class="abstract">Large Language Models (LLMs) are revolutionizing the development of AI assistants capable of performing diverse tasks across domains. However, current state-of-the-art LLM-driven agents face significant challenges, including high operational costs and limited success rates on complex benchmarks like GAIA. To address these issues, we propose the Knowledge Graph of Thoughts (KGoT), an innovative AI assistant architecture that integrates LLM reasoning with dynamically constructed knowledge graphs (KGs). KGoT extracts and structures task-relevant knowledge into a dynamic KG representation, iteratively enhanced through external tools such as math solvers, web crawlers, and Python scripts. Such structured representation of task-relevant knowledge enables low-cost models to solve complex tasks effectively. For example, KGoT achieves a 29% improvement in task success rates on the GAIA benchmark compared to Hugging Face Agents with GPT-4o mini, while reducing costs by over 36x compared to GPT-4o. Improvements for recent reasoning models are similar, e.g., 36% and 37.5% for Qwen2.5-32B and Deepseek-R1-70B, respectively. KGoT offers a scalable, affordable, and high-performing solution for AI assistants.</div>
+    <div class="meta">
+        <a href="http://arxiv.org/abs/2504.02670v2" target="_blank">View on arXiv</a>
+    </div>
+</div>
+
+
+<div class="paper">
+    <h3>Modeling Response Consistency in Multi-Agent LLM Systems: A Comparative   Analysis of Shared and Separate Context Approaches</h3>
+    <div class="scores">
+        <span class="score relevance">Relevance: 10/10</span>
+        <span class="score importance">Importance: 9/10</span>
+    </div>
+    <div class="abstract">Large Language Models (LLMs) are increasingly utilized in multi-agent systems (MAS) to enhance collaborative problem-solving and interactive reasoning. Recent advancements have enabled LLMs to function as autonomous agents capable of understanding complex interactions across multiple topics. However, deploying LLMs in MAS introduces challenges related to context management, response consistency, and scalability, especially when agents must operate under memory limitations and handle noisy inputs. While prior research has explored optimizing context sharing and response latency in LLM-driven MAS, these efforts often focus on either fully centralized or decentralized configurations, each with distinct trade-offs.   In this paper, we develop a probabilistic framework to analyze the impact of shared versus separate context configurations on response consistency and response times in LLM-based MAS. We introduce the Response Consistency Index (RCI) as a metric to evaluate the effects of context limitations, noise, and inter-agent dependencies on system performance. Our approach differs from existing research by focusing on the interplay between memory constraints and noise management, providing insights into optimizing scalability and response times in environments with interdependent topics. Through this analysis, we offer a comprehensive understanding of how different configurations impact the efficiency of LLM-driven multi-agent systems, thereby guiding the design of more robust architectures.</div>
+    <div class="meta">
+        <a href="http://arxiv.org/abs/2504.07303v1" target="_blank">View on arXiv</a>
+    </div>
+</div>
+
+
+<div class="paper">
+    <h3>Zero-Shot Image-Based Large Language Model Approach to Road Pavement   Monitoring</h3>
+    <div class="scores">
+        <span class="score relevance">Relevance: 10/10</span>
+        <span class="score importance">Importance: 9/10</span>
+    </div>
+    <div class="abstract">Effective and rapid evaluation of pavement surface condition is critical for prioritizing maintenance, ensuring transportation safety, and minimizing vehicle wear and tear. While conventional manual inspections suffer from subjectivity, existing machine learning-based methods are constrained by their reliance on large and high-quality labeled datasets, which require significant resources and limit adaptability across varied road conditions. The revolutionary advancements in Large Language Models (LLMs) present significant potential for overcoming these challenges. In this study, we propose an innovative automated zero-shot learning approach that leverages the image recognition and natural language understanding capabilities of LLMs to assess road conditions effectively. Multiple LLM-based assessment models were developed, employing prompt engineering strategies aligned with the Pavement Surface Condition Index (PSCI) standards. These models' accuracy and reliability were evaluated against official PSCI results, with an optimized model ultimately selected. Extensive tests benchmarked the optimized model against evaluations from various levels experts using Google Street View road images. The results reveal that the LLM-based approach can effectively assess road conditions, with the optimized model -employing comprehensive and structured prompt engineering strategies -outperforming simpler configurations by achieving high accuracy and consistency, even surpassing expert evaluations. Moreover, successfully applying the optimized model to Google Street View images demonstrates its potential for future city-scale deployments. These findings highlight the transformative potential of LLMs in automating road damage evaluations and underscore the pivotal role of detailed prompt engineering in achieving reliable assessments.</div>
+    <div class="meta">
+        <a href="http://arxiv.org/abs/2504.06785v1" target="_blank">View on arXiv</a>
+    </div>
+</div>
+
+
+<div class="paper">
+    <h3>Benchmarking Adversarial Robustness to Bias Elicitation in Large   Language Models: Scalable Automated Assessment with LLM-as-a-Judge</h3>
+    <div class="scores">
+        <span class="score relevance">Relevance: 9/10</span>
+        <span class="score importance">Importance: 9/10</span>
+    </div>
+    <div class="abstract">Large Language Models (LLMs) have revolutionized artificial intelligence, driving advancements in machine translation, summarization, and conversational agents. However, their increasing integration into critical societal domains has raised concerns about embedded biases, which can perpetuate stereotypes and compromise fairness. These biases stem from various sources, including historical inequalities in training data, linguistic imbalances, and adversarial manipulation. Despite mitigation efforts, recent studies indicate that LLMs remain vulnerable to adversarial attacks designed to elicit biased responses. This work proposes a scalable benchmarking framework to evaluate LLM robustness against adversarial bias elicitation. Our methodology involves (i) systematically probing models with a multi-task approach targeting biases across various sociocultural dimensions, (ii) quantifying robustness through safety scores using an LLM-as-a-Judge approach for automated assessment of model responses, and (iii) employing jailbreak techniques to investigate vulnerabilities in safety mechanisms. Our analysis examines prevalent biases in both small and large state-of-the-art models and their impact on model safety. Additionally, we assess the safety of domain-specific models fine-tuned for critical fields, such as medicine. Finally, we release a curated dataset of bias-related prompts, CLEAR-Bias, to facilitate systematic vulnerability benchmarking. Our findings reveal critical trade-offs between model size and safety, aiding the development of fairer and more robust future language models.</div>
+    <div class="meta">
+        <a href="http://arxiv.org/abs/2504.07887v1" target="_blank">View on arXiv</a>
+    </div>
+</div>
+
+
+<div class="paper">
+    <h3>Understanding Learner-LLM Chatbot Interactions and the Impact of   Prompting Guidelines</h3>
+    <div class="scores">
+        <span class="score relevance">Relevance: 9/10</span>
+        <span class="score importance">Importance: 9/10</span>
+    </div>
+    <div class="abstract">Large Language Models (LLMs) have transformed human-computer interaction by enabling natural language-based communication with AI-powered chatbots. These models are designed to be intuitive and user-friendly, allowing users to articulate requests with minimal effort. However, despite their accessibility, studies reveal that users often struggle with effective prompting, resulting in inefficient responses. Existing research has highlighted both the limitations of LLMs in interpreting vague or poorly structured prompts and the difficulties users face in crafting precise queries. This study investigates learner-AI interactions through an educational experiment in which participants receive structured guidance on effective prompting. We introduce and compare three types of prompting guidelines: a task-specific framework developed through a structured methodology and two baseline approaches. To assess user behavior and prompting efficacy, we analyze a dataset of 642 interactions from 107 users. Using Von NeuMidas, an extended pragmatic annotation schema for LLM interaction analysis, we categorize common prompting errors and identify recurring behavioral patterns. We then evaluate the impact of different guidelines by examining changes in user behavior, adherence to prompting strategies, and the overall quality of AI-generated responses. Our findings provide a deeper understanding of how users engage with LLMs and the role of structured prompting guidance in enhancing AI-assisted communication. By comparing different instructional frameworks, we offer insights into more effective approaches for improving user competency in AI interactions, with implications for AI literacy, chatbot usability, and the design of more responsive AI systems.</div>
+    <div class="meta">
+        <a href="http://arxiv.org/abs/2504.07840v1" target="_blank">View on arXiv</a>
+    </div>
+</div>
+
+
+<div class="paper">
+    <h3>Enhancing Large Language Models through Neuro-Symbolic Integration and   Ontological Reasoning</h3>
+    <div class="scores">
+        <span class="score relevance">Relevance: 9/10</span>
+        <span class="score importance">Importance: 9/10</span>
+    </div>
+    <div class="abstract">Large Language Models (LLMs) demonstrate impressive capabilities in natural language processing but suffer from inaccuracies and logical inconsistencies known as hallucinations. This compromises their reliability, especially in domains requiring factual accuracy. We propose a neuro-symbolic approach integrating symbolic ontological reasoning and machine learning methods to enhance the consistency and reliability of LLM outputs. Our workflow utilizes OWL ontologies, a symbolic reasoner (e.g., HermiT) for consistency checking, and a lightweight machine learning model (logistic regression) for mapping natural language statements into logical forms compatible with the ontology. When inconsistencies between LLM outputs and the ontology are detected, the system generates explanatory feedback to guide the LLM towards a corrected, logically coherent response in an iterative refinement loop. We present a working Python prototype demonstrating this pipeline. Experimental results in a defined domain suggest significant improvements in semantic coherence and factual accuracy of LLM outputs, showcasing the potential of combining LLM fluency with the rigor of formal semantics.</div>
+    <div class="meta">
+        <a href="http://arxiv.org/abs/2504.07640v1" target="_blank">View on arXiv</a>
+    </div>
+</div>
+
+
+<div class="paper">
+    <h3>Boosting Universal LLM Reward Design through the Heuristic Reward   Observation Space Evolution</h3>
+    <div class="scores">
+        <span class="score relevance">Relevance: 9/10</span>
+        <span class="score importance">Importance: 9/10</span>
+    </div>
+    <div class="abstract">Large Language Models (LLMs) are emerging as promising tools for automated reinforcement learning (RL) reward design, owing to their robust capabilities in commonsense reasoning and code generation. By engaging in dialogues with RL agents, LLMs construct a Reward Observation Space (ROS) by selecting relevant environment states and defining their internal operations. However, existing frameworks have not effectively leveraged historical exploration data or manual task descriptions to iteratively evolve this space. In this paper, we propose a novel heuristic framework that enhances LLM-driven reward design by evolving the ROS through a table-based exploration caching mechanism and a text-code reconciliation strategy. Our framework introduces a state execution table, which tracks the historical usage and success rates of environment states, overcoming the Markovian constraint typically found in LLM dialogues and facilitating more effective exploration. Furthermore, we reconcile user-provided task descriptions with expert-defined success criteria using structured prompts, ensuring alignment in reward design objectives. Comprehensive evaluations on benchmark RL tasks demonstrate the effectiveness and stability of the proposed framework. Code and video demos are available at jingjjjjjie.github.io/LLM2Reward.</div>
+    <div class="meta">
+        <a href="http://arxiv.org/abs/2504.07596v1" target="_blank">View on arXiv</a>
+    </div>
+</div>
+
+
+<div class="paper">
+    <h3>GPT Carry-On: Training Foundation Model for Customization Could Be   Simple, Scalable and Affordable</h3>
+    <div class="scores">
+        <span class="score relevance">Relevance: 9/10</span>
+        <span class="score importance">Importance: 9/10</span>
+    </div>
+    <div class="abstract">Modern large language foundation models (LLM) have now entered the daily lives of millions of users. We ask a natural question whether it is possible to customize LLM for every user or every task. From system and industrial economy consideration, general continue-training or fine-tuning still require substantial computation and memory of training GPU nodes, whereas most inference nodes under deployment, possibly with lower-end GPUs, are configured to make forward pass fastest possible. We propose a framework to take full advantages of existing LLMs and systems of online service. We train an additional branch of transformer blocks on the final-layer embedding of pretrained LLMs, which is the base, then a carry-on module merge the base models to compose a customized LLM. We can mix multiple layers, or multiple LLMs specialized in different domains such as chat, coding, math, to form a new mixture of LLM that best fit a new task. As the base model don't need to update parameters, we are able to outsource most computation of the training job on inference nodes, and only train a lightweight carry-on on training nodes, where we consume less than 1GB GPU memory to train a 100M carry-on layer on 30B LLM. We tested Qwen and DeepSeek opensourced models for continue-pretraining and got faster loss convergence. We use it to improve solving math questions with extremely small computation and model size, with 1000 data samples of chain-of-thoughts, and as small as 1 MB parameters of two layer layer carry-on, and the results are promising.</div>
+    <div class="meta">
+        <a href="http://arxiv.org/abs/2504.07513v1" target="_blank">View on arXiv</a>
+    </div>
+</div>
+
+
+<div class="paper">
+    <h3>HypoEval: Hypothesis-Guided Evaluation for Natural Language Generation</h3>
+    <div class="scores">
+        <span class="score relevance">Relevance: 9/10</span>
+        <span class="score importance">Importance: 9/10</span>
+    </div>
+    <div class="abstract">Large language models (LLMs) have demonstrated great potential for automating the evaluation of natural language generation. Previous frameworks of LLM-as-a-judge fall short in two ways: they either use zero-shot setting without consulting any human input, which leads to low alignment, or fine-tune LLMs on labeled data, which requires a non-trivial number of samples. Moreover, previous methods often provide little reasoning behind automated evaluations. In this paper, we propose HypoEval, Hypothesis-guided Evaluation framework, which first uses a small corpus of human evaluations to generate more detailed rubrics for human judgments and then incorporates a checklist-like approach to combine LLM's assigned scores on each decomposed dimension to acquire overall scores. With only 30 human evaluations, HypoEval achieves state-of-the-art performance in alignment with both human rankings (Spearman correlation) and human scores (Pearson correlation), on average outperforming G-Eval by 11.86% and fine-tuned Llama-3.1-8B-Instruct with at least 3 times more human evaluations by 11.95%. Furthermore, we conduct systematic studies to assess the robustness of HypoEval, highlighting its effectiveness as a reliable and interpretable automated evaluation framework.</div>
+    <div class="meta">
+        <a href="http://arxiv.org/abs/2504.07174v1" target="_blank">View on arXiv</a>
+    </div>
+</div>
+
+
+<div class="paper">
+    <h3>Automated Business Process Analysis: An LLM-Based Approach to Value   Assessment</h3>
+    <div class="scores">
+        <span class="score relevance">Relevance: 9/10</span>
+        <span class="score importance">Importance: 9/10</span>
+    </div>
+    <div class="abstract">Business processes are fundamental to organizational operations, yet their optimization remains challenging due to the timeconsuming nature of manual process analysis. Our paper harnesses Large Language Models (LLMs) to automate value-added analysis, a qualitative process analysis technique that aims to identify steps in the process that do not deliver value. To date, this technique is predominantly manual, time-consuming, and subjective. Our method offers a more principled approach which operates in two phases: first, decomposing high-level activities into detailed steps to enable granular analysis, and second, performing a value-added analysis to classify each step according to Lean principles. This approach enables systematic identification of waste while maintaining the semantic understanding necessary for qualitative analysis. We develop our approach using 50 business process models, for which we collect and publish manual ground-truth labels. Our evaluation, comparing zero-shot baselines with more structured prompts reveals (a) a consistent benefit of structured prompting and (b) promising performance for both tasks. We discuss the potential for LLMs to augment human expertise in qualitative process analysis while reducing the time and subjectivity inherent in manual approaches.</div>
+    <div class="meta">
+        <a href="http://arxiv.org/abs/2504.06600v1" target="_blank">View on arXiv</a>
+    </div>
+</div>
+
+
+<div class="paper">
+    <h3>Saliency-driven Dynamic Token Pruning for Large Language Models</h3>
+    <div class="scores">
+        <span class="score relevance">Relevance: 9/10</span>
+        <span class="score importance">Importance: 9/10</span>
+    </div>
+    <div class="abstract">Despite the recent success of large language models (LLMs), LLMs are particularly challenging in long-sequence inference scenarios due to the quadratic computational complexity of the attention mechanism. Inspired by the interpretability theory of feature attribution in neural network models, we observe that not all tokens have the same contribution. Based on this observation, we propose a novel token pruning framework, namely Saliency-driven Dynamic Token Pruning (SDTP), to gradually and dynamically prune redundant tokens based on the input context. Specifically, a lightweight saliency-driven prediction module is designed to estimate the importance score of each token with its hidden state, which is added to different layers of the LLM to hierarchically prune redundant tokens. Furthermore, a ranking-based optimization strategy is proposed to minimize the ranking divergence of the saliency score and the predicted importance score. Extensive experiments have shown that our framework is generalizable to various models and datasets. By hierarchically pruning 65\% of the input tokens, our method greatly reduces 33\% $\sim$ 47\% FLOPs and achieves speedup up to 1.75$\times$ during inference, while maintaining comparable performance. We further demonstrate that SDTP can be combined with KV cache compression method for further compression.</div>
+    <div class="meta">
+        <a href="http://arxiv.org/abs/2504.04514v2" target="_blank">View on arXiv</a>
+    </div>
+</div>
+
+
+<div class="paper">
+    <h3>Robust Reinforcement Learning from Human Feedback for Large Language   Models Fine-Tuning</h3>
+    <div class="scores">
+        <span class="score relevance">Relevance: 9/10</span>
+        <span class="score importance">Importance: 9/10</span>
+    </div>
+    <div class="abstract">Reinforcement learning from human feedback (RLHF) has emerged as a key technique for aligning the output of large language models (LLMs) with human preferences. To learn the reward function, most existing RLHF algorithms use the Bradley-Terry model, which relies on assumptions about human preferences that may not reflect the complexity and variability of real-world judgments. In this paper, we propose a robust algorithm to enhance the performance of existing approaches under such reward model misspecifications. Theoretically, our algorithm reduces the variance of reward and policy estimators, leading to improved regret bounds. Empirical evaluations on LLM benchmark datasets demonstrate that the proposed algorithm consistently outperforms existing methods, with 77-81% of responses being favored over baselines on the Anthropic Helpful and Harmless dataset.</div>
+    <div class="meta">
+        <a href="http://arxiv.org/abs/2504.03784v2" target="_blank">View on arXiv</a>
+    </div>
+</div>
+
+
+<div class="paper">
+    <h3>Fast Adaptation with Behavioral Foundation Models</h3>
+    <div class="scores">
+        <span class="score relevance">Relevance: 8/10</span>
+        <span class="score importance">Importance: 9/10</span>
+    </div>
+    <div class="abstract">Unsupervised zero-shot reinforcement learning (RL) has emerged as a powerful paradigm for pretraining behavioral foundation models (BFMs), enabling agents to solve a wide range of downstream tasks specified via reward functions in a zero-shot fashion, i.e., without additional test-time learning or planning. This is achieved by learning self-supervised task embeddings alongside corresponding near-optimal behaviors and incorporating an inference procedure to directly retrieve the latent task embedding and associated policy for any given reward function. Despite promising results, zero-shot policies are often suboptimal due to errors induced by the unsupervised training process, the embedding, and the inference procedure. In this paper, we focus on devising fast adaptation strategies to improve the zero-shot performance of BFMs in a few steps of online interaction with the environment while avoiding any performance drop during the adaptation process. Notably, we demonstrate that existing BFMs learn a set of skills containing more performant policies than those identified by their inference procedure, making them well-suited for fast adaptation. Motivated by this observation, we propose both actor-critic and actor-only fast adaptation strategies that search in the low-dimensional task-embedding space of the pre-trained BFM to rapidly improve the performance of its zero-shot policies on any downstream task. Notably, our approach mitigates the initial "unlearning" phase commonly observed when fine-tuning pre-trained RL models. We evaluate our fast adaptation strategies on top of four state-of-the-art zero-shot RL methods in multiple navigation and locomotion domains. Our results show that they achieve 10-40% improvement over their zero-shot performance in a few tens of episodes, outperforming existing baselines.</div>
+    <div class="meta">
+        <a href="http://arxiv.org/abs/2504.07896v1" target="_blank">View on arXiv</a>
+    </div>
+</div>
+
+
+<div class="paper">
+    <h3>Pangu Ultra: Pushing the Limits of Dense Large Language Models on Ascend   NPUs</h3>
+    <div class="scores">
+        <span class="score relevance">Relevance: 9/10</span>
+        <span class="score importance">Importance: 8/10</span>
+    </div>
+    <div class="abstract">We present Pangu Ultra, a Large Language Model (LLM) with 135 billion parameters and dense Transformer modules trained on Ascend Neural Processing Units (NPUs). Although the field of LLM has been witnessing unprecedented advances in pushing the scale and capability of LLM in recent years, training such a large-scale model still involves significant optimization and system challenges. To stabilize the training process, we propose depth-scaled sandwich normalization, which effectively eliminates loss spikes during the training process of deep models. We pre-train our model on 13.2 trillion diverse and high-quality tokens and further enhance its reasoning capabilities during post-training. To perform such large-scale training efficiently, we utilize 8,192 Ascend NPUs with a series of system optimizations. Evaluations on multiple diverse benchmarks indicate that Pangu Ultra significantly advances the state-of-the-art capabilities of dense LLMs such as Llama 405B and Mistral Large 2, and even achieves competitive results with DeepSeek-R1, whose sparse model structure contains much more parameters. Our exploration demonstrates that Ascend NPUs are capable of efficiently and effectively training dense models with more than 100 billion parameters. Our model and system will be available for our commercial customers.</div>
+    <div class="meta">
+        <a href="http://arxiv.org/abs/2504.07866v1" target="_blank">View on arXiv</a>
+    </div>
+</div>
+
+
+<div class="paper">
+    <h3>A System for Comprehensive Assessment of RAG Frameworks</h3>
+    <div class="scores">
+        <span class="score relevance">Relevance: 9/10</span>
+        <span class="score importance">Importance: 8/10</span>
+    </div>
+    <div class="abstract">Retrieval Augmented Generation (RAG) has emerged as a standard paradigm for enhancing the factual accuracy and contextual relevance of Large Language Models (LLMs) by integrating retrieval mechanisms. However, existing evaluation frameworks fail to provide a holistic black-box approach to assessing RAG systems, especially in real-world deployment scenarios. To address this gap, we introduce SCARF (System for Comprehensive Assessment of RAG Frameworks), a modular and flexible evaluation framework designed to benchmark deployed RAG applications systematically. SCARF provides an end-to-end, black-box evaluation methodology, enabling a limited-effort comparison across diverse RAG frameworks. Our framework supports multiple deployment configurations and facilitates automated testing across vector databases and LLM serving strategies, producing a detailed performance report. Moreover, SCARF integrates practical considerations such as response coherence, providing a scalable and adaptable solution for researchers and industry professionals evaluating RAG applications. Using the REST APIs interface, we demonstrate how SCARF can be applied to real-world scenarios, showcasing its flexibility in assessing different RAG frameworks and configurations. SCARF is available at GitHub repository.</div>
+    <div class="meta">
+        <a href="http://arxiv.org/abs/2504.07803v1" target="_blank">View on arXiv</a>
+    </div>
+</div>
+
+
+<div class="paper">
+    <h3>ConceptFormer: Towards Efficient Use of Knowledge-Graph Embeddings in   Large Language Models</h3>
+    <div class="scores">
+        <span class="score relevance">Relevance: 9/10</span>
+        <span class="score importance">Importance: 8/10</span>
+    </div>
+    <div class="abstract">Retrieval Augmented Generation (RAG) has enjoyed increased attention in the recent past and recent advancements in Large Language Models (LLMs) have highlighted the importance of integrating world knowledge into these systems. Current RAG methodologies often modify the internal architecture of pre-trained language models (PLMs) or rely on textifying knowledge graphs (KGs), which is inefficient in terms of token usage. This paper introduces ConceptFormer, a new approach to augment LLMs with structured knowledge from KGs, such as Wikidata, without altering their internal structure or relying on textual input of KGs. ConceptFormer operates in the LLM embedding vector space, creating and injecting \emph{concept vectors} that encapsulate the information of the KG nodes directly. Trained in conjunction with a frozen LLM, ConceptFormer generates a comprehensive lookup table that maps KG nodes to their respective concept vectors. The approach aims to enhance the factual recall capabilities of LLMs by enabling them to process these concept vectors natively, thus enriching them with structured world knowledge in an efficient and scalable manner. Our experiments demonstrate that the addition of concept vectors to GPT-2 0.1B substantially increases its factual recall ability (Hit@10) by up to 272\% when tested on sentences from Wikipedia and up to 348\% on synthetically generated sentences. Even injecting only a single concept vector into the prompt increases factual recall ability (Hit@10) by up to 213\% on Wikipedia sentences, significantly outperforming RAG with graph textification while consuming 130x fewer input tokens.</div>
+    <div class="meta">
+        <a href="http://arxiv.org/abs/2504.07624v1" target="_blank">View on arXiv</a>
+    </div>
+</div>
+
+
+<div class="paper">
+    <h3>LoRI: Reducing Cross-Task Interference in Multi-Task Low-Rank Adaptation</h3>
+    <div class="scores">
+        <span class="score relevance">Relevance: 9/10</span>
+        <span class="score importance">Importance: 8/10</span>
+    </div>
+    <div class="abstract">Low-Rank Adaptation (LoRA) has emerged as a popular parameter-efficient fine-tuning (PEFT) method for Large Language Models (LLMs), yet it still incurs notable overhead and suffers from parameter interference in multi-task scenarios. We propose LoRA with Reduced Interference (LoRI), a simple yet effective approach that freezes the projection matrices $A$ as random projections and sparsifies the matrices $B$ using task-specific masks. This design substantially reduces the number of trainable parameters while maintaining strong task performance. Moreover, LoRI minimizes cross-task interference in adapter merging by leveraging the orthogonality between adapter subspaces, and supports continual learning by using sparsity to mitigate catastrophic forgetting. Extensive experiments across natural language understanding, mathematical reasoning, code generation, and safety alignment tasks demonstrate that LoRI outperforms full fine-tuning and existing PEFT methods, while using up to 95% fewer trainable parameters than LoRA. In multi-task experiments, LoRI enables effective adapter merging and continual learning with reduced cross-task interference. Code is available at: https://github.com/juzhengz/LoRI</div>
+    <div class="meta">
+        <a href="http://arxiv.org/abs/2504.07448v1" target="_blank">View on arXiv</a>
+    </div>
+</div>
+
+
+<div class="paper">
+    <h3>A Novel Mamba-based Sequential Recommendation Method</h3>
+    <div class="scores">
+        <span class="score relevance">Relevance: 8/10</span>
+        <span class="score importance">Importance: 9/10</span>
+    </div>
+    <div class="abstract">Sequential recommendation (SR), which encodes user activity to predict the next action, has emerged as a widely adopted strategy in developing commercial personalized recommendation systems. Although Transformer-based models have proven effective for sequential recommendation, the complexity of the self-attention module in Transformers scales quadratically with the sequence length. Controlling model complexity is essential for large-scale recommendation systems, as these systems may need to handle billion-scale vocabularies that evolve continuously, as well as user behavior sequences that can exceed tens of thousands in length. In this paper, we propose a novel multi-head latent Mamba architecture, which employs multiple low-dimensional Mamba layers and fully connected layers coupled with positional encoding to simultaneously capture historical and item information within each latent subspace. Our proposed method not only enables scaling up to large-scale parameters but also extends to multi-domain recommendation by integrating and fine-tuning LLMs. Through extensive experiments on public datasets, we demonstrate how Hydra effectively addresses the effectiveness-efficiency dilemma, outperforming state-of-the-art sequential recommendation baselines with significantly fewer parameters and reduced training time.</div>
+    <div class="meta">
+        <a href="http://arxiv.org/abs/2504.07398v1" target="_blank">View on arXiv</a>
+    </div>
+</div>
+
+
+<div class="paper">
+    <h3>TALE: A Tool-Augmented Framework for Reference-Free Evaluation of Large   Language Models</h3>
+    <div class="scores">
+        <span class="score relevance">Relevance: 9/10</span>
+        <span class="score importance">Importance: 8/10</span>
+    </div>
+    <div class="abstract">As Large Language Models (LLMs) become increasingly integrated into real-world, autonomous applications, relying on static, pre-annotated references for evaluation poses significant challenges in cost, scalability, and completeness. We propose Tool-Augmented LLM Evaluation (TALE), a framework to assess LLM outputs without predetermined ground-truth answers. Unlike conventional metrics that compare to fixed references or depend solely on LLM-as-a-judge knowledge, TALE employs an agent with tool-access capabilities that actively retrieves and synthesizes external evidence. It iteratively generates web queries, collects information, summarizes findings, and refines subsequent searches through reflection. By shifting away from static references, TALE aligns with free-form question-answering tasks common in real-world scenarios. Experimental results on multiple free-form QA benchmarks show that TALE not only outperforms standard reference-based metrics for measuring response accuracy but also achieves substantial to near-perfect agreement with human evaluations. TALE enhances the reliability of LLM evaluations in real-world, dynamic scenarios without relying on static references.</div>
+    <div class="meta">
+        <a href="http://arxiv.org/abs/2504.07385v1" target="_blank">View on arXiv</a>
+    </div>
+</div>
+
+    </div>
+</div>
+
+    </body>
+    </html>
+    
