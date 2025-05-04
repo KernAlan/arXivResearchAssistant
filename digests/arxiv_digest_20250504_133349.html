@@ -1,0 +1,432 @@
+
+    <!DOCTYPE html>
+    <html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>ArXiv Research Digest</title>
+        <style>
+            
+body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    line-height: 1.5;
+    color: #2d3748;
+    margin: 0;
+    padding: 20px;
+    background: #f7fafc;
+}
+
+.digest {
+    max-width: 800px;
+    margin: 0 auto;
+    background: white;
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+}
+
+.header {
+    margin-bottom: 2rem;
+    padding-bottom: 1rem;
+    border-bottom: 2px solid #e2e8f0;
+}
+
+.header h2 {
+    margin: 0;
+    color: #2d3748;
+}
+
+.header p {
+    margin: 0.5rem 0 0;
+    color: #718096;
+}
+
+.highlights {
+    background: #f8fafc;
+    padding: 1.5rem;
+    border-radius: 8px;
+    margin-bottom: 3rem;
+    border: 1px solid #e2e8f0;
+}
+
+.highlights h3 {
+    color: #2d3748;
+    margin: 0 0 1rem 0;
+    font-size: 1.25rem;
+}
+
+.summary {
+    white-space: pre-line;
+    line-height: 1.6;
+}
+
+.summary ol {
+    padding-left: 1.5rem;
+    margin: 1rem 0;
+}
+
+.summary li {
+    margin-bottom: 0.75rem;
+    padding-left: 0.5rem;
+}
+
+.papers {
+    margin-top: 3rem;
+}
+
+.papers h3 {
+    color: #2d3748;
+    margin-bottom: 1.5rem;
+    padding-bottom: 1rem;
+    border-bottom: 2px solid #e2e8f0;
+}
+
+.paper {
+    margin-bottom: 2rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid #e2e8f0;
+}
+
+.paper:last-child {
+    border-bottom: none;
+}
+
+.paper h3 {
+    margin: 0 0 0.5rem;
+    color: #2d3748;
+}
+
+.paper .scores {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 0.5rem;
+}
+
+.paper .score {
+    padding: 0.25rem 0.5rem;
+    border-radius: 4px;
+    font-size: 0.875rem;
+}
+
+.paper .relevance {
+    background: #e6fffa;
+    color: #047481;
+}
+
+.paper .importance {
+    background: #ebf4ff;
+    color: #1a56db;
+}
+
+.paper .abstract {
+    color: #4a5568;
+    margin: 0.5rem 0;
+}
+
+.paper .meta {
+    font-size: 0.875rem;
+    color: #718096;
+}
+
+.paper .meta a {
+    color: #4299e1;
+    text-decoration: none;
+}
+
+.paper .meta a:hover {
+    text-decoration: underline;
+}
+
+        </style>
+    </head>
+    <body>
+        
+<div class="digest">
+    <div class="header">
+        <h2>ArXiv Research Digest</h2>
+        <p>Found 20 relevant papers out of 119 new submissions</p>
+    </div>
+    
+    <div class="highlights">
+        <h3>🔥 Key Highlights</h3>
+        Hey boss, found 5 cool papers today that I think you'll love:
+
+<ol>
+<li>Stanford researchers introduced QServe, a game-changer for LLM serving! It leverages a new quantization method that boosts throughput by up to 3.5x while slashing costs by 3x. Perfect for cloud-based applications where efficiency is key.</li>
+<li>A comprehensive survey on integrating LLMs with knowledge-based systems shows how combining these technologies can enhance data accuracy and model performance. This could pave the way for smarter AI systems that make better use of structured knowledge!</li>
+<li>This paper dives into the challenges of consistency in language models, highlighting the need for better benchmarks. Addressing this could improve how models communicate, making them more reliable and human-like in understanding context.</li>
+<li>Researchers proposed a new method for aligning LLMs with human preferences by better utilizing reward data. This approach not only boosts response quality but also reduces the risk of LLMs forgetting high-quality outputs—great for fine-tuning models to behave more like we want them to!</li>
+<li>Lastly, we have DeepCritic, a framework for enhancing the critique ability of LLMs, especially in math. By providing more detailed feedback on reasoning steps, it helps models learn from mistakes better. This could significantly improve the way LLMs assist with complex problem-solving.</li>
+</ol>
+
+Let me know if you want to dive deeper into any of these!
+    </div>
+    
+    <div class="papers">
+        <h3>📄 Detailed Papers</h3>
+        
+<div class="paper">
+    <h3>QServe: W4A8KV4 Quantization and System Co-design for Efficient LLM   Serving</h3>
+    <div class="scores">
+        <span class="score relevance">Relevance: 10/10</span>
+        <span class="score importance">Importance: 10/10</span>
+    </div>
+    <div class="abstract">Quantization can accelerate large language model (LLM) inference. Going beyond INT8 quantization, the research community is actively exploring even lower precision, such as INT4. Nonetheless, state-of-the-art INT4 quantization techniques only accelerate low-batch, edge LLM inference, failing to deliver performance gains in large-batch, cloud-based LLM serving. We uncover a critical issue: existing INT4 quantization methods suffer from significant runtime overhead (20-90%) when dequantizing either weights or partial sums on GPUs. To address this challenge, we introduce QoQ, a W4A8KV4 quantization algorithm with 4-bit weight, 8-bit activation, and 4-bit KV cache. QoQ stands for quattuor-octo-quattuor, which represents 4-8-4 in Latin. QoQ is implemented by the QServe inference library that achieves measured speedup. The key insight driving QServe is that the efficiency of LLM serving on GPUs is critically influenced by operations on low-throughput CUDA cores. Building upon this insight, in QoQ algorithm, we introduce progressive quantization that can allow low dequantization overhead in W4A8 GEMM. Additionally, we develop SmoothAttention to effectively mitigate the accuracy degradation incurred by 4-bit KV quantization. In the QServe system, we perform compute-aware weight reordering and take advantage of register-level parallelism to reduce dequantization latency. We also make fused attention memory-bound, harnessing the performance gain brought by KV4 quantization. As a result, QServe improves the maximum achievable serving throughput of Llama-3-8B by 1.2x on A100, 1.4x on L40S; and Qwen1.5-72B by 2.4x on A100, 3.5x on L40S, compared to TensorRT-LLM. Remarkably, QServe on L40S GPU can achieve even higher throughput than TensorRT-LLM on A100. Thus, QServe effectively reduces the dollar cost of LLM serving by 3x. Code is available at https://github.com/mit-han-lab/omniserve.</div>
+    <div class="meta">
+        <a href="http://arxiv.org/abs/2405.04532v3" target="_blank">View on arXiv</a>
+    </div>
+</div>
+
+
+<div class="paper">
+    <h3>A Comprehensive Survey on Integrating Large Language Models with   Knowledge-Based Methods</h3>
+    <div class="scores">
+        <span class="score relevance">Relevance: 9/10</span>
+        <span class="score importance">Importance: 10/10</span>
+    </div>
+    <div class="abstract">The rapid development of artificial intelligence has led to marked progress in the field. One interesting direction for research is whether Large Language Models (LLMs) can be integrated with structured knowledge-based systems. This approach aims to combine the generative language understanding of LLMs and the precise knowledge representation systems by which they are integrated. This article surveys the relationship between LLMs and knowledge bases, looks at how they can be applied in practice, and discusses related technical, operational, and ethical challenges. Utilizing a comprehensive examination of the literature, the study both identifies important issues and assesses existing solutions. It demonstrates the merits of incorporating generative AI into structured knowledge-base systems concerning data contextualization, model accuracy, and utilization of knowledge resources. The findings give a full list of the current situation of research, point out the main gaps, and propose helpful paths to take. These insights contribute to advancing AI technologies and support their practical deployment across various sectors.</div>
+    <div class="meta">
+        <a href="http://arxiv.org/abs/2501.13947v3" target="_blank">View on arXiv</a>
+    </div>
+</div>
+
+
+<div class="paper">
+    <h3>Consistency in Language Models: Current Landscape, Challenges, and   Future Directions</h3>
+    <div class="scores">
+        <span class="score relevance">Relevance: 9/10</span>
+        <span class="score importance">Importance: 9/10</span>
+    </div>
+    <div class="abstract">The hallmark of effective language use lies in consistency -- expressing similar meanings in similar contexts and avoiding contradictions. While human communication naturally demonstrates this principle, state-of-the-art language models struggle to maintain reliable consistency across different scenarios. This paper examines the landscape of consistency research in AI language systems, exploring both formal consistency (including logical rule adherence) and informal consistency (such as moral and factual coherence). We analyze current approaches to measure aspects of consistency, identify critical research gaps in standardization of definitions, multilingual assessment, and methods to improve consistency. Our findings point to an urgent need for robust benchmarks to measure and interdisciplinary approaches to ensure consistency in the application of language models on domain-specific tasks while preserving the utility and adaptability.</div>
+    <div class="meta">
+        <a href="http://arxiv.org/abs/2505.00268v1" target="_blank">View on arXiv</a>
+    </div>
+</div>
+
+
+<div class="paper">
+    <h3>Reward-Augmented Data Enhances Direct Preference Alignment of LLMs</h3>
+    <div class="scores">
+        <span class="score relevance">Relevance: 9/10</span>
+        <span class="score importance">Importance: 9/10</span>
+    </div>
+    <div class="abstract">Preference alignment in Large Language Models (LLMs) has significantly improved their ability to adhere to human instructions and intentions. However, existing direct alignment algorithms primarily focus on relative preferences and often overlook the qualitative aspects of responses, despite having access to preference data that includes reward scores from judge models during AI feedback. Striving to maximize the implicit reward gap between the chosen and the slightly inferior rejected responses can cause overfitting and unnecessary unlearning of the high-quality rejected responses. The unawareness of the reward scores also drives the LLM to indiscriminately favor the low-quality chosen responses and fail to generalize to optimal responses that are sparse in data. To overcome these shortcomings, our study introduces reward-conditioned LLM policies that discern and learn from the entire spectrum of response quality within the dataset, helping extrapolate to more optimal regions. We propose an effective yet simple data relabeling method that conditions the preference pairs on quality scores to construct a reward-augmented dataset. The experiments across various benchmarks and diverse models demonstrate that our approach consistently boosts DPO by a considerable margin. Through comprehensive ablation studies, we demonstrate that our method not only maximizes the utility of preference data but also mitigates the issue of unlearning, demonstrating its broad effectiveness beyond mere data expansion. Our code is available at https://github.com/shenao-zhang/reward-augmented-preference.</div>
+    <div class="meta">
+        <a href="http://arxiv.org/abs/2410.08067v4" target="_blank">View on arXiv</a>
+    </div>
+</div>
+
+
+<div class="paper">
+    <h3>DeepCritic: Deliberate Critique with Large Language Models</h3>
+    <div class="scores">
+        <span class="score relevance">Relevance: 8/10</span>
+        <span class="score importance">Importance: 9/10</span>
+    </div>
+    <div class="abstract">As Large Language Models (LLMs) are rapidly evolving, providing accurate feedback and scalable oversight on their outputs becomes an urgent and critical problem. Leveraging LLMs as critique models to achieve automated supervision is a promising solution. In this work, we focus on studying and enhancing the math critique ability of LLMs. Current LLM critics provide critiques that are too shallow and superficial on each step, leading to low judgment accuracy and struggling to offer sufficient feedback for the LLM generator to correct mistakes. To tackle this issue, we propose a novel and effective two-stage framework to develop LLM critics that are capable of deliberately critiquing on each reasoning step of math solutions. In the first stage, we utilize Qwen2.5-72B-Instruct to generate 4.5K long-form critiques as seed data for supervised fine-tuning. Each seed critique consists of deliberate step-wise critiques that includes multi-perspective verifications as well as in-depth critiques of initial critiques for each reasoning step. Then, we perform reinforcement learning on the fine-tuned model with either existing human-labeled data from PRM800K or our automatically annotated data obtained via Monte Carlo sampling-based correctness estimation, to further incentivize its critique ability. Our developed critique model built on Qwen2.5-7B-Instruct not only significantly outperforms existing LLM critics (including the same-sized DeepSeek-R1-distill models and GPT-4o) on various error identification benchmarks, but also more effectively helps the LLM generator refine erroneous steps through more detailed feedback.</div>
+    <div class="meta">
+        <a href="http://arxiv.org/abs/2505.00662v1" target="_blank">View on arXiv</a>
+    </div>
+</div>
+
+
+<div class="paper">
+    <h3>On the generalization of language models from in-context learning and   finetuning: a controlled study</h3>
+    <div class="scores">
+        <span class="score relevance">Relevance: 9/10</span>
+        <span class="score importance">Importance: 8/10</span>
+    </div>
+    <div class="abstract">Large language models exhibit exciting capabilities, yet can show surprisingly narrow generalization from finetuning -- from failing to generalize to simple reversals of relations they are trained on, to missing logical deductions that can be made from trained information. These failures to generalize from fine-tuning can hinder practical application of these models. However, language models' in-context learning shows different inductive biases, and can generalize better in some of these cases. Here, we explore these differences in generalization between in-context- and fine-tuning-based learning. To do so, we constructed several novel datasets to evaluate and improve models' ability to generalize from finetuning data. The datasets are constructed to isolate the knowledge in the dataset from that in pretraining, to create clean tests of generalization. We expose pretrained large models to controlled subsets of the information in these datasets -- either in context, or through fine-tuning -- and evaluate their performance on test sets that require various types of generalization. We find overall that in data-matched settings, in-context learning can generalize more flexibly than fine-tuning (though we also find some qualifications of prior findings, such as cases when fine-tuning can generalize to reversals embedded in a larger structure of knowledge). We build on these findings to propose a method to enable improved generalization from fine-tuning: adding in-context inferences to finetuning data. We show that this method improves generalization across various splits of our datasets and other benchmarks. Our results have implications for understanding the inductive biases of different modes of learning in language models, and practically improving their performance.</div>
+    <div class="meta">
+        <a href="http://arxiv.org/abs/2505.00661v1" target="_blank">View on arXiv</a>
+    </div>
+</div>
+
+
+<div class="paper">
+    <h3>Open-Source LLM-Driven Federated Transformer for Predictive IoV   Management</h3>
+    <div class="scores">
+        <span class="score relevance">Relevance: 8/10</span>
+        <span class="score importance">Importance: 9/10</span>
+    </div>
+    <div class="abstract">The proliferation of connected vehicles within the Internet of Vehicles (IoV) ecosystem presents critical challenges in ensuring scalable, real-time, and privacy-preserving traffic management. Existing centralized IoV solutions often suffer from high latency, limited scalability, and reliance on proprietary Artificial Intelligence (AI) models, creating significant barriers to widespread deployment, particularly in dynamic and privacy-sensitive environments. Meanwhile, integrating Large Language Models (LLMs) in vehicular systems remains underexplored, especially concerning prompt optimization and effective utilization in federated contexts. To address these challenges, we propose the Federated Prompt-Optimized Traffic Transformer (FPoTT), a novel framework that leverages open-source LLMs for predictive IoV management. FPoTT introduces a dynamic prompt optimization mechanism that iteratively refines textual prompts to enhance trajectory prediction. The architecture employs a dual-layer federated learning paradigm, combining lightweight edge models for real-time inference with cloud-based LLMs to retain global intelligence. A Transformer-driven synthetic data generator is incorporated to augment training with diverse, high-fidelity traffic scenarios in the Next Generation Simulation (NGSIM) format. Extensive evaluations demonstrate that FPoTT, utilizing EleutherAI Pythia-1B, achieves 99.86% prediction accuracy on real-world data while maintaining high performance on synthetic datasets. These results underscore the potential of open-source LLMs in enabling secure, adaptive, and scalable IoV management, offering a promising alternative to proprietary solutions in smart mobility ecosystems.</div>
+    <div class="meta">
+        <a href="http://arxiv.org/abs/2505.00651v1" target="_blank">View on arXiv</a>
+    </div>
+</div>
+
+
+<div class="paper">
+    <h3>FineScope : Precision Pruning for Domain-Specialized Large Language   Models Using SAE-Guided Self-Data Cultivation</h3>
+    <div class="scores">
+        <span class="score relevance">Relevance: 9/10</span>
+        <span class="score importance">Importance: 8/10</span>
+    </div>
+    <div class="abstract">Training large language models (LLMs) from scratch requires significant computational resources, driving interest in developing smaller, domain-specific LLMs that maintain both efficiency and strong task performance. Medium-sized models such as LLaMA, llama} have served as starting points for domain-specific adaptation, but they often suffer from accuracy degradation when tested on specialized datasets. We introduce FineScope, a framework for deriving compact, domain-optimized LLMs from larger pretrained models. FineScope leverages the Sparse Autoencoder (SAE) framework, inspired by its ability to produce interpretable feature representations, to extract domain-specific subsets from large datasets. We apply structured pruning with domain-specific constraints, ensuring that the resulting pruned models retain essential knowledge for the target domain. To further enhance performance, these pruned models undergo self-data distillation, leveraging SAE-curated datasets to restore key domain-specific information lost during pruning. Extensive experiments and ablation studies demonstrate that FineScope achieves highly competitive performance, outperforming several large-scale state-of-the-art LLMs in domain-specific tasks. Additionally, our results show that FineScope enables pruned models to regain a substantial portion of their original performance when fine-tuned with SAE-curated datasets. Furthermore, applying these datasets to fine-tune pretrained LLMs without pruning also improves their domain-specific accuracy, highlighting the robustness of our approach. The code will be released.</div>
+    <div class="meta">
+        <a href="http://arxiv.org/abs/2505.00624v1" target="_blank">View on arXiv</a>
+    </div>
+</div>
+
+
+<div class="paper">
+    <h3>FreqKV: Frequency Domain Key-Value Compression for Efficient Context   Window Extension</h3>
+    <div class="scores">
+        <span class="score relevance">Relevance: 9/10</span>
+        <span class="score importance">Importance: 8/10</span>
+    </div>
+    <div class="abstract">Extending the context window in large language models (LLMs) is essential for applications involving long-form content generation. However, the linear increase in key-value (KV) cache memory requirements and the quadratic complexity of self-attention with respect to sequence length present significant challenges during fine-tuning and inference. Existing methods suffer from performance degradation when extending to longer contexts. In this work, we introduce a novel context extension method that optimizes both fine-tuning and inference efficiency. Our method exploits a key observation: in the frequency domain, the energy distribution of the KV cache is primarily concentrated in low-frequency components. By filtering out the high-frequency components, the KV cache can be effectively compressed with minimal information loss. Building on this insight, we propose an efficient compression technique, FreqKV, that iteratively compresses the increasing KV cache to a fixed size in the frequency domain, applicable to both fine-tuning and inference. FreqKV introduces no additional parameters or architectural modifications. With minimal fine-tuning, LLMs can learn to leverage the limited cache that is compressed in the frequency domain and extend the context window efficiently. Experiments on various long context language modeling and understanding tasks demonstrate the efficiency and efficacy of the proposed method.</div>
+    <div class="meta">
+        <a href="http://arxiv.org/abs/2505.00570v1" target="_blank">View on arXiv</a>
+    </div>
+</div>
+
+
+<div class="paper">
+    <h3>HalluMix: A Task-Agnostic, Multi-Domain Benchmark for Real-World   Hallucination Detection</h3>
+    <div class="scores">
+        <span class="score relevance">Relevance: 9/10</span>
+        <span class="score importance">Importance: 8/10</span>
+    </div>
+    <div class="abstract">As large language models (LLMs) are increasingly deployed in high-stakes domains, detecting hallucinated content$\unicode{x2013}$text that is not grounded in supporting evidence$\unicode{x2013}$has become a critical challenge. Existing benchmarks for hallucination detection are often synthetically generated, narrowly focused on extractive question answering, and fail to capture the complexity of real-world scenarios involving multi-document contexts and full-sentence outputs. We introduce the HalluMix Benchmark, a diverse, task-agnostic dataset that includes examples from a range of domains and formats. Using this benchmark, we evaluate seven hallucination detection systems$\unicode{x2013}$both open and closed source$\unicode{x2013}$highlighting differences in performance across tasks, document lengths, and input representations. Our analysis highlights substantial performance disparities between short and long contexts, with critical implications for real-world Retrieval Augmented Generation (RAG) implementations. Quotient Detections achieves the best overall performance, with an accuracy of 0.82 and an F1 score of 0.84.</div>
+    <div class="meta">
+        <a href="http://arxiv.org/abs/2505.00506v1" target="_blank">View on arXiv</a>
+    </div>
+</div>
+
+
+<div class="paper">
+    <h3>UserCentrix: An Agentic Memory-augmented AI Framework for Smart Spaces</h3>
+    <div class="scores">
+        <span class="score relevance">Relevance: 9/10</span>
+        <span class="score importance">Importance: 8/10</span>
+    </div>
+    <div class="abstract">Agentic AI, with its autonomous and proactive decision-making, has transformed smart environments. By integrating Generative AI (GenAI) and multi-agent systems, modern AI frameworks can dynamically adapt to user preferences, optimize data management, and improve resource allocation. This paper introduces UserCentrix, an agentic memory-augmented AI framework designed to enhance smart spaces through dynamic, context-aware decision-making. This framework integrates personalized Large Language Model (LLM) agents that leverage user preferences and LLM memory management to deliver proactive and adaptive assistance. Furthermore, it incorporates a hybrid hierarchical control system, balancing centralized and distributed processing to optimize real-time responsiveness while maintaining global situational awareness. UserCentrix achieves resource-efficient AI interactions by embedding memory-augmented reasoning, cooperative agent negotiation, and adaptive orchestration strategies. Our key contributions include (i) a self-organizing framework with proactive scaling based on task urgency, (ii) a Value of Information (VoI)-driven decision-making process, (iii) a meta-reasoning personal LLM agent, and (iv) an intelligent multi-agent coordination system for seamless environment adaptation. Experimental results across various models confirm the effectiveness of our approach in enhancing response accuracy, system efficiency, and computational resource management in real-world application.</div>
+    <div class="meta">
+        <a href="http://arxiv.org/abs/2505.00472v1" target="_blank">View on arXiv</a>
+    </div>
+</div>
+
+
+<div class="paper">
+    <h3>R&B: Domain Regrouping and Data Mixture Balancing for Efficient   Foundation Model Training</h3>
+    <div class="scores">
+        <span class="score relevance">Relevance: 9/10</span>
+        <span class="score importance">Importance: 8/10</span>
+    </div>
+    <div class="abstract">Data mixing strategies have successfully reduced the costs involved in training language models. While promising, such methods suffer from two flaws. First, they rely on predetermined data domains (e.g., data sources, task types), which may fail to capture critical semantic nuances, leaving performance on the table. Second, these methods scale with the number of domains in a computationally prohibitive way. We address these challenges via R&B, a framework that re-partitions training data based on semantic similarity (Regroup) to create finer-grained domains, and efficiently optimizes the data composition (Balance) by leveraging a Gram matrix induced by domain gradients obtained throughout training. Unlike prior works, it removes the need for additional compute to obtain evaluation information such as losses or gradients. We analyze this technique under standard regularity conditions and provide theoretical insights that justify R&B's effectiveness compared to non-adaptive mixing approaches. Empirically, we demonstrate the effectiveness of R&B on five diverse datasets ranging from natural language to reasoning and multimodal tasks. With as little as 0.01% additional compute overhead, R&B matches or exceeds the performance of state-of-the-art data mixing strategies.</div>
+    <div class="meta">
+        <a href="http://arxiv.org/abs/2505.00358v1" target="_blank">View on arXiv</a>
+    </div>
+</div>
+
+
+<div class="paper">
+    <h3>Scaling On-Device GPU Inference for Large Generative Models</h3>
+    <div class="scores">
+        <span class="score relevance">Relevance: 8/10</span>
+        <span class="score importance">Importance: 9/10</span>
+    </div>
+    <div class="abstract">Driven by the advancements in generative AI, large machine learning models have revolutionized domains such as image processing, audio synthesis, and speech recognition. While server-based deployments remain the locus of peak performance, the imperative for on-device inference, necessitated by privacy and efficiency considerations, persists. Recognizing GPUs as the on-device ML accelerator with the widest reach, we present ML Drift--an optimized framework that extends the capabilities of state-of-the-art GPU-accelerated inference engines. ML Drift enables on-device execution of generative AI workloads which contain 10 to 100x more parameters than existing on-device generative AI models. ML Drift addresses intricate engineering challenges associated with cross-GPU API development, and ensures broad compatibility across mobile and desktop/laptop platforms, thereby facilitating the deployment of significantly more complex models on resource-constrained devices. Our GPU-accelerated ML/AI inference engine achieves an order-of-magnitude performance improvement relative to existing open-source GPU inference engines.</div>
+    <div class="meta">
+        <a href="http://arxiv.org/abs/2505.00232v1" target="_blank">View on arXiv</a>
+    </div>
+</div>
+
+
+<div class="paper">
+    <h3>Fitness Landscape of Large Language Model-Assisted Automated Algorithm   Search</h3>
+    <div class="scores">
+        <span class="score relevance">Relevance: 9/10</span>
+        <span class="score importance">Importance: 8/10</span>
+    </div>
+    <div class="abstract">Large Language Models (LLMs) have demonstrated significant potential in algorithm design. However, when integrated into search frameworks for iterative algorithm search, the underlying fitness landscape--critical for understanding search behaviou--remains underexplored. In this paper, we illustrate and analyze the fitness landscape of LLM-assisted Algorithm Search (LAS) using a graph-based approach, where nodes represent algorithms and edges denote transitions between them. We conduct extensive evaluations across six algorithm design tasks and six commonly used LLMs. Our findings reveal that LAS landscapes are highly multimodal and rugged, particularly in combinatorial optimization tasks, with distinct structural variations across tasks and LLMs. For instance, heuristic design tasks exhibit dense clusters of high-performing algorithms, while symbolic regression tasks show sparse, scattered distributions. Additionally, we demonstrate how population size influences exploration-exploitation trade-offs and the evolving trajectory of elite algorithms. These insights not only advance our understanding of LAS landscapes but also provide practical guidance for designing more effective LAS methods.</div>
+    <div class="meta">
+        <a href="http://arxiv.org/abs/2504.19636v2" target="_blank">View on arXiv</a>
+    </div>
+</div>
+
+
+<div class="paper">
+    <h3>A Framework for Testing and Adapting REST APIs as LLM Tools</h3>
+    <div class="scores">
+        <span class="score relevance">Relevance: 9/10</span>
+        <span class="score importance">Importance: 8/10</span>
+    </div>
+    <div class="abstract">Large Language Models (LLMs) are enabling autonomous agents to perform complex workflows using external tools or functions, often provided via REST APIs in enterprise systems. However, directly utilizing these APIs as tools poses challenges due to their complex input schemas, elaborate responses, and often ambiguous documentation. Current benchmarks for tool testing do not adequately address these complexities, leading to a critical gap in evaluating API readiness for agent-driven automation. In this work, we present a novel testing framework aimed at evaluating and enhancing the readiness of REST APIs to function as tools for LLM-based agents. Our framework transforms apis as tools, generates comprehensive test cases for the APIs, translates tests cases into natural language instructions suitable for agents, enriches tool definitions and evaluates the agent's ability t correctly invoke the API and process its inputs and responses. To provide actionable insights, we analyze the outcomes of 750 test cases, presenting a detailed taxonomy of errors, including input misinterpretation, output handling inconsistencies, and schema mismatches. Additionally, we classify these test cases to streamline debugging and refinement of tool integrations. This work offers a foundational step toward enabling enterprise APIs as tools, improving their usability in agent-based applications.</div>
+    <div class="meta">
+        <a href="http://arxiv.org/abs/2504.15546v2" target="_blank">View on arXiv</a>
+    </div>
+</div>
+
+
+<div class="paper">
+    <h3>Dynamic Parametric Retrieval Augmented Generation for Test-time   Knowledge Enhancement</h3>
+    <div class="scores">
+        <span class="score relevance">Relevance: 9/10</span>
+        <span class="score importance">Importance: 8/10</span>
+    </div>
+    <div class="abstract">Retrieval-augmented generation (RAG) enhances large language models (LLMs) by retrieving relevant documents from external sources and incorporating them into the context. While it improves reliability by providing factual texts, it significantly increases inference costs as context length grows and introduces challenging issue of RAG hallucination, primarily caused by the lack of corresponding parametric knowledge in LLMs. An efficient solution is to enhance the knowledge of LLMs at test-time. Parametric RAG (PRAG) addresses this by embedding document into LLMs parameters to perform test-time knowledge enhancement, effectively reducing inference costs through offline training. However, its high training and storage costs, along with limited generalization ability, significantly restrict its practical adoption. To address these challenges, we propose Dynamic Parametric RAG (DyPRAG), a novel framework that leverages a lightweight parameter translator model to efficiently convert documents into parametric knowledge. DyPRAG not only reduces inference, training, and storage costs but also dynamically generates parametric knowledge, seamlessly enhancing the knowledge of LLMs and resolving knowledge conflicts in a plug-and-play manner at test-time. Extensive experiments on multiple datasets demonstrate the effectiveness and generalization capabilities of DyPRAG, offering a powerful and practical RAG paradigm which enables superior knowledge fusion and mitigates RAG hallucination in real-world applications. Our code is available at https://github.com/Trae1ounG/DyPRAG.</div>
+    <div class="meta">
+        <a href="http://arxiv.org/abs/2503.23895v2" target="_blank">View on arXiv</a>
+    </div>
+</div>
+
+
+<div class="paper">
+    <h3>Instantiation-based Formalization of Logical Reasoning Tasks using   Language Models and Logical Solvers</h3>
+    <div class="scores">
+        <span class="score relevance">Relevance: 8/10</span>
+        <span class="score importance">Importance: 9/10</span>
+    </div>
+    <div class="abstract">Robustness of reasoning remains a significant challenge for large language models, and addressing it is essential for the practical applicability of AI-driven reasoning systems. We introduce Semantic Self-Verification (SSV), a novel approach that addresses the key challenge in combining language models with the rigor of logical solvers: to accurately formulate the reasoning problem from natural language to the formal language of the solver. SSV uses a consistency-based approach to produce strong abstract formalizations of problems using concrete instantiations that are generated by the model and verified by the solver. In addition to significantly advancing the overall reasoning accuracy over the state-of-the-art, a key novelty that this approach presents is a feature of verification that has near-perfect precision over a significant coverage of cases, as we demonstrate on open reasoning benchmarks. We propose such *near-certain reasoning* as a new approach to reduce the need for manual verification in many cases, taking us closer to more dependable and autonomous AI reasoning systems.</div>
+    <div class="meta">
+        <a href="http://arxiv.org/abs/2501.16961v2" target="_blank">View on arXiv</a>
+    </div>
+</div>
+
+
+<div class="paper">
+    <h3>Fiddler: CPU-GPU Orchestration for Fast Inference of Mixture-of-Experts   Models</h3>
+    <div class="scores">
+        <span class="score relevance">Relevance: 9/10</span>
+        <span class="score importance">Importance: 8/10</span>
+    </div>
+    <div class="abstract">Large Language Models (LLMs) with the Mixture-of-Experts (MoE) architectures have shown promising performance on various tasks. However, due to the huge model sizes, running them in resource-constrained environments where the GPU memory is not abundant is challenging. Some existing systems propose to use CPU resources to solve that, but they either suffer from the significant overhead of frequently moving data between CPU and GPU, or fail to consider distinct characteristics of CPUs and GPUs. This paper proposes Fiddler, a resource-efficient inference system for MoE models with limited GPU resources. Fiddler strategically utilizes CPU and GPU resources by determining the optimal execution strategy. Our evaluation shows that, unlike state-of-the-art systems that optimize for specific scenarios such as single batch inference or long prefill, Fiddler performs better in all scenarios. Compared against different baselines, Fiddler achieves 1.26 times speed up in single batch inference, 1.30 times in long prefill processing, and 11.57 times in beam search inference. The code of Fiddler is publicly available at https://github.com/efeslab/fiddler.</div>
+    <div class="meta">
+        <a href="http://arxiv.org/abs/2402.07033v3" target="_blank">View on arXiv</a>
+    </div>
+</div>
+
+
+<div class="paper">
+    <h3>Learning to Learn with Quantum Optimization via Quantum Neural Networks</h3>
+    <div class="scores">
+        <span class="score relevance">Relevance: 7/10</span>
+        <span class="score importance">Importance: 9/10</span>
+    </div>
+    <div class="abstract">Quantum Approximate Optimization Algorithms (QAOA) promise efficient solutions to classically intractable combinatorial optimization problems by harnessing shallow-depth quantum circuits. Yet, their performance and scalability often hinge on effective parameter optimization, which remains nontrivial due to rugged energy landscapes and hardware noise. In this work, we introduce a quantum meta-learning framework that combines quantum neural networks, specifically Quantum Long Short-Term Memory (QLSTM) architectures, with QAOA. By training the QLSTM optimizer on smaller graph instances, our approach rapidly generalizes to larger, more complex problems, substantially reducing the number of iterations required for convergence. Through comprehensive benchmarks on Max-Cut and Sherrington-Kirkpatrick model instances, we demonstrate that QLSTM-based optimizers converge faster and achieve higher approximation ratios compared to classical baselines, thereby offering a robust pathway toward scalable quantum optimization in the NISQ era.</div>
+    <div class="meta">
+        <a href="http://arxiv.org/abs/2505.00561v1" target="_blank">View on arXiv</a>
+    </div>
+</div>
+
+
+<div class="paper">
+    <h3>Triggering Hallucinations in LLMs: A Quantitative Study of   Prompt-Induced Hallucination in Large Language Models</h3>
+    <div class="scores">
+        <span class="score relevance">Relevance: 8/10</span>
+        <span class="score importance">Importance: 8/10</span>
+    </div>
+    <div class="abstract">Hallucinations in large language models (LLMs) present a growing challenge across real-world applications, from healthcare to law, where factual reliability is essential. Despite advances in alignment and instruction tuning, LLMs can still generate outputs that are fluent yet fundamentally untrue. Understanding the cognitive dynamics that underlie these hallucinations remains an open problem. In this study, we propose a prompt-based framework to systematically trigger and quantify hallucination: a Hallucination-Inducing Prompt (HIP), which synthetically fuses semantically distant concepts (e.g., periodic table of elements and tarot divination) in a misleading way, and a Hallucination Quantifying Prompt (HQP), which scores the plausibility, confidence, and coherence of the output. Controlled experiments across multiple LLMs revealed that HIPs consistently produced less coherent and more hallucinated responses than their null-fusion controls. These effects varied across models, with reasoning-oriented LLMs showing distinct profiles from general-purpose ones. Our framework provides a reproducible testbed for studying hallucination vulnerability, and opens the door to developing safer, more introspective LLMs that can detect and self-regulate the onset of conceptual instability.</div>
+    <div class="meta">
+        <a href="http://arxiv.org/abs/2505.00557v1" target="_blank">View on arXiv</a>
+    </div>
+</div>
+
+    </div>
+</div>
+
+    </body>
+    </html>
+    
