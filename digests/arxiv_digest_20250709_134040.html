@@ -1,0 +1,436 @@
+
+    <!DOCTYPE html>
+    <html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>ArXiv Research Digest</title>
+        <style>
+            
+body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    line-height: 1.5;
+    color: #2d3748;
+    margin: 0;
+    padding: 20px;
+    background: #f7fafc;
+}
+
+.digest {
+    max-width: 800px;
+    margin: 0 auto;
+    background: white;
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+}
+
+.header {
+    margin-bottom: 2rem;
+    padding-bottom: 1rem;
+    border-bottom: 2px solid #e2e8f0;
+}
+
+.header h2 {
+    margin: 0;
+    color: #2d3748;
+}
+
+.header p {
+    margin: 0.5rem 0 0;
+    color: #718096;
+}
+
+.highlights {
+    background: #f8fafc;
+    padding: 1.5rem;
+    border-radius: 8px;
+    margin-bottom: 3rem;
+    border: 1px solid #e2e8f0;
+}
+
+.highlights h3 {
+    color: #2d3748;
+    margin: 0 0 1rem 0;
+    font-size: 1.25rem;
+}
+
+.summary {
+    white-space: pre-line;
+    line-height: 1.6;
+}
+
+.summary ol {
+    padding-left: 1.5rem;
+    margin: 1rem 0;
+}
+
+.summary li {
+    margin-bottom: 0.75rem;
+    padding-left: 0.5rem;
+}
+
+.papers {
+    margin-top: 3rem;
+}
+
+.papers h3 {
+    color: #2d3748;
+    margin-bottom: 1.5rem;
+    padding-bottom: 1rem;
+    border-bottom: 2px solid #e2e8f0;
+}
+
+.paper {
+    margin-bottom: 2rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid #e2e8f0;
+}
+
+.paper:last-child {
+    border-bottom: none;
+}
+
+.paper h3 {
+    margin: 0 0 0.5rem;
+    color: #2d3748;
+}
+
+.paper .scores {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 0.5rem;
+}
+
+.paper .score {
+    padding: 0.25rem 0.5rem;
+    border-radius: 4px;
+    font-size: 0.875rem;
+}
+
+.paper .relevance {
+    background: #e6fffa;
+    color: #047481;
+}
+
+.paper .importance {
+    background: #ebf4ff;
+    color: #1a56db;
+}
+
+.paper .abstract {
+    color: #4a5568;
+    margin: 0.5rem 0;
+}
+
+.paper .meta {
+    font-size: 0.875rem;
+    color: #718096;
+}
+
+.paper .meta a {
+    color: #4299e1;
+    text-decoration: none;
+}
+
+.paper .meta a:hover {
+    text-decoration: underline;
+}
+
+        </style>
+    </head>
+    <body>
+        
+<div class="digest">
+    <div class="header">
+        <h2>ArXiv Research Digest</h2>
+        <p>Found 20 relevant papers out of 200 new submissions</p>
+    </div>
+    
+    <div class="highlights">
+        <h3>🔥 Key Highlights</h3>
+        Hey boss, I stumbled upon 5 awesome papers today that I think you’ll find super interesting:
+
+<ol>
+<li>Researchers developed **TuneShield**, a framework that helps chatbots handle toxic language when fine-tuning on untrusted data. It not only identifies toxic samples but also generates 'healing data' to improve responses, making conversational AI safer and more reliable. This could be a game-changer for deploying chatbots in sensitive environments!</li>
+
+<li>A team introduced **MemoryAgentBench**, a new benchmark for evaluating memory in LLM agents. It focuses on how well these agents remember and update information over multiple interactions. This could help improve the design of LLMs for applications that require long-term memory, making them much more effective in real-world scenarios.</li>
+
+<li>Check out **UQLM**, a Python package that tackles hallucinations in LLMs by quantifying uncertainty. It provides confidence scores for model outputs, which could significantly enhance the reliability of AI in critical applications, like healthcare and finance. This is definitely worth looking into for our projects!</li>
+
+<li>There's also **FEVO**, a framework that boosts LLM performance specifically for financial tasks. By expanding financial knowledge and refining reasoning patterns, it achieves state-of-the-art results on several benchmarks. This could really elevate how we approach financial AI solutions!</li>
+
+<li>Lastly, I found **CogniSQL-R1-Zero**, a new RL framework for generating SQL from natural language. It achieves high accuracy on complex queries without needing complex supervision. This could simplify how we interface with databases and improve data access tools significantly!</li>
+</ol>
+
+Let me know if you want to dive deeper into any of these!
+    </div>
+    
+    <div class="papers">
+        <h3>📄 Detailed Papers</h3>
+        
+<div class="paper">
+    <h3>TuneShield: Mitigating Toxicity in Conversational AI while Fine-tuning   on Untrusted Data</h3>
+    <div class="scores">
+        <span class="score relevance">Relevance: 10/10</span>
+        <span class="score importance">Importance: 9/10</span>
+    </div>
+    <div class="abstract">Recent advances in foundation models, such as LLMs, have revolutionized conversational AI. Chatbots are increasingly being developed by customizing LLMs on specific conversational datasets. However, mitigating toxicity during this customization, especially when dealing with untrusted training data, remains a significant challenge. To address this, we introduce TuneShield, a defense framework designed to mitigate toxicity during chatbot fine-tuning while preserving conversational quality. TuneShield leverages LLM-based toxicity classification, utilizing the instruction-following capabilities and safety alignment of LLMs to effectively identify toxic samples, outperforming industry API services. TuneShield generates synthetic conversation samples, termed 'healing data', based on the identified toxic samples, using them to mitigate toxicity while reinforcing desirable behavior during fine-tuning. It performs an alignment process to further nudge the chatbot towards producing desired responses. Our findings show that TuneShield effectively mitigates toxicity injection attacks while preserving conversational quality, even when the toxicity classifiers are imperfect or biased. TuneShield proves to be resilient against adaptive adversarial and jailbreak attacks. Additionally, TuneShield demonstrates effectiveness in mitigating adaptive toxicity injection attacks during dialog-based learning (DBL).</div>
+    <div class="meta">
+        <a href="http://arxiv.org/abs/2507.05660v1" target="_blank">View on arXiv</a>
+    </div>
+</div>
+
+
+<div class="paper">
+    <h3>Evaluating Memory in LLM Agents via Incremental Multi-Turn Interactions</h3>
+    <div class="scores">
+        <span class="score relevance">Relevance: 10/10</span>
+        <span class="score importance">Importance: 9/10</span>
+    </div>
+    <div class="abstract">Recent benchmarks for Large Language Model (LLM) agents primarily focus on evaluating reasoning, planning, and execution capabilities, while another critical component-memory, encompassing how agents memorize, update, and retrieve long-term information-is under-evaluated due to the lack of benchmarks. We term agents with memory mechanisms as memory agents. In this paper, we identify four core competencies essential for memory agents: accurate retrieval, test-time learning, long-range understanding, and conflict resolution. Existing datasets either rely on limited context lengths or are tailored for static, long-context settings like book-based QA, which do not reflect the interactive, multi-turn nature of memory agents that incrementally accumulate information. Furthermore, no existing benchmarks cover all four competencies. Therefore, we introduce MemoryAgentBench, a new benchmark specifically designed for memory agents. Our benchmark combines reformulated existing datasets with newly constructed ones, covering the above four memory competencies, providing a systematic and challenging testbed for assessing memory quality. We evaluate a diverse set of memory agents, ranging from simple context-based and retrieval-augmented generation (RAG) systems to advanced agents with external memory modules and tool integration. Empirical results reveal that current methods fall short of mastering all four competencies, underscoring the need for further research into comprehensive memory mechanisms for LLM agents.</div>
+    <div class="meta">
+        <a href="http://arxiv.org/abs/2507.05257v1" target="_blank">View on arXiv</a>
+    </div>
+</div>
+
+
+<div class="paper">
+    <h3>UQLM: A Python Package for Uncertainty Quantification in Large Language   Models</h3>
+    <div class="scores">
+        <span class="score relevance">Relevance: 9/10</span>
+        <span class="score importance">Importance: 9/10</span>
+    </div>
+    <div class="abstract">Hallucinations, defined as instances where Large Language Models (LLMs) generate false or misleading content, pose a significant challenge that impacts the safety and trust of downstream applications. We introduce UQLM, a Python package for LLM hallucination detection using state-of-the-art uncertainty quantification (UQ) techniques. This toolkit offers a suite of UQ-based scorers that compute response-level confidence scores ranging from 0 to 1. This library provides an off-the-shelf solution for UQ-based hallucination detection that can be easily integrated to enhance the reliability of LLM outputs.</div>
+    <div class="meta">
+        <a href="http://arxiv.org/abs/2507.06196v1" target="_blank">View on arXiv</a>
+    </div>
+</div>
+
+
+<div class="paper">
+    <h3>FEVO: Financial Knowledge Expansion and Reasoning Evolution for Large   Language Models</h3>
+    <div class="scores">
+        <span class="score relevance">Relevance: 9/10</span>
+        <span class="score importance">Importance: 9/10</span>
+    </div>
+    <div class="abstract">Advancements in reasoning for large language models (LLMs) have lead to significant performance improvements for LLMs in various fields such as mathematics and programming. However, research applying these advances to the financial domain, where considerable domain-specific knowledge is necessary to complete tasks, remains limited. To address this gap, we introduce FEVO (Financial Evolution), a multi-stage enhancement framework developed to enhance LLM performance in the financial domain. FEVO systemically enhances LLM performance by using continued pre-training (CPT) to expand financial domain knowledge, supervised fine-tuning (SFT) to instill structured, elaborate reasoning patterns, and reinforcement learning (RL) to further integrate the expanded financial domain knowledge with the learned structured reasoning. To ensure effective and efficient training, we leverage frontier reasoning models and rule-based filtering to curate FEVO-Train, high-quality datasets specifically designed for the different post-training phases. Using our framework, we train the FEVO series of models -- C32B, S32B, R32B -- from Qwen2.5-32B and evaluate them on seven benchmarks to assess financial and general capabilities, with results showing that FEVO-R32B achieves state-of-the-art performance on five financial benchmarks against much larger models as well as specialist models. More significantly, FEVO-R32B demonstrates markedly better performance than FEVO-R32B-0 (trained from Qwen2.5-32B-Instruct using only RL), thus validating the effectiveness of financial domain knowledge expansion and structured, logical reasoning distillation</div>
+    <div class="meta">
+        <a href="http://arxiv.org/abs/2507.06057v1" target="_blank">View on arXiv</a>
+    </div>
+</div>
+
+
+<div class="paper">
+    <h3>CogniSQL-R1-Zero: Lightweight Reinforced Reasoning for Efficient SQL   Generation</h3>
+    <div class="scores">
+        <span class="score relevance">Relevance: 9/10</span>
+        <span class="score importance">Importance: 9/10</span>
+    </div>
+    <div class="abstract">Translating natural language into SQL (Text-to-SQL) remains a core challenge at the intersection of language understanding and structured data access. Although large language models (LLMs) have improved fluency, generating correct and executable SQL, especially for complex queries, continues to be challenging. We introduce CogniSQL-R1-Zero, a reinforcement learning (RL) framework and model that produces accurate SQL using a lightweight reward signal based on execution correctness and format-tag compliance. By avoiding intermediate supervision, hybrid pipelines and complex reward shaping, our method encourages stable learning and stronger alignment with the ultimate task objective-producing executable programs. CogniSQL-R1-Zero achieves state-of-the-art execution accuracy on Text2SQL benchmark; BIRD bench, outperforming prior supervised and instruction-tuned baselines including SFT CodeS-7B, DeepSeek-Coder 236B, and Mistral 123B-despite being trained on a significantly smaller 7B backbone. This result underscores the scalability and efficiency of our RL-based approach when trained on just four NVIDIA A100 GPUs (40 GB VRAM each). To support further research in efficient and interpretable Text-to-SQL modeling, we release two curated datasets: (i) a collection of 5,024 reasoning traces with varying context lengths, and (ii) a positive-sampled corpus of 36,356 corpus of weakly supervised queries, each annotated with six semantically diverse reasoning paths. Together, these contributions advance scalable, execution-aligned Text-to-SQL generation.</div>
+    <div class="meta">
+        <a href="http://arxiv.org/abs/2507.06013v1" target="_blank">View on arXiv</a>
+    </div>
+</div>
+
+
+<div class="paper">
+    <h3>Conversational Education at Scale: A Multi-LLM Agent Workflow for   Procedural Learning and Pedagogic Quality Assessment</h3>
+    <div class="scores">
+        <span class="score relevance">Relevance: 9/10</span>
+        <span class="score importance">Importance: 9/10</span>
+    </div>
+    <div class="abstract">Large language models (LLMs) have advanced virtual educators and learners, bridging NLP with AI4Education. Existing work often lacks scalability and fails to leverage diverse, large-scale course content, with limited frameworks for assessing pedagogic quality. To this end, we propose WikiHowAgent, a multi-agent workflow leveraging LLMs to simulate interactive teaching-learning conversations. It integrates teacher and learner agents, an interaction manager, and an evaluator to facilitate procedural learning and assess pedagogic quality. We introduce a dataset of 114,296 teacher-learner conversations grounded in 14,287 tutorials across 17 domains and 727 topics. Our evaluation protocol combines computational and rubric-based metrics with human judgment alignment. Results demonstrate the workflow's effectiveness in diverse setups, offering insights into LLM capabilities across domains. Our datasets and implementations are fully open-sourced.</div>
+    <div class="meta">
+        <a href="http://arxiv.org/abs/2507.05528v1" target="_blank">View on arXiv</a>
+    </div>
+</div>
+
+
+<div class="paper">
+    <h3>Train-before-Test Harmonizes Language Model Rankings</h3>
+    <div class="scores">
+        <span class="score relevance">Relevance: 9/10</span>
+        <span class="score importance">Importance: 9/10</span>
+    </div>
+    <div class="abstract">Existing language model benchmarks provide contradictory model rankings, even for benchmarks that aim to capture similar skills. This dilemma of conflicting rankings hampers model selection, clouds model comparisons, and adds confusion to a growing ecosystem of competing models. Recent work attributed ranking disagreement to the phenomenon of training on the test task: As released, different models exhibit a different level of preparation for any given test task. A candidate solution to the problem is train-before-test: Give each model the same benchmark-specific finetuning before evaluation. Our primary contribution is a broad empirical evaluation of train-before-test across 24 benchmarks and 61 models. We show that train-before-test significantly improves ranking agreement consistently across all benchmarks. Whereas rankings have little external validity to start with, they enjoy a significant degree of external validity when applying train-before-test: Model rankings transfer gracefully from one benchmark to the other. Even within the same model family, train-before-test reduces strong ranking disagreement to near-perfect agreement. In addition, train-before-test reduces the model-score matrix to essentially rank one, revealing new insights into the latent factors of benchmark performance. Our work supports the recommendation to make train-before-test a default component of LLM benchmarking.</div>
+    <div class="meta">
+        <a href="http://arxiv.org/abs/2507.05195v1" target="_blank">View on arXiv</a>
+    </div>
+</div>
+
+
+<div class="paper">
+    <h3>AI Generated Text Detection Using Instruction Fine-tuned Large Language   and Transformer-Based Models</h3>
+    <div class="scores">
+        <span class="score relevance">Relevance: 9/10</span>
+        <span class="score importance">Importance: 9/10</span>
+    </div>
+    <div class="abstract">Large Language Models (LLMs) possess an extraordinary capability to produce text that is not only coherent and contextually relevant but also strikingly similar to human writing. They adapt to various styles and genres, producing content that is both grammatically correct and semantically meaningful. Recently, LLMs have been misused to create highly realistic phishing emails, spread fake news, generate code to automate cyber crime, and write fraudulent scientific articles. Additionally, in many real-world applications, the generated content including style and topic and the generator model are not known beforehand. The increasing prevalence and sophistication of artificial intelligence (AI)-generated texts have made their detection progressively more challenging. Various attempts have been made to distinguish machine-generated text from human-authored content using linguistic, statistical, machine learning, and ensemble-based approaches. This work focuses on two primary objectives Task-A, which involves distinguishing human-written text from machine-generated text, and Task-B, which attempts to identify the specific LLM model responsible for the generation. Both of these tasks are based on fine tuning of Generative Pre-trained Transformer (GPT_4o-mini), Large Language Model Meta AI (LLaMA) 3 8B, and Bidirectional Encoder Representations from Transformers (BERT). The fine-tuned version of GPT_4o-mini and the BERT model has achieved accuracies of 0.9547 for Task-A and 0.4698 for Task-B.</div>
+    <div class="meta">
+        <a href="http://arxiv.org/abs/2507.05157v1" target="_blank">View on arXiv</a>
+    </div>
+</div>
+
+
+<div class="paper">
+    <h3>LCDS: A Logic-Controlled Discharge Summary Generation System Supporting   Source Attribution and Expert Review</h3>
+    <div class="scores">
+        <span class="score relevance">Relevance: 9/10</span>
+        <span class="score importance">Importance: 9/10</span>
+    </div>
+    <div class="abstract">Despite the remarkable performance of Large Language Models (LLMs) in automated discharge summary generation, they still suffer from hallucination issues, such as generating inaccurate content or fabricating information without valid sources. In addition, electronic medical records (EMRs) typically consist of long-form data, making it challenging for LLMs to attribute the generated content to the sources. To address these challenges, we propose LCDS, a Logic-Controlled Discharge Summary generation system. LCDS constructs a source mapping table by calculating textual similarity between EMRs and discharge summaries to constrain the scope of summarized content. Moreover, LCDS incorporates a comprehensive set of logical rules, enabling it to generate more reliable silver discharge summaries tailored to different clinical fields. Furthermore, LCDS supports source attribution for generated content, allowing experts to efficiently review, provide feedback, and rectify errors. The resulting golden discharge summaries are subsequently recorded for incremental fine-tuning of LLMs. Our project and demo video are in the GitHub repository https://github.com/ycycyc02/LCDS.</div>
+    <div class="meta">
+        <a href="http://arxiv.org/abs/2507.05319v1" target="_blank">View on arXiv</a>
+    </div>
+</div>
+
+
+<div class="paper">
+    <h3>OASBuilder: Generating OpenAPI Specifications from Online API   Documentation with Large Language Models</h3>
+    <div class="scores">
+        <span class="score relevance">Relevance: 9/10</span>
+        <span class="score importance">Importance: 9/10</span>
+    </div>
+    <div class="abstract">AI agents and business automation tools interacting with external web services require standardized, machine-readable information about their APIs in the form of API specifications. However, the information about APIs available online is often presented as unstructured, free-form HTML documentation, requiring external users to spend significant time manually converting it into a structured format. To address this, we introduce OASBuilder, a novel framework that transforms long and diverse API documentation pages into consistent, machine-readable API specifications. This is achieved through a carefully crafted pipeline that integrates large language models and rule-based algorithms which are guided by domain knowledge of the structure of documentation webpages. Our experiments demonstrate that OASBuilder generalizes well across hundreds of APIs, and produces valid OpenAPI specifications that encapsulate most of the information from the original documentation. OASBuilder has been successfully implemented in an enterprise environment, saving thousands of hours of manual effort and making hundreds of complex enterprise APIs accessible as tools for LLMs.</div>
+    <div class="meta">
+        <a href="http://arxiv.org/abs/2507.05316v1" target="_blank">View on arXiv</a>
+    </div>
+</div>
+
+
+<div class="paper">
+    <h3>Agent KB: Leveraging Cross-Domain Experience for Agentic Problem Solving</h3>
+    <div class="scores">
+        <span class="score relevance">Relevance: 9/10</span>
+        <span class="score importance">Importance: 8/10</span>
+    </div>
+    <div class="abstract">As language agents tackle increasingly complex tasks, they struggle with effective error correction and experience reuse across domains. We introduce Agent KB, a hierarchical experience framework that enables complex agentic problem solving via a novel Reason-Retrieve-Refine pipeline. Agent KB addresses a core limitation: agents traditionally cannot learn from each other's experiences. By capturing both high-level strategies and detailed execution logs, Agent KB creates a shared knowledge base that enables cross-agent knowledge transfer. Evaluated on the GAIA benchmark, Agent KB improves success rates by up to 16.28 percentage points. On the most challenging tasks, Claude-3 improves from 38.46% to 57.69%, while GPT-4 improves from 53.49% to 73.26% on intermediate tasks. On SWE-bench code repair, Agent KB enables Claude-3 to improve from 41.33% to 53.33%. Our results suggest that Agent KB provides a modular, framework-agnostic infrastructure for enabling agents to learn from past experiences and generalize successful strategies to new tasks.</div>
+    <div class="meta">
+        <a href="http://arxiv.org/abs/2507.06229v1" target="_blank">View on arXiv</a>
+    </div>
+</div>
+
+
+<div class="paper">
+    <h3>Efficiency-Effectiveness Reranking FLOPs for LLM-based Rerankers</h3>
+    <div class="scores">
+        <span class="score relevance">Relevance: 8/10</span>
+        <span class="score importance">Importance: 9/10</span>
+    </div>
+    <div class="abstract">Large Language Models (LLMs) have recently been applied to reranking tasks in information retrieval, achieving strong performance. However, their high computational demands often hinder practical deployment. Existing studies evaluate the efficiency of LLM-based rerankers using proxy metrics such as latency, the number of forward passes, input tokens, and output tokens. However, these metrics depend on hardware and running-time choices (\eg parallel or not, batch size, etc), and often fail to account for model size, making it difficult to interpret and obscuring the evaluation of the efficiency-effectiveness tradeoff. To address this issue, we propose E\textsuperscript{2}R-FLOPs, for LLM-based rerankers: ranking metrics per PetaFLOP (RPP) for relevance per compute and queries per PetaFLOP (QPP) for hardware-agnostic throughput. Companied with the new metrics, an interpretable FLOPs estimator is built to estimate the FLOPs of an LLM-based reranker even without running any experiments. Based on the proposed metrics, we conduct comprehensive experiments to evaluate a wide range of LLM-based rerankers with different architecture, studying the efficiency-effectiveness trade-off and bringing this issue to the attention of the research community.</div>
+    <div class="meta">
+        <a href="http://arxiv.org/abs/2507.06223v1" target="_blank">View on arXiv</a>
+    </div>
+</div>
+
+
+<div class="paper">
+    <h3>The Delta Learning Hypothesis: Preference Tuning on Weak Data can Yield   Strong Gains</h3>
+    <div class="scores">
+        <span class="score relevance">Relevance: 9/10</span>
+        <span class="score importance">Importance: 8/10</span>
+    </div>
+    <div class="abstract">Improvements in language models are often driven by improving the quality of the data we train them on, which can be limiting when strong supervision is scarce. In this work, we show that paired preference data consisting of individually weak data points can enable gains beyond the strength of each individual data point. We formulate the delta learning hypothesis to explain this phenomenon, positing that the relative quality delta between points suffices to drive learning via preference tuning--even when supervised finetuning on the weak data hurts. We validate our hypothesis in controlled experiments and at scale, where we post-train 8B models on preference data generated by pairing a small 3B model's responses with outputs from an even smaller 1.5B model to create a meaningful delta. Strikingly, on a standard 11-benchmark evaluation suite (MATH, MMLU, etc.), our simple recipe matches the performance of Tulu 3, a state-of-the-art open model tuned from the same base model while relying on much stronger supervisors (e.g., GPT-4o). Thus, delta learning enables simpler and cheaper open recipes for state-of-the-art post-training. To better understand delta learning, we prove in logistic regression that the performance gap between two weak teacher models provides useful signal for improving a stronger student. Overall, our work shows that models can learn surprisingly well from paired data that might typically be considered weak.</div>
+    <div class="meta">
+        <a href="http://arxiv.org/abs/2507.06187v1" target="_blank">View on arXiv</a>
+    </div>
+</div>
+
+
+<div class="paper">
+    <h3>Coding Triangle: How Does Large Language Model Understand Code?</h3>
+    <div class="scores">
+        <span class="score relevance">Relevance: 9/10</span>
+        <span class="score importance">Importance: 8/10</span>
+    </div>
+    <div class="abstract">Large language models (LLMs) have achieved remarkable progress in code generation, yet their true programming competence remains underexplored. We introduce the Code Triangle framework, which systematically evaluates LLMs across three fundamental dimensions: editorial analysis, code implementation, and test case generation. Through extensive experiments on competitive programming benchmarks, we reveal that while LLMs can form a self-consistent system across these dimensions, their solutions often lack the diversity and robustness of human programmers. We identify a significant distribution shift between model cognition and human expertise, with model errors tending to cluster due to training data biases and limited reasoning transfer. Our study demonstrates that incorporating human-generated editorials, solutions, and diverse test cases, as well as leveraging model mixtures, can substantially enhance both the performance and robustness of LLMs. Furthermore, we reveal both the consistency and inconsistency in the cognition of LLMs that may facilitate self-reflection and self-improvement, providing a potential direction for developing more powerful coding models.</div>
+    <div class="meta">
+        <a href="http://arxiv.org/abs/2507.06138v1" target="_blank">View on arXiv</a>
+    </div>
+</div>
+
+
+<div class="paper">
+    <h3>BlueLM-2.5-3B Technical Report</h3>
+    <div class="scores">
+        <span class="score relevance">Relevance: 9/10</span>
+        <span class="score importance">Importance: 8/10</span>
+    </div>
+    <div class="abstract">We present BlueLM-2.5-3B, a compact and unified dense Multimodal Large Language Model (MLLM) designed for efficient edge-device deployment, offering strong general-purpose and reasoning capabilities. To the best of our knowledge, this is the first 3B-scale MLLM to support both thinking and non-thinking modes, while also enabling explicit control over thinking token budget. BlueLM-2.5-3B is developed through diversified data curation, key data resampling, hybrid heterogeneous reinforcement learning, and a high-performance training infrastructure. Our model achieves superior multimodal capacity while preserving competitive pure-text performance with only 2.9 billion parameters. We conduct comprehensive evaluations across a broad range of multimodal and text-only benchmarks. In thinking mode, BlueLM-2.5-3B achieves comparable performance to Qwen3-4B on text-only benchmarks, and trails the larger Kimi-VL-A3B-16B by only about 5% on average across multimodal evaluations. In non-thinking mode, it outperforms Qwen2.5-VL-3B on the majority of multimodal benchmarks. Additionally, BlueLM-2.5-3B exhibits exceptional data efficiency. All of the aforementioned performance is achieved with substantially less total training data than Qwen2.5-VL-3B and Qwen3-4B. We hope our work contributes to the advancement of high-performance, on-device MLLMs and provides meaningful insights to the research community.</div>
+    <div class="meta">
+        <a href="http://arxiv.org/abs/2507.05934v1" target="_blank">View on arXiv</a>
+    </div>
+</div>
+
+
+<div class="paper">
+    <h3>Current Practices for Building LLM-Powered Reasoning Tools Are Ad Hoc --   and We Can Do Better</h3>
+    <div class="scores">
+        <span class="score relevance">Relevance: 8/10</span>
+        <span class="score importance">Importance: 9/10</span>
+    </div>
+    <div class="abstract">There is growing excitement about building software verifiers, synthesizers, and other Automated Reasoning (AR) tools by combining traditional symbolic algorithms and Large Language Models (LLMs). Unfortunately, the current practice for constructing such neurosymbolic AR systems is an ad hoc programming model that does not have the strong guarantees of traditional symbolic algorithms, nor a deep enough synchronization of neural networks and symbolic reasoning to unlock the full potential of LLM-powered reasoning. I propose Neurosymbolic Transition Systems as a principled computational model that can underlie infrastructure for building neurosymbolic AR tools. In this model, symbolic state is paired with intuition, and state transitions operate over symbols and intuition in parallel. I argue why this new paradigm can scale logical reasoning beyond current capabilities while retaining the strong guarantees of symbolic algorithms, and I sketch out how the computational model I propose can be reified in a logic programming language.</div>
+    <div class="meta">
+        <a href="http://arxiv.org/abs/2507.05886v1" target="_blank">View on arXiv</a>
+    </div>
+</div>
+
+
+<div class="paper">
+    <h3>An autonomous agent for auditing and improving the reliability of   clinical AI models</h3>
+    <div class="scores">
+        <span class="score relevance">Relevance: 8/10</span>
+        <span class="score importance">Importance: 9/10</span>
+    </div>
+    <div class="abstract">The deployment of AI models in clinical practice faces a critical challenge: models achieving expert-level performance on benchmarks can fail catastrophically when confronted with real-world variations in medical imaging. Minor shifts in scanner hardware, lighting or demographics can erode accuracy, but currently reliability auditing to identify such catastrophic failure cases before deployment is a bespoke and time-consuming process. Practitioners lack accessible and interpretable tools to expose and repair hidden failure modes. Here we introduce ModelAuditor, a self-reflective agent that converses with users, selects task-specific metrics, and simulates context-dependent, clinically relevant distribution shifts. ModelAuditor then generates interpretable reports explaining how much performance likely degrades during deployment, discussing specific likely failure modes and identifying root causes and mitigation strategies. Our comprehensive evaluation across three real-world clinical scenarios - inter-institutional variation in histopathology, demographic shifts in dermatology, and equipment heterogeneity in chest radiography - demonstrates that ModelAuditor is able correctly identify context-specific failure modes of state-of-the-art models such as the established SIIM-ISIC melanoma classifier. Its targeted recommendations recover 15-25% of performance lost under real-world distribution shift, substantially outperforming both baseline models and state-of-the-art augmentation methods. These improvements are achieved through a multi-agent architecture and execute on consumer hardware in under 10 minutes, costing less than US$0.50 per audit.</div>
+    <div class="meta">
+        <a href="http://arxiv.org/abs/2507.05755v1" target="_blank">View on arXiv</a>
+    </div>
+</div>
+
+
+<div class="paper">
+    <h3>LeAD: The LLM Enhanced Planning System Converged with End-to-end   Autonomous Driving</h3>
+    <div class="scores">
+        <span class="score relevance">Relevance: 9/10</span>
+        <span class="score importance">Importance: 8/10</span>
+    </div>
+    <div class="abstract">A principal barrier to large-scale deployment of urban autonomous driving systems lies in the prevalence of complex scenarios and edge cases. Existing systems fail to effectively interpret semantic information within traffic contexts and discern intentions of other participants, consequently generating decisions misaligned with skilled drivers' reasoning patterns. We present LeAD, a dual-rate autonomous driving architecture integrating imitation learning-based end-to-end (E2E) frameworks with large language model (LLM) augmentation. The high-frequency E2E subsystem maintains real-time perception-planning-control cycles, while the low-frequency LLM module enhances scenario comprehension through multi-modal perception fusion with HD maps and derives optimal decisions via chain-of-thought (CoT) reasoning when baseline planners encounter capability limitations. Our experimental evaluation in the CARLA Simulator demonstrates LeAD's superior handling of unconventional scenarios, achieving 71 points on Leaderboard V1 benchmark, with a route completion of 93%.</div>
+    <div class="meta">
+        <a href="http://arxiv.org/abs/2507.05754v1" target="_blank">View on arXiv</a>
+    </div>
+</div>
+
+
+<div class="paper">
+    <h3>When Transformers Meet Recommenders: Integrating Self-Attentive   Sequential Recommendation with Fine-Tuned LLMs</h3>
+    <div class="scores">
+        <span class="score relevance">Relevance: 9/10</span>
+        <span class="score importance">Importance: 8/10</span>
+    </div>
+    <div class="abstract">Self-Attentive Sequential Recommendation (SASRec) effectively captures long-term user preferences by applying attention mechanisms to historical interactions. Concurrently, the rise of Large Language Models (LLMs) has motivated research into LLM-based recommendation, which leverages their powerful generalization and language understanding capabilities. However, LLMs often lack the domain-specific knowledge and collaborative signals essential for high-quality recommendations when relying solely on textual prompts. To address this limitation, this study proposes SASRecLLM, a novel framework that integrates SASRec as a collaborative encoder with an LLM fine-tuned using Low-Rank Adaptation (LoRA). The components are connected via a mapping layer to align their dimensional spaces, and three targeted training strategies are designed to optimize the hybrid architecture. Extensive experiments on multiple datasets demonstrate that SASRecLLM achieves robust and consistent improvements over strong baselines in both cold-start and warm-start scenarios. This work advances the field of LLM-based recommendation by presenting a modular and effective paradigm for fusing structured collaborative filtering with the semantic power of fine-tuned LLMs. The implementation is available on GitHub: https://github.com/kechenkristin/RecLLM</div>
+    <div class="meta">
+        <a href="http://arxiv.org/abs/2507.05733v1" target="_blank">View on arXiv</a>
+    </div>
+</div>
+
+
+<div class="paper">
+    <h3>HIRAG: Hierarchical-Thought Instruction-Tuning Retrieval-Augmented   Generation</h3>
+    <div class="scores">
+        <span class="score relevance">Relevance: 8/10</span>
+        <span class="score importance">Importance: 9/10</span>
+    </div>
+    <div class="abstract">Retrieval-augmented generation (RAG) has become a fundamental paradigm for addressing the challenges faced by large language models in handling real-time information and domain-specific problems. Traditional RAG systems primarily rely on the in-context learning (ICL) capabilities of the large language model itself. Still, in-depth research on the specific capabilities needed by the RAG generation model is lacking, leading to challenges with inconsistent document quality and retrieval system imperfections. Even the limited studies that fine-tune RAG generative models often \textit{lack a granular focus on RAG task} or \textit{a deeper utilization of chain-of-thought processes}. To address this, we propose that RAG models should possess three progressively hierarchical abilities (1) Filtering: the ability to select relevant information; (2) Combination: the ability to combine semantic information across paragraphs; and (3) RAG-specific reasoning: the ability to further process external knowledge using internal knowledge. Thus, we introduce our new RAG instruction fine-tuning method, Hierarchical-Thought Instruction-Tuning Retrieval-Augmented Generation (HIRAG) incorporates a "think before answering" strategy. This method enhances the model's open-book examination capability by utilizing multi-level progressive chain-of-thought. Experiments show that the HIRAG training strategy significantly improves the model's performance on datasets such as RGB, PopQA, MuSiQue, HotpotQA, and PubmedQA.</div>
+    <div class="meta">
+        <a href="http://arxiv.org/abs/2507.05714v1" target="_blank">View on arXiv</a>
+    </div>
+</div>
+
+    </div>
+</div>
+
+    </body>
+    </html>
+    
