@@ -1,0 +1,436 @@
+
+    <!DOCTYPE html>
+    <html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>ArXiv Research Digest</title>
+        <style>
+            
+body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    line-height: 1.5;
+    color: #2d3748;
+    margin: 0;
+    padding: 20px;
+    background: #f7fafc;
+}
+
+.digest {
+    max-width: 800px;
+    margin: 0 auto;
+    background: white;
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+}
+
+.header {
+    margin-bottom: 2rem;
+    padding-bottom: 1rem;
+    border-bottom: 2px solid #e2e8f0;
+}
+
+.header h2 {
+    margin: 0;
+    color: #2d3748;
+}
+
+.header p {
+    margin: 0.5rem 0 0;
+    color: #718096;
+}
+
+.highlights {
+    background: #f8fafc;
+    padding: 1.5rem;
+    border-radius: 8px;
+    margin-bottom: 3rem;
+    border: 1px solid #e2e8f0;
+}
+
+.highlights h3 {
+    color: #2d3748;
+    margin: 0 0 1rem 0;
+    font-size: 1.25rem;
+}
+
+.summary {
+    white-space: pre-line;
+    line-height: 1.6;
+}
+
+.summary ol {
+    padding-left: 1.5rem;
+    margin: 1rem 0;
+}
+
+.summary li {
+    margin-bottom: 0.75rem;
+    padding-left: 0.5rem;
+}
+
+.papers {
+    margin-top: 3rem;
+}
+
+.papers h3 {
+    color: #2d3748;
+    margin-bottom: 1.5rem;
+    padding-bottom: 1rem;
+    border-bottom: 2px solid #e2e8f0;
+}
+
+.paper {
+    margin-bottom: 2rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid #e2e8f0;
+}
+
+.paper:last-child {
+    border-bottom: none;
+}
+
+.paper h3 {
+    margin: 0 0 0.5rem;
+    color: #2d3748;
+}
+
+.paper .scores {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 0.5rem;
+}
+
+.paper .score {
+    padding: 0.25rem 0.5rem;
+    border-radius: 4px;
+    font-size: 0.875rem;
+}
+
+.paper .relevance {
+    background: #e6fffa;
+    color: #047481;
+}
+
+.paper .importance {
+    background: #ebf4ff;
+    color: #1a56db;
+}
+
+.paper .abstract {
+    color: #4a5568;
+    margin: 0.5rem 0;
+}
+
+.paper .meta {
+    font-size: 0.875rem;
+    color: #718096;
+}
+
+.paper .meta a {
+    color: #4299e1;
+    text-decoration: none;
+}
+
+.paper .meta a:hover {
+    text-decoration: underline;
+}
+
+        </style>
+    </head>
+    <body>
+        
+<div class="digest">
+    <div class="header">
+        <h2>ArXiv Research Digest</h2>
+        <p>Found 20 relevant papers out of 200 new submissions</p>
+    </div>
+    
+    <div class="highlights">
+        <h3>🔥 Key Highlights</h3>
+        Hey boss, found 5 cool papers today that I think you'll love:
+
+<ol>
+<li>Stanford researchers have come up with a new post-training method called Reinforcement Learning from Self-Feedback (RLSF) for LLMs. It enhances the model’s confidence and reasoning abilities without needing human labels, making it a game-changer for tasks like arithmetic reasoning and multiple-choice questions. This could really improve the reliability of LLMs in critical applications.</li>
+
+<li>A team developed StaffPro, an LLM agent that tackles staffing and profiling in workforce management. It allows for natural language input to optimize task assignments and worker profiling continuously. This means businesses can automate personnel management in a more human-centric way, improving efficiency and flexibility.</li>
+
+<li>Another exciting paper shows how LLMs can revolutionize supply chain decision-making. By streamlining complex analyses and enabling quicker responses to changing environments, this approach can slash decision-making time from days to minutes, boosting productivity for business planners and executives.</li>
+
+<li>LeMix is a system that optimizes the training and inference of LLMs on multi-GPU setups. By co-locating these workloads, it enhances resource utilization and responsiveness, improving throughput significantly. This could make deploying LLMs in production much more efficient.</li>
+
+<li>Lastly, a new Multi-Agent Verification Framework (MAVF) for chip design automation uses generative AI to tackle complex verification tasks. By automating the transformation of design specs into testbenches, it significantly outperforms traditional methods, potentially solving major bottlenecks in chip development.</li>
+</ol>
+
+Let me know if you want to dive deeper into any of these!
+    </div>
+    
+    <div class="papers">
+        <h3>📄 Detailed Papers</h3>
+        
+<div class="paper">
+    <h3>Post-Training Large Language Models via Reinforcement Learning from   Self-Feedback</h3>
+    <div class="scores">
+        <span class="score relevance">Relevance: 10/10</span>
+        <span class="score importance">Importance: 9/10</span>
+    </div>
+    <div class="abstract">Large Language Models (LLMs) often produce plausible but poorly-calibrated answers, limiting their reliability on reasoning-intensive tasks. We present Reinforcement Learning from Self-Feedback (RLSF), a post-training stage that uses the model's own confidence as an intrinsic reward, mimicking how humans learn in the absence of external feedback. After a frozen LLM generates several chain-of-thought solutions, we define and compute the confidence of each final answer span and rank the traces accordingly. These synthetic preferences are then used to fine-tune the policy with standard preference optimization, similar to RLHF yet requiring no human labels, gold answers, or externally curated rewards.   RLSF simultaneously (i) refines the model's probability estimates -- restoring well-behaved calibration -- and (ii) strengthens step-by-step reasoning, yielding improved performance on arithmetic reasoning and multiple-choice question answering.   By turning a model's own uncertainty into useful self-feedback, RLSF affirms reinforcement learning on intrinsic model behaviour as a principled and data-efficient component of the LLM post-training pipeline and warrents further research in intrinsic rewards for LLM post-training.</div>
+    <div class="meta">
+        <a href="http://arxiv.org/abs/2507.21931v1" target="_blank">View on arXiv</a>
+    </div>
+</div>
+
+
+<div class="paper">
+    <h3>StaffPro: an LLM Agent for Joint Staffing and Profiling</h3>
+    <div class="scores">
+        <span class="score relevance">Relevance: 10/10</span>
+        <span class="score importance">Importance: 9/10</span>
+    </div>
+    <div class="abstract">Large language model (LLM) agents integrate pre-trained LLMs with modular algorithmic components and have shown remarkable reasoning and decision-making abilities. In this work, we investigate their use for two tightly intertwined challenges in workforce management: staffing, i.e., the assignment and scheduling of tasks to workers, which may require team formation; and profiling, i.e., the continuous estimation of workers' skills, preferences, and other latent attributes from unstructured data. We cast these problems in a formal mathematical framework that links scheduling decisions to latent feature estimation, and we introduce StaffPro, an LLM agent that addresses staffing and profiling jointly. Differently from existing staffing solutions, StaffPro allows expressing optimization objectives using natural language, accepts textual task descriptions and provides high flexibility. StaffPro interacts directly with humans by establishing a continuous human-agent feedback loop, ensuring natural and intuitive use. By analyzing human feedback, our agent continuously estimates the latent features of workers, realizing life-long worker profiling and ensuring optimal staffing performance over time. A consulting firm simulation example demonstrates that StaffPro successfully estimates workers' attributes and generates high quality schedules. With its innovative design, StaffPro offers a robust, interpretable, and human-centric solution for automated personnel management.</div>
+    <div class="meta">
+        <a href="http://arxiv.org/abs/2507.21636v1" target="_blank">View on arXiv</a>
+    </div>
+</div>
+
+
+<div class="paper">
+    <h3>Large Language Models for Supply Chain Decisions</h3>
+    <div class="scores">
+        <span class="score relevance">Relevance: 10/10</span>
+        <span class="score importance">Importance: 9/10</span>
+    </div>
+    <div class="abstract">Supply Chain Management requires addressing a variety of complex decision-making challenges, from sourcing strategies to planning and execution. Over the last few decades, advances in computation and information technologies have enabled the transition from manual, intuition and experience-based decision-making, into more automated and data-driven decisions using a variety of tools that apply optimization techniques. These techniques use mathematical methods to improve decision-making.   Unfortunately, business planners and executives still need to spend considerable time and effort to (i) understand and explain the recommendations coming out of these technologies; (ii) analyze various scenarios and answer what-if questions; and (iii) update the mathematical models used in these tools to reflect current business environments. Addressing these challenges requires involving data science teams and/or the technology providers to explain results or make the necessary changes in the technology and hence significantly slows down decision making.   Motivated by the recent advances in Large Language Models (LLMs), we report how this disruptive technology can democratize supply chain technology - namely, facilitate the understanding of tools' outcomes, as well as the interaction with supply chain tools without human-in-the-loop. Specifically, we report how we apply LLMs to address the three challenges described above, thus substantially reducing the time to decision from days and weeks to minutes and hours as well as dramatically increasing planners' and executives' productivity and impact.</div>
+    <div class="meta">
+        <a href="http://arxiv.org/abs/2507.21502v1" target="_blank">View on arXiv</a>
+    </div>
+</div>
+
+
+<div class="paper">
+    <h3>LeMix: Unified Scheduling for LLM Training and Inference on Multi-GPU   Systems</h3>
+    <div class="scores">
+        <span class="score relevance">Relevance: 10/10</span>
+        <span class="score importance">Importance: 9/10</span>
+    </div>
+    <div class="abstract">Modern deployment of large language models (LLMs) frequently involves both inference serving and continuous retraining to stay aligned with evolving data and user feedback. Common practices separate these workloads onto distinct servers in isolated phases, causing substantial inefficiencies (e.g., GPU idleness) and delayed adaptation to new data in distributed settings. Our empirical analysis reveals that these inefficiencies stem from dynamic request arrivals during serving and workload heterogeneity in pipeline-parallel training. To address these challenges, we propose LeMix, a system for co-locating and managing concurrent LLM serving and training workloads. LeMix integrates offline profiling, execution prediction mechanisms, and runtime scheduling to dynamically adapt resource allocation based on workload characteristics and system conditions. By understanding task-specific behaviors and co-execution interference across shared nodes, LeMix improves utilization and serving quality without compromising serving responsiveness. Our evaluation shows that LeMix improves throughput by up to 3.53x, reduces inference loss by up to 0.61x, and delivers up to 2.12x higher response time SLO attainment over traditional separate setups. To our knowledge, this is the first work to uncover and exploit the opportunities of joint LLM inference and training, paving the way for more resource-efficient deployment of LLMs in production environments.</div>
+    <div class="meta">
+        <a href="http://arxiv.org/abs/2507.21276v1" target="_blank">View on arXiv</a>
+    </div>
+</div>
+
+
+<div class="paper">
+    <h3>A Multi-Agent Generative AI Framework for IC Module-Level Verification   Automation</h3>
+    <div class="scores">
+        <span class="score relevance">Relevance: 9/10</span>
+        <span class="score importance">Importance: 9/10</span>
+    </div>
+    <div class="abstract">As large language models demonstrate enormous potential in the field of Electronic Design Automation (EDA), generative AI-assisted chip design is attracting widespread attention from academia and industry. Although these technologies have made preliminary progress in tasks such as code generation, their application in chip verification -- a critical bottleneck in the chip development cycle -- remains at an exploratory stage. This paper proposes an innovative Multi-Agent Verification Framework (MAVF) aimed at addressing the limitations of current single-LLM approaches in complex verification tasks. Our framework builds an automated transformation system from design specifications to testbench through the collaborative work of multiple specialized agents, including specification parsing, verification strategy generation, and code implementation. Through verification experiments on multiple chip modules of varying complexity, results show that MAVF significantly outperforms traditional manual methods and single-dialogue generative AI approaches in verification document parsing and generation, as well as automated testbench generation. This research opens new directions for exploring generative AI applications in verification automation, potentially providing effective approaches to solving the most challenging bottleneck issues in chip design.</div>
+    <div class="meta">
+        <a href="http://arxiv.org/abs/2507.21694v1" target="_blank">View on arXiv</a>
+    </div>
+</div>
+
+
+<div class="paper">
+    <h3>Large Language Models for Wireless Communications: From Adaptation to   Autonomy</h3>
+    <div class="scores">
+        <span class="score relevance">Relevance: 9/10</span>
+        <span class="score importance">Importance: 9/10</span>
+    </div>
+    <div class="abstract">The emergence of large language models (LLMs) has revolutionized artificial intelligence, offering unprecedented capabilities in reasoning, generalization, and zero-shot learning. These strengths open new frontiers in wireless communications, where increasing complexity and dynamics demand intelligent and adaptive solutions. This article explores the role of LLMs in transforming wireless systems across three key directions: adapting pretrained LLMs for core communication tasks, developing wireless-specific foundation models to balance versatility and efficiency, and enabling agentic LLMs with autonomous reasoning and coordination capabilities. We highlight recent advances, practical case studies, and the unique benefits of LLM-based approaches over traditional methods. Finally, we outline open challenges and research opportunities, including multimodal fusion, collaboration with lightweight models, and self-improving capabilities, charting a path toward intelligent, adaptive, and autonomous wireless networks of the future.</div>
+    <div class="meta">
+        <a href="http://arxiv.org/abs/2507.21524v1" target="_blank">View on arXiv</a>
+    </div>
+</div>
+
+
+<div class="paper">
+    <h3>Graph-Augmented Large Language Model Agents: Current Progress and Future   Prospects</h3>
+    <div class="scores">
+        <span class="score relevance">Relevance: 9/10</span>
+        <span class="score importance">Importance: 9/10</span>
+    </div>
+    <div class="abstract">Autonomous agents based on large language models (LLMs) have demonstrated impressive capabilities in a wide range of applications, including web navigation, software development, and embodied control. While most LLMs are limited in several key agentic procedures, such as reliable planning, long-term memory, tool management, and multi-agent coordination, graphs can serve as a powerful auxiliary structure to enhance structure, continuity, and coordination in complex agent workflows. Given the rapid growth and fragmentation of research on Graph-augmented LLM Agents (GLA), this paper offers a timely and comprehensive overview of recent advances and also highlights key directions for future work. Specifically, we categorize existing GLA methods by their primary functions in LLM agent systems, including planning, memory, and tool usage, and then analyze how graphs and graph learning algorithms contribute to each. For multi-agent systems, we further discuss how GLA solutions facilitate the orchestration, efficiency optimization, and trustworthiness of MAS. Finally, we highlight key future directions to advance this field, from improving structural adaptability to enabling unified, scalable, and multimodal GLA systems. We hope this paper can serve as a roadmap for future research on GLA and foster a deeper understanding of the role of graphs in LLM agent systems.</div>
+    <div class="meta">
+        <a href="http://arxiv.org/abs/2507.21407v1" target="_blank">View on arXiv</a>
+    </div>
+</div>
+
+
+<div class="paper">
+    <h3>MAAD: Automate Software Architecture Design through Knowledge-Driven   Multi-Agent Collaboration</h3>
+    <div class="scores">
+        <span class="score relevance">Relevance: 9/10</span>
+        <span class="score importance">Importance: 9/10</span>
+    </div>
+    <div class="abstract">Software architecture design is a critical, yet inherently complex and knowledge-intensive phase of software development. It requires deep domain expertise, development experience, architectural knowledge, careful trade-offs among competing quality attributes, and the ability to adapt to evolving requirements. Traditionally, this process is time-consuming and labor-intensive, and relies heavily on architects, often resulting in limited design alternatives, especially under the pressures of agile development. While Large Language Model (LLM)-based agents have shown promising performance across various SE tasks, their application to architecture design remains relatively scarce and requires more exploration, particularly in light of diverse domain knowledge and complex decision-making. To address the challenges, we proposed MAAD (Multi-Agent Architecture Design), an automated framework that employs a knowledge-driven Multi-Agent System (MAS) for architecture design. MAAD orchestrates four specialized agents (i.e., Analyst, Modeler, Designer and Evaluator) to collaboratively interpret requirements specifications and produce architectural blueprints enriched with quality attributes-based evaluation reports. We then evaluated MAAD through a case study and comparative experiments against MetaGPT, a state-of-the-art MAS baseline. Our results show that MAAD's superiority lies in generating comprehensive architectural components and delivering insightful and structured architecture evaluation reports. Feedback from industrial architects across 11 requirements specifications further reinforces MAAD's practical usability. We finally explored the performance of the MAAD framework with three LLMs (GPT-4o, DeepSeek-R1, and Llama 3.3) and found that GPT-4o exhibits better performance in producing architecture design, emphasizing the importance of LLM selection in MAS-driven architecture design.</div>
+    <div class="meta">
+        <a href="http://arxiv.org/abs/2507.21382v1" target="_blank">View on arXiv</a>
+    </div>
+</div>
+
+
+<div class="paper">
+    <h3>MIRAGE-Bench: LLM Agent is Hallucinating and Where to Find Them</h3>
+    <div class="scores">
+        <span class="score relevance">Relevance: 9/10</span>
+        <span class="score importance">Importance: 9/10</span>
+    </div>
+    <div class="abstract">Hallucinations pose critical risks for large language model (LLM)-based agents, often manifesting as hallucinative actions resulting from fabricated or misinterpreted information within the cognitive context. While recent studies have exposed such failures, existing evaluations remain fragmented and lack a principled testbed. In this paper, we present MIRAGE-Bench--Measuring Illusions in Risky AGEnt settings--the first unified benchmark for eliciting and evaluating hallucinations in interactive LLM-agent scenarios. We begin by introducing a three-part taxonomy to address agentic hallucinations: actions that are unfaithful to (i) task instructions, (ii) execution history, or (iii) environment observations. To analyze, we first elicit such failures by performing a systematic audit of existing agent benchmarks, then synthesize test cases using a snapshot strategy that isolates decision points in deterministic and reproducible manners. To evaluate hallucination behaviors, we adopt a fine-grained-level LLM-as-a-Judge paradigm with tailored risk-aware prompts, enabling scalable, high-fidelity assessment of agent actions without enumerating full action spaces. MIRAGE-Bench provides actionable insights on failure modes of LLM agents and lays the groundwork for principled progress in mitigating hallucinations in interactive environments.</div>
+    <div class="meta">
+        <a href="http://arxiv.org/abs/2507.21017v1" target="_blank">View on arXiv</a>
+    </div>
+</div>
+
+
+<div class="paper">
+    <h3>MeLA: A Metacognitive LLM-Driven Architecture for Automatic Heuristic   Design</h3>
+    <div class="scores">
+        <span class="score relevance">Relevance: 9/10</span>
+        <span class="score importance">Importance: 9/10</span>
+    </div>
+    <div class="abstract">This paper introduces MeLA, a Metacognitive LLM-Driven Architecture that presents a new paradigm for Automatic Heuristic Design (AHD). Traditional evolutionary methods operate directly on heuristic code; in contrast, MeLA evolves the instructional prompts used to guide a Large Language Model (LLM) in generating these heuristics. This process of "prompt evolution" is driven by a novel metacognitive framework where the system analyzes performance feedback to systematically refine its generative strategy. MeLA's architecture integrates a problem analyzer to construct an initial strategic prompt, an error diagnosis system to repair faulty code, and a metacognitive search engine that iteratively optimizes the prompt based on heuristic effectiveness. In comprehensive experiments across both benchmark and real-world problems, MeLA consistently generates more effective and robust heuristics, significantly outperforming state-of-the-art methods. Ultimately, this research demonstrates the profound potential of using cognitive science as a blueprint for AI architecture, revealing that by enabling an LLM to metacognitively regulate its problem-solving process, we unlock a more robust and interpretable path to AHD.</div>
+    <div class="meta">
+        <a href="http://arxiv.org/abs/2507.20541v1" target="_blank">View on arXiv</a>
+    </div>
+</div>
+
+
+<div class="paper">
+    <h3>Reasoning Language Models for Root Cause Analysis in 5G Wireless   Networks</h3>
+    <div class="scores">
+        <span class="score relevance">Relevance: 8/10</span>
+        <span class="score importance">Importance: 9/10</span>
+    </div>
+    <div class="abstract">Root Cause Analysis (RCA) in mobile networks remains a challenging task due to the need for interpretability, domain expertise, and causal reasoning. In this work, we propose a lightweight framework that leverages Large Language Models (LLMs) for RCA. To do so, we introduce TeleLogs, a curated dataset of annotated troubleshooting problems designed to benchmark RCA capabilities. Our evaluation reveals that existing open-source reasoning LLMs struggle with these problems, underscoring the need for domain-specific adaptation. To address this issue, we propose a two-stage training methodology that combines supervised fine-tuning with reinforcement learning to improve the accuracy and reasoning quality of LLMs. The proposed approach fine-tunes a series of RCA models to integrate domain knowledge and generate structured, multi-step diagnostic explanations, improving both interpretability and effectiveness. Extensive experiments across multiple LLM sizes show significant performance gains over state-of-the-art reasoning and non-reasoning models, including strong generalization to randomized test variants. These results demonstrate the promise of domain-adapted, reasoning-enhanced LLMs for practical and explainable RCA in network operation and management.</div>
+    <div class="meta">
+        <a href="http://arxiv.org/abs/2507.21974v1" target="_blank">View on arXiv</a>
+    </div>
+</div>
+
+
+<div class="paper">
+    <h3>MapAgent: Trajectory-Constructed Memory-Augmented Planning for Mobile   Task Automation</h3>
+    <div class="scores">
+        <span class="score relevance">Relevance: 9/10</span>
+        <span class="score importance">Importance: 8/10</span>
+    </div>
+    <div class="abstract">The recent advancement of autonomous agents powered by Large Language Models (LLMs) has demonstrated significant potential for automating tasks on mobile devices through graphical user interfaces (GUIs). Despite initial progress, these agents still face challenges when handling complex real-world tasks. These challenges arise from a lack of knowledge about real-life mobile applications in LLM-based agents, which may lead to ineffective task planning and even cause hallucinations. To address these challenges, we propose a novel LLM-based agent framework called MapAgent that leverages memory constructed from historical trajectories to augment current task planning. Specifically, we first propose a trajectory-based memory mechanism that transforms task execution trajectories into a reusable and structured page-memory database. Each page within a trajectory is extracted as a compact yet comprehensive snapshot, capturing both its UI layout and functional context. Secondly, we introduce a coarse-to-fine task planning approach that retrieves relevant pages from the memory database based on similarity and injects them into the LLM planner to compensate for potential deficiencies in understanding real-world app scenarios, thereby achieving more informed and context-aware task planning. Finally, planned tasks are transformed into executable actions through a task executor supported by a dual-LLM architecture, ensuring effective tracking of task progress. Experimental results in real-world scenarios demonstrate that MapAgent achieves superior performance to existing methods. The code will be open-sourced to support further research.</div>
+    <div class="meta">
+        <a href="http://arxiv.org/abs/2507.21953v1" target="_blank">View on arXiv</a>
+    </div>
+</div>
+
+
+<div class="paper">
+    <h3>LLM-based Content Classification Approach for GitHub Repositories by the   README Files</h3>
+    <div class="scores">
+        <span class="score relevance">Relevance: 9/10</span>
+        <span class="score importance">Importance: 8/10</span>
+    </div>
+    <div class="abstract">GitHub is the world's most popular platform for storing, sharing, and managing code. Every GitHub repository has a README file associated with it. The README files should contain project-related information as per the recommendations of GitHub to support the usage and improvement of repositories. However, GitHub repository owners sometimes neglected these recommendations. This prevents a GitHub repository from reaching its full potential. This research posits that the comprehensiveness of a GitHub repository's README file significantly influences its adoption and utilization, with a lack of detail potentially hindering its full potential for widespread engagement and impact within the research community. Large Language Models (LLMs) have shown great performance in many text-based tasks including text classification, text generation, text summarization and text translation. In this study, an approach is developed to fine-tune LLMs for automatically classifying different sections of GitHub README files. Three encoder-only LLMs are utilized, including BERT, DistilBERT and RoBERTa. These pre-trained models are then fine-tuned based on a gold-standard dataset consisting of 4226 README file sections. This approach outperforms current state-of-the-art methods and has achieved an overall F1 score of 0.98. Moreover, we have also investigated the use of Parameter-Efficient Fine-Tuning (PEFT) techniques like Low-Rank Adaptation (LoRA) and shown an economical alternative to full fine-tuning without compromising much performance. The results demonstrate the potential of using LLMs in designing an automatic classifier for categorizing the content of GitHub README files. Consequently, this study contributes to the development of automated tools for GitHub repositories to improve their identifications and potential usages.</div>
+    <div class="meta">
+        <a href="http://arxiv.org/abs/2507.21899v1" target="_blank">View on arXiv</a>
+    </div>
+</div>
+
+
+<div class="paper">
+    <h3>A Neuro-Symbolic Approach for Probabilistic Reasoning on Graph Data</h3>
+    <div class="scores">
+        <span class="score relevance">Relevance: 8/10</span>
+        <span class="score importance">Importance: 9/10</span>
+    </div>
+    <div class="abstract">Graph neural networks (GNNs) excel at predictive tasks on graph-structured data but often lack the ability to incorporate symbolic domain knowledge and perform general reasoning. Relational Bayesian Networks (RBNs), in contrast, enable fully generative probabilistic modeling over graph-like structures and support rich symbolic knowledge and probabilistic inference. This paper presents a neuro-symbolic framework that seamlessly integrates GNNs into RBNs, combining the learning strength of GNNs with the flexible reasoning capabilities of RBNs.   We develop two implementations of this integration: one compiles GNNs directly into the native RBN language, while the other maintains the GNN as an external component. Both approaches preserve the semantics and computational properties of GNNs while fully aligning with the RBN modeling paradigm. We also propose a maximum a-posteriori (MAP) inference method for these neuro-symbolic models.   To demonstrate the framework's versatility, we apply it to two distinct problems. First, we transform a GNN for node classification into a collective classification model that explicitly models homo- and heterophilic label patterns, substantially improving accuracy. Second, we introduce a multi-objective network optimization problem in environmental planning, where MAP inference supports complex decision-making. Both applications include new publicly available benchmark datasets.   This work introduces a powerful and coherent neuro-symbolic approach to graph data, bridging learning and reasoning in ways that enable novel applications and improved performance across diverse tasks.</div>
+    <div class="meta">
+        <a href="http://arxiv.org/abs/2507.21873v1" target="_blank">View on arXiv</a>
+    </div>
+</div>
+
+
+<div class="paper">
+    <h3>EDGE-GRPO: Entropy-Driven GRPO with Guided Error Correction for   Advantage Diversity</h3>
+    <div class="scores">
+        <span class="score relevance">Relevance: 8/10</span>
+        <span class="score importance">Importance: 9/10</span>
+    </div>
+    <div class="abstract">Large Language Models (LLMs) have made remarkable progress in enhancing step-by-step reasoning through reinforcement learning. However, the Group Relative Policy Optimization (GRPO) algorithm, which relies on sparse reward rules, often encounters the issue of identical rewards within groups, leading to the advantage collapse problem. Existing works typically address this challenge from two perspectives: enforcing model reflection to enhance response diversity, and introducing internal feedback to augment the training signal (advantage). In this work, we begin by analyzing the limitations of model reflection and investigating the policy entropy of responses at the fine-grained sample level. Based on our experimental findings, we propose the EDGE-GRPO algorithm, which adopts \textbf{E}ntropy-\textbf{D}riven Advantage and \textbf{G}uided \textbf{E}rror Correction to effectively mitigate the problem of advantage collapse. Extensive experiments on several main reasoning benchmarks demonstrate the effectiveness and superiority of our approach. It is available at https://github.com/ZhangXJ199/EDGE-GRPO.</div>
+    <div class="meta">
+        <a href="http://arxiv.org/abs/2507.21848v1" target="_blank">View on arXiv</a>
+    </div>
+</div>
+
+
+<div class="paper">
+    <h3>Introducing HALC: A general pipeline for finding optimal prompting   strategies for automated coding with LLMs in the computational social   sciences</h3>
+    <div class="scores">
+        <span class="score relevance">Relevance: 9/10</span>
+        <span class="score importance">Importance: 8/10</span>
+    </div>
+    <div class="abstract">LLMs are seeing widespread use for task automation, including automated coding in the social sciences. However, even though researchers have proposed different prompting strategies, their effectiveness varies across LLMs and tasks. Often trial and error practices are still widespread. We propose HALC$-$a general pipeline that allows for the systematic and reliable construction of optimal prompts for any given coding task and model, permitting the integration of any prompting strategy deemed relevant. To investigate LLM coding and validate our pipeline, we sent a total of 1,512 individual prompts to our local LLMs in over two million requests. We test prompting strategies and LLM task performance based on few expert codings (ground truth). When compared to these expert codings, we find prompts that code reliably for single variables (${\alpha}$climate = .76; ${\alpha}$movement = .78) and across two variables (${\alpha}$climate = .71; ${\alpha}$movement = .74) using the LLM Mistral NeMo. Our prompting strategies are set up in a way that aligns the LLM to our codebook$-$we are not optimizing our codebook for LLM friendliness. Our paper provides insights into the effectiveness of different prompting strategies, crucial influencing factors, and the identification of reliable prompts for each coding task and model.</div>
+    <div class="meta">
+        <a href="http://arxiv.org/abs/2507.21831v1" target="_blank">View on arXiv</a>
+    </div>
+</div>
+
+
+<div class="paper">
+    <h3>An Agentic AI for a New Paradigm in Business Process Development</h3>
+    <div class="scores">
+        <span class="score relevance">Relevance: 8/10</span>
+        <span class="score importance">Importance: 9/10</span>
+    </div>
+    <div class="abstract">Artificial Intelligence agents represent the next major revolution in the continuous technological evolution of industrial automation. In this paper, we introduce a new approach for business process design and development that leverages the capabilities of Agentic AI. Departing from the traditional task-based approach to business process design, we propose an agent-based method, where agents contribute to the achievement of business goals, identified by a set of business objects. When a single agent cannot fulfill a goal, we have a merge goal that can be achieved through the collaboration of multiple agents. The proposed model leads to a more modular and intelligent business process development by organizing it around goals, objects, and agents. As a result, this approach enables flexible and context-aware automation in dynamic industrial environments.</div>
+    <div class="meta">
+        <a href="http://arxiv.org/abs/2507.21823v1" target="_blank">View on arXiv</a>
+    </div>
+</div>
+
+
+<div class="paper">
+    <h3>Can large language models assist choice modelling? Insights into   prompting strategies and current models capabilities</h3>
+    <div class="scores">
+        <span class="score relevance">Relevance: 9/10</span>
+        <span class="score importance">Importance: 8/10</span>
+    </div>
+    <div class="abstract">Large Language Models (LLMs) are widely used to support various workflows across different disciplines, yet their potential in choice modelling remains relatively unexplored. This work examines the potential of LLMs as assistive agents in the specification and, where technically feasible, estimation of Multinomial Logit models. We implement a systematic experimental framework involving thirteen versions of six leading LLMs (ChatGPT, Claude, DeepSeek, Gemini, Gemma, and Llama) evaluated under five experimental configurations. These configurations vary along three dimensions: modelling goal (suggesting vs. suggesting and estimating MNLs); prompting strategy (Zero-Shot vs. Chain-of-Thoughts); and information availability (full dataset vs. data dictionary only). Each LLM-suggested specification is implemented, estimated, and evaluated based on goodness-of-fit metrics, behavioural plausibility, and model complexity. Findings reveal that proprietary LLMs can generate valid and behaviourally sound utility specifications, particularly when guided by structured prompts. Open-weight models such as Llama and Gemma struggled to produce meaningful specifications. Claude 4 Sonnet consistently produced the best-fitting and most complex models, while GPT models suggested models with robust and stable modelling outcomes. Some LLMs performed better when provided with just data dictionary, suggesting that limiting raw data access may enhance internal reasoning capabilities. Among all LLMs, GPT o3 was uniquely capable of correctly estimating its own specifications by executing self-generated code. Overall, the results demonstrate both the promise and current limitations of LLMs as assistive agents in choice modelling, not only for model specification but also for supporting modelling decision and estimation, and provide practical guidance for integrating these tools into choice modellers' workflows.</div>
+    <div class="meta">
+        <a href="http://arxiv.org/abs/2507.21790v1" target="_blank">View on arXiv</a>
+    </div>
+</div>
+
+
+<div class="paper">
+    <h3>Towards a rigorous evaluation of RAG systems: the challenge of due   diligence</h3>
+    <div class="scores">
+        <span class="score relevance">Relevance: 8/10</span>
+        <span class="score importance">Importance: 9/10</span>
+    </div>
+    <div class="abstract">The rise of generative AI, has driven significant advancements in high-risk sectors like healthcare and finance. The Retrieval-Augmented Generation (RAG) architecture, combining language models (LLMs) with search engines, is particularly notable for its ability to generate responses from document corpora. Despite its potential, the reliability of RAG systems in critical contexts remains a concern, with issues such as hallucinations persisting. This study evaluates a RAG system used in due diligence for an investment fund. We propose a robust evaluation protocol combining human annotations and LLM-Judge annotations to identify system failures, like hallucinations, off-topic, failed citations, and abstentions. Inspired by the Prediction Powered Inference (PPI) method, we achieve precise performance measurements with statistical guarantees. We provide a comprehensive dataset for further analysis. Our contributions aim to enhance the reliability and scalability of RAG systems evaluation protocols in industrial applications.</div>
+    <div class="meta">
+        <a href="http://arxiv.org/abs/2507.21753v1" target="_blank">View on arXiv</a>
+    </div>
+</div>
+
+
+<div class="paper">
+    <h3>DGP: A Dual-Granularity Prompting Framework for Fraud Detection with   Graph-Enhanced LLMs</h3>
+    <div class="scores">
+        <span class="score relevance">Relevance: 9/10</span>
+        <span class="score importance">Importance: 8/10</span>
+    </div>
+    <div class="abstract">Real-world fraud detection applications benefit from graph learning techniques that jointly exploit node features, often rich in textual data, and graph structural information. Recently, Graph-Enhanced LLMs emerge as a promising graph learning approach that converts graph information into prompts, exploiting LLMs' ability to reason over both textual and structural information. Among them, text-only prompting, which converts graph information to prompts consisting solely of text tokens, offers a solution that relies only on LLM tuning without requiring additional graph-specific encoders. However, text-only prompting struggles on heterogeneous fraud-detection graphs: multi-hop relations expand exponentially with each additional hop, leading to rapidly growing neighborhoods associated with dense textual information. These neighborhoods may overwhelm the model with long, irrelevant content in the prompt and suppress key signals from the target node, thereby degrading performance. To address this challenge, we propose Dual Granularity Prompting (DGP), which mitigates information overload by preserving fine-grained textual details for the target node while summarizing neighbor information into coarse-grained text prompts. DGP introduces tailored summarization strategies for different data modalities, bi-level semantic abstraction for textual fields and statistical aggregation for numerical features, enabling effective compression of verbose neighbor content into concise, informative prompts. Experiments across public and industrial datasets demonstrate that DGP operates within a manageable token budget while improving fraud detection performance by up to 6.8% (AUPRC) over state-of-the-art methods, showing the potential of Graph-Enhanced LLMs for fraud detection.</div>
+    <div class="meta">
+        <a href="http://arxiv.org/abs/2507.21653v1" target="_blank">View on arXiv</a>
+    </div>
+</div>
+
+    </div>
+</div>
+
+    </body>
+    </html>
+    
