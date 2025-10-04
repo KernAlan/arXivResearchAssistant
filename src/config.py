@@ -85,7 +85,7 @@ Papers to evaluate:
 
     # Model Configuration
     MODEL_CONFIG = {
-        "name": "gpt-4o-mini",
+        "name": "gpt-5-nano",
         "provider": "openai",
         "papers_per_batch": 8,
         "temperature": 0.7,
