@@ -34,7 +34,7 @@ def score_papers(
         response = openai_completion(
             prompt,
             OpenAIDecodingArguments(
-                temperature=model_config.get("temperature", 0.7)
+                temperature=model_config.get("temperature", 1.0)
             ),
             model_name=model_config.get("name", "gpt-4"),
             provider=model_config.get("provider", "openai")

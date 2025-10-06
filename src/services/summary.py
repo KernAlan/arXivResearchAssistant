@@ -40,7 +40,7 @@ class SummaryService:
             response = utils.openai_completion(
                 prompt,
                 utils.OpenAIDecodingArguments(
-                    temperature=0.7,
+                    temperature=1.0,
                     max_tokens=1000
                 ),
                 model_name=self.model_config.get("name", "gpt-4"),
