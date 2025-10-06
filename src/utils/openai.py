@@ -16,10 +16,19 @@ def openai_completion(prompt: str, args: 'OpenAIDecodingArguments', model_name: 
         raise ValueError(f"Unknown provider: {provider}")
 
     try:
+        completion_kwargs = {k: v for k, v in vars(args).items() if v is not None}
+
+        if provider == "openai":
+            if "max_tokens" in completion_kwargs:
+                completion_kwargs["max_completion_tokens"] = completion_kwargs.pop("max_tokens")
+        else:
+            if "max_completion_tokens" in completion_kwargs and "max_tokens" not in completion_kwargs:
+                completion_kwargs["max_tokens"] = completion_kwargs.pop("max_completion_tokens")
+
         response = client.chat.completions.create(
             model=model_name,
             messages=[{"role": "user", "content": prompt}],
-            **args.__dict__
+            **completion_kwargs
         )
         return response.choices[0].message.content
     except Exception as e:

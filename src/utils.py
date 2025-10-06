@@ -86,6 +86,15 @@ def openai_completion(
                     **decoding_kwargs
                 }
                 
+                completion_args = {k: v for k, v in completion_args.items() if v is not None}
+
+                if provider == "openai":
+                    if "max_tokens" in completion_args:
+                        completion_args["max_completion_tokens"] = completion_args.pop("max_tokens")
+                else:
+                    if "max_completion_tokens" in completion_args and "max_tokens" not in completion_args:
+                        completion_args["max_tokens"] = completion_args.pop("max_completion_tokens")
+
                 # Make API call
                 completion = client.chat.completions.create(**completion_args)
                 
