@@ -1,10 +1,24 @@
 """OpenAI API utilities"""
 import os
 import logging
-from typing import Optional
 import openai
 
 logger = logging.getLogger(__name__)
+
+
+def _is_temperature_unsupported_error(error: Exception) -> bool:
+    """Return True when the API rejects the temperature parameter."""
+    body = getattr(error, "body", None)
+    if isinstance(body, dict):
+        details = body.get("error", {})
+        if details.get("param") == "temperature" and details.get("code") == "unsupported_value":
+            return True
+        message = details.get("message", "")
+        if "temperature" in message and "unsupported" in message:
+            return True
+    message = str(error)
+    return "temperature" in message and "unsupported" in message
+
 
 def openai_completion(prompt: str, args: 'OpenAIDecodingArguments', model_name: str = "gpt-4", provider: str = "openai") -> str:
     """Get completion from OpenAI API"""
@@ -25,12 +39,28 @@ def openai_completion(prompt: str, args: 'OpenAIDecodingArguments', model_name: 
             if "max_completion_tokens" in completion_kwargs and "max_tokens" not in completion_kwargs:
                 completion_kwargs["max_tokens"] = completion_kwargs.pop("max_completion_tokens")
 
-        response = client.chat.completions.create(
-            model=model_name,
-            messages=[{"role": "user", "content": prompt}],
-            **completion_kwargs
-        )
-        return response.choices[0].message.content
+        attempt_kwargs = dict(completion_kwargs)
+        adjusted_temperature = False
+
+        while True:
+            try:
+                response = client.chat.completions.create(
+                    model=model_name,
+                    messages=[{"role": "user", "content": prompt}],
+                    **attempt_kwargs
+                )
+                return response.choices[0].message.content
+            except openai.BadRequestError as api_error:
+                has_temperature = "temperature" in attempt_kwargs
+                if not adjusted_temperature and has_temperature and _is_temperature_unsupported_error(api_error):
+                    logger.warning(
+                        "Model %s does not support non-default temperature; retrying without it.",
+                        model_name
+                    )
+                    attempt_kwargs.pop("temperature", None)
+                    adjusted_temperature = True
+                    continue
+                raise
     except Exception as e:
         logger.error(f"Error in OpenAI completion: {e}")
-        raise 
+        raise
