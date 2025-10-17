@@ -16,7 +16,7 @@ class SummaryService:
     def generate_summary(self, papers: List[Dict]) -> str:
         """Generate a summary of the papers"""
         if not papers:
-            return "No papers found matching your interests."
+            return self._wrap_summary_html("No papers found matching your interests.")
             
         # Sort papers by combined score
         sorted_papers = sorted(
