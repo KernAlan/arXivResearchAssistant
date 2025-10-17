@@ -7,6 +7,27 @@ import openai
 logger = logging.getLogger(__name__)
 
 
+_FIXED_TEMPERATURE_MODELS = {
+    "gpt-5-mini",
+}
+
+
+def _normalize_model_name(model_name: str) -> str:
+    """Return the base model identifier without deployment suffixes."""
+    if not model_name:
+        return ""
+    # Azure and OpenAI deployments sometimes append suffixes like ":*" or "/".
+    for separator in (":", "/"):
+        if separator in model_name:
+            return model_name.split(separator, 1)[0]
+    return model_name
+
+
+def _model_requires_default_temperature(model_name: str) -> bool:
+    """Whether the target model rejects custom temperature values."""
+    return _normalize_model_name(model_name) in _FIXED_TEMPERATURE_MODELS
+
+
 def _is_temperature_unsupported_error(error: Exception) -> bool:
     """Return True when the API rejects the temperature parameter."""
     body = getattr(error, "body", None)
@@ -45,6 +66,13 @@ def openai_completion(
         else:
             if "max_completion_tokens" in completion_kwargs and "max_tokens" not in completion_kwargs:
                 completion_kwargs["max_tokens"] = completion_kwargs.pop("max_completion_tokens")
+
+        if _model_requires_default_temperature(model_name) and "temperature" in completion_kwargs:
+            logger.debug(
+                "Model %s enforces default temperature; removing custom value before request.",
+                model_name,
+            )
+            completion_kwargs.pop("temperature", None)
 
         attempt_kwargs = dict(completion_kwargs)
         adjusted_temperature = False
