@@ -70,13 +70,9 @@ class SummaryService:
                 system_prompt=self.config.SUMMARY_SYSTEM_PROMPT.strip()
             )
 
-            cleaned = response.strip() if isinstance(response, str) else ""
-            if cleaned:
-                return cleaned
-
-            logger.warning("Summary model returned empty response; using deterministic fallback summary.")
-            return self._build_default_summary(top_papers)
-
+            # Response is now a string, not an object
+            return response
+            
         except Exception as e:
             logger.error(f"Error generating summary: {e}")
             return self._build_default_summary(top_papers)
