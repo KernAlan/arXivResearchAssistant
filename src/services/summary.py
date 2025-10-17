@@ -1,10 +1,10 @@
 """Summary generation service"""
 import logging
-from .. import utils
-from ..config import config
 from datetime import datetime
-import json
-from typing import List, Dict
+from typing import Dict, List
+
+from ..config import config
+from ..utils import OpenAIDecodingArguments, openai_completion
 
 logger = logging.getLogger(__name__)
 
@@ -28,31 +28,58 @@ class SummaryService:
         # Take top N papers for summary
         top_papers = sorted_papers[:self.config.PAPER_CONFIG["summary_papers"]]
         
+        if not top_papers:
+            return "No high-scoring papers met the relevance threshold today."
+
         # Create prompt
-        papers_text = "\n\n".join(
-            f"Title: {p['title']}\nAbstract: {p['abstract']}\nRelevance: {p['relevance']}, Importance: {p['importance']}"
-            for p in top_papers
-        )
-        
-        prompt = self.config.SUMMARY_SYSTEM_PROMPT + "\n\nPapers to summarize:\n" + papers_text
-        
-        try:
-            response = utils.openai_completion(
-                prompt,
-                utils.OpenAIDecodingArguments(
-                    temperature=1.0,
-                    max_tokens=1000
-                ),
-                model_name=self.model_config.get("name", "gpt-4"),
-                provider=self.model_config.get("provider", "openai")
+        prompt_pieces = []
+        for idx, paper in enumerate(top_papers, start=1):
+            avg_score = (paper["relevance"] + paper["importance"]) / 2
+            paper_url = paper.get("url") or f"https://arxiv.org/abs/{paper.get('paper_id', '')}"
+            prompt_pieces.append(
+                "\n".join(
+                    [
+                        f"Paper {idx}:",
+                        f"Title: {paper['title']}",
+                        f"Average score: {avg_score:.1f}/10 (Relevance {paper['relevance']}/10, Importance {paper['importance']}/10)",
+                        f"Abstract: {paper['abstract']}",
+                        f"URL: {paper_url}",
+                    ]
+                )
             )
-            
-            # Response is now a string, not an object
-            return response
-            
+
+        papers_text = "\n\n".join(prompt_pieces)
+
+        today = datetime.utcnow().strftime("%B %d, %Y")
+        prompt = f"""You are preparing the executive digest for {today}.\n\n"""
+        prompt += """Audience: Head of AI Engineering who wants clear takeaways.\n"""
+        prompt += """There are {count} high-scoring papers today. Reference why each matters using the scores and abstract details provided.\n""".format(count=len(top_papers))
+        prompt += """Follow the style guide in the system prompt. Each bullet must:\n- Open with the paper title in bold.\n- In one sentence, explain the concrete innovation or finding.\n- In a second sentence, describe the practical impact or next step for industry teams.\nInclude the provided URL inline when useful.\nClose with one upbeat sentence on how the team should act on these findings this week."""
+        prompt += "\n\nPapers to summarize:\n" + papers_text
+
+        try:
+            response = openai_completion(
+                prompt,
+                OpenAIDecodingArguments(
+                    temperature=self.model_config.get("summary_temperature", 0.5),
+                    max_tokens=900,
+                    top_p=self.model_config.get("top_p", 1.0)
+                ),
+                model_name=self.model_config.get("summary_name", self.model_config.get("name", "gpt-5-mini")),
+                provider=self.model_config.get("provider", "openai"),
+                system_prompt=self.config.SUMMARY_SYSTEM_PROMPT.strip()
+            )
+
+            cleaned = response.strip() if isinstance(response, str) else ""
+            if cleaned:
+                return cleaned
+
+            logger.warning("Summary model returned empty response; using deterministic fallback summary.")
+            return self._build_default_summary(top_papers)
+
         except Exception as e:
             logger.error(f"Error generating summary: {e}")
-            return "Error generating summary. Please check the logs for details."
+            return self._build_default_summary(top_papers)
 
     def _render_papers(self, papers: list) -> str:
         """Render individual paper sections"""
@@ -71,4 +98,30 @@ class SummaryService:
             </div>
             """
             for p in papers
-        ) 
+        )
+
+    def _build_default_summary(self, papers: List[Dict]) -> str:
+        """Build a deterministic HTML summary when the model response is empty."""
+        if not papers:
+            return "No high-scoring papers met the relevance threshold today."
+
+        summary_items = []
+        for paper in papers:
+            avg_score = (paper["relevance"] + paper["importance"]) / 2
+            paper_url = paper.get("url") or f"https://arxiv.org/abs/{paper.get('paper_id', '')}"
+            impact_sentence = paper["abstract"].split(".")[0].strip()
+            if not impact_sentence:
+                impact_sentence = "See abstract for details."
+            summary_items.append(
+                (
+                    "<li><strong>{title}</strong> — avg score {avg:.1f}/10. {impact} "
+                    "<a href=\"{url}\">Read more</a>.</li>"
+                ).format(
+                    title=paper["title"],
+                    avg=avg_score,
+                    impact=impact_sentence,
+                    url=paper_url
+                )
+            )
+
+        return "<ol>" + "".join(summary_items) + "</ol>"

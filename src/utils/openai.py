@@ -1,6 +1,7 @@
 """OpenAI API utilities"""
 import os
 import logging
+from typing import Optional
 import openai
 
 logger = logging.getLogger(__name__)
@@ -20,7 +21,13 @@ def _is_temperature_unsupported_error(error: Exception) -> bool:
     return "temperature" in message and "unsupported" in message
 
 
-def openai_completion(prompt: str, args: 'OpenAIDecodingArguments', model_name: str = "gpt-4", provider: str = "openai") -> str:
+def openai_completion(
+    prompt: str,
+    args: 'OpenAIDecodingArguments',
+    model_name: str = "gpt-4",
+    provider: str = "openai",
+    system_prompt: Optional[str] = None
+) -> str:
     """Get completion from OpenAI API"""
     if provider == "openai":
         client = openai.OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
@@ -44,9 +51,14 @@ def openai_completion(prompt: str, args: 'OpenAIDecodingArguments', model_name: 
 
         while True:
             try:
+                messages = []
+                if system_prompt:
+                    messages.append({"role": "system", "content": system_prompt})
+                messages.append({"role": "user", "content": prompt})
+
                 response = client.chat.completions.create(
                     model=model_name,
-                    messages=[{"role": "user", "content": prompt}],
+                    messages=messages,
                     **attempt_kwargs
                 )
                 return response.choices[0].message.content
