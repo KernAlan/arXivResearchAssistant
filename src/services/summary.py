@@ -75,7 +75,7 @@ class SummaryService:
             
         except Exception as e:
             logger.error(f"Error generating summary: {e}")
-            return "Error generating summary. Please check the logs for details."
+            return self._build_default_summary(top_papers)
 
     def _render_papers(self, papers: list) -> str:
         """Render individual paper sections"""
@@ -94,4 +94,30 @@ class SummaryService:
             </div>
             """
             for p in papers
-        ) 
+        )
+
+    def _build_default_summary(self, papers: List[Dict]) -> str:
+        """Build a deterministic HTML summary when the model response is empty."""
+        if not papers:
+            return "No high-scoring papers met the relevance threshold today."
+
+        summary_items = []
+        for paper in papers:
+            avg_score = (paper["relevance"] + paper["importance"]) / 2
+            paper_url = paper.get("url") or f"https://arxiv.org/abs/{paper.get('paper_id', '')}"
+            impact_sentence = paper["abstract"].split(".")[0].strip()
+            if not impact_sentence:
+                impact_sentence = "See abstract for details."
+            summary_items.append(
+                (
+                    "<li><strong>{title}</strong> — avg score {avg:.1f}/10. {impact} "
+                    "<a href=\"{url}\">Read more</a>.</li>"
+                ).format(
+                    title=paper["title"],
+                    avg=avg_score,
+                    impact=impact_sentence,
+                    url=paper_url
+                )
+            )
+
+        return "<ol>" + "".join(summary_items) + "</ol>"
