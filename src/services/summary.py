@@ -1,7 +1,6 @@
 """Summary generation service"""
 import logging
 from datetime import datetime
-from html import escape
 from typing import Dict, List
 
 from ..config import config
@@ -30,7 +29,7 @@ class SummaryService:
         top_papers = sorted_papers[:self.config.PAPER_CONFIG["summary_papers"]]
         
         if not top_papers:
-            return self._wrap_summary_html("No high-scoring papers met the relevance threshold today.")
+            return "No high-scoring papers met the relevance threshold today."
 
         # Create prompt
         prompt_pieces = []
@@ -71,16 +70,12 @@ class SummaryService:
                 system_prompt=self.config.SUMMARY_SYSTEM_PROMPT.strip()
             )
 
-            cleaned = response.strip() if isinstance(response, str) else ""
-            if cleaned:
-                return self._wrap_summary_html(cleaned)
-
-            logger.warning("Summary model returned empty response; using deterministic fallback summary.")
-            return self._wrap_summary_html(self._build_default_summary(top_papers))
-
+            # Response is now a string, not an object
+            return response
+            
         except Exception as e:
             logger.error(f"Error generating summary: {e}")
-            return self._wrap_summary_html(self._build_default_summary(top_papers))
+            return self._build_default_summary(top_papers)
 
     def _render_papers(self, papers: list) -> str:
         """Render individual paper sections"""
@@ -108,32 +103,17 @@ class SummaryService:
 
         summary_items = []
         for paper in papers:
-            relevance = paper.get("relevance")
-            importance = paper.get("importance")
-            try:
-                avg_score = (float(relevance) + float(importance)) / 2
-            except (TypeError, ValueError):
-                avg_score = 0.0
-
-            raw_url = paper.get("url") or f"https://arxiv.org/abs/{paper.get('paper_id', '')}"
-            paper_url = escape(raw_url)
-
-            abstract = paper.get("abstract", "")
-            if not isinstance(abstract, str):
-                abstract = str(abstract)
-            impact_sentence = abstract.split(".")[0].strip()
+            avg_score = (paper["relevance"] + paper["importance"]) / 2
+            paper_url = paper.get("url") or f"https://arxiv.org/abs/{paper.get('paper_id', '')}"
+            impact_sentence = paper["abstract"].split(".")[0].strip()
             if not impact_sentence:
                 impact_sentence = "See abstract for details."
-
-            impact_sentence = escape(impact_sentence)
-            title = escape(paper.get("title", "Untitled"))
-
             summary_items.append(
                 (
                     "<li><strong>{title}</strong> — avg score {avg:.1f}/10. {impact} "
                     "<a href=\"{url}\">Read more</a>.</li>"
                 ).format(
-                    title=title,
+                    title=paper["title"],
                     avg=avg_score,
                     impact=impact_sentence,
                     url=paper_url
@@ -141,14 +121,3 @@ class SummaryService:
             )
 
         return "<ol>" + "".join(summary_items) + "</ol>"
-
-    def _wrap_summary_html(self, content: str) -> str:
-        """Ensure the summary block renders inside the expected container."""
-        cleaned = content.strip()
-        if not cleaned:
-            return "<div class=\"summary\"></div>"
-
-        if "class=\"summary\"" in cleaned or "class='summary'" in cleaned:
-            return cleaned
-
-        return f"<div class=\"summary\">{cleaned}</div>"
