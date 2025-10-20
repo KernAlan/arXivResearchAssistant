@@ -1,0 +1,445 @@
+
+    <!DOCTYPE html>
+    <html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>ArXiv Research Digest</title>
+        <style>
+            
+body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    line-height: 1.5;
+    color: #2d3748;
+    margin: 0;
+    padding: 20px;
+    background: #f7fafc;
+}
+
+.digest {
+    max-width: 800px;
+    margin: 0 auto;
+    background: white;
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+}
+
+.header {
+    margin-bottom: 2rem;
+    padding-bottom: 1rem;
+    border-bottom: 2px solid #e2e8f0;
+}
+
+.header h2 {
+    margin: 0;
+    color: #2d3748;
+}
+
+.header p {
+    margin: 0.5rem 0 0;
+    color: #718096;
+}
+
+.highlights {
+    background: #f8fafc;
+    padding: 1.5rem;
+    border-radius: 8px;
+    margin-bottom: 3rem;
+    border: 1px solid #e2e8f0;
+}
+
+.highlights h3 {
+    color: #2d3748;
+    margin: 0 0 1rem 0;
+    font-size: 1.25rem;
+}
+
+.summary {
+    white-space: pre-line;
+    line-height: 1.6;
+}
+
+.summary ol {
+    padding-left: 1.5rem;
+    margin: 1rem 0;
+}
+
+.summary li {
+    margin-bottom: 0.75rem;
+    padding-left: 0.5rem;
+}
+
+.papers {
+    margin-top: 3rem;
+}
+
+.papers h3 {
+    color: #2d3748;
+    margin-bottom: 1.5rem;
+    padding-bottom: 1rem;
+    border-bottom: 2px solid #e2e8f0;
+}
+
+.paper {
+    margin-bottom: 2rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid #e2e8f0;
+}
+
+.paper:last-child {
+    border-bottom: none;
+}
+
+.paper h3 {
+    margin: 0 0 0.5rem;
+    color: #2d3748;
+}
+
+.paper .scores {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 0.5rem;
+}
+
+.paper .score {
+    padding: 0.25rem 0.5rem;
+    border-radius: 4px;
+    font-size: 0.875rem;
+}
+
+.paper .relevance {
+    background: #e6fffa;
+    color: #047481;
+}
+
+.paper .importance {
+    background: #ebf4ff;
+    color: #1a56db;
+}
+
+.paper .abstract {
+    color: #4a5568;
+    margin: 0.5rem 0;
+}
+
+.paper .meta {
+    font-size: 0.875rem;
+    color: #718096;
+}
+
+.paper .meta a {
+    color: #4299e1;
+    text-decoration: none;
+}
+
+.paper .meta a:hover {
+    text-decoration: underline;
+}
+
+        </style>
+    </head>
+    <body>
+        
+<div class="digest">
+    <div class="header">
+        <h2>ArXiv Research Digest</h2>
+        <p>Found 20 relevant papers out of 188 new submissions</p>
+    </div>
+    
+    <div class="highlights">
+        <h3>🔥 Key Highlights</h3>
+        Hey boss, found 5 cool papers today that I think you'll love:
+<ol>
+<li><strong>ACON: Optimizing Context Compression for Long-horizon LLM Agents</strong><br>
+One-sentence innovation: Microsoft researchers introduce ACON, a framework that iteratively optimizes natural-language compression guidelines (and then distills the optimized LLM compressor) to compress both observations and interaction histories for long-horizon agents.  
+Practical impact / next step: ACON cuts peak tokens 26–54% while largely preserving task performance and can boost smaller agents by up to 46%—we should fork the repo (https://github.com/microsoft/acon, paper: http://arxiv.org/abs/2510.00615v2) and prototype it in our agent stack to lower memory and infra costs (avg score 9.5/10; Relevance 10/10, Importance 9/10).</li>
+
+<li><strong>Self-evolving expertise in complex non-verifiable subject domains: dialogue as implicit meta-RL (Dialectica)</strong><br>
+One-sentence innovation: Dialectica frames structured, reflective dialogue (with memory and context editing) as implicit meta-RL so LLM agents can acquire targeted expertise in “wicked,” non-verifiable domains.  
+Practical impact / next step: This gives us a way to amplify domain expertise without heavy labeled fine-tuning—run a small Dialectica-style reflective-dialogue pilot (local Qwen3:30b or API o4-mini) on one of our policy/strategy workflows to see if Elo/BTD gains translate to production tasks (paper: http://arxiv.org/abs/2510.15772v1; avg score 9.0/10; Relevance 10/10, Importance 8/10).</li>
+
+<li><strong>JudgeSQL: Reasoning over SQL Candidates with Weighted Consensus Tournament</strong><br>
+One-sentence innovation: JudgeSQL builds a reasoning-based SQL “judge” that distills reasoning traces with RL and then applies a weighted consensus tournament to pick the best SQL from candidate pools.  
+Practical impact / next step: This is a practical fix for text-to-SQL brittleness—should reduce wrong queries vs. naive self-consistency; recommend we test JudgeSQL as a post-generator selector in our BI/querying pipeline using the BIRD benchmark setup to lower production SQL error rates (paper: http://arxiv.org/abs/2510.15560v1; avg score 8.5/10; Relevance 9/10, Importance 8/10).</li>
+
+<li><strong>Think Parallax: Solving Multi-Hop Problems via Multi-View Knowledge-Graph-Based Retrieval-Augmented Generation (ParallaxRAG)</strong><br>
+One-sentence innovation: ParallaxRAG symmetrically creates multi-view spaces for queries and KG triples and leverages attention-head specialization to build cleaner subgraphs and guide grounded multi-hop reasoning.  
+Practical impact / next step: It reduces hallucination and improves multi-hop QA generalization—worth running a focused eval (BGE-M3 + Llama3.1-8B setup from the paper) against our KB-QA pipeline to see if it improves precision on chained queries (paper: http://arxiv.org/abs/2510.15552v1; avg score 8.5/10; Relevance 9/10, Importance 8/10).</li>
+
+<li><strong>BeLLMan: Controlling LLM Congestion</strong><br>
+One-sentence innovation: beLLMan is a controller that lets infra actively signal LLM applications to progressively shorten outputs under load, creating a feedback loop between infra and the autoregressive app.  
+Practical impact / next step: On H100 hardware it kept latency down (up to 8x lower end-to-end), cut energy ~25% and served ~19% more requests—strong candidate for our SLA-improvement work: prototype beLLMan-style backpressure in our inference stack and run a congestion test with our summarization/QA workloads (paper: http://arxiv.org/abs/2510.15330v1; avg score 8.5/10; Relevance 10/10, Importance 7/10).</li>
+</ol>
+
+Quick action plan for this week: let’s prioritize an ACON integration + a beLLMan load-test, and spin up small pilots for Dialectica and JudgeSQL/ParallaxRAG on two dev projects to validate wins end-to-end.
+    </div>
+    
+    <div class="papers">
+        <h3>📄 Detailed Papers</h3>
+        
+<div class="paper">
+    <h3>ACON: Optimizing Context Compression for Long-horizon LLM Agents</h3>
+    <div class="scores">
+        <span class="score relevance">Relevance: 10/10</span>
+        <span class="score importance">Importance: 9/10</span>
+    </div>
+    <div class="abstract">Large language models (LLMs) are increasingly deployed as agents in dynamic, real-world environments, where success requires both reasoning and effective tool use. A central challenge for agentic tasks is the growing context length, as agents must accumulate long histories of actions and observations. This expansion raises costs and reduces efficiency in long-horizon tasks, yet prior work on context compression has mostly focused on single-step tasks or narrow applications. We introduce Agent Context Optimization (ACON), a unified framework that optimally compresses both environment observations and interaction histories into concise yet informative condensations. ACON leverages compression guideline optimization in natural language space: given paired trajectories where full context succeeds but compressed context fails, capable LLMs analyze the causes of failure, and the compression guideline is updated accordingly. Furthermore, we propose distilling the optimized LLM compressor into smaller models to reduce the overhead of the additional module. Experiments on AppWorld, OfficeBench, and Multi-objective QA show that ACON reduces memory usage by 26-54% (peak tokens) while largely preserving task performance, preserves over 95% of accuracy when distilled into smaller compressors, and enhances smaller LMs as long-horizon agents with up to 46% performance improvement. Our code is available at https://github.com/microsoft/acon.</div>
+    <div class="meta">
+        <a href="http://arxiv.org/abs/2510.00615v2" target="_blank">View on arXiv</a>
+    </div>
+</div>
+
+
+<div class="paper">
+    <h3>Self-evolving expertise in complex non-verifiable subject domains:   dialogue as implicit meta-RL</h3>
+    <div class="scores">
+        <span class="score relevance">Relevance: 10/10</span>
+        <span class="score importance">Importance: 8/10</span>
+    </div>
+    <div class="abstract">So-called `wicked problems', those involving complex multi-dimensional settings, non-verifiable outcomes, heterogeneous impacts and a lack of single objectively correct answers, have plagued humans throughout history. Modern examples include decisions over justice frameworks, solving environmental pollution, planning for pandemic resilience and food security. The use of state-of-the-art artificial intelligence systems (notably Large Language Model-based agents) collaborating with humans on solving such problems is being actively explored. While the abilities of LLMs can be improved by, for example, fine-tuning, hand-crafted system prompts and scaffolding with external tools, LLMs lack endogenous mechanisms to develop expertise through experience in such settings. This work address this gap with Dialectica, a framework where agents engage in structured dialogue on defined topics, augmented by memory, self-reflection, and policy-constrained context editing. Formally, discussion is viewed as an implicit meta-reinforcement learning process. The `dialogue-trained' agents are evaluated post-hoc using judged pairwise comparisons of elicited responses. Across two model architectures (locally run Qwen3:30b and OpenAI's o4-mini) results show that enabling reflection-based context editing during discussion produces agents which dominate their baseline counterparts on Elo scores, normalized Bradley-Terry-Davidson ability, and AlphaRank mass. The predicted signatures of learning are observed qualitatively in statement and reflection logs, where reflections identify weaknesses and reliably shape subsequent statements. Agreement between quantitative and qualitative evidence supports dialogue-driven context evolution as a practical path to targeted expertise amplification in open non-verifiable domains.</div>
+    <div class="meta">
+        <a href="http://arxiv.org/abs/2510.15772v1" target="_blank">View on arXiv</a>
+    </div>
+</div>
+
+
+<div class="paper">
+    <h3>JudgeSQL: Reasoning over SQL Candidates with Weighted Consensus   Tournament</h3>
+    <div class="scores">
+        <span class="score relevance">Relevance: 9/10</span>
+        <span class="score importance">Importance: 8/10</span>
+    </div>
+    <div class="abstract">Text-to-SQL is a pivotal task that bridges natural language understanding and structured data access, yet it remains fundamentally challenging due to semantic ambiguity and complex compositional reasoning. While large language models (LLMs) have greatly advanced SQL generation though prompting, supervised finetuning and reinforced tuning, the shift toward test-time scaling exposes a new bottleneck: selecting the correct query from a diverse candidate pool. Existing selection approaches, such as self-consistency or best-of-$N$ decoding, provide only shallow signals, making them prone to inconsistent scoring, fragile reasoning chains, and a failure to capture fine-grained semantic distinctions between closely related SQL candidates. To this end, we introduce JudgeSQL, a principled framework that redefines SQL candidate selection through structured reasoning and weighted consensus tournament mechanism. JudgeSQL develops a reasoning-based SQL judge model that distills reasoning traces with reinforcement learning guided by verifiable rewards, enabling accurate and interpretable judgments. Building on this, a weighted consensus tournament integrates explicit reasoning preferences with implicit generator confidence, yielding selections that are both more reliable and more efficient. Extensive experiments on the BIRD benchmark demonstrate that JudgeSQL exhibits superior SQL judgment capabilities and good cross-scale generalization and robustness to generator capacity.</div>
+    <div class="meta">
+        <a href="http://arxiv.org/abs/2510.15560v1" target="_blank">View on arXiv</a>
+    </div>
+</div>
+
+
+<div class="paper">
+    <h3>Think Parallax: Solving Multi-Hop Problems via Multi-View   Knowledge-Graph-Based Retrieval-Augmented Generation</h3>
+    <div class="scores">
+        <span class="score relevance">Relevance: 9/10</span>
+        <span class="score importance">Importance: 8/10</span>
+    </div>
+    <div class="abstract">Large language models (LLMs) excel at language understanding but often hallucinate and struggle with multi-hop reasoning. Knowledge-graph-based retrieval-augmented generation (KG-RAG) offers grounding, yet most methods rely on flat embeddings and noisy path exploration. We propose ParallaxRAG, a framework that symmetrically decouples queries and graph triples into multi-view spaces, enabling a robust retrieval architecture that explicitly enforces head diversity while constraining weakly related paths. Central to our approach is the observation that different attention heads specialize in semantic relations at distinct reasoning stages, contributing to different hops of the reasoning chain. This specialization allows ParallaxRAG to construct cleaner subgraphs and guide LLMs through grounded, step-wise reasoning. Experiments on WebQSP and CWQ, under our unified, reproducible setup (BGE-M3 + Llama3.1-8B), demonstrate competitive retrieval and QA performance, alongside reduced hallucination and good generalization. Our results highlight multi-view head specialization as a principled direction for knowledge-grounded multi-hop reasoning. Our implementation will be released as soon as the paper is accepted.</div>
+    <div class="meta">
+        <a href="http://arxiv.org/abs/2510.15552v1" target="_blank">View on arXiv</a>
+    </div>
+</div>
+
+
+<div class="paper">
+    <h3>BeLLMan: Controlling LLM Congestion</h3>
+    <div class="scores">
+        <span class="score relevance">Relevance: 10/10</span>
+        <span class="score importance">Importance: 7/10</span>
+    </div>
+    <div class="abstract">Large language model (LLM) applications are blindfolded to the infrastructure underneath and generate tokens autoregressively, indifferent to the system load, thus risking inferencing latency inflation and poor user experience. Our first-cut controller, named beLLMan, enables the LLM infrastructure to actively and progressively signal the first-party LLM application to adjust the output length in response to changing system load. On a real testbed with H100 GPUs, beLLMan helps keep inferencing latency under control (upto 8X lower end-to-end latency) and reduces energy consumption by 25% (while serving 19% more requests) during periods of congestion for a summarization workload.</div>
+    <div class="meta">
+        <a href="http://arxiv.org/abs/2510.15330v1" target="_blank">View on arXiv</a>
+    </div>
+</div>
+
+
+<div class="paper">
+    <h3>Robust Layerwise Scaling Rules by Proper Weight Decay Tuning</h3>
+    <div class="scores">
+        <span class="score relevance">Relevance: 9/10</span>
+        <span class="score importance">Importance: 8/10</span>
+    </div>
+    <div class="abstract">Empirical scaling laws prescribe how to allocate parameters, data, and compute, while maximal-update parameterization ($\mu$P) enables learning-rate transfer across widths by equalizing early-time update magnitudes. However, in modern scale-invariant architectures, training quickly enters an optimizer-governed steady state where normalization layers create backward scale sensitivity and the effective learning rate becomes width dependent, degrading $\mu$P transfer. We address this by introducing a weight-decay scaling rule for AdamW that preserves sublayer gain across widths. Empirically, the singular-value spectrum of each matrix parameter scales in norm as $\sqrt{\eta/\lambda}$ with an approximately invariant shape; under width scaling $d$, we observe that the top singular value scales approximately as $\sqrt{\eta/\lambda}\cdot d^{0.75}$. Combining this observation with the $\mu$P learning-rate rule $\eta_2\propto d^{-1}$ for matrix-like parameters implies an empirical weight-decay scaling rule $\lambda_2\propto \sqrt{d}$ that approximately keeps sublayer gains width invariant. Together with vector-like parameters trained at $\eta_1=\Theta_d(1)$ and $\lambda_1=0$, this yields \emph{zero-shot} transfer of both learning rate and weight decay from proxy to target widths, removing per-width sweeps. We validate the rule on LLaMA-style Transformers and in a minimal synthetic setting, and we provide a simple diagnostic, matching top singular values, to check sublayer-gain invariance. Our results extend $\mu$P beyond the near-init regime by explicitly controlling steady-state scales set by the optimizer, offering a practical recipe for width-robust hyperparameter transfer under AdamW.</div>
+    <div class="meta">
+        <a href="http://arxiv.org/abs/2510.15262v1" target="_blank">View on arXiv</a>
+    </div>
+</div>
+
+
+<div class="paper">
+    <h3>ReasonIF: Large Reasoning Models Fail to Follow Instructions During   Reasoning</h3>
+    <div class="scores">
+        <span class="score relevance">Relevance: 9/10</span>
+        <span class="score importance">Importance: 8/10</span>
+    </div>
+    <div class="abstract">The ability of large language models (LLMs) to follow user instructions is central to their reliability, safety, and usefulness. While prior studies assess instruction adherence in the model's main responses, we argue that it is also critical for large reasoning models (LRMs) to follow user instructions throughout their reasoning process. Reasoning instruction following makes LRMs more controllable and transparent, while reducing risks of undesirable shortcuts, hallucinations, or reward hacking within reasoning traces. To evaluate this dimension, we introduce ReasonIF, a systematic benchmark for assessing reasoning instruction following. ReasonIF includes six categories of instruction prompts, spanning multilingual reasoning, formatting and length control. Across many open-source LRMs including GPT-OSS, Qwen3, and DeepSeek-R1, we find substantial failures in reasoning instruction adherence: the highest instruction following score (IFS) remains below 0.25, meaning that fewer than $25\%$ of reasoning traces comply with the given instructions. Notably, as task difficulty increases, reasoning instruction following degrades further. We also explore two strategies to enhance reasoning instruction fidelity. (1) multi-turn reasoning and (2) Reasoning Instruction Finetuning (RIF) using synthetic data. RIF improves the IFS of $GPT-OSS-20B$ from 0.11 to 0.27, indicating measurable progress but leaving ample room for improvement.</div>
+    <div class="meta">
+        <a href="http://arxiv.org/abs/2510.15211v1" target="_blank">View on arXiv</a>
+    </div>
+</div>
+
+
+<div class="paper">
+    <h3>Reinforcement Learning with Verifiable yet Noisy Rewards under Imperfect   Verifiers</h3>
+    <div class="scores">
+        <span class="score relevance">Relevance: 9/10</span>
+        <span class="score importance">Importance: 8/10</span>
+    </div>
+    <div class="abstract">Reinforcement Learning with Verifiable Rewards (RLVR) trains policies against automated verifiers to avoid costly human labeling. To reduce vulnerability to verifier hacking, many RLVR systems collapse rewards to binary $\{0,1\}$ during training. This choice carries a cost: it introduces \textit{false negatives} (rejecting correct answers, FNs) and \textit{false positives} (accepting incorrect ones, FPs). For instance, a rule-based checker may mark the correct fraction $\frac{12}{36}$ as wrong when compared against the canonical $\frac{1}{3}$ due to brittle parsing/equivalence rules (FN), while a large language model (LLM) judges can be gamed by superficial cues or even a single adversarial token, yielding inflated correctness for wrong solutions (FP). We formalize verifier unreliability by modeling the verifier as a stochastic reward channel with asymmetric noise rates. From this abstraction, we derive two correction algorithms for verifier errors. The first is a \textit{backward} correction that de-biases the observed binary reward to recover an \textit{unbiased} estimator of the clean policy gradient. The second is a \textit{forward} correction that reweights score-function terms so that the expected update direction aligns with the \textit{clean gradient}; notably, it requires only the FN rate. We implement both as lightweight hooks in a group relative policy optimization (GRPO)-based RLVR pipeline and evaluate them on math-reasoning models and benchmarks. Across models and datasets, both corrections improve over uncorrected training; the forward variant converges faster and remains stable under heavier noise. Finally, we show a practical appeal mechanism in which a lightweight LLM verifier estimates the FN rate online by rechecking rule-based negatives, obtaining outperformance compared with other state-of-the-art contenders.</div>
+    <div class="meta">
+        <a href="http://arxiv.org/abs/2510.00915v2" target="_blank">View on arXiv</a>
+    </div>
+</div>
+
+
+<div class="paper">
+    <h3>VitaBench: Benchmarking LLM Agents with Versatile Interactive Tasks in   Real-world Applications</h3>
+    <div class="scores">
+        <span class="score relevance">Relevance: 9/10</span>
+        <span class="score importance">Importance: 8/10</span>
+    </div>
+    <div class="abstract">As LLM-based agents are increasingly deployed in real-life scenarios, existing benchmarks fail to capture their inherent complexity of handling extensive information, leveraging diverse resources, and managing dynamic user interactions. To address this gap, we introduce VitaBench, a challenging benchmark that evaluates agents on versatile interactive tasks grounded in real-world settings. Drawing from daily applications in food delivery, in-store consumption, and online travel services, VitaBench presents agents with the most complex life-serving simulation environment to date, comprising 66 tools. Through a framework that eliminates domain-specific policies, we enable flexible composition of these scenarios and tools, yielding 100 cross-scenario tasks (main results) and 300 single-scenario tasks. Each task is derived from multiple real user requests and requires agents to reason across temporal and spatial dimensions, utilize complex tool sets, proactively clarify ambiguous instructions, and track shifting user intent throughout multi-turn conversations. Moreover, we propose a rubric-based sliding window evaluator, enabling robust assessment of diverse solution pathways in complex environments and stochastic interactions. Our comprehensive evaluation reveals that even the most advanced models achieve only 30% success rate on cross-scenario tasks, and less than 50% success rate on others. Overall, we believe VitaBench will serve as a valuable resource for advancing the development of AI agents in practical real-world applications. The code, dataset, and leaderboard are available at https://vitabench.github.io/</div>
+    <div class="meta">
+        <a href="http://arxiv.org/abs/2509.26490v2" target="_blank">View on arXiv</a>
+    </div>
+</div>
+
+
+<div class="paper">
+    <h3>Finetune Once: Decoupling General & Domain Learning with Dynamic Boosted   Annealing</h3>
+    <div class="scores">
+        <span class="score relevance">Relevance: 9/10</span>
+        <span class="score importance">Importance: 8/10</span>
+    </div>
+    <div class="abstract">Large language models (LLMs) fine-tuning shows excellent implications. However, vanilla fine-tuning methods often require intricate data mixture and repeated experiments for optimal generalization. To address these challenges and streamline the training process, we propose an efficient and universal solution, Dynamic Boosted Annealing (DBA). We obtain a global gradient through zero-learning-rate training on general data, which is subsequently employed for gradient boosting and dynamic training step correction during domain training. In conjunction with annealing learning, we end up establishing a fine-tuning pipeline that relies solely on domain data without collapse. By evaluating both general and domain-specific performance across multiple tasks on several popular base models, DBA achieves an average improvement of 5.8% in joint performance over vanilla fine-tuning. Furthermore, since general data is no longer involved in annealing, repeated experiments led by data mixture are also eliminated. According to our tests, the DBA method can reduce GPU hours by 91.0% compared to the vanilla method.</div>
+    <div class="meta">
+        <a href="http://arxiv.org/abs/2509.26242v2" target="_blank">View on arXiv</a>
+    </div>
+</div>
+
+
+<div class="paper">
+    <h3>FPEdit: Robust LLM Fingerprinting through Localized Parameter Editing</h3>
+    <div class="scores">
+        <span class="score relevance">Relevance: 9/10</span>
+        <span class="score importance">Importance: 8/10</span>
+    </div>
+    <div class="abstract">Large language models represent significant investments in computation, data, and engineering expertise, making them extraordinarily valuable intellectual assets. Nevertheless, these AI assets remain vulnerable to unauthorized redistribution and commercial exploitation through fine-tuning or black-box deployment. Current fingerprinting approaches face a fundamental trade-off: intrinsic methods require full parameter access, while backdoor-based techniques employ statistically anomalous triggers easily detected and filtered by adversaries. To address these limitations, we introduce FPEdit, a novel framework that leverages knowledge editing to inject semantically coherent natural language fingerprints through sparse, targeted modifications to model weights. Our approach introduces Promote-Suppress Value Vector Optimization, which simultaneously enhances target token likelihood while suppressing competing tokens, ensuring robust fingerprint integration without degrading core model functionality. Extensive experiments show that FPEdit achieves 95-100% fingerprint retention under both full-parameter fine-tuning and parameter-efficient adaptation, while preserving performance on downstream benchmarks. Moreover, FPEdit remains robust under quantization, pruning, and stochastic decoding, and can embed 10 fingerprint pairs into LLaMA2-7B in under 2 minutes using less than 30 GB of GPU memory, which represents a substantial reduction in resource requirements. These advances establish FPEdit as the first fingerprinting approach to simultaneously achieve robustness against adaptation, resistance to detection, and preservation of model utility, thereby providing a minimally invasive solution for reliable provenance verification of large language models in adversarial deployment scenarios.</div>
+    <div class="meta">
+        <a href="http://arxiv.org/abs/2508.02092v2" target="_blank">View on arXiv</a>
+    </div>
+</div>
+
+
+<div class="paper">
+    <h3>General-Purpose Robotic Navigation via LVLM-Orchestrated Perception,   Reasoning, and Acting</h3>
+    <div class="scores">
+        <span class="score relevance">Relevance: 9/10</span>
+        <span class="score importance">Importance: 8/10</span>
+    </div>
+    <div class="abstract">Developing general-purpose navigation policies for unknown environments remains a core challenge in robotics. Most existing systems rely on task-specific neural networks and fixed information flows, limiting their generalizability. Large Vision-Language Models (LVLMs) offer a promising alternative by embedding human-like knowledge for reasoning and planning, but prior LVLM-robot integrations have largely depended on pre-mapped spaces, hard-coded representations, and rigid control logic. We introduce the Agentic Robotic Navigation Architecture (ARNA), a general-purpose framework that equips an LVLM-based agent with a library of perception, reasoning, and navigation tools drawn from modern robotic stacks. At runtime, the agent autonomously defines and executes task-specific workflows that iteratively query modules, reason over multimodal inputs, and select navigation actions. This agentic formulation enables robust navigation and reasoning in previously unmapped environments, offering a new perspective on robotic stack design. Evaluated in Habitat Lab on the HM-EQA benchmark, ARNA outperforms state-of-the-art EQA-specific approaches. Qualitative results on RxR and custom tasks further demonstrate its ability to generalize across a broad range of navigation challenges.</div>
+    <div class="meta">
+        <a href="http://arxiv.org/abs/2506.17462v2" target="_blank">View on arXiv</a>
+    </div>
+</div>
+
+
+<div class="paper">
+    <h3>WebInject: Prompt Injection Attack to Web Agents</h3>
+    <div class="scores">
+        <span class="score relevance">Relevance: 9/10</span>
+        <span class="score importance">Importance: 8/10</span>
+    </div>
+    <div class="abstract">Multi-modal large language model (MLLM)-based web agents interact with webpage environments by generating actions based on screenshots of the webpages. In this work, we propose WebInject, a prompt injection attack that manipulates the webpage environment to induce a web agent to perform an attacker-specified action. Our attack adds a perturbation to the raw pixel values of the rendered webpage. After these perturbed pixels are mapped into a screenshot, the perturbation induces the web agent to perform the attacker-specified action. We formulate the task of finding the perturbation as an optimization problem. A key challenge in solving this problem is that the mapping between raw pixel values and screenshot is non-differentiable, making it difficult to backpropagate gradients to the perturbation. To overcome this, we train a neural network to approximate the mapping and apply projected gradient descent to solve the reformulated optimization problem. Extensive evaluation on multiple datasets shows that WebInject is highly effective and significantly outperforms baselines.</div>
+    <div class="meta">
+        <a href="http://arxiv.org/abs/2505.11717v4" target="_blank">View on arXiv</a>
+    </div>
+</div>
+
+
+<div class="paper">
+    <h3>FLUKE: A Linguistically-Driven and Task-Agnostic Framework for   Robustness Evaluation</h3>
+    <div class="scores">
+        <span class="score relevance">Relevance: 9/10</span>
+        <span class="score importance">Importance: 8/10</span>
+    </div>
+    <div class="abstract">We present FLUKE (Framework for LingUistically-driven and tasK-agnostic robustness Evaluation), a framework for assessing model robustness through systematic minimal variations of test data. FLUKE introduces controlled variations across linguistic levels -- from orthography to dialect and style -- and leverages large language models (LLMs) with human validation to generate modifications. We demonstrate FLUKE's utility by evaluating both fine-tuned models and LLMs across six diverse NLP tasks (four classification and two generation tasks), and reveal that (1) the impact of linguistic variations is highly task-dependent, with some tests being critical for certain tasks but irrelevant for others; (2) LLMs still exhibit significant brittleness to certain linguistic variations, with reasoning LLMs surprisingly showing less robustness on some tasks compared to base models; (3) models are overall more brittle to natural, fluent modifications such as syntax or style changes (and especially to negation), compared to corruption-style tests such as letter flipping; (4) the ability of a model to use a linguistic feature in generation does not correlate to its robustness to this feature on downstream tasks. These findings highlight the importance of systematic robustness testing for understanding model behaviors.</div>
+    <div class="meta">
+        <a href="http://arxiv.org/abs/2504.17311v2" target="_blank">View on arXiv</a>
+    </div>
+</div>
+
+
+<div class="paper">
+    <h3>Beyond Final Code: A Process-Oriented Error Analysis of Software   Development Agents in Real-World GitHub Scenarios</h3>
+    <div class="scores">
+        <span class="score relevance">Relevance: 9/10</span>
+        <span class="score importance">Importance: 8/10</span>
+    </div>
+    <div class="abstract">AI-driven software development has rapidly advanced with the emergence of software development agents that leverage large language models (LLMs) to tackle complex, repository-level software engineering tasks. These agents go beyond just generation of final code; they engage in multi-step reasoning, utilize various tools for code modification and debugging, and interact with execution environments to diagnose and iteratively resolve issues. However, most existing evaluations focus primarily on static analyses of final code outputs, yielding limited insights into the agents' dynamic problem-solving processes. To fill this gap, we conduct an in-depth empirical study on 3,977 solving-phase trajectories and 3,931 testing-phase logs from 8 top-ranked agents evaluated on 500 GitHub issues in the SWE-Bench benchmark.   Our exploratory analysis shows that Python execution errors during the issue resolution phase correlate with lower resolution rates and increased reasoning overheads. We have identified the most prevalent errors -- such as ModuleNotFoundError and TypeError -- and highlighted particularly challenging errors like OSError and database-related issues (e.g., IntegrityError) that demand significantly more debugging effort. Furthermore, we have discovered 3 bugs in the SWE-Bench platform that affect benchmark fairness and accuracy; these issues have been reported to and confirmed by the maintainers. To promote transparency and foster future research, we publicly share our datasets and analysis scripts.</div>
+    <div class="meta">
+        <a href="http://arxiv.org/abs/2503.12374v3" target="_blank">View on arXiv</a>
+    </div>
+</div>
+
+
+<div class="paper">
+    <h3>PAFT: Prompt-Agnostic Fine-Tuning</h3>
+    <div class="scores">
+        <span class="score relevance">Relevance: 9/10</span>
+        <span class="score importance">Importance: 8/10</span>
+    </div>
+    <div class="abstract">Fine-tuning large language models (LLMs) often causes overfitting to specific prompt wording, where minor phrasing variations drastically reduce performance. To address this, we propose Prompt-Agnostic Fine-Tuning (PAFT), a method that enhances robustness through dynamic prompt variation during training. PAFT first generates diverse synthetic prompts, then continuously samples from this set to construct training instances, forcing models to learn fundamental task principles rather than surface-level patterns. Across systematic evaluations using both supervised fine-tuning (SFT) and reinforcement learning fine-tuning (RLFT), PAFT demonstrates substantially improved prompt robustness, achieving 7% higher generalization accuracy on unseen prompts than standard methods. In addition to enhanced robustness, PAFT consistently yields superior overall performance on established benchmarks for question answering, mathematical reasoning, and tool use. Notably, models trained with PAFT attain 3.2 faster inference speeds due to reduced prompt sensitivity. Ablation studies further validate effectiveness of PAFT, while theoretical analysis reveals that PAFT can effectively enhance the cross-domain generalization ability of LLM.</div>
+    <div class="meta">
+        <a href="http://arxiv.org/abs/2502.12859v3" target="_blank">View on arXiv</a>
+    </div>
+</div>
+
+
+<div class="paper">
+    <h3>Memory-Efficient Large Language Models for Program Repair with   Semantic-Guided Patch Generation</h3>
+    <div class="scores">
+        <span class="score relevance">Relevance: 9/10</span>
+        <span class="score importance">Importance: 8/10</span>
+    </div>
+    <div class="abstract">In this paper, we first show that increases in beam size, even for small-sized LLMs (1B-7B params), require extensive GPU usage, leading to up to 80% of recurring crashes due to memory overloads in LLM-based APR. Seemingly simple solutions to reduce memory consumption are (1) to quantize LLM models, i.e., converting the weights of an LLM from high-precision values to lower-precision ones, and (2) to make beam search sequential, i.e., forwarding each beam through the model sequentially and then concatenating them back into a single output. However, we show that these approaches still do not work via both theoretical analysis and experiments.   To address this, we introduce FLAMES, a novel LLM-based APR technique that employs semantic-guided patch generation to enhance repair effectiveness and memory efficiency. Unlike conventional methods that rely on beam search, FLAMES utilizes greedy decoding to enhance memory efficiency while steering the search towards more potentially good repair candidates via a semantic-guided best-first search algorithm. At each decoding step, FLAMES uses semantic feedback from test validation, such as the number of passing and failing test cases, to select the most promising token to explore further. Our empirical evaluation on Defects4J shows thatFLAMES substantially reduces memory consumption by up to 83% compared to LLM-based APR without compromising time efficiency. Moreover, FLAMES correctly fixes 133 bugs on Defects4J, fixing 10 bugs more than the best baseline. Additionally, these improvements also generalize to the HumanEval-Java and TransformedD4J datasets, where FLAMES generates 12% and 36.5% more correct patches, respectively, than the best baseline.</div>
+    <div class="meta">
+        <a href="http://arxiv.org/abs/2410.16655v2" target="_blank">View on arXiv</a>
+    </div>
+</div>
+
+
+<div class="paper">
+    <h3>PolySkill: Learning Generalizable Skills Through Polymorphic Abstraction</h3>
+    <div class="scores">
+        <span class="score relevance">Relevance: 9/10</span>
+        <span class="score importance">Importance: 7/10</span>
+    </div>
+    <div class="abstract">Large language models (LLMs) are moving beyond static uses and are now powering agents that learn continually during their interaction with external environments. For example, agents can learn reusable skills while navigating web pages or toggling new tools. However, existing methods for skill learning often create skills that are over-specialized to a single website and fail to generalize. We introduce PolySkill, a new framework that enables agents to learn generalizable and compositional skills. The core idea, inspired by polymorphism in software engineering, is to decouple a skill's abstract goal (what it accomplishes) and its concrete implementation (how it is executed). Experiments show that our method (1) improves skill reuse by 1.7x on seen websites and (2) boosts success rates by up to 9.4% on Mind2Web and 13.9% on unseen websites, while reducing steps by over 20%. (3) In self-exploration settings without specified tasks, our framework improves the quality of proposed tasks and enables agents to learn generalizable skills that work across different sites. By enabling the agent to identify and refine its own goals, the PolySkill enhances the agent's ability to learn a better curriculum, leading to the acquisition of more generalizable skills compared to baseline methods. This work provides a practical path toward building agents capable of continual learning in adaptive environments. Our findings show that separating a skill's goal from its execution is a crucial step toward developing autonomous agents that can learn and generalize across the open web continuously.</div>
+    <div class="meta">
+        <a href="http://arxiv.org/abs/2510.15863v1" target="_blank">View on arXiv</a>
+    </div>
+</div>
+
+
+<div class="paper">
+    <h3>PokeeResearch: Effective Deep Research via Reinforcement Learning from   AI Feedback and Robust Reasoning Scaffold</h3>
+    <div class="scores">
+        <span class="score relevance">Relevance: 9/10</span>
+        <span class="score importance">Importance: 7/10</span>
+    </div>
+    <div class="abstract">Tool-augmented large language models (LLMs) are emerging as deep research agents, systems that decompose complex queries, retrieve external evidence, and synthesize grounded responses. Yet current agents remain limited by shallow retrieval, weak alignment metrics, and brittle tool-use behavior. We introduce PokeeResearch-7B, a 7B-parameter deep research agent built under a unified reinforcement learning framework for robustness, alignment, and scalability. PokeeResearch-7B is trained by an annotation-free Reinforcement Learning from AI Feedback (RLAIF) framework to optimize policies using LLM-based reward signals that capture factual accuracy, citation faithfulness, and instruction adherence. A chain-of-thought-driven multi-call reasoning scaffold further enhances robustness through self-verification and adaptive recovery from tool failures. Among 10 popular deep research benchmarks, PokeeResearch-7B achieves state-of-the-art performance among 7B-scale deep research agents. This highlights that careful reinforcement learning and reasoning design can produce efficient, resilient, and research-grade AI agents. The model and inference code is open-sourced under MIT license at https://github.com/Pokee-AI/PokeeResearchOSS.</div>
+    <div class="meta">
+        <a href="http://arxiv.org/abs/2510.15862v1" target="_blank">View on arXiv</a>
+    </div>
+</div>
+
+
+<div class="paper">
+    <h3>SNOO: Step-K Nesterov Outer Optimizer - The Surprising Effectiveness of   Nesterov Momentum Applied to Pseudo-Gradients</h3>
+    <div class="scores">
+        <span class="score relevance">Relevance: 8/10</span>
+        <span class="score importance">Importance: 8/10</span>
+    </div>
+    <div class="abstract">The rapid development of large language models (LLMs) has driven the demand for more efficient optimization techniques. Among these, the Lookahead family of optimizers employs a two-loop framework, maintaining fast and slow sets of model weights. Multiple inner optimizer steps on the fast weights produce a trajectory - the pseudo-gradient - that is used to update the slow weights. DiLoCo, a notable example originally designed for distributed training, applies Nesterov momentum to the averaged pseudo-gradient from multiple workers, claiming to even outperform AdamW in a non-distributed setup. In this paper, we empirically show that DiLoCo's surprising effectiveness stems primarily from applying Nesterov momentum to the pseudo-gradient, which improves training in a non-distributed setting. We call this Lookahead variant the Step-$K$ Nesterov Outer Optimizer (SNOO). We demonstrate that SNOO achieves compute factor gains of 1.5 - 2.5$\times$ in a non-distributed setting up to a scale of 1e23 training FLOPs, with improvements that increase with model size. Because of its minimal compute and memory overhead and compatibility with model sharding, SNOO is a practical enhancement for a variety of inner optimizers, including AdamW and Muon.</div>
+    <div class="meta">
+        <a href="http://arxiv.org/abs/2510.15830v1" target="_blank">View on arXiv</a>
+    </div>
+</div>
+
+    </div>
+</div>
+
+    </body>
+    </html>
+    
