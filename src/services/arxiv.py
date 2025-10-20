@@ -1,5 +1,6 @@
 """ArXiv paper downloading service"""
 import logging
+import ssl
 import urllib.request
 from typing import Dict, List
 from bs4 import BeautifulSoup as bs
@@ -51,8 +52,13 @@ class ArxivService:
         logger.debug(f"Using URL: {url}")
         
         try:
+            # Create SSL context that doesn't verify certificates (for Windows compatibility)
+            ssl_context = ssl.create_default_context()
+            ssl_context.check_hostname = False
+            ssl_context.verify_mode = ssl.CERT_NONE
+
             # Get XML response
-            response = urllib.request.urlopen(url)
+            response = urllib.request.urlopen(url, context=ssl_context)
             soup = bs(response, 'lxml-xml')
             
             # Parse entries

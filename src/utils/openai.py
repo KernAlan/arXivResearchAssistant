@@ -89,7 +89,17 @@ def openai_completion(
                     messages=messages,
                     **attempt_kwargs
                 )
-                return response.choices[0].message.content
+                content = response.choices[0].message.content
+
+                # Debug logging
+                logger.debug(f"API Response - Model: {response.model}")
+                logger.debug(f"API Response - Finish reason: {response.choices[0].finish_reason}")
+                logger.debug(f"API Response - Content length: {len(content) if content else 0}")
+                logger.debug(f"API Response - Content preview: {repr(content[:200]) if content else 'None'}")
+                if hasattr(response, 'usage'):
+                    logger.debug(f"API Response - Token usage: {response.usage}")
+
+                return content
             except openai.BadRequestError as api_error:
                 has_temperature = "temperature" in attempt_kwargs
                 if not adjusted_temperature and has_temperature and _is_temperature_unsupported_error(api_error):

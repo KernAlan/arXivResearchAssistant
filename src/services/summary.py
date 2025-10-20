@@ -1,4 +1,5 @@
 """Summary generation service"""
+import html
 import logging
 from datetime import datetime
 from typing import Dict, List
@@ -16,7 +17,7 @@ class SummaryService:
     def generate_summary(self, papers: List[Dict]) -> str:
         """Generate a summary of the papers"""
         if not papers:
-            return self._wrap_summary_html("No papers found matching your interests.")
+            return "<p>No papers found matching your interests.</p>"
             
         # Sort papers by combined score
         sorted_papers = sorted(
@@ -57,12 +58,21 @@ class SummaryService:
         prompt += """Follow the style guide in the system prompt. Each bullet must:\n- Open with the paper title in bold.\n- In one sentence, explain the concrete innovation or finding.\n- In a second sentence, describe the practical impact or next step for industry teams.\nInclude the provided URL inline when useful.\nClose with one upbeat sentence on how the team should act on these findings this week."""
         prompt += "\n\nPapers to summarize:\n" + papers_text
 
+        # Debug logging
+        logger.debug(f"=== SUMMARY GENERATION DEBUG ===")
+        logger.debug(f"System prompt length: {len(self.config.SUMMARY_SYSTEM_PROMPT)} chars")
+        logger.debug(f"User prompt length: {len(prompt)} chars")
+        logger.debug(f"Total prompt length: {len(self.config.SUMMARY_SYSTEM_PROMPT) + len(prompt)} chars")
+        logger.debug(f"Number of papers: {len(top_papers)}")
+        logger.debug(f"System prompt preview: {self.config.SUMMARY_SYSTEM_PROMPT[:200]}...")
+        logger.debug(f"User prompt preview: {prompt[:500]}...")
+
         try:
             response = openai_completion(
                 prompt,
                 OpenAIDecodingArguments(
-                    temperature=self.model_config.get("summary_temperature", 0.5),
-                    max_tokens=900,
+                    temperature=self.model_config.get("summary_temperature", 1.0),
+                    max_tokens=2500,  # Increased to allow room for reasoning + output
                     top_p=self.model_config.get("top_p", 1.0)
                 ),
                 model_name=self.model_config.get("summary_name", self.model_config.get("name", "gpt-5-mini")),
@@ -70,9 +80,19 @@ class SummaryService:
                 system_prompt=self.config.SUMMARY_SYSTEM_PROMPT.strip()
             )
 
-            # Response is now a string, not an object
+            # Debug logging for response
+            logger.debug(f"Response received. Length: {len(response) if response else 0} chars")
+            logger.debug(f"Response type: {type(response)}")
+            logger.debug(f"Response repr: {repr(response[:500]) if response else 'None'}")
+
+            # Check if response is empty or only whitespace
+            if not response or not response.strip():
+                logger.warning(f"API returned empty response, using fallback summary. Response was: {repr(response)}")
+                return self._build_default_summary(top_papers)
+
+            logger.info(f"Successfully generated AI summary: {len(response)} chars")
             return response
-            
+
         except Exception as e:
             logger.error(f"Error generating summary: {e}")
             return self._build_default_summary(top_papers)
@@ -113,10 +133,10 @@ class SummaryService:
                     "<li><strong>{title}</strong> — avg score {avg:.1f}/10. {impact} "
                     "<a href=\"{url}\">Read more</a>.</li>"
                 ).format(
-                    title=paper["title"],
+                    title=html.escape(paper["title"]),
                     avg=avg_score,
-                    impact=impact_sentence,
-                    url=paper_url
+                    impact=html.escape(impact_sentence),
+                    url=html.escape(paper_url)
                 )
             )
 

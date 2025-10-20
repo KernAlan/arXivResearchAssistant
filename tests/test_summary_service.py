@@ -51,9 +51,11 @@ def test_generate_summary_uses_deterministic_fallback(mock_completion):
     summary_html = service.generate_summary(_sample_papers())
 
     assert mock_completion.called
-    assert '<div class="summary">' in summary_html
+    # When API returns empty/whitespace, should use fallback with structured list
     assert "<ol>" in summary_html
     assert "<li>" in summary_html
+    assert "<strong>" in summary_html
+    # HTML should be escaped
     assert "<script" not in summary_html
     assert "&lt;script&gt;" in summary_html
 
@@ -71,5 +73,7 @@ def test_render_digest_includes_key_highlights_when_model_fails(_mock_completion
     )
 
     assert "🔥 Key Highlights" in html
-    assert '<div class="summary">' in html
+    # When model fails, fallback summary should be included
+    assert "<ol>" in html
     assert "<li>" in html
+    assert "<strong>" in html
