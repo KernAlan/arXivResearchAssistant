@@ -1,0 +1,439 @@
+
+    <!DOCTYPE html>
+    <html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>ArXiv Research Digest</title>
+        <style>
+            
+body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    line-height: 1.5;
+    color: #2d3748;
+    margin: 0;
+    padding: 20px;
+    background: #f7fafc;
+}
+
+.digest {
+    max-width: 800px;
+    margin: 0 auto;
+    background: white;
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+}
+
+.header {
+    margin-bottom: 2rem;
+    padding-bottom: 1rem;
+    border-bottom: 2px solid #e2e8f0;
+}
+
+.header h2 {
+    margin: 0;
+    color: #2d3748;
+}
+
+.header p {
+    margin: 0.5rem 0 0;
+    color: #718096;
+}
+
+.highlights {
+    background: #f8fafc;
+    padding: 1.5rem;
+    border-radius: 8px;
+    margin-bottom: 3rem;
+    border: 1px solid #e2e8f0;
+}
+
+.highlights h3 {
+    color: #2d3748;
+    margin: 0 0 1rem 0;
+    font-size: 1.25rem;
+}
+
+.summary {
+    white-space: pre-line;
+    line-height: 1.6;
+}
+
+.summary ol {
+    padding-left: 1.5rem;
+    margin: 1rem 0;
+}
+
+.summary li {
+    margin-bottom: 0.75rem;
+    padding-left: 0.5rem;
+}
+
+.papers {
+    margin-top: 3rem;
+}
+
+.papers h3 {
+    color: #2d3748;
+    margin-bottom: 1.5rem;
+    padding-bottom: 1rem;
+    border-bottom: 2px solid #e2e8f0;
+}
+
+.paper {
+    margin-bottom: 2rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid #e2e8f0;
+}
+
+.paper:last-child {
+    border-bottom: none;
+}
+
+.paper h3 {
+    margin: 0 0 0.5rem;
+    color: #2d3748;
+}
+
+.paper .scores {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 0.5rem;
+}
+
+.paper .score {
+    padding: 0.25rem 0.5rem;
+    border-radius: 4px;
+    font-size: 0.875rem;
+}
+
+.paper .relevance {
+    background: #e6fffa;
+    color: #047481;
+}
+
+.paper .importance {
+    background: #ebf4ff;
+    color: #1a56db;
+}
+
+.paper .abstract {
+    color: #4a5568;
+    margin: 0.5rem 0;
+}
+
+.paper .meta {
+    font-size: 0.875rem;
+    color: #718096;
+}
+
+.paper .meta a {
+    color: #4299e1;
+    text-decoration: none;
+}
+
+.paper .meta a:hover {
+    text-decoration: underline;
+}
+
+        </style>
+    </head>
+    <body>
+        
+<div class="digest">
+    <div class="header">
+        <h2>ArXiv Research Digest</h2>
+        <p>Found 20 relevant papers out of 200 new submissions</p>
+    </div>
+    
+    <div class="highlights">
+        <h3>🔥 Key Highlights</h3>
+        Hey boss, found 5 cool papers today that I think you'll love:
+
+1. **MemoryBench: A Benchmark for Memory and Continual Learning in LLM Systems**  
+   They built a user-feedback simulation framework and a broad benchmark (multi-domain, multi-language) to measure LLM continual learning and memory capabilities rather than just long-form reading.  This one scored 9.5/10 (Relevance 10/10, Importance 9/10) and shows SOTA baselines are far from good — we should plug MemoryBench (http://arxiv.org/abs/2510.17281v1) into our evaluation pipeline to quantify and prioritize memory/online-update work this quarter.
+
+2. **Beyond Pipelines: A Survey of the Paradigm Shift toward Model-Native Agentic AI**  
+   The survey argues that RL-driven, model-native agents (where planning, tool use and memory are internalized into model weights) are replacing external pipeline logic and maps the algorithmic and system changes required.  Scored 9.5/10 (Relevance 10/10, Importance 9/10), so for product work we should start thinking RL-first for long-horizon agents and re-evaluate which capabilities we can migrate from system glue into end-to-end training (see overview: http://arxiv.org/abs/2510.16720v1).
+
+3. **The Chameleon Nature of LLMs: Quantifying Multi-Turn Stance Instability in Search-Enabled Language Models**  
+   They introduce the Chameleon Benchmark (17,770 QA pairs across 1,180 multi-turn convos, 12 controversial domains) and two metrics (Chameleon Score and Source Re-use Rate) to show search-enabled LLMs flip stances systematically (models scored ~0.391–0.511).  With a 9.5/10 rating (Relevance 10/10, Importance 9/10), this flags a real deployment risk for legal/health/finance—practical next step is to add these consistency checks to CI, diversify retrieval sources, and monitor Source Re-use correlations (http://arxiv.org/abs/2510.16712v1).
+
+4. **Understanding and Improving Length Generalization in Hierarchical Sparse Attention Models**  
+   They identify three design principles (non-linear chunk encoder + CLS token, bypassing residual path for global info, and enforced selection sparsity during pretraining) and demonstrate training-free extrapolation from 4K to 32M tokens on RULER/BABILong.  Rated 9.0/10 (Relevance 9/10, Importance 9/10), so for any long-context work we should prototype a chunked encoder + bypass residual design and enforce sparsity during pretraining to get huge context gains without quadratic costs (http://arxiv.org/abs/2510.17196v1).
+
+5. **Which LLM Multi-Agent Protocol to Choose?**  
+   They release ProtocolBench to compare agent protocols across success, latency, bandwidth, and robustness, and introduce ProtocolRouter, a learnable router that cuts Fail‑Storm recovery time up to 18.1% and optimizes per-scenario protocol choice.  Scored 9.0/10 (Relevance 10/10, Importance 8/10), so we should run ProtocolBench on our multi-agent stacks and evaluate ProtocolRouter for dynamic protocol selection to reduce end-to-end latency and improve resilience (http://arxiv.org/abs/2510.17149v1).
+
+Quick action this week: let’s add MemoryBench and Chameleon tests to CI, spin up a short prototype applying the chunked-attention principles to our long-context agent, and run ProtocolBench on a dev multi-agent pipeline — I’ll create the tickets and a two-week roadmap.
+    </div>
+    
+    <div class="papers">
+        <h3>📄 Detailed Papers</h3>
+        
+<div class="paper">
+    <h3>MemoryBench: A Benchmark for Memory and Continual Learning in LLM   Systems</h3>
+    <div class="scores">
+        <span class="score relevance">Relevance: 10/10</span>
+        <span class="score importance">Importance: 9/10</span>
+    </div>
+    <div class="abstract">Scaling up data, parameters, and test-time computation has been the mainstream methods to improve LLM systems (LLMsys), but their upper bounds are almost reached due to the gradual depletion of high-quality data and marginal gains obtained from larger computational resource consumption. Inspired by the abilities of human and traditional AI systems in learning from practice, constructing memory and continual learning frameworks for LLMsys has become an important and popular research direction in recent literature. Yet, existing benchmarks for LLM memory often focus on evaluating the system on homogeneous reading comprehension tasks with long-form inputs rather than testing their abilities to learn from accumulated user feedback in service time. Therefore, we propose a user feedback simulation framework and a comprehensive benchmark covering multiple domains, languages, and types of tasks to evaluate the continual learning abilities of LLMsys. Experiments show that the effectiveness and efficiency of state-of-the-art baselines are far from satisfying, and we hope this benchmark could pave the way for future studies on LLM memory and optimization algorithms.</div>
+    <div class="meta">
+        <a href="http://arxiv.org/abs/2510.17281v1" target="_blank">View on arXiv</a>
+    </div>
+</div>
+
+
+<div class="paper">
+    <h3>Beyond Pipelines: A Survey of the Paradigm Shift toward Model-Native   Agentic AI</h3>
+    <div class="scores">
+        <span class="score relevance">Relevance: 10/10</span>
+        <span class="score importance">Importance: 9/10</span>
+    </div>
+    <div class="abstract">The rapid evolution of agentic AI marks a new phase in artificial intelligence, where Large Language Models (LLMs) no longer merely respond but act, reason, and adapt. This survey traces the paradigm shift in building agentic AI: from Pipeline-based systems, where planning, tool use, and memory are orchestrated by external logic, to the emerging Model-native paradigm, where these capabilities are internalized within the model's parameters. We first position Reinforcement Learning (RL) as the algorithmic engine enabling this paradigm shift. By reframing learning from imitating static data to outcome-driven exploration, RL underpins a unified solution of LLM + RL + Task across language, vision and embodied domains. Building on this, the survey systematically reviews how each capability -- Planning, Tool use, and Memory -- has evolved from externally scripted modules to end-to-end learned behaviors. Furthermore, it examines how this paradigm shift has reshaped major agent applications, specifically the Deep Research agent emphasizing long-horizon reasoning and the GUI agent emphasizing embodied interaction. We conclude by discussing the continued internalization of agentic capabilities like Multi-agent collaboration and Reflection, alongside the evolving roles of the system and model layers in future agentic AI. Together, these developments outline a coherent trajectory toward model-native agentic AI as an integrated learning and interaction framework, marking the transition from constructing systems that apply intelligence to developing models that grow intelligence through experience.</div>
+    <div class="meta">
+        <a href="http://arxiv.org/abs/2510.16720v1" target="_blank">View on arXiv</a>
+    </div>
+</div>
+
+
+<div class="paper">
+    <h3>The Chameleon Nature of LLMs: Quantifying Multi-Turn Stance Instability   in Search-Enabled Language Models</h3>
+    <div class="scores">
+        <span class="score relevance">Relevance: 10/10</span>
+        <span class="score importance">Importance: 9/10</span>
+    </div>
+    <div class="abstract">Integration of Large Language Models with search/retrieval engines has become ubiquitous, yet these systems harbor a critical vulnerability that undermines their reliability. We present the first systematic investigation of "chameleon behavior" in LLMs: their alarming tendency to shift stances when presented with contradictory questions in multi-turn conversations (especially in search-enabled LLMs). Through our novel Chameleon Benchmark Dataset, comprising 17,770 carefully crafted question-answer pairs across 1,180 multi-turn conversations spanning 12 controversial domains, we expose fundamental flaws in state-of-the-art systems. We introduce two theoretically grounded metrics: the Chameleon Score (0-1) that quantifies stance instability, and Source Re-use Rate (0-1) that measures knowledge diversity. Our rigorous evaluation of Llama-4-Maverick, GPT-4o-mini, and Gemini-2.5-Flash reveals consistent failures: all models exhibit severe chameleon behavior (scores 0.391-0.511), with GPT-4o-mini showing the worst performance. Crucially, small across-temperature variance (less than 0.004) suggests the effect is not a sampling artifact. Our analysis uncovers the mechanism: strong correlations between source re-use rate and confidence (r=0.627) and stance changes (r=0.429) are statistically significant (p less than 0.05), indicating that limited knowledge diversity makes models pathologically deferential to query framing. These findings highlight the need for comprehensive consistency evaluation before deploying LLMs in healthcare, legal, and financial systems where maintaining coherent positions across interactions is critical for reliable decision support.</div>
+    <div class="meta">
+        <a href="http://arxiv.org/abs/2510.16712v1" target="_blank">View on arXiv</a>
+    </div>
+</div>
+
+
+<div class="paper">
+    <h3>Understanding and Improving Length Generalization in Hierarchical Sparse   Attention Models</h3>
+    <div class="scores">
+        <span class="score relevance">Relevance: 9/10</span>
+        <span class="score importance">Importance: 9/10</span>
+    </div>
+    <div class="abstract">Effectively processing long contexts is a critical challenge for language models. While standard Transformers are limited by quadratic complexity and poor length extrapolation, alternative architectures like sliding window attention and state space models sacrifice the ability to effectively utilize the full context due to their fixed-size memory. Chunk-based sparse attention has emerged as a promising paradigm for extreme length generalization, yet the key architectural principles underpinning its success are not yet fully understood. In this work, we present a systematic dissection of these models to identify the core components driving their performance. Through a unified framework and comprehensive ablation studies, we demonstrate that a combination of three design principles is critical: (1) an expressive, non-linear Chunk Encoder with a dedicated CLS token to produce representations for retrieval; (2) a Bypassing Residual Path to stably integrate retrieved global information without it being overridden by the local residual stream; and (3) enforced selection sparsity during pre-training to bridge the train-test distribution gap. We provide a theoretical motivation for intra-chunk information processing and landmark generation. By combining these principles, we establish a new state-of-the-art for training-free length extrapolation, successfully generalizing models trained on a 4K context to 32 million tokens on RULER and BABILong. Our findings provide a clear and empirically-grounded set of design principles for developing future, highly-capable long-context language models.</div>
+    <div class="meta">
+        <a href="http://arxiv.org/abs/2510.17196v1" target="_blank">View on arXiv</a>
+    </div>
+</div>
+
+
+<div class="paper">
+    <h3>Which LLM Multi-Agent Protocol to Choose?</h3>
+    <div class="scores">
+        <span class="score relevance">Relevance: 10/10</span>
+        <span class="score importance">Importance: 8/10</span>
+    </div>
+    <div class="abstract">As large-scale multi-agent systems evolve, the communication protocol layer has become a critical yet under-evaluated factor shaping performance and reliability. Despite the existence of diverse protocols (A2A, ACP, ANP, Agora, etc.), selection is often intuition-driven and lacks standardized guidance. We introduce ProtocolBench, a benchmark that systematically compares agent protocols along four measurable axes: task success, end-to-end latency, message or byte overhead, and robustness under failures. On ProtocolBench, protocol choice significantly influences system behavior. In the Streaming Queue scenario, overall completion time varies by up to 36.5% across protocols, and mean end-to-end latency differs by 3.48 s. Under Fail-Storm Recovery, resilience also differs consistently across protocols. Beyond evaluation, we present ProtocolRouter, a learnable protocol router that selects per-scenario (or per-module) protocols from requirement and runtime signals. ProtocolRouter reduces Fail-Storm recovery time by up to 18.1% versus the best single-protocol baseline, and achieves scenario-specific gains such as higher success in GAIA. We also release ProtocolRouterBench to standardize protocol evaluation and improve reliability at scale.</div>
+    <div class="meta">
+        <a href="http://arxiv.org/abs/2510.17149v1" target="_blank">View on arXiv</a>
+    </div>
+</div>
+
+
+<div class="paper">
+    <h3>Do LLMs Recognize Your Latent Preferences? A Benchmark for Latent   Information Discovery in Personalized Interaction</h3>
+    <div class="scores">
+        <span class="score relevance">Relevance: 10/10</span>
+        <span class="score importance">Importance: 8/10</span>
+    </div>
+    <div class="abstract">Large Language Models (LLMs) excel at producing broadly relevant text, but this generality becomes a limitation when user-specific preferences are required, such as recommending restaurants or planning travel. In these scenarios, users rarely articulate every preference explicitly; instead, much of what they care about remains latent, waiting to be inferred. This raises a fundamental question: Can LLMs uncover and reason about such latent information through conversation?   We address this problem by introducing a unified benchmark for evaluating latent information discovery - the ability of LLMs to reveal and utilize hidden user attributes through multi-turn interaction. The benchmark spans three progressively realistic settings: the classic 20 Questions game, Personalized Question Answering, and Personalized Text Summarization. All tasks share a tri-agent framework (User, Assistant, Judge) enabling turn-level evaluation of elicitation and adaptation. Our results reveal that while LLMs can indeed surface latent information through dialogue, their success varies dramatically with context: from 32% to 98%, depending on task complexity, topic, and number of hidden attributes. This benchmark provides the first systematic framework for studying latent information discovery in personalized interaction, highlighting that effective preference inference remains an open frontier for building truly adaptive AI systems.</div>
+    <div class="meta">
+        <a href="http://arxiv.org/abs/2510.17132v1" target="_blank">View on arXiv</a>
+    </div>
+</div>
+
+
+<div class="paper">
+    <h3>Structured Debate Improves Corporate Credit Reasoning in Financial AI</h3>
+    <div class="scores">
+        <span class="score relevance">Relevance: 10/10</span>
+        <span class="score importance">Importance: 8/10</span>
+    </div>
+    <div class="abstract">Despite advances in financial AI, the automation of evidence-based reasoning remains unresolved in corporate credit assessment, where qualitative non-financial indicators exert decisive influence on loan repayment outcomes yet resist formalization. Existing approaches focus predominantly on numerical prediction and provide limited support for the interpretive judgments required in professional loan evaluation. This study develops and evaluates two operational large language model (LLM)-based systems designed to generate structured reasoning from non-financial evidence. The first is a non-adversarial single-agent system (NAS) that produces bidirectional analysis through a single-pass reasoning pipeline. The second is a debate-based multi-agent system (KPD-MADS) that operationalizes adversarial verification through a ten-step structured interaction protocol grounded in Karl Popper's critical dialogue framework. Both systems were applied to three real corporate cases and evaluated by experienced credit risk professionals. Compared to manual expert reporting, both systems achieved substantial productivity gains (NAS: 11.55 s per case; KPD-MADS: 91.97 s; human baseline: 1920 s). The KPD-MADS demonstrated superior reasoning quality, receiving higher median ratings in explanatory adequacy (4.0 vs. 3.0), practical applicability (4.0 vs. 3.0), and usability (62.5 vs. 52.5). These findings show that structured multi-agent interaction can enhance reasoning rigor and interpretability in financial AI, advancing scalable and defensible automation in corporate credit assessment.</div>
+    <div class="meta">
+        <a href="http://arxiv.org/abs/2510.17108v1" target="_blank">View on arXiv</a>
+    </div>
+</div>
+
+
+<div class="paper">
+    <h3>Justitia: Fair and Efficient Scheduling for LLM Applications</h3>
+    <div class="scores">
+        <span class="score relevance">Relevance: 10/10</span>
+        <span class="score importance">Importance: 8/10</span>
+    </div>
+    <div class="abstract">In the era of Large Language Models (LLMs), it has been popular to launch a series of LLM inferences -- we call an LLM application -- to better solve real-world problems. When serving those applications in shared GPU servers, the schedulers are expected to attain fast application completions with guaranteed worst-case performance. However, mainstream LLM schedulers fail to behave well for LLM applications -- due to head-of-line blocking or over-constrained resource allocation. In this paper, we propose to serve LLM applications in a fair and also efficient manner. To this end, we design Justitia, a novel scheduler with three key techniques. First, given that memory is prevalently a bottleneck for mainstream inference frameworks like vLLM, Justitia models the service cost of LLM applications in a memory-centric manner. Meanwhile, it uses a simple neural network model to conduct light-weight and also accurate demand prediction. Moreover, Justitia adopts a virtual-time based fair queuing algorithm to reduce the overall performance with guaranteed worst-case delay. We have implemented Justitia atop vLLM, and experimental results involving diverse LLM applications show that it can substantially enhance the scheduling efficiency with fairness preserved.</div>
+    <div class="meta">
+        <a href="http://arxiv.org/abs/2510.17015v1" target="_blank">View on arXiv</a>
+    </div>
+</div>
+
+
+<div class="paper">
+    <h3>Peering Inside the Black Box: Uncovering LLM Errors in Optimization   Modelling through Component-Level Evaluation</h3>
+    <div class="scores">
+        <span class="score relevance">Relevance: 10/10</span>
+        <span class="score importance">Importance: 8/10</span>
+    </div>
+    <div class="abstract">Large language models (LLMs) are increasingly used to convert natural language descriptions into mathematical optimization formulations. Current evaluations often treat formulations as a whole, relying on coarse metrics like solution accuracy or runtime, which obscure structural or numerical errors. In this study, we present a comprehensive, component-level evaluation framework for LLM-generated formulations. Beyond the conventional optimality gap, our framework introduces metrics such as precision and recall for decision variables and constraints, constraint and objective root mean squared error (RMSE), and efficiency indicators based on token usage and latency. We evaluate GPT-5, LLaMA 3.1 Instruct, and DeepSeek Math across optimization problems of varying complexity under six prompting strategies. Results show that GPT-5 consistently outperforms other models, with chain-of-thought, self-consistency, and modular prompting proving most effective. Analysis indicates that solver performance depends primarily on high constraint recall and low constraint RMSE, which together ensure structural correctness and solution reliability. Constraint precision and decision variable metrics play secondary roles, while concise outputs enhance computational efficiency. These findings highlight three principles for NLP-to-optimization modeling: (i) Complete constraint coverage prevents violations, (ii) minimizing constraint RMSE ensures solver-level accuracy, and (iii) concise outputs improve computational efficiency. The proposed framework establishes a foundation for fine-grained, diagnostic evaluation of LLMs in optimization modeling.</div>
+    <div class="meta">
+        <a href="http://arxiv.org/abs/2510.16943v1" target="_blank">View on arXiv</a>
+    </div>
+</div>
+
+
+<div class="paper">
+    <h3>FinSight: Towards Real-World Financial Deep Research</h3>
+    <div class="scores">
+        <span class="score relevance">Relevance: 10/10</span>
+        <span class="score importance">Importance: 8/10</span>
+    </div>
+    <div class="abstract">Generating professional financial reports is a labor-intensive and intellectually demanding process that current AI systems struggle to fully automate. To address this challenge, we introduce FinSight (Financial InSight), a novel multi agent framework for producing high-quality, multimodal financial reports. The foundation of FinSight is the Code Agent with Variable Memory (CAVM) architecture, which unifies external data, designed tools, and agents into a programmable variable space, enabling flexible data collection, analysis and report generation through executable code. To ensure professional-grade visualization, we propose an Iterative Vision-Enhanced Mechanism that progressively refines raw visual outputs into polished financial charts. Furthermore, a two stage Writing Framework expands concise Chain-of-Analysis segments into coherent, citation-aware, and multimodal reports, ensuring both analytical depth and structural consistency. Experiments on various company and industry-level tasks demonstrate that FinSight significantly outperforms all baselines, including leading deep research systems in terms of factual accuracy, analytical depth, and presentation quality, demonstrating a clear path toward generating reports that approach human-expert quality.</div>
+    <div class="meta">
+        <a href="http://arxiv.org/abs/2510.16844v1" target="_blank">View on arXiv</a>
+    </div>
+</div>
+
+
+<div class="paper">
+    <h3>When Many-Shot Prompting Fails: An Empirical Study of LLM Code   Translation</h3>
+    <div class="scores">
+        <span class="score relevance">Relevance: 10/10</span>
+        <span class="score importance">Importance: 8/10</span>
+    </div>
+    <div class="abstract">Large Language Models (LLMs) with vast context windows offer new avenues for in-context learning (ICL), where providing many examples ("many-shot" prompting) is often assumed to enhance performance. We investigate this assumption for the complex task of code translation. Through a large-scale empirical study of over 90,000 translations, we systematically evaluate the impact of scaling in-context examples from zero-shot to many-shot configurations of up to 625 examples, with prompts spanning from approximately 100,000 to 800,000 tokens. Our findings reveal a "many-shot paradox": while static similarity metrics may modestly improve with more examples, functional correctness consistently peaks with few-shot prompting (5-25 examples). Providing substantially more examples often degrades this crucial functional performance. This study highlights that for code translation, the quality of a few well-chosen examples outweighs sheer quantity, challenging the universal efficacy of "more is better" for ICL and underscoring the task-dependent nature of optimal prompting strategies. Our results have significant implications for effectively leveraging LLMs in software engineering.</div>
+    <div class="meta">
+        <a href="http://arxiv.org/abs/2510.16809v1" target="_blank">View on arXiv</a>
+    </div>
+</div>
+
+
+<div class="paper">
+    <h3>Mixed-Precision Quantization for Language Models: Techniques and   Prospects</h3>
+    <div class="scores">
+        <span class="score relevance">Relevance: 10/10</span>
+        <span class="score importance">Importance: 8/10</span>
+    </div>
+    <div class="abstract">The rapid scaling of language models (LMs) has resulted in unprecedented computational, memory, and energy requirements, making their training and deployment increasingly unsustainable. Quantization has emerged as an essential compression technique to reduce model size, alleviate memory bottlenecks, and accelerate inference. However, while uniform low-bit quantization (e.g., INT8, INT4) provides significant efficiency gains, it can degrade accuracy in sensitive components of transformer-based LMs. Mixed-precision quantization offers a promising alternative by selectively allocating precision across layers or within tensors to balance efficiency and accuracy. This survey provides a comprehensive overview of Mixed-Precision quantization frameworks for LMs (MXPLMs). We first review quantization fundamentals, including uniform and non-uniform quantizers, quantization granularity, and methods widely used in post-training quantization. We then categorize and compare recent MXPLM frameworks according to their bit allocation strategies and precision configurations across weights, activations, and key-value caches. A comparative analysis highlights differences in perplexity, zero-shot task performance, and deployment trade-offs. Furthermore, we contrast MXPLMs with earlier mixed-precision quantization methods for deep neural networks, identifying strategies that transfer and those that face challenges in the LM setting. Finally, we summarize open issues and future directions, including hardware-aware design, activation quantization, and scalable optimization methods for billion-parameter models. By consolidating recent advances, this work serves as a reference for understanding the current landscape and research prospects of mixed-precision quantization for large-scale language models.</div>
+    <div class="meta">
+        <a href="http://arxiv.org/abs/2510.16805v1" target="_blank">View on arXiv</a>
+    </div>
+</div>
+
+
+<div class="paper">
+    <h3>More with Less: An Empirical Study of Turn-Control Strategies for   Efficient Coding Agents</h3>
+    <div class="scores">
+        <span class="score relevance">Relevance: 10/10</span>
+        <span class="score importance">Importance: 8/10</span>
+    </div>
+    <div class="abstract">LLM-powered coding agents, which operate in iterative loops (turns) to solve software engineering tasks, are becoming increasingly powerful. However, their practical deployment is hindered by significant and unpredictable costs. This challenge arises from a combination of factors: quadratically growing token counts with each turn, the high price of models, the large number of turns required for real-world tasks, and the tendency of agents to take inefficient or unnecessary actions. While existing research focuses on optimizing individual turns, the strategic control of the total number of turns remains an underexplored area for managing agent performance and cost. To address this gap, we conduct a comprehensive empirical study on SWE-bench using three state-of-the-art models and evaluate the impact of three distinct turn-control strategies: an unrestricted baseline, a fixed-turn limit with reminders, and a novel dynamic-turn strategy that grants extensions on-demand. Our findings first reveal a fundamental trade-off in the unrestricted setting, where no single model excels across performance, cost, and turn efficiency. We then show that a fixed-turn limit, specifically at the 75th percentile of the baseline, serves as a "sweet spot", substantially reducing costs (by 24%-68%) with minimal impact on solve rates. Most significantly, the dynamic-turn strategy consistently outperforms fixed-limit approaches, achieving comparable or better solve rates while further reducing costs by an additional 12%-24% by intelligently allocating resources only to tasks that need them. This work provides the first systematic analysis of turn-control strategies, offering simple yet effective guidelines for developers to balance cost and efficacy. We demonstrate that dynamic resource allocation is a superior, easy-to-implement approach for deploying powerful yet economically viable coding agents.</div>
+    <div class="meta">
+        <a href="http://arxiv.org/abs/2510.16786v1" target="_blank">View on arXiv</a>
+    </div>
+</div>
+
+
+<div class="paper">
+    <h3>Mapping Post-Training Forgetting in Language Models at Scale</h3>
+    <div class="scores">
+        <span class="score relevance">Relevance: 9/10</span>
+        <span class="score importance">Importance: 8/10</span>
+    </div>
+    <div class="abstract">Scaled post-training now drives many of the largest capability gains in language models (LMs), yet its effect on pretrained knowledge remains poorly understood. Not all forgetting is equal: Forgetting one fact (e.g., a U.S. president or an API call) does not "average out" by recalling another. Hence, we propose a sample-wise paradigm to measure what is forgotten and when backward transfer occurs. Our metric counts 1->0 transitions (correct before post-training, incorrect after) to quantify forgetting and 0->1 transitions to quantify backward transfer. Traditional task averages conflate these effects and obscure large changes. For multiple-choice benchmarks, we add chance-adjusted variants that subtract the expected contribution of random guessing from pre- and post-training accuracies. We apply this framework across post-training stages, model sizes, and data scales. Our large-scale analysis shows that: (1) Domain-continual pretraining induces moderate forgetting with low-to-moderate backward transfer; (2) RL/SFT post-training applied to base models and Instruction tuning yields moderate-to-large backward transfer on math and logic with overall low-to-moderate forgetting; (3) Applying RL/SFT to instruction-tuned models is sensitive on data scale: at small scales, both forgetting and backward transfer are small; at larger scales, effects are mixed and warrant further study with better controls; (4) Model merging does not reliably mitigate forgetting. Overall, our framework offers a practical yardstick for mapping how post-training alters pretrained knowledge at scale -- enabling progress towards generally capable AI systems.</div>
+    <div class="meta">
+        <a href="http://arxiv.org/abs/2510.17776v1" target="_blank">View on arXiv</a>
+    </div>
+</div>
+
+
+<div class="paper">
+    <h3>Contextual Attention Modulation: Towards Efficient Multi-Task Adaptation   in Large Language Models</h3>
+    <div class="scores">
+        <span class="score relevance">Relevance: 9/10</span>
+        <span class="score importance">Importance: 8/10</span>
+    </div>
+    <div class="abstract">Large Language Models (LLMs) possess remarkable generalization capabilities but struggle with multi-task adaptation, particularly in balancing knowledge retention with task-specific specialization. Conventional fine-tuning methods suffer from catastrophic forgetting and substantial resource consumption, while existing parameter-efficient methods perform suboptimally in complex multi-task scenarios. To address this, we propose Contextual Attention Modulation (CAM), a novel mechanism that dynamically modulates the representations of self-attention modules in LLMs. CAM enhances task-specific features while preserving general knowledge, thereby facilitating more effective and efficient adaptation. For effective multi-task adaptation, CAM is integrated into our Hybrid Contextual Attention Modulation (HyCAM) framework, which combines a shared, full-parameter CAM module with multiple specialized, lightweight CAM modules, enhanced by a dynamic routing strategy for adaptive knowledge fusion. Extensive experiments on heterogeneous tasks, including question answering, code generation, and logical reasoning, demonstrate that our approach significantly outperforms existing approaches, achieving an average performance improvement of 3.65%. The implemented code and data are available to ease reproducibility at https://github.com/Applied-Machine-Learning-Lab/HyCAM.</div>
+    <div class="meta">
+        <a href="http://arxiv.org/abs/2510.17705v1" target="_blank">View on arXiv</a>
+    </div>
+</div>
+
+
+<div class="paper">
+    <h3>CrossGuard: Safeguarding MLLMs against Joint-Modal Implicit Malicious   Attacks</h3>
+    <div class="scores">
+        <span class="score relevance">Relevance: 9/10</span>
+        <span class="score importance">Importance: 8/10</span>
+    </div>
+    <div class="abstract">Multimodal Large Language Models (MLLMs) achieve strong reasoning and perception capabilities but are increasingly vulnerable to jailbreak attacks. While existing work focuses on explicit attacks, where malicious content resides in a single modality, recent studies reveal implicit attacks, in which benign text and image inputs jointly express unsafe intent. Such joint-modal threats are difficult to detect and remain underexplored, largely due to the scarcity of high-quality implicit data. We propose ImpForge, an automated red-teaming pipeline that leverages reinforcement learning with tailored reward modules to generate diverse implicit samples across 14 domains. Building on this dataset, we further develop CrossGuard, an intent-aware safeguard providing robust and comprehensive defense against both explicit and implicit threats. Extensive experiments across safe and unsafe benchmarks, implicit and explicit attacks, and multiple out-of-domain settings demonstrate that CrossGuard significantly outperforms existing defenses, including advanced MLLMs and guardrails, achieving stronger security while maintaining high utility. This offers a balanced and practical solution for enhancing MLLM robustness against real-world multimodal threats.</div>
+    <div class="meta">
+        <a href="http://arxiv.org/abs/2510.17687v1" target="_blank">View on arXiv</a>
+    </div>
+</div>
+
+
+<div class="paper">
+    <h3>OG-Rank: Learning to Rank Fast and Slow with Uncertainty and   Reward-Trend Guided Adaptive Exploration</h3>
+    <div class="scores">
+        <span class="score relevance">Relevance: 9/10</span>
+        <span class="score importance">Importance: 8/10</span>
+    </div>
+    <div class="abstract">Clinicians need ranking systems that work in real time and still justify their choices. Motivated by the need for a low-latency, decoder-based reranker, we present OG-Rank, a single-decoder approach that pairs a pooled first-token scoring signal with an uncertainty-gated explanation step. The model scores all candidates in one pass and generates a brief, structured rationale only when the list is genuinely ambiguous, keeping latency predictable. Trained with a curriculum that concentrates effort on hard cases, OG-Rank delivers strong effectiveness on encounter-scoped order selection (fast path: Recall@1~0.45, nDCG@20~0.625) and improves further when the gate activates (Recall@1~0.56, nDCG@20~0.699 at a 45\% gate rate), while compact backbones show similar gains under the same policy. Encoder baselines trail in both effectiveness and flexibility. The result is a practical recipe: rank fast by default and explain when it helps, a pattern that applies broadly to decision tasks where selective generation buys accuracy at acceptable cost. The single-policy design simplifies deployment and budget planning, and the curriculum principle (spend more on the hard cases, less on the easy ones) readily transfers beyond clinical order selection.</div>
+    <div class="meta">
+        <a href="http://arxiv.org/abs/2510.17614v1" target="_blank">View on arXiv</a>
+    </div>
+</div>
+
+
+<div class="paper">
+    <h3>SimBench: Benchmarking the Ability of Large Language Models to Simulate   Human Behaviors</h3>
+    <div class="scores">
+        <span class="score relevance">Relevance: 9/10</span>
+        <span class="score importance">Importance: 8/10</span>
+    </div>
+    <div class="abstract">Large language model (LLM) simulations of human behavior have the potential to revolutionize the social and behavioral sciences, if and only if they faithfully reflect real human behaviors. Current evaluations are fragmented, based on bespoke tasks and metrics, creating a patchwork of incomparable results. To address this, we introduce SimBench, the first large-scale, standardized benchmark for a robust, reproducible science of LLM simulation. By unifying 20 diverse datasets covering tasks from moral decision-making to economic choice across a large global participant pool, SimBench provides the necessary foundation to ask fundamental questions about when, how, and why LLM simulations succeed or fail. We show that, while even the best LLMs today have limited simulation ability (score: 40.80/100), performance scales log-linearly with model size. Simulation performance is not improved by increased inference-time compute. We demonstrate an alignment-simulation trade-off: instruction-tuning improves performance on low-entropy (consensus) questions but degrades it on high-entropy (diverse) ones. Models particularly struggle when simulating specific demographic groups. Finally, we demonstrate that simulation ability correlates most strongly with deep, knowledge-intensive reasoning (MMLU-Pro, r=0.939). By making progress measurable, we aim to accelerate the development of more faithful LLM simulators.</div>
+    <div class="meta">
+        <a href="http://arxiv.org/abs/2510.17516v1" target="_blank">View on arXiv</a>
+    </div>
+</div>
+
+
+<div class="paper">
+    <h3>Layer Specialization Underlying Compositional Reasoning in Transformers</h3>
+    <div class="scores">
+        <span class="score relevance">Relevance: 9/10</span>
+        <span class="score importance">Importance: 8/10</span>
+    </div>
+    <div class="abstract">Transformers exhibit compositional reasoning on sequences not observed during training, a capability often attributed to in-context learning (ICL) and skill composition. We investigate this phenomenon using the Random Hierarchy Model (RHM), a probabilistic context-free grammar that generates sequences through recursive rule application. Models are trained on subsets of sequences and evaluated across four generalization conditions: memorization, in-distribution generalization, out-of-distribution generalization with the same rules, and cross-layer transfer. Behaviorally, performance improves systematically with task complexity and the number of in-context examples, with out-of-distribution tasks requiring substantially more examples than in-distribution scenarios. Mechanistically, we identify a progressive emergence of layer specialization during training that correlates with generalization performance. Principal component analysis and attention pattern clustering reveal that transformers develop structured, hierarchically organized representations in specialized layers. These results demonstrate that transformers develop modular, interpretable mechanisms supporting compositional reasoning, linking internal algorithmic structure to observed behavioral capabilities.</div>
+    <div class="meta">
+        <a href="http://arxiv.org/abs/2510.17469v1" target="_blank">View on arXiv</a>
+    </div>
+</div>
+
+
+<div class="paper">
+    <h3>TabR1: Taming GRPO for tabular reasoning LLMs</h3>
+    <div class="scores">
+        <span class="score relevance">Relevance: 9/10</span>
+        <span class="score importance">Importance: 8/10</span>
+    </div>
+    <div class="abstract">Tabular prediction has traditionally relied on gradient-boosted decision trees and specialized deep learning models, which excel within tasks but provide limited interpretability and weak transfer across tables. Reasoning large language models (LLMs) promise cross-task adaptability with trans- parent reasoning traces, yet their potential has not been fully realized for tabular data. This paper presents TabR1, the first reasoning LLM for tabular prediction with multi-step reasoning. At its core is Permutation Relative Policy Optimization (PRPO), a simple yet efficient reinforcement learning method that encodes column-permutation invariance as a structural prior. By construct- ing multiple label-preserving permutations per sample and estimating advantages both within and across permutations, PRPO transforms sparse rewards into dense learning signals and improves generalization. With limited supervision, PRPO activates the reasoning ability of LLMs for tabular prediction, enhancing few-shot and zero-shot performance as well as interpretability. Comprehensive experiments demonstrate that TabR1 achieves performance comparable to strong baselines under full-supervision fine-tuning. In the zero-shot setting, TabR1 approaches the performance of strong baselines under the 32-shot setting. Moreover, TabR1 (8B) substantially outperforms much larger LLMs across various tasks, achieving up to 53.17% improvement over DeepSeek-R1 (685B).</div>
+    <div class="meta">
+        <a href="http://arxiv.org/abs/2510.17385v1" target="_blank">View on arXiv</a>
+    </div>
+</div>
+
+    </div>
+</div>
+
+    </body>
+    </html>
+    
