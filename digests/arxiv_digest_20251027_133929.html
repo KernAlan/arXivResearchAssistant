@@ -1,0 +1,180 @@
+
+    <!DOCTYPE html>
+    <html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>ArXiv Research Digest</title>
+        <style>
+            
+body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    line-height: 1.5;
+    color: #2d3748;
+    margin: 0;
+    padding: 20px;
+    background: #f7fafc;
+}
+
+.digest {
+    max-width: 800px;
+    margin: 0 auto;
+    background: white;
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+}
+
+.header {
+    margin-bottom: 2rem;
+    padding-bottom: 1rem;
+    border-bottom: 2px solid #e2e8f0;
+}
+
+.header h2 {
+    margin: 0;
+    color: #2d3748;
+}
+
+.header p {
+    margin: 0.5rem 0 0;
+    color: #718096;
+}
+
+.highlights {
+    background: #f8fafc;
+    padding: 1.5rem;
+    border-radius: 8px;
+    margin-bottom: 3rem;
+    border: 1px solid #e2e8f0;
+}
+
+.highlights h3 {
+    color: #2d3748;
+    margin: 0 0 1rem 0;
+    font-size: 1.25rem;
+}
+
+.summary {
+    white-space: pre-line;
+    line-height: 1.6;
+}
+
+.summary ol {
+    padding-left: 1.5rem;
+    margin: 1rem 0;
+}
+
+.summary li {
+    margin-bottom: 0.75rem;
+    padding-left: 0.5rem;
+}
+
+.papers {
+    margin-top: 3rem;
+}
+
+.papers h3 {
+    color: #2d3748;
+    margin-bottom: 1.5rem;
+    padding-bottom: 1rem;
+    border-bottom: 2px solid #e2e8f0;
+}
+
+.paper {
+    margin-bottom: 2rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid #e2e8f0;
+}
+
+.paper:last-child {
+    border-bottom: none;
+}
+
+.paper h3 {
+    margin: 0 0 0.5rem;
+    color: #2d3748;
+}
+
+.paper .scores {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 0.5rem;
+}
+
+.paper .score {
+    padding: 0.25rem 0.5rem;
+    border-radius: 4px;
+    font-size: 0.875rem;
+}
+
+.paper .relevance {
+    background: #e6fffa;
+    color: #047481;
+}
+
+.paper .importance {
+    background: #ebf4ff;
+    color: #1a56db;
+}
+
+.paper .abstract {
+    color: #4a5568;
+    margin: 0.5rem 0;
+}
+
+.paper .meta {
+    font-size: 0.875rem;
+    color: #718096;
+}
+
+.paper .meta a {
+    color: #4299e1;
+    text-decoration: none;
+}
+
+.paper .meta a:hover {
+    text-decoration: underline;
+}
+
+        </style>
+    </head>
+    <body>
+        
+<div class="digest">
+    <div class="header">
+        <h2>ArXiv Research Digest</h2>
+        <p>Found 1 relevant papers out of 5 new submissions</p>
+    </div>
+    
+    <div class="highlights">
+        <h3>🔥 Key Highlights</h3>
+        Hey boss, found 1 cool paper today that I think you'll love:
+<ol>
+<li>**CMOMgen: Complex Multi-Ontology Alignment via Pattern-Guided In-Context Learning** — The paper's authors present the first end-to-end CMOM system that uses retrieval‑augmented generation plus pattern‑guided in‑context learning to compose semantically sound mappings across any number of target ontologies, outperforming baselines with a minimum 63% F1 and 46% of non-reference mappings rated max in manual review (avg score 7.5/10 — relevance 8/10, importance 7/10). In practice this lets KG/integration teams automatically stitch disjoint ontologies for richer semantics and better provenance — next step for us would be to run CMOMgen on a representative slice of our domain ontologies (http://arxiv.org/abs/2510.21656v1), compare its precision/recall to our current pairwise matchers, and bake in a human-in-the-loop validation threshold before production.</li>
+</ol>
+
+Let's spin up a one-day spike this week to run their approach on a small ontology subset and see if it reduces our manual mapping load.
+    </div>
+    
+    <div class="papers">
+        <h3>📄 Detailed Papers</h3>
+        
+<div class="paper">
+    <h3>CMOMgen: Complex Multi-Ontology Alignment via Pattern-Guided In-Context   Learning</h3>
+    <div class="scores">
+        <span class="score relevance">Relevance: 8/10</span>
+        <span class="score importance">Importance: 7/10</span>
+    </div>
+    <div class="abstract">Constructing comprehensive knowledge graphs requires the use of multiple ontologies in order to fully contextualize data into a domain. Ontology matching finds equivalences between concepts interconnecting ontologies and creating a cohesive semantic layer. While the simple pairwise state of the art is well established, simple equivalence mappings cannot provide full semantic integration of related but disjoint ontologies. Complex multi-ontology matching (CMOM) aligns one source entity to composite logical expressions of multiple target entities, establishing more nuanced equivalences and provenance along the ontological hierarchy.   We present CMOMgen, the first end-to-end CMOM strategy that generates complete and semantically sound mappings, without establishing any restrictions on the number of target ontologies or entities. Retrieval-Augmented Generation selects relevant classes to compose the mapping and filters matching reference mappings to serve as examples, enhancing In-Context Learning. The strategy was evaluated in three biomedical tasks with partial reference alignments. CMOMgen outperforms baselines in class selection, demonstrating the impact of having a dedicated strategy. Our strategy also achieves a minimum of 63% in F1-score, outperforming all baselines and ablated versions in two out of three tasks and placing second in the third. Furthermore, a manual evaluation of non-reference mappings showed that 46% of the mappings achieve the maximum score, further substantiating its ability to construct semantically sound mappings.</div>
+    <div class="meta">
+        <a href="http://arxiv.org/abs/2510.21656v1" target="_blank">View on arXiv</a>
+    </div>
+</div>
+
+    </div>
+</div>
+
+    </body>
+    </html>
+    
