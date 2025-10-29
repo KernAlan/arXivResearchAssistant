@@ -1,0 +1,430 @@
+
+    <!DOCTYPE html>
+    <html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>ArXiv Research Digest</title>
+        <style>
+            
+body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    line-height: 1.5;
+    color: #2d3748;
+    margin: 0;
+    padding: 20px;
+    background: #f7fafc;
+}
+
+.digest {
+    max-width: 800px;
+    margin: 0 auto;
+    background: white;
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+}
+
+.header {
+    margin-bottom: 2rem;
+    padding-bottom: 1rem;
+    border-bottom: 2px solid #e2e8f0;
+}
+
+.header h2 {
+    margin: 0;
+    color: #2d3748;
+}
+
+.header p {
+    margin: 0.5rem 0 0;
+    color: #718096;
+}
+
+.highlights {
+    background: #f8fafc;
+    padding: 1.5rem;
+    border-radius: 8px;
+    margin-bottom: 3rem;
+    border: 1px solid #e2e8f0;
+}
+
+.highlights h3 {
+    color: #2d3748;
+    margin: 0 0 1rem 0;
+    font-size: 1.25rem;
+}
+
+.summary {
+    white-space: pre-line;
+    line-height: 1.6;
+}
+
+.summary ol {
+    padding-left: 1.5rem;
+    margin: 1rem 0;
+}
+
+.summary li {
+    margin-bottom: 0.75rem;
+    padding-left: 0.5rem;
+}
+
+.papers {
+    margin-top: 3rem;
+}
+
+.papers h3 {
+    color: #2d3748;
+    margin-bottom: 1.5rem;
+    padding-bottom: 1rem;
+    border-bottom: 2px solid #e2e8f0;
+}
+
+.paper {
+    margin-bottom: 2rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid #e2e8f0;
+}
+
+.paper:last-child {
+    border-bottom: none;
+}
+
+.paper h3 {
+    margin: 0 0 0.5rem;
+    color: #2d3748;
+}
+
+.paper .scores {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 0.5rem;
+}
+
+.paper .score {
+    padding: 0.25rem 0.5rem;
+    border-radius: 4px;
+    font-size: 0.875rem;
+}
+
+.paper .relevance {
+    background: #e6fffa;
+    color: #047481;
+}
+
+.paper .importance {
+    background: #ebf4ff;
+    color: #1a56db;
+}
+
+.paper .abstract {
+    color: #4a5568;
+    margin: 0.5rem 0;
+}
+
+.paper .meta {
+    font-size: 0.875rem;
+    color: #718096;
+}
+
+.paper .meta a {
+    color: #4299e1;
+    text-decoration: none;
+}
+
+.paper .meta a:hover {
+    text-decoration: underline;
+}
+
+        </style>
+    </head>
+    <body>
+        
+<div class="digest">
+    <div class="header">
+        <h2>ArXiv Research Digest</h2>
+        <p>Found 20 relevant papers out of 200 new submissions</p>
+    </div>
+    
+    <div class="highlights">
+        <h3>🔥 Key Highlights</h3>
+        Hey boss, found 5 cool papers today that I think you'll love:
+<ol>
+<li><b>AgentFold: Long-Horizon Web Agents with Proactive Context Management</b>. AgentFold introduces a learned "folding" operation that treats context as an actively sculpted workspace, doing granular condensations or deep consolidations to avoid context saturation while preserving critical details. Practically it outperforms much larger open models and even OpenAI's o4‑mini on BrowseComp (36.2%) and BrowseComp‑ZH (47.3%) — (avg score 9.5/10) — so we should try a simple supervised finetune to add folding to our long‑horizon agents and benchmark on our web workflows (http://arxiv.org/abs/2510.24699v1). 
+<li><b>FunReason‑MT Technical Report: Overcoming the Complexity Barrier in Multi‑Turn Function Calling</b>. FunReason‑MT is a data‑synthesis pipeline (Environment‑API Graph Interactions, Tool‑Query Synthesis, Guided Iterative Chain) built to generate high‑quality, multi‑turn function‑calling trajectories. It produced SOTA results for a 4B model on the Berkeley Function‑Calling Leaderboard (BFCLv3 / v4) — (avg score 9.5/10) — so next step is to plug FunReason‑MT into our training loop to cheaply generate robust multi‑turn tool data and accelerate our agent tool‑integration work (http://arxiv.org/abs/2510.24645v1).
+<li><b>From Benchmarks to Business Impact: Deploying IBM Generalist Agent in Enterprise Production</b>. IBM's CUGA shows a practical path from benchmark‑grade generalist agents to enterprise pilots using a hierarchical planner‑executor and an audit/governance checklist, and they've open‑sourced the project. It matched specialized agents on AppWorld/WebArena and showed promising results in a BPO talent‑acquisition pilot (avg score 9.5/10), so we should clone their repo, run their BPO‑TA 26‑task benchmark against our stacks, and validate governance/audit hooks for our pilots (http://arxiv.org/abs/2510.23856v1).
+<li><b>ReCAP: Recursive Context‑Aware Reasoning and Planning for Large Language Model Agents</b>. ReCAP is a hierarchical, recursive framework that does plan‑ahead decomposition, structured re‑injection of parent plans, and memory‑bounded execution to keep multi‑level context coherent. It meaningfully reduces context drift and improves subgoal alignment (+32% on synchronous Robotouille, +29% on asynchronous under strict pass@1) — (avg score 9.5/10) — so we should prototype ReCAP's recursive planner in one of our multi‑step task flows to cut failure cycles and runtime prompting costs (http://arxiv.org/abs/2510.23822v1).
+<li><b>Beyond Prompt Engineering: Neuro‑Symbolic‑Causal Architecture for Robust Multi‑Objective AI Agents (Chimera)</b>. Chimera combines an LLM strategist, a formally verified symbolic constraint engine, and a causal inference module to deliver prompt‑agnostic, robust decision making. In an e‑commerce sim it avoided catastrophic failures, produced the highest returns (up to +\$2.2M in some cases), improved brand trust, and had TLA+ proofs of zero constraint violations — (avg score 9.5/10) — so we should prioritize a Chimera POC on a high‑stakes workflow (finance/pricing or brand) and run the same counterfactual sims (http://arxiv.org/abs/2510.23682v1).
+</ol>
+Quick action item for this week: let's spin up three short experiments — add AgentFold folding to one long‑horizon agent, generate FC data with FunReason‑MT for a tool‑integration task, and run CUGA/Chimera POCs on one enterprise workflow to see which architectural ideas give the biggest jump quickly.
+    </div>
+    
+    <div class="papers">
+        <h3>📄 Detailed Papers</h3>
+        
+<div class="paper">
+    <h3>AgentFold: Long-Horizon Web Agents with Proactive Context Management</h3>
+    <div class="scores">
+        <span class="score relevance">Relevance: 10/10</span>
+        <span class="score importance">Importance: 9/10</span>
+    </div>
+    <div class="abstract">LLM-based web agents show immense promise for information seeking, yet their effectiveness on long-horizon tasks is hindered by a fundamental trade-off in context management. Prevailing ReAct-based agents suffer from context saturation as they accumulate noisy, raw histories, while methods that fixedly summarize the full history at each step risk the irreversible loss of critical details. Addressing these, we introduce AgentFold, a novel agent paradigm centered on proactive context management, inspired by the human cognitive process of retrospective consolidation. AgentFold treats its context as a dynamic cognitive workspace to be actively sculpted, rather than a passive log to be filled. At each step, it learns to execute a `folding' operation, which manages its historical trajectory at multiple scales: it can perform granular condensations to preserve vital, fine-grained details, or deep consolidations to abstract away entire multi-step sub-tasks. The results on prominent benchmarks are striking: with simple supervised fine-tuning (without continual pre-training or RL), our AgentFold-30B-A3B agent achieves 36.2% on BrowseComp and 47.3% on BrowseComp-ZH. Notably, this performance not only surpasses or matches open-source models of a dramatically larger scale, such as the DeepSeek-V3.1-671B-A37B, but also surpasses leading proprietary agents like OpenAI's o4-mini.</div>
+    <div class="meta">
+        <a href="http://arxiv.org/abs/2510.24699v1" target="_blank">View on arXiv</a>
+    </div>
+</div>
+
+
+<div class="paper">
+    <h3>FunReason-MT Technical Report: Overcoming the Complexity Barrier in   Multi-Turn Function Calling</h3>
+    <div class="scores">
+        <span class="score relevance">Relevance: 10/10</span>
+        <span class="score importance">Importance: 9/10</span>
+    </div>
+    <div class="abstract">Function calling (FC) empowers large language models (LLMs) and autonomous agents to interface with external tools, a critical capability for solving complex, real-world problems. As this ability becomes increasingly central to advanced AI systems, the need for high-quality, multi-turn training data to develop and refine it cannot be overstated. Existing data synthesis methods, such as random environment sampling or multi-agent role-playing, are not powerful enough to generate high-quality data in real-world environments. Practical challenges come in three folds: targeted model training, isolation of tool architecture, and multi-turn logical dependency. To address these structural deficiencies, we present FunReason-MT, a novel data synthesis framework for real-world multi-turn tool use. FunReason-MT resolves the complexity barrier in multi-turn FC data by employing 1) Environment-API Graph Interactions to gather varied high-quality trajectories, 2) Advanced Tool-Query Synthesis to simplify hard query construction, and 3) Guided Iterative Chain for sophisticated CoT generation. Evaluations on Berkeley Function-Calling Leaderboard (BFCLv3) demonstrate the power of our framework: a 4B model built upon FunReason-MT generated data achieves state-of-the-art performance among comparable-sized models, outperforming most close-source models. Further performance improvements on BFCLv4 confirm that FunReason-MT provides a reliable and robust source for agentic learning.</div>
+    <div class="meta">
+        <a href="http://arxiv.org/abs/2510.24645v1" target="_blank">View on arXiv</a>
+    </div>
+</div>
+
+
+<div class="paper">
+    <h3>From Benchmarks to Business Impact: Deploying IBM Generalist Agent in   Enterprise Production</h3>
+    <div class="scores">
+        <span class="score relevance">Relevance: 10/10</span>
+        <span class="score importance">Importance: 9/10</span>
+    </div>
+    <div class="abstract">Agents are rapidly advancing in automating digital work, but enterprises face a harder challenge: moving beyond prototypes to deployed systems that deliver measurable business value. This path is complicated by fragmented frameworks, slow development, and the absence of standardized evaluation practices. Generalist agents have emerged as a promising direction, excelling on academic benchmarks and offering flexibility across task types, applications, and modalities. Yet, evidence of their use in production enterprise settings remains limited. This paper reports IBM's experience developing and piloting the Computer Using Generalist Agent (CUGA), which has been open-sourced for the community (https://github.com/cuga-project/cuga-agent). CUGA adopts a hierarchical planner--executor architecture with strong analytical foundations, achieving state-of-the-art performance on AppWorld and WebArena. Beyond benchmarks, it was evaluated in a pilot within the Business-Process-Outsourcing talent acquisition domain, addressing enterprise requirements for scalability, auditability, safety, and governance. To support assessment, we introduce BPO-TA, a 26-task benchmark spanning 13 analytics endpoints. In preliminary evaluations, CUGA approached the accuracy of specialized agents while indicating potential for reducing development time and cost. Our contribution is twofold: presenting early evidence of generalist agents operating at enterprise scale, and distilling technical and organizational lessons from this initial pilot. We outline requirements and next steps for advancing research-grade architectures like CUGA into robust, enterprise-ready systems.</div>
+    <div class="meta">
+        <a href="http://arxiv.org/abs/2510.23856v1" target="_blank">View on arXiv</a>
+    </div>
+</div>
+
+
+<div class="paper">
+    <h3>ReCAP: Recursive Context-Aware Reasoning and Planning for Large Language   Model Agents</h3>
+    <div class="scores">
+        <span class="score relevance">Relevance: 10/10</span>
+        <span class="score importance">Importance: 9/10</span>
+    </div>
+    <div class="abstract">Long-horizon tasks requiring multi-step reasoning and dynamic re-planning remain challenging for large language models (LLMs). Sequential prompting methods are prone to context drift, loss of goal information, and recurrent failure cycles, while hierarchical prompting methods often weaken cross-level continuity or incur substantial runtime overhead. We introduce ReCAP (Recursive Context-Aware Reasoning and Planning), a hierarchical framework with shared context for reasoning and planning in LLMs. ReCAP combines three key mechanisms: (i) plan-ahead decomposition, in which the model generates a full subtask list, executes the first item, and refines the remainder; (ii) structured re-injection of parent plans, maintaining consistent multi-level context during recursive return; and (iii) memory-efficient execution, bounding the active prompt so costs scale linearly with task depth. Together these mechanisms align high-level goals with low-level actions, reduce redundant prompting, and preserve coherent context updates across recursion. Experiments demonstrate that ReCAP substantially improves subgoal alignment and success rates on various long-horizon reasoning benchmarks, achieving a 32% gain on synchronous Robotouille and a 29% improvement on asynchronous Robotouille under the strict pass@1 protocol.</div>
+    <div class="meta">
+        <a href="http://arxiv.org/abs/2510.23822v1" target="_blank">View on arXiv</a>
+    </div>
+</div>
+
+
+<div class="paper">
+    <h3>Beyond Prompt Engineering: Neuro-Symbolic-Causal Architecture for Robust   Multi-Objective AI Agents</h3>
+    <div class="scores">
+        <span class="score relevance">Relevance: 10/10</span>
+        <span class="score importance">Importance: 9/10</span>
+    </div>
+    <div class="abstract">Large language models show promise as autonomous decision-making agents, yet their deployment in high-stakes domains remains fraught with risk. Without architectural safeguards, LLM agents exhibit catastrophic brittleness: identical capabilities produce wildly different outcomes depending solely on prompt framing. We present Chimera, a neuro-symbolic-causal architecture that integrates three complementary components - an LLM strategist, a formally verified symbolic constraint engine, and a causal inference module for counterfactual reasoning. We benchmark Chimera against baseline architectures (LLM-only, LLM with symbolic constraints) across 52-week simulations in a realistic e-commerce environment featuring price elasticity, trust dynamics, and seasonal demand. Under organizational biases toward either volume or margin optimization, LLM-only agents fail catastrophically (total loss of \$99K in volume scenarios) or destroy brand trust (-48.6% in margin scenarios). Adding symbolic constraints prevents disasters but achieves only 43-87% of Chimera's profit. Chimera consistently delivers the highest returns (\$1.52M and \$1.96M respectively, some cases +\$2.2M) while improving brand trust (+1.8% and +10.8%, some cases +20.86%), demonstrating prompt-agnostic robustness. Our TLA+ formal verification proves zero constraint violations across all scenarios. These results establish that architectural design not prompt engineering determines the reliability of autonomous agents in production environments. We provide open-source implementations and interactive demonstrations for reproducibility.</div>
+    <div class="meta">
+        <a href="http://arxiv.org/abs/2510.23682v1" target="_blank">View on arXiv</a>
+    </div>
+</div>
+
+
+<div class="paper">
+    <h3>InteractComp: Evaluating Search Agents With Ambiguous Queries</h3>
+    <div class="scores">
+        <span class="score relevance">Relevance: 10/10</span>
+        <span class="score importance">Importance: 8/10</span>
+    </div>
+    <div class="abstract">Language agents have demonstrated remarkable potential in web search and information retrieval. However, these search agents assume user queries are complete and unambiguous, an assumption that diverges from reality where users begin with incomplete queries requiring clarification through interaction. Yet most agents lack interactive mechanisms during the search process, and existing benchmarks cannot assess this capability. To address this gap, we introduce InteractComp, a benchmark designed to evaluate whether search agents can recognize query ambiguity and actively interact to resolve it during search. Following the principle of easy to verify, interact to disambiguate, we construct 210 expert-curated questions across 9 domains through a target-distractor methodology that creates genuine ambiguity resolvable only through interaction. Evaluation of 17 models reveals striking failure: the best model achieves only 13.73% accuracy despite 71.50% with complete context, exposing systematic overconfidence rather than reasoning deficits. Forced interaction produces dramatic gains, demonstrating latent capability current strategies fail to engage. Longitudinal analysis shows interaction capabilities stagnated over 15 months while search performance improved seven-fold, revealing a critical blind spot. This stagnation, coupled with the immediate feedback inherent to search tasks, makes InteractComp a valuable resource for both evaluating and training interaction capabilities in search agents. The code is available at https://github.com/FoundationAgents/InteractComp.</div>
+    <div class="meta">
+        <a href="http://arxiv.org/abs/2510.24668v1" target="_blank">View on arXiv</a>
+    </div>
+</div>
+
+
+<div class="paper">
+    <h3>LoRA-DA: Data-Aware Initialization for Low-Rank Adaptation via   Asymptotic Analysis</h3>
+    <div class="scores">
+        <span class="score relevance">Relevance: 10/10</span>
+        <span class="score importance">Importance: 8/10</span>
+    </div>
+    <div class="abstract">With the widespread adoption of LLMs, LoRA has become a dominant method for PEFT, and its initialization methods have attracted increasing attention. However, existing methods have notable limitations: many methods do not incorporate target-domain data, while gradient-based methods exploit data only at a shallow level by relying on one-step gradient decomposition, which remains unsatisfactory due to the weak empirical performance of the one-step fine-tuning model that serves as their basis, as well as the fact that these methods either lack a rigorous theoretical foundation or depend heavily on restrictive isotropic assumptions. In this paper, we establish a theoretical framework for data-aware LoRA initialization based on asymptotic analysis. Starting from a general optimization objective that minimizes the expectation of the parameter discrepancy between the fine-tuned and target models, we derive an optimization problem with two components: a bias term, which is related to the parameter distance between the fine-tuned and target models, and is approximated using a Fisher-gradient formulation to preserve anisotropy; and a variance term, which accounts for the uncertainty introduced by sampling stochasticity through the Fisher information. By solving this problem, we obtain an optimal initialization strategy for LoRA. Building on this theoretical framework, we develop an efficient algorithm, LoRA-DA, which estimates the terms in the optimization problem from a small set of target domain samples and obtains the optimal LoRA initialization. Empirical results across multiple benchmarks demonstrate that LoRA-DA consistently improves final accuracy over existing initialization methods. Additional studies show faster, more stable convergence, robustness across ranks, and only a small initialization overhead for LoRA-DA. The source code will be released upon publication.</div>
+    <div class="meta">
+        <a href="http://arxiv.org/abs/2510.24561v1" target="_blank">View on arXiv</a>
+    </div>
+</div>
+
+
+<div class="paper">
+    <h3>Mitigating Hallucination in Large Language Models (LLMs): An   Application-Oriented Survey on RAG, Reasoning, and Agentic Systems</h3>
+    <div class="scores">
+        <span class="score relevance">Relevance: 10/10</span>
+        <span class="score importance">Importance: 8/10</span>
+    </div>
+    <div class="abstract">Hallucination remains one of the key obstacles to the reliable deployment of large language models (LLMs), particularly in real-world applications. Among various mitigation strategies, Retrieval-Augmented Generation (RAG) and reasoning enhancement have emerged as two of the most effective and widely adopted approaches, marking a shift from merely suppressing hallucinations to balancing creativity and reliability. However, their synergistic potential and underlying mechanisms for hallucination mitigation have not yet been systematically examined. This survey adopts an application-oriented perspective of capability enhancement to analyze how RAG, reasoning enhancement, and their integration in Agentic Systems mitigate hallucinations. We propose a taxonomy distinguishing knowledge-based and logic-based hallucinations, systematically examine how RAG and reasoning address each, and present a unified framework supported by real-world applications, evaluations, and benchmarks.</div>
+    <div class="meta">
+        <a href="http://arxiv.org/abs/2510.24476v1" target="_blank">View on arXiv</a>
+    </div>
+</div>
+
+
+<div class="paper">
+    <h3>Metadata-Driven Retrieval-Augmented Generation for Financial Question   Answering</h3>
+    <div class="scores">
+        <span class="score relevance">Relevance: 10/10</span>
+        <span class="score importance">Importance: 8/10</span>
+    </div>
+    <div class="abstract">Retrieval-Augmented Generation (RAG) struggles on long, structured financial filings where relevant evidence is sparse and cross-referenced. This paper presents a systematic investigation of advanced metadata-driven Retrieval-Augmented Generation (RAG) techniques, proposing and evaluating a novel, multi-stage RAG architecture that leverages LLM-generated metadata. We introduce a sophisticated indexing pipeline to create contextually rich document chunks and benchmark a spectrum of enhancements, including pre-retrieval filtering, post-retrieval reranking, and enriched embeddings, benchmarked on the FinanceBench dataset. Our results reveal that while a powerful reranker is essential for precision, the most significant performance gains come from embedding chunk metadata directly with text ("contextual chunks"). Our proposed optimal architecture combines LLM-driven pre-retrieval optimizations with these contextual embeddings to achieve superior performance. Additionally, we present a custom metadata reranker that offers a compelling, cost-effective alternative to commercial solutions, highlighting a practical trade-off between peak performance and operational efficiency. This study provides a blueprint for building robust, metadata-aware RAG systems for financial document analysis.</div>
+    <div class="meta">
+        <a href="http://arxiv.org/abs/2510.24402v1" target="_blank">View on arXiv</a>
+    </div>
+</div>
+
+
+<div class="paper">
+    <h3>Improving LLM Reasoning via Dependency-Aware Query Decomposition and   Logic-Parallel Content Expansion</h3>
+    <div class="scores">
+        <span class="score relevance">Relevance: 10/10</span>
+        <span class="score importance">Importance: 8/10</span>
+    </div>
+    <div class="abstract">The integration of Large Language Models (LLMs) into real-time Web applications, such as AI-powered search and conversational agents, presents a fundamental Web infrastructure challenge: reconciling the demand for high-quality, complex reasoning with the stringent low-latency and high-throughput requirements of interactive services. Current LLM reasoning, hindered by computationally inefficient sequential generation and rigid reasoning strategies, creates a critical bottleneck for the Web services. Existing approaches typically optimize the LLM reasoning for either efficiency or quality but struggle to achieve both, and thus fail to meet the dual requirements of modern Web platforms. To overcome these limitations, we propose Orion, a novel and efficient reasoning framework that enables dependency-aware query decomposition and logic-parallel content expansion. Concretely, Orion decomposes a single query reasoning process into two synergistic phases: (1) \textit{key point generation}, which distills logically structured key points through retrieval-augmented few-shot prompting, and (2) \textit{content parallel expansion}, which concurrently elaborates on these points based on a dependency graph to ensure logical consistency. Furthermore, Orion introduces a pipeline scheduling mechanism that exploits the complementary computational characteristics of the two phases (generation imposes pressure on GPU computing and expansion stresses on GPU memory) across multiple queries, enabling cross-query parallelism and dramatically improving reasoning performance (\ie, efficiency and quality). Experiments on diverse benchmarks show that Orion not only delivers up to 4.33x higher token generation speed and 3.42x lower answer latency over the baselines but also improves reasoning quality by up to 18.75% through explicitly modeling inter-point dependencies.</div>
+    <div class="meta">
+        <a href="http://arxiv.org/abs/2510.24390v1" target="_blank">View on arXiv</a>
+    </div>
+</div>
+
+
+<div class="paper">
+    <h3>Verifying Large Language Models' Reasoning Paths via Correlation Matrix   Rank</h3>
+    <div class="scores">
+        <span class="score relevance">Relevance: 10/10</span>
+        <span class="score importance">Importance: 8/10</span>
+    </div>
+    <div class="abstract">Despite the strong reasoning ability of large language models~(LLMs), they are prone to errors and hallucinations. As a result, how to check their outputs effectively and efficiently has become a critical problem in their applications. Existing checking methods heavily rely on external resources, such as trained verifiers (e.g., process/outcome reward models) or elaborate prompts, which lead to high computational overhead and are only applicable to specific domains. In this paper, we investigate whether the internal behaviors of LLMs have already implied the credibility of their reasoning paths. Specifically, we find that the rank of the correlation matrix between the input problem and the output reasoning path is a robust indicator of reasoning correctness. Different from other correctness indicators for LLMs, the calculation of the correlation matrix only relies on the LLM itself, which avoids the hassle of training a separate model or designing complicated prompts. Based on it, we design a simple, plug-and-play Self-Indicator method to reweight candidate reasoning paths, which achieves significant performance improvements than other voting and verification methods with very few computational overhead. Our experiments across multiple LLMs of varying scales and model families have further shown the effectiveness of Self-Indicator. It achieves over 75% accuracy in distinguishing correct reasoning paths from incorrect ones, and, in turn, improves the accuracies on three reasoning benchmarks by more than 8%.</div>
+    <div class="meta">
+        <a href="http://arxiv.org/abs/2510.24299v1" target="_blank">View on arXiv</a>
+    </div>
+</div>
+
+
+<div class="paper">
+    <h3>MCP-Flow: Facilitating LLM Agents to Master Real-World, Diverse and   Scaling MCP Tools</h3>
+    <div class="scores">
+        <span class="score relevance">Relevance: 10/10</span>
+        <span class="score importance">Importance: 8/10</span>
+    </div>
+    <div class="abstract">Large Language Models (LLMs) increasingly rely on external tools to perform complex, realistic tasks, yet their ability to utilize the rapidly expanding Model Contextual Protocol (MCP) ecosystem remains limited. Existing MCP research covers few servers, depends on costly manual curation, and lacks training support, hindering progress toward real-world deployment. To overcome these limitations, we introduce MCP-Flow, an automated web-agent-driven pipeline for large-scale server discovery, data synthesis, and model training. MCP-Flow collects and filters data from 1166 servers and 11536 tools, producing 68733 high-quality instruction-function call pairs and 6439 trajectories, far exceeding prior work in scale and diversity. Extensive experiments demonstrate MCP-Flow's effectiveness in driving superior MCP tool selection, function-call generation, and enhanced agentic task performance. MCP-Flow thus provides a scalable foundation for advancing LLM agents' proficiency in real-world MCP environments. MCP-Flow is publicly available at \href{https://github.com/wwh0411/MCP-Flow}{https://github.com/wwh0411/MCP-Flow}.</div>
+    <div class="meta">
+        <a href="http://arxiv.org/abs/2510.24284v1" target="_blank">View on arXiv</a>
+    </div>
+</div>
+
+
+<div class="paper">
+    <h3>MGA: Memory-Driven GUI Agent for Observation-Centric Interaction</h3>
+    <div class="scores">
+        <span class="score relevance">Relevance: 10/10</span>
+        <span class="score importance">Importance: 8/10</span>
+    </div>
+    <div class="abstract">The rapid progress of Large Language Models (LLMs) and their multimodal extensions (MLLMs) has enabled agentic systems capable of perceiving and acting across diverse environments. A challenging yet impactful frontier is the development of GUI agents, which must navigate complex desktop and web interfaces while maintaining robustness and generalization. Existing paradigms typically model tasks as long-chain executions, concatenating historical trajectories into the context. While approaches such as Mirage and GTA1 refine planning or introduce multi-branch action selection, they remain constrained by two persistent issues: Dependence on historical trajectories, which amplifies error propagation. And Local exploration bias, where "decision-first, observation-later" mechanisms overlook critical interface cues. We introduce the Memory-Driven GUI Agent (MGA), which reframes GUI interaction around the principle of observe first, then decide. MGA models each step as an independent, context-rich environment state represented by a triad: current screenshot, task-agnostic spatial information, and a dynamically updated structured memory. Experiments on OSworld benchmarks, real desktop applications (Chrome, VSCode, VLC), and cross-task transfer demonstrate that MGA achieves substantial gains in robustness, generalization, and efficiency compared to state-of-the-art baselines. The code is publicly available at: {https://anonymous.4open.science/r/MGA-3571}.</div>
+    <div class="meta">
+        <a href="http://arxiv.org/abs/2510.24168v1" target="_blank">View on arXiv</a>
+    </div>
+</div>
+
+
+<div class="paper">
+    <h3>FALQON: Accelerating LoRA Fine-tuning with Low-Bit Floating-Point   Arithmetic</h3>
+    <div class="scores">
+        <span class="score relevance">Relevance: 10/10</span>
+        <span class="score importance">Importance: 8/10</span>
+    </div>
+    <div class="abstract">Low-bit floating-point (FP) formats, such as FP8, provide significant acceleration and memory savings in model training thanks to native hardware support on modern GPUs and NPUs. However, we analyze that FP8 quantization offers speedup primarily for large-dimensional matrix multiplications, while inherent quantization overheads diminish speedup when applied to low-rank adaptation (LoRA), which uses small-dimensional matrices for efficient fine-tuning of large language models (LLMs). To address this limitation, we propose FALQON, a novel framework that eliminates the quantization overhead from separate LoRA computational paths by directly merging LoRA adapters into an FP8-quantized backbone during fine-tuning. Furthermore, we reformulate the forward and backward computations for merged adapters to significantly reduce quantization overhead, and introduce a row-wise proxy update mechanism that efficiently integrates substantial updates into the quantized backbone. Experimental evaluations demonstrate that FALQON achieves approximately a 3$\times$ training speedup over existing quantized LoRA methods with a similar level of accuracy, providing a practical solution for efficient large-scale model fine-tuning. Moreover, FALQON's end-to-end FP8 workflow removes the need for post-training quantization, facilitating efficient deployment. Code is available at https://github.com/iamkanghyunchoi/falqon.</div>
+    <div class="meta">
+        <a href="http://arxiv.org/abs/2510.24061v1" target="_blank">View on arXiv</a>
+    </div>
+</div>
+
+
+<div class="paper">
+    <h3>OraPlan-SQL: A Planning-Centric Framework for Complex Bilingual NL2SQL   Reasoning</h3>
+    <div class="scores">
+        <span class="score relevance">Relevance: 10/10</span>
+        <span class="score importance">Importance: 8/10</span>
+    </div>
+    <div class="abstract">We present OraPlan-SQL, our system for the Archer NL2SQL Evaluation Challenge 2025, a bilingual benchmark requiring complex reasoning such as arithmetic, commonsense, and hypothetical inference. OraPlan-SQL ranked first, exceeding the second-best system by more than 6% in execution accuracy (EX), with 55.0% in English and 56.7% in Chinese, while maintaining over 99% SQL validity (VA). Our system follows an agentic framework with two components: Planner agent that generates stepwise natural language plans, and SQL agent that converts these plans into executable SQL. Since SQL agent reliably adheres to the plan, our refinements focus on the planner. Unlike prior methods that rely on multiple sub-agents for planning and suffer from orchestration overhead, we introduce a feedback-guided meta-prompting strategy to refine a single planner. Failure cases from a held-out set are clustered with human input, and an LLM distills them into corrective guidelines that are integrated into the planner's system prompt, improving generalization without added complexity. For the multilingual scenario, to address transliteration and entity mismatch issues, we incorporate entity-linking guidelines that generate alternative surface forms for entities and explicitly include them in the plan. Finally, we enhance reliability through plan diversification: multiple candidate plans are generated for each query, with the SQL agent producing a query for each plan, and final output selected via majority voting over their executions.</div>
+    <div class="meta">
+        <a href="http://arxiv.org/abs/2510.23870v1" target="_blank">View on arXiv</a>
+    </div>
+</div>
+
+
+<div class="paper">
+    <h3>TDFlow: Agentic Workflows for Test Driven Software Engineering</h3>
+    <div class="scores">
+        <span class="score relevance">Relevance: 9/10</span>
+        <span class="score importance">Importance: 9/10</span>
+    </div>
+    <div class="abstract">We introduce TDFlow, a novel test-driven agentic workflow that frames repository-scale software engineering as a test-resolution task, specifically designed to solve human-written tests. Given a set of tests, TDFlow repeatedly proposes, revises, and debugs repository-scale patches using precisely engineered sub-agents and tightly constrained tools. The workflow decomposes software engineering program repair into four components governed by respective sub-agents. This simple, forced decoupling of patch proposing, debugging, patch revision, and optional test generation (1) reduces long-context burden on any individual sub-agent, (2) focuses each sub-agent on specific, pre-defined sub-tasks, and (3) allows for specialized performance improvement on specific sub-tasks. When provided human-written tests, TDFlow attains 88.8% pass rate on SWE-Bench Lite (an absolute improvement of 27.8% over the next best system) and 94.3% on SWE-Bench Verified. Manual inspection of the 800 TDFlow runs within SWE-Bench Lite and Verified uncover only 7 instances of test hacking, which were subsequently counted as failures. Furthermore, we show that the primary obstacle to human-level software engineering performance lies within writing successful reproduction tests. We envision a human-LLM interactive system powered by TDFlow where human developers write tests solved by LLM systems. Together, these results indicate that modern LLMs, when embedded in a narrowly engineered, test-driven workflow, already achieve human-level test resolution -- with the final frontier for fully autonomous repository repair being the accurate generation of valid reproduction tests.</div>
+    <div class="meta">
+        <a href="http://arxiv.org/abs/2510.23761v1" target="_blank">View on arXiv</a>
+    </div>
+</div>
+
+
+<div class="paper">
+    <h3>Alita-G: Self-Evolving Generative Agent for Agent Generation</h3>
+    <div class="scores">
+        <span class="score relevance">Relevance: 9/10</span>
+        <span class="score importance">Importance: 9/10</span>
+    </div>
+    <div class="abstract">Large language models (LLMs) have been shown to perform better when scaffolded into agents with memory, tools, and feedback. Beyond this, self-evolving agents have emerged, but current work largely limits adaptation to prompt rewriting or failure retries. Therefore, we present ALITA-G, a self-evolution framework that transforms a general-purpose agent into a domain expert by systematically generating, abstracting, and curating Model Context Protocol (MCP) tools. In this framework, a generalist agent executes a curated suite of target-domain tasks and synthesizes candidate MCPs from successful trajectories. These are then abstracted to parameterized primitives and consolidated into an MCP Box. At inference time, ALITA-G performs retrieval-augmented MCP selection with the help of each tool's descriptions and use cases, before executing an agent equipped with the MCP Executor. Across several benchmarks GAIA, PathVQA, and Humanity's Last Exam, ALITA-G attains strong gains while reducing computation costs. On GAIA validation, it achieves 83.03% pass@1 and 89.09% pass@3, establishing a new state-of-the-art result while reducing mean tokens per example by approximately 15% relative to a strong baseline agent. ALITA-G thus provides a principled pathway from generalist capability to reusable, domain-specific competence, improving both accuracy and efficiency on complex reasoning tasks.</div>
+    <div class="meta">
+        <a href="http://arxiv.org/abs/2510.23601v1" target="_blank">View on arXiv</a>
+    </div>
+</div>
+
+
+<div class="paper">
+    <h3>Agent Data Protocol: Unifying Datasets for Diverse, Effective   Fine-tuning of LLM Agents</h3>
+    <div class="scores">
+        <span class="score relevance">Relevance: 9/10</span>
+        <span class="score importance">Importance: 8/10</span>
+    </div>
+    <div class="abstract">Public research results on large-scale supervised finetuning of AI agents remain relatively rare, since the collection of agent training data presents unique challenges. In this work, we argue that the bottleneck is not a lack of underlying data sources, but that a large variety of data is fragmented across heterogeneous formats, tools, and interfaces. To this end, we introduce the agent data protocol (ADP), a light-weight representation language that serves as an "interlingua" between agent datasets in diverse formats and unified agent training pipelines downstream. The design of ADP is expressive enough to capture a large variety of tasks, including API/tool use, browsing, coding, software engineering, and general agentic workflows, while remaining simple to parse and train on without engineering at a per-dataset level. In experiments, we unified a broad collection of 13 existing agent training datasets into ADP format, and converted the standardized ADP data into training-ready formats for multiple agent frameworks. We performed SFT on these data, and demonstrated an average performance gain of ~20% over corresponding base models, and delivers state-of-the-art or near-SOTA performance on standard coding, browsing, tool use, and research benchmarks, without domain-specific tuning. All code and data are released publicly, in the hope that ADP could help lower the barrier to standardized, scalable, and reproducible agent training.</div>
+    <div class="meta">
+        <a href="http://arxiv.org/abs/2510.24702v1" target="_blank">View on arXiv</a>
+    </div>
+</div>
+
+
+<div class="paper">
+    <h3>Greedy Sampling Is Provably Efficient for RLHF</h3>
+    <div class="scores">
+        <span class="score relevance">Relevance: 9/10</span>
+        <span class="score importance">Importance: 8/10</span>
+    </div>
+    <div class="abstract">Reinforcement Learning from Human Feedback (RLHF) has emerged as a key technique for post-training large language models. Despite its empirical success, the theoretical understanding of RLHF is still limited, as learning the KL-regularized target with only preference feedback poses additional challenges compared with canonical RL. Existing works mostly study the reward-based Bradley-Terry (BT) preference model, and extend classical designs utilizing optimism or pessimism. This work, instead, considers the general preference model (whose practical relevance has been observed recently) and obtains performance guarantees with major, order-wise improvements over existing ones. Surprisingly, these results are derived from algorithms that directly use the empirical estimates (i.e., greedy sampling), as opposed to constructing optimistic or pessimistic estimates in previous works. This insight has a deep root in the unique structural property of the optimal policy class under the KL-regularized target, and we further specialize it to the BT model, highlighting the surprising sufficiency of greedy sampling in RLHF.</div>
+    <div class="meta">
+        <a href="http://arxiv.org/abs/2510.24700v1" target="_blank">View on arXiv</a>
+    </div>
+</div>
+
+
+<div class="paper">
+    <h3>ParallelMuse: Agentic Parallel Thinking for Deep Information Seeking</h3>
+    <div class="scores">
+        <span class="score relevance">Relevance: 9/10</span>
+        <span class="score importance">Importance: 8/10</span>
+    </div>
+    <div class="abstract">Parallel thinking expands exploration breadth, complementing the deep exploration of information-seeking (IS) agents to further enhance problem-solving capability. However, conventional parallel thinking faces two key challenges in this setting: inefficiency from repeatedly rolling out from scratch, and difficulty in integrating long-horizon reasoning trajectories during answer generation, as limited context capacity prevents full consideration of the reasoning process. To address these issues, we propose ParallelMuse, a two-stage paradigm designed for deep IS agents. The first stage, Functionality-Specified Partial Rollout, partitions generated sequences into functional regions and performs uncertainty-guided path reuse and branching to enhance exploration efficiency. The second stage, Compressed Reasoning Aggregation, exploits reasoning redundancy to losslessly compress information relevant to answer derivation and synthesize a coherent final answer. Experiments across multiple open-source agents and benchmarks demonstrate up to 62% performance improvement with a 10--30% reduction in exploratory token consumption.</div>
+    <div class="meta">
+        <a href="http://arxiv.org/abs/2510.24698v1" target="_blank">View on arXiv</a>
+    </div>
+</div>
+
+    </div>
+</div>
+
+    </body>
+    </html>
+    
