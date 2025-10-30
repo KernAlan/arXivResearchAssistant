@@ -1,0 +1,439 @@
+
+    <!DOCTYPE html>
+    <html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>ArXiv Research Digest</title>
+        <style>
+            
+body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    line-height: 1.5;
+    color: #2d3748;
+    margin: 0;
+    padding: 20px;
+    background: #f7fafc;
+}
+
+.digest {
+    max-width: 800px;
+    margin: 0 auto;
+    background: white;
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+}
+
+.header {
+    margin-bottom: 2rem;
+    padding-bottom: 1rem;
+    border-bottom: 2px solid #e2e8f0;
+}
+
+.header h2 {
+    margin: 0;
+    color: #2d3748;
+}
+
+.header p {
+    margin: 0.5rem 0 0;
+    color: #718096;
+}
+
+.highlights {
+    background: #f8fafc;
+    padding: 1.5rem;
+    border-radius: 8px;
+    margin-bottom: 3rem;
+    border: 1px solid #e2e8f0;
+}
+
+.highlights h3 {
+    color: #2d3748;
+    margin: 0 0 1rem 0;
+    font-size: 1.25rem;
+}
+
+.summary {
+    white-space: pre-line;
+    line-height: 1.6;
+}
+
+.summary ol {
+    padding-left: 1.5rem;
+    margin: 1rem 0;
+}
+
+.summary li {
+    margin-bottom: 0.75rem;
+    padding-left: 0.5rem;
+}
+
+.papers {
+    margin-top: 3rem;
+}
+
+.papers h3 {
+    color: #2d3748;
+    margin-bottom: 1.5rem;
+    padding-bottom: 1rem;
+    border-bottom: 2px solid #e2e8f0;
+}
+
+.paper {
+    margin-bottom: 2rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid #e2e8f0;
+}
+
+.paper:last-child {
+    border-bottom: none;
+}
+
+.paper h3 {
+    margin: 0 0 0.5rem;
+    color: #2d3748;
+}
+
+.paper .scores {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 0.5rem;
+}
+
+.paper .score {
+    padding: 0.25rem 0.5rem;
+    border-radius: 4px;
+    font-size: 0.875rem;
+}
+
+.paper .relevance {
+    background: #e6fffa;
+    color: #047481;
+}
+
+.paper .importance {
+    background: #ebf4ff;
+    color: #1a56db;
+}
+
+.paper .abstract {
+    color: #4a5568;
+    margin: 0.5rem 0;
+}
+
+.paper .meta {
+    font-size: 0.875rem;
+    color: #718096;
+}
+
+.paper .meta a {
+    color: #4299e1;
+    text-decoration: none;
+}
+
+.paper .meta a:hover {
+    text-decoration: underline;
+}
+
+        </style>
+    </head>
+    <body>
+        
+<div class="digest">
+    <div class="header">
+        <h2>ArXiv Research Digest</h2>
+        <p>Found 20 relevant papers out of 200 new submissions</p>
+    </div>
+    
+    <div class="highlights">
+        <h3>🔥 Key Highlights</h3>
+        Hey boss, found 5 cool papers today that I think you'll love:
+
+1. **Model-Document Protocol for AI Search**  
+   They introduce MDP, a formal framework that transforms raw web/PDF docs into LLM-ready knowledge via agentic reasoning, memory grounding, and structured representations, and show an agentic instantiation (MDP-Agent) that outperforms retrieval baselines. Practical takeaway (score 9.5/10 — R10/I9): this is a clear roadmap for replacing naive passage fetching with compact, task-specific doc syntheses — we should prototype an MDP-style doc->gist pipeline on a priority corpus and measure downstream answer quality (paper: http://arxiv.org/abs/2510.25160v1).
+
+2. **FunReason-MT Technical Report: Overcoming the Complexity Barrier in Multi-Turn Function Calling**  
+   FunReason-MT is a data-synthesis framework (Environment-API graphs + advanced tool-query synthesis + guided iterative chains) that produces high-quality multi-turn function-calling trajectories and yields SOTA behavior for a 4B model on BFCL benchmarks. Practical takeaway (score 9.5/10 — R10/I9): we can use FunReason-MT to cheaply generate realistic multi-turn tool-call training data for our agents — next step is to run their generator against our APIs and fine-tune a small model to validate improved function-call reliability (paper: http://arxiv.org/abs/2510.24645v1).
+
+3. **MCP-Flow: Facilitating LLM Agents to Master Real-World, Diverse and Scaling MCP Tools**  
+   MCP-Flow is an automated web-agent pipeline that scraped 1,166 servers and 11,536 tools to produce ~68k instruction-function pairs and ~6.4k trajectories, enabling large-scale MCP training and better tool selection/function-call performance. Practical takeaway (score 9.5/10 — R10/I9): this gives us a ready-to-run corpus and pipeline to massively expand our MCP training data — action: clone their repo (https://github.com/wwh0411/MCP-Flow) and run targeted collection against our internal service landscape to bootstrap agent training (paper: http://arxiv.org/abs/2510.24284v1).
+
+4. **The Tool Decathlon: Benchmarking Language Agents for Diverse, Realistic, and Long-Horizon Task Execution**  
+   Toolathlon provides a hard, execution-verified benchmark across 32 apps and 604 tools with realistic initial states and ~108 long-horizon tasks, exposing that top closed models only hit ~38.6% success on average. Practical takeaway (score 9.0/10 — R10/I8): this is the stress test we need to evaluate long-horizon robustness and tool orchestration failures — let’s run our agents against Toolathlon to surface concrete failure modes and prioritize fixes (paper: http://arxiv.org/abs/2510.25726v1).
+
+5. **Retrieval Augmented Generation (RAG) for Fintech: Agentic Design and Evaluation**  
+   They propose an agentic RAG pipeline (iterative query reformulation, sub-query decomposition, acronym resolution, cross-encoder re-ranking) that materially improves retrieval precision in fintech at the cost of added latency. Practical takeaway (score 9.0/10 — R10/I8): for our domain-specific RAG stacks this suggests adding modular agents for acronym resolution and re-ranking will boost precision — we should prototype those modules on a small fintech subset and measure precision vs latency trade-offs (paper: http://arxiv.org/abs/2510.25518v1).
+
+Short and actionable: this week let’s spike two things — (A) a lightweight MDP-Agent doc-gist pipeline on one internal corpus, and (B) run MCP-Flow’s collector against a small set of our services to generate function-call training data; I’ll boot both and report initial metrics by Friday.
+    </div>
+    
+    <div class="papers">
+        <h3>📄 Detailed Papers</h3>
+        
+<div class="paper">
+    <h3>Model-Document Protocol for AI Search</h3>
+    <div class="scores">
+        <span class="score relevance">Relevance: 10/10</span>
+        <span class="score importance">Importance: 9/10</span>
+    </div>
+    <div class="abstract">AI search depends on linking large language models (LLMs) with vast external knowledge sources. Yet web pages, PDF files, and other raw documents are not inherently LLM-ready: they are long, noisy, and unstructured. Conventional retrieval methods treat these documents as verbatim text and return raw passages, leaving the burden of fragment assembly and contextual reasoning to the LLM. This gap underscores the need for a new retrieval paradigm that redefines how models interact with documents.   We introduce the Model-Document Protocol (MDP), a general framework that formalizes how raw text is bridged to LLMs through consumable knowledge representations. Rather than treating retrieval as passage fetching, MDP defines multiple pathways that transform unstructured documents into task-specific, LLM-ready inputs. These include agentic reasoning, which curates raw evidence into coherent context; memory grounding, which accumulates reusable notes to enrich reasoning; and structured leveraging, which encodes documents into formal representations such as graphs or key-value caches. All three pathways share the same goal: ensuring that what reaches the LLM is not raw fragments but compact, structured knowledge directly consumable for reasoning.   As an instantiation, we present MDP-Agent, which realizes the protocol through an agentic process: constructing document-level gist memories for global coverage, performing diffusion-based exploration with vertical exploitation to uncover layered dependencies, and applying map-reduce style synthesis to integrate large-scale evidence into compact yet sufficient context. Experiments on information-seeking benchmarks demonstrate that MDP-Agent outperforms baselines, validating both the soundness of the MDP framework and the effectiveness of its agentic instantiation.</div>
+    <div class="meta">
+        <a href="http://arxiv.org/abs/2510.25160v1" target="_blank">View on arXiv</a>
+    </div>
+</div>
+
+
+<div class="paper">
+    <h3>FunReason-MT Technical Report: Overcoming the Complexity Barrier in   Multi-Turn Function Calling</h3>
+    <div class="scores">
+        <span class="score relevance">Relevance: 10/10</span>
+        <span class="score importance">Importance: 9/10</span>
+    </div>
+    <div class="abstract">Function calling (FC) empowers large language models (LLMs) and autonomous agents to interface with external tools, a critical capability for solving complex, real-world problems. As this ability becomes increasingly central to advanced AI systems, the need for high-quality, multi-turn training data to develop and refine it cannot be overstated. Existing data synthesis methods, such as random environment sampling or multi-agent role-playing, are not powerful enough to generate high-quality data in real-world environments. Practical challenges come in three folds: targeted model training, isolation of tool architecture, and multi-turn logical dependency. To address these structural deficiencies, we present FunReason-MT, a novel data synthesis framework for real-world multi-turn tool use. FunReason-MT resolves the complexity barrier in multi-turn FC data by employing 1) Environment-API Graph Interactions to gather varied high-quality trajectories, 2) Advanced Tool-Query Synthesis to simplify hard query construction, and 3) Guided Iterative Chain for sophisticated CoT generation. Evaluations on Berkeley Function-Calling Leaderboard (BFCLv3) demonstrate the power of our framework: a 4B model built upon FunReason-MT generated data achieves state-of-the-art performance among comparable-sized models, outperforming most close-source models. Further performance improvements on BFCLv4 confirm that FunReason-MT provides a reliable and robust source for agentic learning.</div>
+    <div class="meta">
+        <a href="http://arxiv.org/abs/2510.24645v1" target="_blank">View on arXiv</a>
+    </div>
+</div>
+
+
+<div class="paper">
+    <h3>MCP-Flow: Facilitating LLM Agents to Master Real-World, Diverse and   Scaling MCP Tools</h3>
+    <div class="scores">
+        <span class="score relevance">Relevance: 10/10</span>
+        <span class="score importance">Importance: 9/10</span>
+    </div>
+    <div class="abstract">Large Language Models (LLMs) increasingly rely on external tools to perform complex, realistic tasks, yet their ability to utilize the rapidly expanding Model Contextual Protocol (MCP) ecosystem remains limited. Existing MCP research covers few servers, depends on costly manual curation, and lacks training support, hindering progress toward real-world deployment. To overcome these limitations, we introduce MCP-Flow, an automated web-agent-driven pipeline for large-scale server discovery, data synthesis, and model training. MCP-Flow collects and filters data from 1166 servers and 11536 tools, producing 68733 high-quality instruction-function call pairs and 6439 trajectories, far exceeding prior work in scale and diversity. Extensive experiments demonstrate MCP-Flow's effectiveness in driving superior MCP tool selection, function-call generation, and enhanced agentic task performance. MCP-Flow thus provides a scalable foundation for advancing LLM agents' proficiency in real-world MCP environments. MCP-Flow is publicly available at \href{https://github.com/wwh0411/MCP-Flow}{https://github.com/wwh0411/MCP-Flow}.</div>
+    <div class="meta">
+        <a href="http://arxiv.org/abs/2510.24284v1" target="_blank">View on arXiv</a>
+    </div>
+</div>
+
+
+<div class="paper">
+    <h3>The Tool Decathlon: Benchmarking Language Agents for Diverse, Realistic,   and Long-Horizon Task Execution</h3>
+    <div class="scores">
+        <span class="score relevance">Relevance: 10/10</span>
+        <span class="score importance">Importance: 8/10</span>
+    </div>
+    <div class="abstract">Real-world language agents must handle complex, multi-step workflows across diverse Apps. For instance, an agent may manage emails by coordinating with calendars and file systems, or monitor a production database to detect anomalies and generate reports following an operating manual. However, existing language agent benchmarks often focus on narrow domains or simplified tasks that lack the diversity, realism, and long-horizon complexity required to evaluate agents' real-world performance. To address this gap, we introduce the Tool Decathlon (dubbed as Toolathlon), a benchmark for language agents offering diverse Apps and tools, realistic environment setup, and reliable execution-based evaluation. Toolathlon spans 32 software applications and 604 tools, ranging from everyday platforms such as Google Calendar and Notion to professional ones like WooCommerce, Kubernetes, and BigQuery. Most of the tools are based on a high-quality set of Model Context Protocol (MCP) servers that we may have revised or implemented ourselves. Unlike prior works, which primarily ensure functional realism but offer limited environment state diversity, we provide realistic initial environment states from real software, such as Canvas courses with dozens of students or real financial spreadsheets. This benchmark includes 108 manually sourced or crafted tasks in total, requiring interacting with multiple Apps over around 20 turns on average to complete. Each task is strictly verifiable through dedicated evaluation scripts. Comprehensive evaluation of SOTA models highlights their significant shortcomings: the best-performing model, Claude-4.5-Sonnet, achieves only a 38.6% success rate with 20.2 tool calling turns on average, while the top open-weights model DeepSeek-V3.2-Exp reaches 20.1%. We expect Toolathlon to drive the development of more capable language agents for real-world, long-horizon task execution.</div>
+    <div class="meta">
+        <a href="http://arxiv.org/abs/2510.25726v1" target="_blank">View on arXiv</a>
+    </div>
+</div>
+
+
+<div class="paper">
+    <h3>Retrieval Augmented Generation (RAG) for Fintech: Agentic Design and   Evaluation</h3>
+    <div class="scores">
+        <span class="score relevance">Relevance: 10/10</span>
+        <span class="score importance">Importance: 8/10</span>
+    </div>
+    <div class="abstract">Retrieval-Augmented Generation (RAG) systems often face limitations in specialized domains such as fintech, where domain-specific ontologies, dense terminology, and acronyms complicate effective retrieval and synthesis. This paper introduces an agentic RAG architecture designed to address these challenges through a modular pipeline of specialized agents. The proposed system supports intelligent query reformulation, iterative sub-query decomposition guided by keyphrase extraction, contextual acronym resolution, and cross-encoder-based context re-ranking. We evaluate our approach against a standard RAG baseline using a curated dataset of 85 question--answer--reference triples derived from an enterprise fintech knowledge base. Experimental results demonstrate that the agentic RAG system outperforms the baseline in retrieval precision and relevance, albeit with increased latency. These findings suggest that structured, multi-agent methodologies offer a promising direction for enhancing retrieval robustness in complex, domain-specific settings.</div>
+    <div class="meta">
+        <a href="http://arxiv.org/abs/2510.25518v1" target="_blank">View on arXiv</a>
+    </div>
+</div>
+
+
+<div class="paper">
+    <h3>Grounded in Reality: Learning and Deploying Proactive LLM from Offline   Logs</h3>
+    <div class="scores">
+        <span class="score relevance">Relevance: 10/10</span>
+        <span class="score importance">Importance: 8/10</span>
+    </div>
+    <div class="abstract">Large Language Models (LLMs) excel as passive responders, but teaching them to be proactive, goal-oriented partners, a critical capability in high-stakes domains, remains a major challenge. Current paradigms either myopically optimize single-turn attributes or rely on brittle, high-cost user simulators, creating a persistent ``reality gap''. To bridge this gap, we introduce \texttt{Learn-to-Ask}, a general, simulator-free framework for learning and deploying proactive dialogue agents \textit{directly from offline expert data}, bypassing the need to model complex user dynamics. Our key insight is to reframe the offline policy learning problem by leveraging the \textbf{observed future} of each expert trajectory. This allows us to infer a dense, turn-by-turn reward signal grounded in the expert's revealed strategy, decomposing the intractable long-horizon problem into a series of supervised learning tasks, and training a policy to output a structured \texttt{(action, state_assessment)} tuple, governing both \textbf{what to ask} and, crucially, \textbf{when to stop}. To ensure reward fidelity, our Automated Grader Calibration pipeline systematically purges noise from the LLM-based reward model with minimal human supervision. Empirically, we demonstrate the efficacy of \texttt{Learn-to-Ask} in a real-world medical dataset, using LLMs of varying sizes up to 32B. Our approach culminates in the successful deployment of LLMs into a live, large-scale online AI service. In rigorous in-house evaluations, our model was launched and achieved performance even superior to human experts, proving our framework's ability to translate offline data into tangible, real-world impact. We hope this work provides a practical and economically viable blueprint for transforming passive LLMs into proactive, goal-oriented LLM applications.</div>
+    <div class="meta">
+        <a href="http://arxiv.org/abs/2510.25441v1" target="_blank">View on arXiv</a>
+    </div>
+</div>
+
+
+<div class="paper">
+    <h3>StorageXTuner: An LLM Agent-Driven Automatic Tuning Framework for   Heterogeneous Storage Systems</h3>
+    <div class="scores">
+        <span class="score relevance">Relevance: 9/10</span>
+        <span class="score importance">Importance: 9/10</span>
+    </div>
+    <div class="abstract">Automatically configuring storage systems is hard: parameter spaces are large and conditions vary across workloads, deployments, and versions. Heuristic and ML tuners are often system specific, require manual glue, and degrade under changes. Recent LLM-based approaches help but usually treat tuning as a single-shot, system-specific task, which limits cross-system reuse, constrains exploration, and weakens validation. We present StorageXTuner, an LLM agent-driven auto-tuning framework for heterogeneous storage engines. StorageXTuner separates concerns across four agents - Executor (sandboxed benchmarking), Extractor (performance digest), Searcher (insight-guided configuration exploration), and Reflector (insight generation and management). The design couples an insight-driven tree search with layered memory that promotes empirically validated insights and employs lightweight checkers to guard against unsafe actions. We implement a prototype and evaluate it on RocksDB, LevelDB, CacheLib, and MySQL InnoDB with YCSB, MixGraph, and TPC-H/C. Relative to out-of-the-box settings and to ELMo-Tune, StorageXTuner reaches up to 575% and 111% higher throughput, reduces p99 latency by as much as 88% and 56%, and converges with fewer trials.</div>
+    <div class="meta">
+        <a href="http://arxiv.org/abs/2510.25017v1" target="_blank">View on arXiv</a>
+    </div>
+</div>
+
+
+<div class="paper">
+    <h3>Mitigating Hallucination in Large Language Models (LLMs): An   Application-Oriented Survey on RAG, Reasoning, and Agentic Systems</h3>
+    <div class="scores">
+        <span class="score relevance">Relevance: 10/10</span>
+        <span class="score importance">Importance: 8/10</span>
+    </div>
+    <div class="abstract">Hallucination remains one of the key obstacles to the reliable deployment of large language models (LLMs), particularly in real-world applications. Among various mitigation strategies, Retrieval-Augmented Generation (RAG) and reasoning enhancement have emerged as two of the most effective and widely adopted approaches, marking a shift from merely suppressing hallucinations to balancing creativity and reliability. However, their synergistic potential and underlying mechanisms for hallucination mitigation have not yet been systematically examined. This survey adopts an application-oriented perspective of capability enhancement to analyze how RAG, reasoning enhancement, and their integration in Agentic Systems mitigate hallucinations. We propose a taxonomy distinguishing knowledge-based and logic-based hallucinations, systematically examine how RAG and reasoning address each, and present a unified framework supported by real-world applications, evaluations, and benchmarks.</div>
+    <div class="meta">
+        <a href="http://arxiv.org/abs/2510.24476v1" target="_blank">View on arXiv</a>
+    </div>
+</div>
+
+
+<div class="paper">
+    <h3>Metadata-Driven Retrieval-Augmented Generation for Financial Question   Answering</h3>
+    <div class="scores">
+        <span class="score relevance">Relevance: 10/10</span>
+        <span class="score importance">Importance: 8/10</span>
+    </div>
+    <div class="abstract">Retrieval-Augmented Generation (RAG) struggles on long, structured financial filings where relevant evidence is sparse and cross-referenced. This paper presents a systematic investigation of advanced metadata-driven Retrieval-Augmented Generation (RAG) techniques, proposing and evaluating a novel, multi-stage RAG architecture that leverages LLM-generated metadata. We introduce a sophisticated indexing pipeline to create contextually rich document chunks and benchmark a spectrum of enhancements, including pre-retrieval filtering, post-retrieval reranking, and enriched embeddings, benchmarked on the FinanceBench dataset. Our results reveal that while a powerful reranker is essential for precision, the most significant performance gains come from embedding chunk metadata directly with text ("contextual chunks"). Our proposed optimal architecture combines LLM-driven pre-retrieval optimizations with these contextual embeddings to achieve superior performance. Additionally, we present a custom metadata reranker that offers a compelling, cost-effective alternative to commercial solutions, highlighting a practical trade-off between peak performance and operational efficiency. This study provides a blueprint for building robust, metadata-aware RAG systems for financial document analysis.</div>
+    <div class="meta">
+        <a href="http://arxiv.org/abs/2510.24402v1" target="_blank">View on arXiv</a>
+    </div>
+</div>
+
+
+<div class="paper">
+    <h3>PaTaRM: Bridging Pairwise and Pointwise Signals via Preference-Aware   Task-Adaptive Reward Modeling</h3>
+    <div class="scores">
+        <span class="score relevance">Relevance: 10/10</span>
+        <span class="score importance">Importance: 8/10</span>
+    </div>
+    <div class="abstract">Reward models (RMs) are central to reinforcement learning from human feedback (RLHF), providing the critical supervision signals that align large language models (LLMs) with human preferences. While generative reward models (GRMs) offer greater interpretability than traditional scalar RMs, current training paradigms remain limited. Pair-wise methods rely on binary good-versus-bad labels, which cause mismatches for point-wise inference and necessitate complex pairing strategies for effective application in RLHF. On the other hand, point-wise methods require more elaborate absolute labeling with rubric-driven criteria, resulting in poor adaptability and high annotation costs. In this work, we propose the Preference-Aware Task-Adaptive Reward Model (PaTaRM), a unified framework that integrates a preference-aware reward (PAR) mechanism with dynamic rubric adaptation. PaTaRM leverages relative preference information from pairwise data to construct robust point-wise training signals, eliminating the need for explicit point-wise labels. Simultaneously, it employs a task-adaptive rubric system that flexibly generates evaluation criteria for both global task consistency and instance-specific fine-grained reasoning. This design enables efficient, generalizable, and interpretable reward modeling for RLHF. Extensive experiments show that PaTaRM achieves an average relative improvement of 4.7% on RewardBench and RMBench across Qwen3-8B and Qwen3-14B models. Furthermore, PaTaRM boosts downstream RLHF performance, with an average improvement of 13.6% across IFEval and InFoBench benchmarks, confirming its effectiveness and robustness. Our code is available at https://github.com/JaneEyre0530/PaTaRM.</div>
+    <div class="meta">
+        <a href="http://arxiv.org/abs/2510.24235v1" target="_blank">View on arXiv</a>
+    </div>
+</div>
+
+
+<div class="paper">
+    <h3>ALDEN: Reinforcement Learning for Active Navigation and Evidence   Gathering in Long Documents</h3>
+    <div class="scores">
+        <span class="score relevance">Relevance: 9/10</span>
+        <span class="score importance">Importance: 8/10</span>
+    </div>
+    <div class="abstract">Vision-language models (VLMs) excel at interpreting text-rich images but struggle with long, visually complex documents that demand analysis and integration of information spread across multiple pages. Existing approaches typically rely on fixed reasoning templates or rigid pipelines, which force VLMs into a passive role and hinder both efficiency and generalization. We present Active Long-DocumEnt Navigation (ALDEN), a multi-turn reinforcement learning framework that fine-tunes VLMs as interactive agents capable of actively navigating long, visually rich documents. ALDEN introduces a novel fetch action that directly accesses the page by index, complementing the classic search action and better exploiting document structure. For dense process supervision and efficient training, we propose a rule-based cross-level reward that provides both turn- and token-level signals. To address the empirically observed training instability caused by numerous visual tokens from long documents, we further propose a visual-semantic anchoring mechanism that applies a dual-path KL-divergence constraint to stabilize visual and textual representations separately during training. Trained on a corpus constructed from three open-source datasets, ALDEN achieves state-of-the-art performance on five long-document benchmarks. Overall, ALDEN marks a step beyond passive document reading toward agents that autonomously navigate and reason across long, visually rich documents, offering a robust path to more accurate and efficient long-document understanding.</div>
+    <div class="meta">
+        <a href="http://arxiv.org/abs/2510.25668v1" target="_blank">View on arXiv</a>
+    </div>
+</div>
+
+
+<div class="paper">
+    <h3>Are Language Models Efficient Reasoners? A Perspective from Logic   Programming</h3>
+    <div class="scores">
+        <span class="score relevance">Relevance: 9/10</span>
+        <span class="score importance">Importance: 8/10</span>
+    </div>
+    <div class="abstract">Modern language models (LMs) exhibit strong deductive reasoning capabilities, yet standard evaluations emphasize correctness while overlooking a key aspect of human-like reasoning: efficiency. In real-world reasoning scenarios, much of the available information is irrelevant, and effective deductive inference requires identifying and ignoring such distractions. We propose a framework for assessing LM reasoning efficiency through the lens of logic programming, introducing a simple method to align proofs written in natural language -- as generated by an LM -- with shortest proofs found by executing the logic program. Efficiency is quantified by measuring how well a model avoids unnecessary inference. Empirically, we construct a dataset of math word problems injected with various number of irrelevant axioms that vary in semantic overlap with the goal theorem. We find that current LMs show marked accuracy declines under such conditions -- even with minimal, domain-consistent distractions -- and the proofs they generate frequently exhibit detours through irrelevant inferences.</div>
+    <div class="meta">
+        <a href="http://arxiv.org/abs/2510.25626v1" target="_blank">View on arXiv</a>
+    </div>
+</div>
+
+
+<div class="paper">
+    <h3>INT v.s. FP: A Comprehensive Study of Fine-Grained Low-bit Quantization   Formats</h3>
+    <div class="scores">
+        <span class="score relevance">Relevance: 9/10</span>
+        <span class="score importance">Importance: 8/10</span>
+    </div>
+    <div class="abstract">Modern AI hardware, such as Nvidia's Blackwell architecture, is increasingly embracing low-precision floating-point (FP) formats to handle the pervasive activation outliers in Large Language Models (LLMs). Despite this industry trend, a unified comparison of FP and integer (INT) quantization across varying granularities has been missing, leaving algorithm and hardware co-design without clear guidance. This paper fills that gap by systematically investigating the trade-offs between FP and INT formats. We reveal a critical performance crossover: while FP excels in coarse-grained quantization, the comparison at fine-grained (block-wise) levels is more nuanced. Our comprehensive comparison demonstrates that for popular 8-bit fine-grained formats (e.g., MX with block size 32), MXINT8 is superior to its FP counterpart in both algorithmic accuracy and hardware efficiency. However, for 4-bit formats, FP (e.g., MXFP4, NVFP4) often holds an accuracy advantage , though we show that NVINT4 can surpass NVFP4 when outlier-mitigation techniques like Hadamard rotation are applied. We also introduce a symmetric clipping method that resolves gradient bias in fine-grained low-bit INT training, enabling nearly lossless performance for MXINT8 training. These findings challenge the current hardware trajectory, demonstrating that a one-size-fits-all FP approach is suboptimal and advocating that fine-grained INT formats, particularly MXINT8, offer a better balance of accuracy, power, and efficiency for future AI accelerators.</div>
+    <div class="meta">
+        <a href="http://arxiv.org/abs/2510.25602v1" target="_blank">View on arXiv</a>
+    </div>
+</div>
+
+
+<div class="paper">
+    <h3>Aligning Large Language Models with Procedural Rules: An Autoregressive   State-Tracking Prompting for In-Game Trading</h3>
+    <div class="scores">
+        <span class="score relevance">Relevance: 9/10</span>
+        <span class="score importance">Importance: 8/10</span>
+    </div>
+    <div class="abstract">Large Language Models (LLMs) enable dynamic game interactions but fail to follow essential procedural flows in rule-governed trading systems, eroding player trust. This work resolves the core tension between the creative flexibility of LLMs and the procedural demands of in-game trading (browse-offer-review-confirm). To this end, Autoregressive State-Tracking Prompting (ASTP) is introduced, a methodology centered on a strategically orchestrated prompt that compels an LLM to make its state-tracking process explicit and verifiable. Instead of relying on implicit contextual understanding, ASTP tasks the LLM with identifying and reporting a predefined state label from the previous turn. To ensure transactional integrity, this is complemented by a state-specific placeholder post-processing method for accurate price calculations. Evaluation across 300 trading dialogues demonstrates >99% state compliance and 99.3% calculation precision. Notably, ASTP with placeholder post-processing on smaller models (Gemini-2.5-Flash) matches larger models' (Gemini-2.5-Pro) performance while reducing response time from 21.2s to 2.4s, establishing a practical foundation that satisfies both real-time requirements and resource constraints of commercial games.</div>
+    <div class="meta">
+        <a href="http://arxiv.org/abs/2510.25014v1" target="_blank">View on arXiv</a>
+    </div>
+</div>
+
+
+<div class="paper">
+    <h3>Sequences of Logits Reveal the Low Rank Structure of Language Models</h3>
+    <div class="scores">
+        <span class="score relevance">Relevance: 9/10</span>
+        <span class="score importance">Importance: 8/10</span>
+    </div>
+    <div class="abstract">A major problem in the study of large language models is to understand their inherent low-dimensional structure. We introduce an approach to study the low-dimensional structure of language models at a model-agnostic level: as sequential probabilistic models. We first empirically demonstrate that a wide range of modern language models exhibit low-rank structure: in particular, matrices built from the model's logits for varying sets of prompts and responses have low approximate rank. We then show that this low-rank structure can be leveraged for generation -- in particular, we can generate a response to a target prompt using a linear combination of the model's outputs on unrelated, or even nonsensical prompts.   On the theoretical front, we observe that studying the approximate rank of language models in the sense discussed above yields a simple universal abstraction whose theoretical predictions parallel our experiments. We then analyze the representation power of the abstraction and give provable learning guarantees.</div>
+    <div class="meta">
+        <a href="http://arxiv.org/abs/2510.24966v1" target="_blank">View on arXiv</a>
+    </div>
+</div>
+
+
+<div class="paper">
+    <h3>Agent Data Protocol: Unifying Datasets for Diverse, Effective   Fine-tuning of LLM Agents</h3>
+    <div class="scores">
+        <span class="score relevance">Relevance: 9/10</span>
+        <span class="score importance">Importance: 8/10</span>
+    </div>
+    <div class="abstract">Public research results on large-scale supervised finetuning of AI agents remain relatively rare, since the collection of agent training data presents unique challenges. In this work, we argue that the bottleneck is not a lack of underlying data sources, but that a large variety of data is fragmented across heterogeneous formats, tools, and interfaces. To this end, we introduce the agent data protocol (ADP), a light-weight representation language that serves as an "interlingua" between agent datasets in diverse formats and unified agent training pipelines downstream. The design of ADP is expressive enough to capture a large variety of tasks, including API/tool use, browsing, coding, software engineering, and general agentic workflows, while remaining simple to parse and train on without engineering at a per-dataset level. In experiments, we unified a broad collection of 13 existing agent training datasets into ADP format, and converted the standardized ADP data into training-ready formats for multiple agent frameworks. We performed SFT on these data, and demonstrated an average performance gain of ~20% over corresponding base models, and delivers state-of-the-art or near-SOTA performance on standard coding, browsing, tool use, and research benchmarks, without domain-specific tuning. All code and data are released publicly, in the hope that ADP could help lower the barrier to standardized, scalable, and reproducible agent training.</div>
+    <div class="meta">
+        <a href="http://arxiv.org/abs/2510.24702v1" target="_blank">View on arXiv</a>
+    </div>
+</div>
+
+
+<div class="paper">
+    <h3>ParallelMuse: Agentic Parallel Thinking for Deep Information Seeking</h3>
+    <div class="scores">
+        <span class="score relevance">Relevance: 9/10</span>
+        <span class="score importance">Importance: 8/10</span>
+    </div>
+    <div class="abstract">Parallel thinking expands exploration breadth, complementing the deep exploration of information-seeking (IS) agents to further enhance problem-solving capability. However, conventional parallel thinking faces two key challenges in this setting: inefficiency from repeatedly rolling out from scratch, and difficulty in integrating long-horizon reasoning trajectories during answer generation, as limited context capacity prevents full consideration of the reasoning process. To address these issues, we propose ParallelMuse, a two-stage paradigm designed for deep IS agents. The first stage, Functionality-Specified Partial Rollout, partitions generated sequences into functional regions and performs uncertainty-guided path reuse and branching to enhance exploration efficiency. The second stage, Compressed Reasoning Aggregation, exploits reasoning redundancy to losslessly compress information relevant to answer derivation and synthesize a coherent final answer. Experiments across multiple open-source agents and benchmarks demonstrate up to 62% performance improvement with a 10--30% reduction in exploratory token consumption.</div>
+    <div class="meta">
+        <a href="http://arxiv.org/abs/2510.24698v1" target="_blank">View on arXiv</a>
+    </div>
+</div>
+
+
+<div class="paper">
+    <h3>AgentFold: Long-Horizon Web Agents with Proactive Context Management</h3>
+    <div class="scores">
+        <span class="score relevance">Relevance: 9/10</span>
+        <span class="score importance">Importance: 8/10</span>
+    </div>
+    <div class="abstract">LLM-based web agents show immense promise for information seeking, yet their effectiveness on long-horizon tasks is hindered by a fundamental trade-off in context management. Prevailing ReAct-based agents suffer from context saturation as they accumulate noisy, raw histories, while methods that fixedly summarize the full history at each step risk the irreversible loss of critical details. Addressing these, we introduce AgentFold, a novel agent paradigm centered on proactive context management, inspired by the human cognitive process of retrospective consolidation. AgentFold treats its context as a dynamic cognitive workspace to be actively sculpted, rather than a passive log to be filled. At each step, it learns to execute a `folding' operation, which manages its historical trajectory at multiple scales: it can perform granular condensations to preserve vital, fine-grained details, or deep consolidations to abstract away entire multi-step sub-tasks. The results on prominent benchmarks are striking: with simple supervised fine-tuning (without continual pre-training or RL), our AgentFold-30B-A3B agent achieves 36.2% on BrowseComp and 47.3% on BrowseComp-ZH. Notably, this performance not only surpasses or matches open-source models of a dramatically larger scale, such as the DeepSeek-V3.1-671B-A37B, but also surpasses leading proprietary agents like OpenAI's o4-mini.</div>
+    <div class="meta">
+        <a href="http://arxiv.org/abs/2510.24699v1" target="_blank">View on arXiv</a>
+    </div>
+</div>
+
+
+<div class="paper">
+    <h3>InteractComp: Evaluating Search Agents With Ambiguous Queries</h3>
+    <div class="scores">
+        <span class="score relevance">Relevance: 9/10</span>
+        <span class="score importance">Importance: 8/10</span>
+    </div>
+    <div class="abstract">Language agents have demonstrated remarkable potential in web search and information retrieval. However, these search agents assume user queries are complete and unambiguous, an assumption that diverges from reality where users begin with incomplete queries requiring clarification through interaction. Yet most agents lack interactive mechanisms during the search process, and existing benchmarks cannot assess this capability. To address this gap, we introduce InteractComp, a benchmark designed to evaluate whether search agents can recognize query ambiguity and actively interact to resolve it during search. Following the principle of easy to verify, interact to disambiguate, we construct 210 expert-curated questions across 9 domains through a target-distractor methodology that creates genuine ambiguity resolvable only through interaction. Evaluation of 17 models reveals striking failure: the best model achieves only 13.73% accuracy despite 71.50% with complete context, exposing systematic overconfidence rather than reasoning deficits. Forced interaction produces dramatic gains, demonstrating latent capability current strategies fail to engage. Longitudinal analysis shows interaction capabilities stagnated over 15 months while search performance improved seven-fold, revealing a critical blind spot. This stagnation, coupled with the immediate feedback inherent to search tasks, makes InteractComp a valuable resource for both evaluating and training interaction capabilities in search agents. The code is available at https://github.com/FoundationAgents/InteractComp.</div>
+    <div class="meta">
+        <a href="http://arxiv.org/abs/2510.24668v1" target="_blank">View on arXiv</a>
+    </div>
+</div>
+
+
+<div class="paper">
+    <h3>The Narrative Continuity Test: A Conceptual Framework for Evaluating   Identity Persistence in AI Systems</h3>
+    <div class="scores">
+        <span class="score relevance">Relevance: 9/10</span>
+        <span class="score importance">Importance: 8/10</span>
+    </div>
+    <div class="abstract">Artificial intelligence systems based on large language models (LLMs) can now generate coherent text, music, and images, yet they operate without a persistent state: each inference reconstructs context from scratch. This paper introduces the Narrative Continuity Test (NCT) -- a conceptual framework for evaluating identity persistence and diachronic coherence in AI systems. Unlike capability benchmarks that assess task performance, the NCT examines whether an LLM remains the same interlocutor across time and interaction gaps. The framework defines five necessary axes -- Situated Memory, Goal Persistence, Autonomous Self-Correction, Stylistic & Semantic Stability, and Persona/Role Continuity -- and explains why current architectures systematically fail to support them. Case analyses (Character.AI, Grok, Replit, Air Canada) show predictable continuity failures under stateless inference. The NCT reframes AI evaluation from performance to persistence, outlining conceptual requirements for future benchmarks and architectural designs that could sustain long-term identity and goal coherence in generative models.</div>
+    <div class="meta">
+        <a href="http://arxiv.org/abs/2510.24831v1" target="_blank">View on arXiv</a>
+    </div>
+</div>
+
+    </div>
+</div>
+
+    </body>
+    </html>
+    
