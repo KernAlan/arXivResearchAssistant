@@ -1,0 +1,430 @@
+
+    <!DOCTYPE html>
+    <html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>ArXiv Research Digest</title>
+        <style>
+            
+body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    line-height: 1.5;
+    color: #2d3748;
+    margin: 0;
+    padding: 20px;
+    background: #f7fafc;
+}
+
+.digest {
+    max-width: 800px;
+    margin: 0 auto;
+    background: white;
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+}
+
+.header {
+    margin-bottom: 2rem;
+    padding-bottom: 1rem;
+    border-bottom: 2px solid #e2e8f0;
+}
+
+.header h2 {
+    margin: 0;
+    color: #2d3748;
+}
+
+.header p {
+    margin: 0.5rem 0 0;
+    color: #718096;
+}
+
+.highlights {
+    background: #f8fafc;
+    padding: 1.5rem;
+    border-radius: 8px;
+    margin-bottom: 3rem;
+    border: 1px solid #e2e8f0;
+}
+
+.highlights h3 {
+    color: #2d3748;
+    margin: 0 0 1rem 0;
+    font-size: 1.25rem;
+}
+
+.summary {
+    white-space: pre-line;
+    line-height: 1.6;
+}
+
+.summary ol {
+    padding-left: 1.5rem;
+    margin: 1rem 0;
+}
+
+.summary li {
+    margin-bottom: 0.75rem;
+    padding-left: 0.5rem;
+}
+
+.papers {
+    margin-top: 3rem;
+}
+
+.papers h3 {
+    color: #2d3748;
+    margin-bottom: 1.5rem;
+    padding-bottom: 1rem;
+    border-bottom: 2px solid #e2e8f0;
+}
+
+.paper {
+    margin-bottom: 2rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid #e2e8f0;
+}
+
+.paper:last-child {
+    border-bottom: none;
+}
+
+.paper h3 {
+    margin: 0 0 0.5rem;
+    color: #2d3748;
+}
+
+.paper .scores {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 0.5rem;
+}
+
+.paper .score {
+    padding: 0.25rem 0.5rem;
+    border-radius: 4px;
+    font-size: 0.875rem;
+}
+
+.paper .relevance {
+    background: #e6fffa;
+    color: #047481;
+}
+
+.paper .importance {
+    background: #ebf4ff;
+    color: #1a56db;
+}
+
+.paper .abstract {
+    color: #4a5568;
+    margin: 0.5rem 0;
+}
+
+.paper .meta {
+    font-size: 0.875rem;
+    color: #718096;
+}
+
+.paper .meta a {
+    color: #4299e1;
+    text-decoration: none;
+}
+
+.paper .meta a:hover {
+    text-decoration: underline;
+}
+
+        </style>
+    </head>
+    <body>
+        
+<div class="digest">
+    <div class="header">
+        <h2>ArXiv Research Digest</h2>
+        <p>Found 20 relevant papers out of 196 new submissions</p>
+    </div>
+    
+    <div class="highlights">
+        <h3>🔥 Key Highlights</h3>
+        Hey boss, found 5 cool papers today that I think you'll love:
+<ol>
+<li><b>Open Agent Specification (Agent Spec) Technical Report</b>. They introduce a declarative, cross-framework language for defining agents and agentic workflows so you can "define once, run anywhere" and use a common evaluation harness across runtimes (LangGraph, CrewAI, AutoGen, WayFlow) — aiming to fix the current fragmentation. Practical impact: with an avg score of 9.5/10 (Relevance 10/10), this means we can realistically standardize our agent components for portability and reuse; next step is to map one of our production agents to Agent Spec and run their harness (http://arxiv.org/abs/2510.04173v3) to measure cross-runtime behavior and save duplicated engineering effort.</li>
+<li><b>Sampling-Efficient Test-Time Scaling: Self-Truncation Best-of-N (ST-BoN)</b>. ST-BoN detects promising partial decodes early and truncates bad samples so you don't need to fully generate N outputs or use reward models, cutting dynamic GPU memory by >80% and latency by ~50% while matching Full‑BoN performance. Practical impact: scored 9.5/10 (Relevance 10/10) — we should pilot ST-BoN on our high-cost generation endpoints to chase the reported 70–80% compute savings or a 3–4 point accuracy uplift for the same budget (http://arxiv.org/abs/2503.01422v3).</li>
+<li><b>Worse than Zero-shot? RAGuard — a fact-checking dataset for misleading retrievals</b>. RAGuard builds a realistic benchmark from Reddit to test RAG systems against supporting, misleading, and unrelated retrieved evidence and shows many RAG setups perform worse than zero-shot when retrievals are misleading. Practical impact: also a 9.5/10 (Relevance 10/10) — we should run our RAG pipelines against the dataset (https://huggingface.co/datasets/UCSC-IRKM/RAGuard; http://arxiv.org/abs/2502.16101v4) to quantify brittleness and prioritize fixes like retrieval filtering, evidence weighting, or safe fallbacks where retrieval confidence is low.</li>
+<li><b>Complex QA and language models hybrid architectures — Survey</b>. A thorough review of skills, datasets, metrics, and hybrid/agentic architectures needed for truly complex QA (multi-step reasoning, domain knowledge, explainability, human-in-loop), consolidating options like hybridization, decomposition, and specialized evaluation. Practical impact: with a 9.5/10 score (Relevance 10/10), this is a handy checklist for productizing complex QA — let's use it to pick architecture patterns, metrics, and a short experiment plan for our hardest user scenarios (http://arxiv.org/abs/2302.09051v5).</li>
+<li><b>Adversarial Distilled Retrieval-Augmented Guard (ADRAG)</b>. ADRAG trains a large adversarial, retrieval-augmented teacher and distills it into a compact student that uses top‑K safety exemplars at inference, matching ~98.5% of a 7B guard's performance with much lower latency and beating GPT‑4 on OOD detection in their evals. Practical impact: avg score 9.0/10 (Relevance 10/10, Importance 8/10) — this is a practical path to get near‑state-of-the-art safety detection at production QPS (they report up to 5.6x lower latency); we should spike a distillation + online KB pipeline for our safety guard and evaluate OOD detection gains (http://arxiv.org/abs/2509.14622v3).</li>
+</ol>
+Let's act fast: this week spin up three short spikes — (1) map one agent to Agent Spec and run the harness, (2) A/B ST‑BoN on our biggest generation endpoint, and (3) run RAGuard + a quick ADRAG distillation spike — then sync on wins on Friday.
+    </div>
+    
+    <div class="papers">
+        <h3>📄 Detailed Papers</h3>
+        
+<div class="paper">
+    <h3>Open Agent Specification (Agent Spec) Technical Report</h3>
+    <div class="scores">
+        <span class="score relevance">Relevance: 10/10</span>
+        <span class="score importance">Importance: 9/10</span>
+    </div>
+    <div class="abstract">Open Agent Specification (Agent Spec) is a declarative language for defining AI agents and workflows in a way that is compatible across different AI frameworks, promoting portability and interoperability within AI Agent frameworks. Agent Spec aims to resolve the challenges of fragmented agent development by providing a common unified specification that allows AI agents to be designed once and deployed across various frameworks, improving interoperability and reusability, while reducing redundant efforts. Additionally, Agent Spec facilitates development tools and portability, allowing AI agents to be defined independently of their execution environment and enabling teams to exchange solutions without implementation-specific limitations. Agent Spec benefits four key groups: (i) Agent developers, who gain a superset of reusable components and design patterns, enabling them to leverage a broader range of functionalities; (ii) Agent framework and tool developers, who can use Agent Spec as an interchange format and therefore benefit from cross-framework and tool support; (iii) Researchers, who can achieve reproducible results and comparability, facilitating more reliable and consistent outcomes; (iv) Enterprises, which see faster prototype-to-deployment, increased productivity, and greater scalability and maintainability for their AI agent solutions. This technical report provides an overview of the technical foundations of Agent Spec, including motivation, benefits, and future work. We also introduce a standardized Evaluation harness to assess agent behavior and agentic workflows across runtimes (LangGraph, CrewAI, AutoGen, and WayFlow), using three different benchmarks (SimpleQA Verified, $\tau^2$-Bench and BIRD-SQL) - analogous to how HELM and related harnesses standardized LLM evaluation - so that performance, robustness, and efficiency can be compared consistently across frameworks.</div>
+    <div class="meta">
+        <a href="http://arxiv.org/abs/2510.04173v3" target="_blank">View on arXiv</a>
+    </div>
+</div>
+
+
+<div class="paper">
+    <h3>Sampling-Efficient Test-Time Scaling: Self-Estimating the Best-of-N   Sampling in Early Decoding</h3>
+    <div class="scores">
+        <span class="score relevance">Relevance: 10/10</span>
+        <span class="score importance">Importance: 9/10</span>
+    </div>
+    <div class="abstract">Test-time scaling enhances large language model performance by allocating additional compute resources during inference. Best-of-N (BoN) sampling serves as a common sampling-based scaling technique, broadening the search space in parallel to find better solutions from the model distribution. However, its cost-performance trade-off is still underexplored. Two main challenges limit the efficiency of BoN sampling: (1) Generating N full samples consumes substantial GPU memory, reducing inference capacity under limited resources. (2) Reward models add extra memory and latency overhead, and training strong reward models introduces potential training data costs. Although some studies have explored efficiency improvements, none have addressed both challenges at once. To address this gap, we propose Self-Truncation Best-of-N (ST-BoN), a decoding method that avoids fully generating all N samples and eliminates the need for reward models. It leverages early sampling consistency in the model's internal states to identify the most promising path and truncate suboptimal ones. In terms of cost, ST-BoN reduces dynamic GPU memory usage by over 80% and inference latency by 50%. In terms of cost-performance trade-off, ST-BoN achieves the same performance as Full-BoN while saving computational cost by 70%-80%, and under the same cost, it can improve accuracy by 3-4 points.</div>
+    <div class="meta">
+        <a href="http://arxiv.org/abs/2503.01422v3" target="_blank">View on arXiv</a>
+    </div>
+</div>
+
+
+<div class="paper">
+    <h3>Worse than Zero-shot? A Fact-Checking Dataset for Evaluating the   Robustness of RAG Against Misleading Retrievals</h3>
+    <div class="scores">
+        <span class="score relevance">Relevance: 10/10</span>
+        <span class="score importance">Importance: 9/10</span>
+    </div>
+    <div class="abstract">Retrieval-augmented generation (RAG) has shown impressive capabilities in mitigating hallucinations in large language models (LLMs). However, LLMs struggle to maintain consistent reasoning when exposed to misleading or conflicting evidence, especially in real-world domains such as politics, where information is polarized or selectively framed. Mainstream RAG benchmarks evaluate models under clean retrieval settings, where systems generate answers from gold-standard documents, or under synthetically perturbed settings, where documents are artificially injected with noise. These assumptions fail to reflect real-world conditions, often leading to an overestimation of RAG system performance. To address this gap, we introduce RAGuard, the first benchmark to evaluate the robustness of RAG systems against misleading retrievals. Unlike prior benchmarks that rely on synthetic noise, our fact-checking dataset captures naturally occurring misinformation by constructing its retrieval corpus from Reddit discussions. It categorizes retrieved evidence into three types: supporting, misleading, and unrelated, providing a realistic and challenging testbed for assessing how well RAG systems navigate different types of evidence. Our experiments reveal that, when exposed to potentially misleading retrievals, all tested LLM-powered RAG systems perform worse than their zero-shot baselines (i.e., no retrieval at all), while human annotators consistently perform better, highlighting LLMs' susceptibility to noisy environments. To our knowledge, RAGuard is the first benchmark to systematically assess the robustness of the RAG against misleading evidence. We expect this benchmark to drive future research toward improving RAG systems beyond idealized datasets, making them more reliable for real-world applications. The dataset is available at https://huggingface.co/datasets/UCSC-IRKM/RAGuard.</div>
+    <div class="meta">
+        <a href="http://arxiv.org/abs/2502.16101v4" target="_blank">View on arXiv</a>
+    </div>
+</div>
+
+
+<div class="paper">
+    <h3>Complex QA and language models hybrid architectures, Survey</h3>
+    <div class="scores">
+        <span class="score relevance">Relevance: 10/10</span>
+        <span class="score importance">Importance: 9/10</span>
+    </div>
+    <div class="abstract">This paper reviews the state-of-the-art of large language models (LLM) architectures and strategies for "complex" question-answering with a focus on hybrid architectures. LLM based chatbot services have allowed anyone to grasp the potential of LLM to solve many common problems, but soon discovered their limitations for complex questions. Addressing more specific, complex questions (e.g., "What is the best mix of power-generation methods to reduce climate change ?") often requires specialized architectures, domain knowledge, new skills, decomposition and multi-step resolution, deep reasoning, sensitive data protection, explainability, and human-in-the-loop processes. Therefore, we review: (1) necessary skills and tasks for handling complex questions and common LLM limits to overcome; (2) dataset, cost functions and evaluation metrics for measuring and improving (e.g. accuracy, explainability, fairness, robustness, groundedness, faithfulness, toxicity...); (3) family of solutions to overcome LLM limitations by (a) training and reinforcement (b) hybridization, (c) prompting, (d) agentic-architectures (agents, tools) and extended reasoning.</div>
+    <div class="meta">
+        <a href="http://arxiv.org/abs/2302.09051v5" target="_blank">View on arXiv</a>
+    </div>
+</div>
+
+
+<div class="paper">
+    <h3>Adversarial Distilled Retrieval-Augmented Guarding Model for Online   Malicious Intent Detection</h3>
+    <div class="scores">
+        <span class="score relevance">Relevance: 10/10</span>
+        <span class="score importance">Importance: 8/10</span>
+    </div>
+    <div class="abstract">With the deployment of Large Language Models (LLMs) in interactive applications, online malicious intent detection has become increasingly critical. However, existing approaches fall short of handling diverse and complex user queries in real time. To address these challenges, we introduce ADRAG (Adversarial Distilled Retrieval-Augmented Guard), a two-stage framework for robust and efficient online malicious intent detection. In the training stage, a high-capacity teacher model is trained on adversarially perturbed, retrieval-augmented inputs to learn robust decision boundaries over diverse and complex user queries. In the inference stage, a distillation scheduler transfers the teacher's knowledge into a compact student model, with a continually updated knowledge base collected online. At deployment, the compact student model leverages top-K similar safety exemplars retrieved from the online-updated knowledge base to enable both online and real-time malicious query detection. Evaluations across ten safety benchmarks demonstrate that ADRAG, with a 149M-parameter model, achieves 98.5% of WildGuard-7B's performance, surpasses GPT-4 by 3.3% and Llama-Guard-3-8B by 9.5% on out-of-distribution detection, while simultaneously delivering up to 5.6x lower latency at 300 queries per second (QPS) in real-time applications.</div>
+    <div class="meta">
+        <a href="http://arxiv.org/abs/2509.14622v3" target="_blank">View on arXiv</a>
+    </div>
+</div>
+
+
+<div class="paper">
+    <h3>RL Fine-Tuning Heals OOD Forgetting in SFT</h3>
+    <div class="scores">
+        <span class="score relevance">Relevance: 10/10</span>
+        <span class="score importance">Importance: 8/10</span>
+    </div>
+    <div class="abstract">The two-stage fine-tuning paradigm of Supervised Fine-Tuning (SFT) followed by Reinforcement Learning (RL) has empirically shown better reasoning performance than one-stage SFT for the post-training of Large Language Models (LLMs). However, the evolution and mechanism behind the synergy of SFT and RL are still under-explored and inconclusive. In our study, we find the well-known claim "SFT memorizes, RL generalizes" is over-simplified, and discover that: (1) OOD performance peaks at the early stage of SFT and then declines (OOD forgetting), the best SFT checkpoint cannot be captured by training/test loss; (2) the subsequent RL stage does not generate fundamentally better OOD capability, instead it plays an \textbf{OOD restoration} role, recovering the lost reasoning ability during SFT; (3) The recovery ability has boundaries, \ie{} \textbf{if SFT trains for too short or too long, RL cannot recover the lost OOD ability;} (4) To uncover the underlying mechanisms behind the forgetting and restoration process, we employ SVD analysis on parameter matrices, manually edit them, and observe their impacts on model performance. Unlike the common belief that the shift of model capacity mainly results from the changes of singular values, we find that they are actually quite stable throughout fine-tuning. Instead, the OOD behavior strongly correlates with the \textbf{rotation of singular vectors}. Our findings re-identify the roles of SFT and RL in the two-stage fine-tuning and discover the rotation of singular vectors as the key mechanism. %reversing the rotations induced by SFT, which shows recovery from forgetting, whereas imposing the SFT parameter directions onto a RL-tuned model results in performance degradation. Code is available at https://github.com/xiaodanguoguo/RL_Heals_SFT</div>
+    <div class="meta">
+        <a href="http://arxiv.org/abs/2509.12235v2" target="_blank">View on arXiv</a>
+    </div>
+</div>
+
+
+<div class="paper">
+    <h3>Zero-knowledge LLM hallucination detection and mitigation through   fine-grained cross-model consistency</h3>
+    <div class="scores">
+        <span class="score relevance">Relevance: 10/10</span>
+        <span class="score importance">Importance: 8/10</span>
+    </div>
+    <div class="abstract">Large language models (LLMs) have demonstrated impressive capabilities across diverse tasks, but they remain susceptible to hallucinations--generating content that appears plausible but contains factual inaccuracies. We present Finch-Zk, a black-box framework that leverages fine-grained cross-model consistency to detect and mitigate hallucinations in LLM outputs without requiring external knowledge sources. Finch-Zk introduces two key innovations: 1) a cross-model consistency checking strategy that reveals fine-grained inaccuracies by comparing responses generated by diverse models from semantically-equivalent prompts, and 2) a targeted mitigation technique that applies precise corrections to problematic segments while preserving accurate content. Experiments on the FELM dataset show Finch-Zk improves hallucination detection F1 scores by 6-39\% compared to existing approaches. For mitigation, Finch-Zk achieves up to 9 absolute percentage points improvement in answer accuracy on the GPQA-diamond dataset when applied to state-of-the-art models like Llama 4 Maverick and Claude 4 Sonnet. Extensive evaluation on multiple datasets demonstrates that Finch-Zk provides a practical, deployment-ready safeguard for enhancing factual reliability in production LLM systems.</div>
+    <div class="meta">
+        <a href="http://arxiv.org/abs/2508.14314v2" target="_blank">View on arXiv</a>
+    </div>
+</div>
+
+
+<div class="paper">
+    <h3>A DbC Inspired Neurosymbolic Layer for Trustworthy Agent Design</h3>
+    <div class="scores">
+        <span class="score relevance">Relevance: 10/10</span>
+        <span class="score importance">Importance: 8/10</span>
+    </div>
+    <div class="abstract">Generative models, particularly Large Language Models (LLMs), produce fluent outputs yet lack verifiable guarantees. We adapt Design by Contract (DbC) and type-theoretic principles to introduce a contract layer that mediates every LLM call. Contracts stipulate semantic and type requirements on inputs and outputs, coupled with probabilistic remediation to steer generation toward compliance. The layer exposes the dual view of LLMs as semantic parsers and probabilistic black-box components. Contract satisfaction is probabilistic and semantic validation is operationally defined through programmer-specified conditions on well-typed data structures. More broadly, this work postulates that any two agents satisfying the same contracts are \emph{functionally equivalent} with respect to those contracts.</div>
+    <div class="meta">
+        <a href="http://arxiv.org/abs/2508.03665v4" target="_blank">View on arXiv</a>
+    </div>
+</div>
+
+
+<div class="paper">
+    <h3>SE-Agent: Self-Evolution Trajectory Optimization in Multi-Step Reasoning   with LLM-Based Agents</h3>
+    <div class="scores">
+        <span class="score relevance">Relevance: 10/10</span>
+        <span class="score importance">Importance: 8/10</span>
+    </div>
+    <div class="abstract">Large Language Model (LLM)-based agents have recently shown impressive capabilities in complex reasoning and tool use via multi-step interactions with their environments. While these agents have the potential to tackle complicated tasks, their problem-solving process, i.e., agents' interaction trajectory leading to task completion, remains underexploited. These trajectories contain rich feedback that can navigate agents toward the right directions for solving problems correctly. Although prevailing approaches, such as Monte Carlo Tree Search (MCTS), can effectively balance exploration and exploitation, they ignore the interdependence among various trajectories and lack the diversity of search spaces, which leads to redundant reasoning and suboptimal outcomes. To address these challenges, we propose SE-Agent, a Self-Evolution framework that enables Agents to optimize their reasoning processes iteratively. Our approach revisits and enhances former pilot trajectories through three key operations: revision, recombination, and refinement. This evolutionary mechanism enables two critical advantages: (1) it expands the search space beyond local optima by intelligently exploring diverse solution paths guided by previous trajectories, and (2) it leverages cross-trajectory inspiration to efficiently enhance performance while mitigating the impact of suboptimal reasoning paths. Through these mechanisms, SE-Agent achieves continuous self-evolution that incrementally improves reasoning quality. We evaluate SE-Agent on SWE-bench Verified to resolve real-world GitHub issues. Experimental results across five strong LLMs show that integrating SE-Agent delivers up to 55% relative improvement, achieving state-of-the-art performance among all open-source agents on SWE-bench Verified. Our code and demonstration materials are publicly available at https://github.com/JARVIS-Xs/SE-Agent.</div>
+    <div class="meta">
+        <a href="http://arxiv.org/abs/2508.02085v6" target="_blank">View on arXiv</a>
+    </div>
+</div>
+
+
+<div class="paper">
+    <h3>How to Train Your LLM Web Agent: A Statistical Diagnosis</h3>
+    <div class="scores">
+        <span class="score relevance">Relevance: 10/10</span>
+        <span class="score importance">Importance: 8/10</span>
+    </div>
+    <div class="abstract">LLM-based web agents have recently made significant progress, but much of it has occurred in closed-source systems, widening the gap with open-source alternatives. Progress has been held back by two key challenges: first, a narrow focus on single-step tasks that overlooks the complexity of multi-step web interactions; and second, the high compute costs required to post-train LLM-based web agents. To address this, we present the first statistically grounded study on compute allocation for LLM web-agent post-training. Our approach uses a two-stage pipeline, training a Llama 3.1 8B student to imitate a Llama 3.3 70B teacher via supervised fine-tuning (SFT), followed by on-policy reinforcement learning. We find this process highly sensitive to hyperparameter choices, making exhaustive sweeps impractical. To spare others from expensive trial-and-error, we sample 1,370 configurations and use bootstrapping to estimate effective hyperparameters. Our results show that combining SFT with on-policy RL consistently outperforms either approach alone on both WorkArena and MiniWob++. Further, this strategy requires only 55% of the compute to match the peak performance of pure SFT on MiniWob++, effectively pushing the compute-performance Pareto frontier, and is the only strategy that can close the gap with closed-source models.</div>
+    <div class="meta">
+        <a href="http://arxiv.org/abs/2507.04103v3" target="_blank">View on arXiv</a>
+    </div>
+</div>
+
+
+<div class="paper">
+    <h3>The Narrative Continuity Test: A Conceptual Framework for Evaluating   Identity Persistence in AI Systems</h3>
+    <div class="scores">
+        <span class="score relevance">Relevance: 9/10</span>
+        <span class="score importance">Importance: 8/10</span>
+    </div>
+    <div class="abstract">Artificial intelligence systems based on large language models (LLMs) can now generate coherent text, music, and images, yet they operate without a persistent state: each inference reconstructs context from scratch. This paper introduces the Narrative Continuity Test (NCT) -- a conceptual framework for evaluating identity persistence and diachronic coherence in AI systems. Unlike capability benchmarks that assess task performance, the NCT examines whether an LLM remains the same interlocutor across time and interaction gaps. The framework defines five necessary axes -- Situated Memory, Goal Persistence, Autonomous Self-Correction, Stylistic & Semantic Stability, and Persona/Role Continuity -- and explains why current architectures systematically fail to support them. Case analyses (Character.\,AI, Grok, Replit, Air Canada) show predictable continuity failures under stateless inference. The NCT reframes AI evaluation from performance to persistence, outlining conceptual requirements for future benchmarks and architectural designs that could sustain long-term identity and goal coherence in generative models.</div>
+    <div class="meta">
+        <a href="http://arxiv.org/abs/2510.24831v2" target="_blank">View on arXiv</a>
+    </div>
+</div>
+
+
+<div class="paper">
+    <h3>MCP-Flow: Facilitating LLM Agents to Master Real-World, Diverse and   Scaling MCP Tools</h3>
+    <div class="scores">
+        <span class="score relevance">Relevance: 9/10</span>
+        <span class="score importance">Importance: 8/10</span>
+    </div>
+    <div class="abstract">Large Language Models (LLMs) increasingly rely on external tools to perform complex, realistic tasks, yet their ability to utilize the rapidly expanding Model Contextual Protocol (MCP) ecosystem remains limited. Existing MCP research covers few servers, depends on costly manual curation, and lacks training support, hindering progress toward real-world deployment. To overcome these limitations, we introduce MCP-Flow, an automated web-agent-driven pipeline for large-scale server discovery, data synthesis, and model training. MCP-Flow collects and filters data from 1166 servers and 11536 tools, producing 68733 high-quality instruction-function call pairs and 6439 trajectories, far exceeding prior work in scale and diversity. Extensive experiments demonstrate MCP-Flow's effectiveness in driving superior MCP tool selection, function-call generation, and enhanced agentic task performance. MCP-Flow thus provides a scalable foundation for advancing LLM agents' proficiency in real-world MCP environments. MCP-Flow is publicly available at \href{https://github.com/wwh0411/MCP-Flow}{https://github.com/wwh0411/MCP-Flow}.</div>
+    <div class="meta">
+        <a href="http://arxiv.org/abs/2510.24284v2" target="_blank">View on arXiv</a>
+    </div>
+</div>
+
+
+<div class="paper">
+    <h3>KVCOMM: Online Cross-context KV-cache Communication for Efficient   LLM-based Multi-agent Systems</h3>
+    <div class="scores">
+        <span class="score relevance">Relevance: 9/10</span>
+        <span class="score importance">Importance: 8/10</span>
+    </div>
+    <div class="abstract">Multi-agent large language model (LLM) systems are increasingly adopted for complex language processing tasks that require communication and coordination among agents. However, these systems often suffer substantial overhead from repeated reprocessing of overlapping contexts across agents. In typical pipelines, once an agent receives a message from its predecessor, the full context-including prior turns-must be reprocessed from scratch, leading to inefficient processing. While key-value (KV) caching is an effective solution for avoiding redundant computation in single-agent settings where prefixes remain unchanged, it cannot be directly reused in multi-agent scenarios due to diverging prefixes introduced by agent-specific context extensions. We identify that the core challenge lies in the offset variance of KV-caches across agents. To address this, we propose KVCOMM, a training-free framework that enables efficient prefilling in multi-agent inference by reusing KV-caches and aligning cache offsets of overlapping contexts under diverse prefix contexts. KVCOMM estimates and adjusts KV-caches for shared content by referencing a pool of cached examples-termed anchors-that store observed cache deviations under varying prefixes. The anchor pool is maintained and updated online, allowing dynamic adaptation to distinct user requests and context structures. KVCOMM achieves over 70% reuse rate across diverse multi-agent workloads, including retrieval-augmented generation, math reasoning, and collaborative coding tasks, all without quality degradation. Particularly, when each fully-connected agent receives 1K input tokens with 512 prefix tokens and 512 output tokens under a five-agent setting, KVCOMM achieves up to 7.8x speedup compared to the standard prefill pipeline, reducing TTFT from ~430 ms to ~55 ms.</div>
+    <div class="meta">
+        <a href="http://arxiv.org/abs/2510.12872v2" target="_blank">View on arXiv</a>
+    </div>
+</div>
+
+
+<div class="paper">
+    <h3>PrunedLoRA: Robust Gradient-Based structured pruning for Low-rank   Adaptation in Fine-tuning</h3>
+    <div class="scores">
+        <span class="score relevance">Relevance: 9/10</span>
+        <span class="score importance">Importance: 8/10</span>
+    </div>
+    <div class="abstract">Low-rank adaptation (LoRA) has become a widely used paradigm for parameter-efficient fine-tuning of large language models, yet its representational capacity often lags behind full fine-tuning. Within the context of LoRA, a key open question is how to obtain expressive low-rank adapters from over-parameterized spaces. We propose \textit{PrunedLoRA}, a new framework that leverages structured pruning to obtain highly representative low-rank adapters from an over-parameterized initialization. Unlike prior approaches that impose a fixed low-rank budget, PrunedLoRA dynamically prunes less important components during fine-tuning and prevents their reactivation, enabling flexible and adaptive rank allocation. For structured pruning, by minimizing the pruning error for overall loss, we provide fine-grained pruning and recovery updates in a gradient-based pruning strategy with grounded interpretation. We provide the first theoretical analysis of the robustness of structured pruning and provably show that under the impact of weight perturbation, gradient-based pruning is more robust than activation-based pruning with respect to overall loss. Empirically, PrunedLoRA consistently outperforms LoRA and its variants across supervised fine-tuning tasks in mathematical reasoning, code generation, and natural language understanding, and it also demonstrates advantages over existing structured pruning methods across diverse sparsity levels.</div>
+    <div class="meta">
+        <a href="http://arxiv.org/abs/2510.00192v2" target="_blank">View on arXiv</a>
+    </div>
+</div>
+
+
+<div class="paper">
+    <h3>EmbeddingGemma: Powerful and Lightweight Text Representations</h3>
+    <div class="scores">
+        <span class="score relevance">Relevance: 9/10</span>
+        <span class="score importance">Importance: 8/10</span>
+    </div>
+    <div class="abstract">We introduce EmbeddingGemma, a new lightweight, open text embedding model based on the Gemma 3 language model family. Our innovative training recipe strategically captures knowledge from larger models via encoder-decoder initialization and geometric embedding distillation. We improve model robustness and expressiveness with a spread-out regularizer, and ensure generalizability by merging checkpoints from varied, optimized mixtures. Evaluated on the Massive Text Embedding Benchmark (MTEB) across multilingual, English, and code domains, EmbeddingGemma (300M) achieves state-of-the-art results. Notably, it outperforms prior top models, both proprietary and open, with fewer than 500M parameters, and provides performance comparable to models double its size, offering an exceptional performance-to-cost ratio. Remarkably, this lead persists when quantizing model weights or truncating embedding outputs. This makes EmbeddingGemma particularly well-suited for low-latency and high-throughput use cases such as on-device applications. We provide ablation studies exploring our key design choices. We release EmbeddingGemma to the community to promote further research.</div>
+    <div class="meta">
+        <a href="http://arxiv.org/abs/2509.20354v3" target="_blank">View on arXiv</a>
+    </div>
+</div>
+
+
+<div class="paper">
+    <h3>Why Attention Fails: A Taxonomy of Faults in Attention-Based Neural   Networks</h3>
+    <div class="scores">
+        <span class="score relevance">Relevance: 9/10</span>
+        <span class="score importance">Importance: 8/10</span>
+    </div>
+    <div class="abstract">Attention mechanisms are at the core of modern neural architectures, powering systems ranging from ChatGPT to autonomous vehicles and driving a major economic impact. However, high-profile failures, such as ChatGPT's nonsensical outputs or Google's suspension of Gemini's image generation due to attention weight errors, highlight a critical gap: existing deep learning fault taxonomies might not adequately capture the unique failures introduced by attention mechanisms. This gap leaves practitioners without actionable diagnostic guidance. To address this gap, we present the first comprehensive empirical study of faults in attention-based neural networks (ABNNs). Our work is based on a systematic analysis of 555 real-world faults collected from 96 projects across ten frameworks, including GitHub, Hugging Face, and Stack Overflow. Through our analysis, we develop a novel taxonomy comprising seven attention-specific fault categories, not captured by existing work. Our results show that over half of the ABNN faults arise from mechanisms unique to attention architectures. We further analyze the root causes and manifestations of these faults through various symptoms. Finally, by analyzing symptom-root cause associations, we identify four evidence-based diagnostic heuristics that explain 33.0% of attention-specific faults, offering the first systematic diagnostic guidance for attention-based models.</div>
+    <div class="meta">
+        <a href="http://arxiv.org/abs/2508.04925v2" target="_blank">View on arXiv</a>
+    </div>
+</div>
+
+
+<div class="paper">
+    <h3>Chain of Retrieval: Multi-Aspect Iterative Search Expansion and   Post-Order Search Aggregation for Full Paper Retrieval</h3>
+    <div class="scores">
+        <span class="score relevance">Relevance: 9/10</span>
+        <span class="score importance">Importance: 8/10</span>
+    </div>
+    <div class="abstract">Scientific paper retrieval, particularly framed as document-to-document retrieval, aims to identify relevant papers in response to a long-form query paper, rather than a short query string. Previous approaches to this task have focused exclusively on abstracts, embedding them into dense vectors as surrogates for full documents and calculating similarity between them. Yet, abstracts offer only sparse and high-level summaries, and such methods primarily optimize one-to-one similarity, overlooking the dynamic relations that emerge among relevant papers during the retrieval process. To address this, we propose Chain of Retrieval(COR), a novel iterative framework for full-paper retrieval. Specifically, CoR decomposes each query paper into multiple aspect-specific views, matches them against segmented candidate papers, and iteratively expands the search by promoting top-ranked results as new queries, thereby forming a tree-structured retrieval process. The resulting retrieval tree is then aggregated in a post-order manner: descendants are first combined at the query level, then recursively merged with their parent nodes, to capture hierarchical relations across iterations. To validate this, we present SCIFULLBENCH, a large-scale benchmark providing both complete and segmented contexts of full papers for queries and candidates, and results show that CoR significantly outperforms existing retrieval baselines. Our code and dataset is available at https://github.com/psw0021/Chain-of-Retrieval.git.</div>
+    <div class="meta">
+        <a href="http://arxiv.org/abs/2507.10057v2" target="_blank">View on arXiv</a>
+    </div>
+</div>
+
+
+<div class="paper">
+    <h3>AnyMAC: Cascading Flexible Multi-Agent Collaboration via Next-Agent   Prediction</h3>
+    <div class="scores">
+        <span class="score relevance">Relevance: 9/10</span>
+        <span class="score importance">Importance: 8/10</span>
+    </div>
+    <div class="abstract">Recent progress in large language model (LLM)-based multi-agent collaboration highlights the power of structured communication in enabling collective intelligence. However, existing methods largely rely on static or graph-based inter-agent topologies, lacking the potential adaptability and flexibility in communication. In this work, we propose a new framework that rethinks multi-agent coordination through a sequential structure rather than a graph structure, offering a significantly larger topology space for multi-agent communication. Our method focuses on two key directions: (1) Next-Agent Prediction, which selects the most suitable agent role at each step, and (2) Next-Context Selection (NCS), which enables each agent to selectively access relevant information from any previous step. Together, these components construct task-adaptive communication pipelines that support both role flexibility and global information flow. Extensive evaluations across multiple benchmarks demonstrate that our approach achieves superior performance while substantially reducing communication overhead.</div>
+    <div class="meta">
+        <a href="http://arxiv.org/abs/2506.17784v2" target="_blank">View on arXiv</a>
+    </div>
+</div>
+
+
+<div class="paper">
+    <h3>CoP: Agentic Red-teaming for Large Language Models using Composition of   Principles</h3>
+    <div class="scores">
+        <span class="score relevance">Relevance: 9/10</span>
+        <span class="score importance">Importance: 8/10</span>
+    </div>
+    <div class="abstract">Recent advances in Large Language Models (LLMs) have spurred transformative applications in various domains, ranging from open-source to proprietary LLMs. However, jailbreak attacks, which aim to break safety alignment and user compliance by tricking the target LLMs into answering harmful and risky responses, are becoming an urgent concern. The practice of red-teaming for LLMs is to proactively explore potential risks and error-prone instances before the release of frontier AI technology. This paper proposes an agentic workflow to automate and scale the red-teaming process of LLMs through the Composition-of-Principles (CoP) framework, where human users provide a set of red-teaming principles as instructions to an AI agent to automatically orchestrate effective red-teaming strategies and generate jailbreak prompts. Distinct from existing red-teaming methods, our CoP framework provides a unified and extensible framework to encompass and orchestrate human-provided red-teaming principles to enable the automated discovery of new red-teaming strategies. When tested against leading LLMs, CoP reveals unprecedented safety risks by finding novel jailbreak prompts and improving the best-known single-turn attack success rate by up to 19.0 times.</div>
+    <div class="meta">
+        <a href="http://arxiv.org/abs/2506.00781v2" target="_blank">View on arXiv</a>
+    </div>
+</div>
+
+
+<div class="paper">
+    <h3>Memory Assisted LLM for Personalized Recommendation System</h3>
+    <div class="scores">
+        <span class="score relevance">Relevance: 9/10</span>
+        <span class="score importance">Importance: 8/10</span>
+    </div>
+    <div class="abstract">Large language models (LLMs) have demonstrated significant potential in solving recommendation tasks. With proven capabilities in understanding user preferences, LLM personalization has emerged as a critical area for providing tailored responses to individuals. Current studies explore personalization through prompt design and fine-tuning, paving the way for further research in personalized LLMs. However, existing approaches are either costly and inefficient in capturing diverse user preferences or fail to account for timely updates to user history. To address these gaps, we propose the Memory-Assisted Personalized LLM (MAP). Through user interactions, we first create a history profile for each user, capturing their preferences, such as ratings for historical items. During recommendation, we extract relevant memory based on similarity, which is then incorporated into the prompts to enhance personalized recommendations. In our experiments, we define a new task that enables testing with varying memory size under two scenarios: single domain where memory and tasks are from the same category and cross-domain (e.g. memory from movies and recommendation tasks in books). The results show that MAP outperforms regular LLM-based recommenders that integrate user history directly through prompt design. Moreover, as user history grows, MAP's advantage increases in both scenarios, making it more suitable for addressing successive personalized user requests.</div>
+    <div class="meta">
+        <a href="http://arxiv.org/abs/2505.03824v2" target="_blank">View on arXiv</a>
+    </div>
+</div>
+
+    </div>
+</div>
+
+    </body>
+    </html>
+    
