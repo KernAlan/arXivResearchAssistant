@@ -1,0 +1,439 @@
+
+    <!DOCTYPE html>
+    <html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>ArXiv Research Digest</title>
+        <style>
+            
+body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    line-height: 1.5;
+    color: #2d3748;
+    margin: 0;
+    padding: 20px;
+    background: #f7fafc;
+}
+
+.digest {
+    max-width: 800px;
+    margin: 0 auto;
+    background: white;
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+}
+
+.header {
+    margin-bottom: 2rem;
+    padding-bottom: 1rem;
+    border-bottom: 2px solid #e2e8f0;
+}
+
+.header h2 {
+    margin: 0;
+    color: #2d3748;
+}
+
+.header p {
+    margin: 0.5rem 0 0;
+    color: #718096;
+}
+
+.highlights {
+    background: #f8fafc;
+    padding: 1.5rem;
+    border-radius: 8px;
+    margin-bottom: 3rem;
+    border: 1px solid #e2e8f0;
+}
+
+.highlights h3 {
+    color: #2d3748;
+    margin: 0 0 1rem 0;
+    font-size: 1.25rem;
+}
+
+.summary {
+    white-space: pre-line;
+    line-height: 1.6;
+}
+
+.summary ol {
+    padding-left: 1.5rem;
+    margin: 1rem 0;
+}
+
+.summary li {
+    margin-bottom: 0.75rem;
+    padding-left: 0.5rem;
+}
+
+.papers {
+    margin-top: 3rem;
+}
+
+.papers h3 {
+    color: #2d3748;
+    margin-bottom: 1.5rem;
+    padding-bottom: 1rem;
+    border-bottom: 2px solid #e2e8f0;
+}
+
+.paper {
+    margin-bottom: 2rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid #e2e8f0;
+}
+
+.paper:last-child {
+    border-bottom: none;
+}
+
+.paper h3 {
+    margin: 0 0 0.5rem;
+    color: #2d3748;
+}
+
+.paper .scores {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 0.5rem;
+}
+
+.paper .score {
+    padding: 0.25rem 0.5rem;
+    border-radius: 4px;
+    font-size: 0.875rem;
+}
+
+.paper .relevance {
+    background: #e6fffa;
+    color: #047481;
+}
+
+.paper .importance {
+    background: #ebf4ff;
+    color: #1a56db;
+}
+
+.paper .abstract {
+    color: #4a5568;
+    margin: 0.5rem 0;
+}
+
+.paper .meta {
+    font-size: 0.875rem;
+    color: #718096;
+}
+
+.paper .meta a {
+    color: #4299e1;
+    text-decoration: none;
+}
+
+.paper .meta a:hover {
+    text-decoration: underline;
+}
+
+        </style>
+    </head>
+    <body>
+        
+<div class="digest">
+    <div class="header">
+        <h2>ArXiv Research Digest</h2>
+        <p>Found 20 relevant papers out of 200 new submissions</p>
+    </div>
+    
+    <div class="highlights">
+        <h3>🔥 Key Highlights</h3>
+        Hey boss, found 5 cool papers today that I think you'll love:
+<ol>
+<li><strong>LLM Output Drift: Cross-Provider Validation & Mitigation for Financial Workflows</strong> — They quantify “output drift” across five models on regulated finance tasks and show smaller models (Granite-3-8B, Qwen2.5-7B) deliver 100% consistency at T=0 while GPT-OSS-120B only hits ~12.5%, and they ship a finance-calibrated deterministic test harness, task-specific invariant checks, a three-tier model classification, and an audit-ready dual-provider attestation pipeline (http://arxiv.org/abs/2511.07585v1).  
+Score 9.5/10 — practical impact: for audit-sensitive workflows we should prefer/benchmark smaller deterministic models locally, adopt their T=0.0 test harness and cross-provider attestation to meet FSB/BIS/CFTC-style compliance requirements as a near-term risk mitigation step this quarter.</li>
+
+<li><strong>Procedural Knowledge Improves Agentic LLM Workflows</strong> — They formalize using hierarchical task networks (HTNs) as procedural knowledge and show hand-coded HTNs can dramatically boost agentic-task performance (a 20b/70b with HTN can beat a 120b baseline), with LLM-generated HTNs giving additional gains (http://arxiv.org/abs/2511.07568v1).  
+Score 9.5/10 — practical impact: we should prototype an HTN layer for our agent pipelines (start with critical domains), curate a few human-authored HTNs to get size/cost efficiency, and measure how much we can downscale model size without losing task accuracy.</li>
+
+<li><strong>Adaptive Multi-Agent Response Refinement in Conversational Systems</strong> — They propose a dynamic multi-agent refiner where specialized agents check/repair factuality, personalization, and coherence and an adaptive controller picks which agents to run per query, yielding significantly better conversational quality on persona/knowledge tasks (http://arxiv.org/abs/2511.08319v1).  
+Score 9.0/10 — practical impact: for customer-facing chat we can insert a lightweight multi-agent refinement stage pre-delivery (or offload specific checks to smaller specialist models) to cut down user corrections and hallucinations without re-prompting the user.</li>
+
+<li><strong>TabRAG: Tabular Document Retrieval via Structured Language Representations</strong> — They build a parsing-based RAG pipeline that represents tables as structured language and significantly outperforms other parsing-based methods for table-heavy documents (code: https://github.com/jacobyhsi/TabRAG) (http://arxiv.org/abs/2511.06582v1).  
+Score 9.0/10 — practical impact: for our ledger/reports ingestion we can avoid costly embedding re-tuning by trying TabRAG’s parser-first approach to get better retrieval and generation from tables — recommend a short PoC on one of our table-heavy sources this week.</li>
+
+<li><strong>LLM-Powered Fully Automated Chaos Engineering: Towards Enabling Anyone to Build Resilient Software Systems at Low Cost</strong> — ChaosEater fully automates the chaos engineering cycle on Kubernetes using LLM agents to plan, inject faults, analyze results, and propose fixes, showing low time and monetary costs in their case studies (http://arxiv.org/abs/2511.07865v1).  
+Score 9.0/10 — practical impact: we should pilot ChaosEater in a non-prod K8s staging cluster to accelerate resilience testing and SRE handoffs — could cut manual CE planning time and surface systemic issues earlier.</li>
+</ol>
+Quick action plan this week: let’s prioritize (1) spinning up the deterministic test harness and a small-model shadow deployment for our regulated flows, (2) starting an HTN prototype for one agentic pipeline, (3) a TabRAG PoC on a table-heavy dataset, and (4) a ChaosEater staging trial — I’ll book 15‑minute syncs to assign owners.
+    </div>
+    
+    <div class="papers">
+        <h3>📄 Detailed Papers</h3>
+        
+<div class="paper">
+    <h3>LLM Output Drift: Cross-Provider Validation & Mitigation for Financial Workflows</h3>
+    <div class="scores">
+        <span class="score relevance">Relevance: 10/10</span>
+        <span class="score importance">Importance: 9/10</span>
+    </div>
+    <div class="abstract">Financial institutions deploy Large Language Models (LLMs) for reconciliations, regulatory reporting, and client communications, but nondeterministic outputs (output drift) undermine auditability and trust. We quantify drift across five model architectures (7B-120B parameters) on regulated financial tasks, revealing a stark inverse relationship: smaller models (Granite-3-8B, Qwen2.5-7B) achieve 100% output consistency at T=0.0, while GPT-OSS-120B exhibits only 12.5% consistency (95% CI: 3.5-36.0%) regardless of configuration (p<0.0001, Fisher's exact test). This finding challenges conventional assumptions that larger models are universally superior for production deployment.   Our contributions include: (i) a finance-calibrated deterministic test harness combining greedy decoding (T=0.0), fixed seeds, and SEC 10-K structure-aware retrieval ordering; (ii) task-specific invariant checking for RAG, JSON, and SQL outputs using finance-calibrated materiality thresholds (plus or minus 5%) and SEC citation validation; (iii) a three-tier model classification system enabling risk-appropriate deployment decisions; and (iv) an audit-ready attestation system with dual-provider validation.   We evaluated five models (Qwen2.5-7B via Ollama, Granite-3-8B via IBM watsonx.ai, Llama-3.3-70B, Mistral-Medium-2505, and GPT-OSS-120B) across three regulated financial tasks. Across 480 runs (n=16 per condition), structured tasks (SQL) remain stable even at T=0.2, while RAG tasks show drift (25-75%), revealing task-dependent sensitivity. Cross-provider validation confirms deterministic behavior transfers between local and cloud deployments. We map our framework to Financial Stability Board (FSB), Bank for International Settlements (BIS), and Commodity Futures Trading Commission (CFTC) requirements, demonstrating practical pathways for compliance-ready AI deployments.</div>
+    <div class="meta">
+        <a href="http://arxiv.org/abs/2511.07585v1" target="_blank">View on arXiv</a>
+    </div>
+</div>
+
+
+<div class="paper">
+    <h3>Procedural Knowledge Improves Agentic LLM Workflows</h3>
+    <div class="scores">
+        <span class="score relevance">Relevance: 10/10</span>
+        <span class="score importance">Importance: 9/10</span>
+    </div>
+    <div class="abstract">Large language models (LLMs) often struggle when performing agentic tasks without substantial tool support, prom-pt engineering, or fine tuning. Despite research showing that domain-dependent, procedural knowledge can dramatically increase planning efficiency, little work evaluates its potential for improving LLM performance on agentic tasks that may require implicit planning. We formalize, implement, and evaluate an agentic LLM workflow that leverages procedural knowledge in the form of a hierarchical task network (HTN). Empirical results of our implementation show that hand-coded HTNs can dramatically improve LLM performance on agentic tasks, and using HTNs can boost a 20b or 70b parameter LLM to outperform a much larger 120b parameter LLM baseline. Furthermore, LLM-created HTNs improve overall performance, though less so. The results suggest that leveraging expertise--from humans, documents, or LLMs--to curate procedural knowledge will become another important tool for improving LLM workflows.</div>
+    <div class="meta">
+        <a href="http://arxiv.org/abs/2511.07568v1" target="_blank">View on arXiv</a>
+    </div>
+</div>
+
+
+<div class="paper">
+    <h3>Adaptive Multi-Agent Response Refinement in Conversational Systems</h3>
+    <div class="scores">
+        <span class="score relevance">Relevance: 10/10</span>
+        <span class="score importance">Importance: 8/10</span>
+    </div>
+    <div class="abstract">Large Language Models (LLMs) have demonstrated remarkable success in conversational systems by generating human-like responses. However, they can fall short, especially when required to account for personalization or specific knowledge. In real-life settings, it is impractical to rely on users to detect these errors and request a new response. One way to address this problem is to refine the response before returning it to the user. While existing approaches focus on refining responses within a single LLM, this method struggles to consider diverse aspects needed for effective conversations. In this work, we propose refining responses through a multi-agent framework, where each agent is assigned a specific role for each aspect. We focus on three key aspects crucial to conversational quality: factuality, personalization, and coherence. Each agent is responsible for reviewing and refining one of these aspects, and their feedback is then merged to improve the overall response. To enhance collaboration among them, we introduce a dynamic communication strategy. Instead of following a fixed sequence of agents, our approach adaptively selects and coordinates the most relevant agents based on the specific requirements of each query. We validate our framework on challenging conversational datasets, demonstrating that ours significantly outperforms relevant baselines, particularly in tasks involving knowledge or user's persona, or both.</div>
+    <div class="meta">
+        <a href="http://arxiv.org/abs/2511.08319v1" target="_blank">View on arXiv</a>
+    </div>
+</div>
+
+
+<div class="paper">
+    <h3>TabRAG: Tabular Document Retrieval via Structured Language Representations</h3>
+    <div class="scores">
+        <span class="score relevance">Relevance: 10/10</span>
+        <span class="score importance">Importance: 8/10</span>
+    </div>
+    <div class="abstract">Ingesting data for Retrieval-Augmented Generation (RAG) involves either fine-tuning the embedding model directly on the target corpus or parsing documents for embedding model encoding. The former, while accurate, incurs high computational hardware requirements, while the latter suffers from suboptimal performance when extracting tabular data. In this work, we address the latter by presenting TabRAG, a parsing-based RAG pipeline designed to tackle table-heavy documents via structured language representations. TabRAG outperforms existing popular parsing-based methods for generation and retrieval. Code is available at https://github.com/jacobyhsi/TabRAG.</div>
+    <div class="meta">
+        <a href="http://arxiv.org/abs/2511.06582v1" target="_blank">View on arXiv</a>
+    </div>
+</div>
+
+
+<div class="paper">
+    <h3>LLM-Powered Fully Automated Chaos Engineering: Towards Enabling Anyone to Build Resilient Software Systems at Low Cost</h3>
+    <div class="scores">
+        <span class="score relevance">Relevance: 9/10</span>
+        <span class="score importance">Importance: 9/10</span>
+    </div>
+    <div class="abstract">Chaos Engineering (CE) is an engineering technique aimed at improving the resilience of distributed systems. It involves intentionally injecting faults into a system to test its resilience, uncover weaknesses, and address them before they cause failures in production. Recent CE tools automate the execution of predefined CE experiments. However, planning such experiments and improving the system based on the experimental results still remain manual. These processes are labor-intensive and require multi-domain expertise. To address these challenges and enable anyone to build resilient systems at low cost, this paper proposes ChaosEater, a system that automates the entire CE cycle with Large Language Models (LLMs). It predefines an agentic workflow according to a systematic CE cycle and assigns subdivided processes within the workflow to LLMs. ChaosEater targets CE for software systems built on Kubernetes. Therefore, the LLMs in ChaosEater complete CE cycles through software engineering tasks, including requirement definition, code generation, testing, and debugging. We evaluate ChaosEater through case studies on small- and large-scale Kubernetes systems. The results demonstrate that it consistently completes reasonable CE cycles with significantly low time and monetary costs. Its cycles are also qualitatively validated by human engineers and LLMs.</div>
+    <div class="meta">
+        <a href="http://arxiv.org/abs/2511.07865v1" target="_blank">View on arXiv</a>
+    </div>
+</div>
+
+
+<div class="paper">
+    <h3>When Bias Pretends to Be Truth: How Spurious Correlations Undermine Hallucination Detection in LLMs</h3>
+    <div class="scores">
+        <span class="score relevance">Relevance: 10/10</span>
+        <span class="score importance">Importance: 8/10</span>
+    </div>
+    <div class="abstract">Despite substantial advances, large language models (LLMs) continue to exhibit hallucinations, generating plausible yet incorrect responses. In this paper, we highlight a critical yet previously underexplored class of hallucinations driven by spurious correlations -- superficial but statistically prominent associations between features (e.g., surnames) and attributes (e.g., nationality) present in the training data. We demonstrate that these spurious correlations induce hallucinations that are confidently generated, immune to model scaling, evade current detection methods, and persist even after refusal fine-tuning. Through systematically controlled synthetic experiments and empirical evaluations on state-of-the-art open-source and proprietary LLMs (including GPT-5), we show that existing hallucination detection methods, such as confidence-based filtering and inner-state probing, fundamentally fail in the presence of spurious correlations. Our theoretical analysis further elucidates why these statistical biases intrinsically undermine confidence-based detection techniques. Our findings thus emphasize the urgent need for new approaches explicitly designed to address hallucinations caused by spurious correlations.</div>
+    <div class="meta">
+        <a href="http://arxiv.org/abs/2511.07318v1" target="_blank">View on arXiv</a>
+    </div>
+</div>
+
+
+<div class="paper">
+    <h3>AlphaCast: A Human Wisdom-LLM Intelligence Co-Reasoning Framework for Interactive Time Series Forecasting</h3>
+    <div class="scores">
+        <span class="score relevance">Relevance: 10/10</span>
+        <span class="score importance">Importance: 8/10</span>
+    </div>
+    <div class="abstract">Time series forecasting plays a critical role in high-stakes domains such as energy, healthcare, and climate. Although recent advances have improved accuracy, most approaches still treat forecasting as a static one-time mapping task, lacking the interaction, reasoning, and adaptability of human experts. This gap limits their usefulness in complex real-world environments. To address this, we propose AlphaCast, a human wisdom-large language model (LLM) intelligence co-reasoning framework that redefines forecasting as an interactive process. The key idea is to enable step-by-step collaboration between human wisdom and LLM intelligence to jointly prepare, generate, and verify forecasts. The framework consists of two stages: (1) automated prediction preparation, where AlphaCast builds a multi-source cognitive foundation comprising a feature set that captures key statistics and time patterns, a domain knowledge base distilled from corpora and historical series, a contextual repository that stores rich information for each time window, and a case base that retrieves optimal strategies via pattern clustering and matching; and (2) generative reasoning and reflective optimization, where AlphaCast integrates statistical temporal features, prior knowledge, contextual information, and forecasting strategies, triggering a meta-reasoning loop for continuous self-correction and strategy refinement. Extensive experiments on short- and long-term datasets show that AlphaCast consistently outperforms state-of-the-art baselines in predictive accuracy. Code is available at this repository: https://github.com/SkyeGT/AlphaCast_Official .</div>
+    <div class="meta">
+        <a href="http://arxiv.org/abs/2511.08947v1" target="_blank">View on arXiv</a>
+    </div>
+</div>
+
+
+<div class="paper">
+    <h3>A Self-Improving Architecture for Dynamic Safety in Large Language Models</h3>
+    <div class="scores">
+        <span class="score relevance">Relevance: 10/10</span>
+        <span class="score importance">Importance: 8/10</span>
+    </div>
+    <div class="abstract">Context: The integration of Large Language Models (LLMs) into core software systems is accelerating. However, existing software architecture patterns are static, while current safety assurance methods are not scalable, leaving systems vulnerable to novel adversarial threats.   Objective: To design, implement, and evaluate a novel software architecture that enables an AI-driven system to autonomously and continuously adapt its own safety protocols at runtime.   Method: We propose the Self-Improving Safety Framework (SISF), a runtime architecture that couples an unprotected, unaligned base LLM (mistralai/Mistral-7B-v0.1) with a dynamic feedback loop. This loop consists of an AI Adjudicator (GPT-4o) for breach detection and a Policy Synthesis Module (GPT-4 Turbo) that autonomously generates new, generalized safety policies (both heuristic and semantic) in response to failures.   Results: We conducted a dynamic learning evaluation using the 520-prompt AdvBench dataset. The unprotected model was 100% vulnerable. Our SISF, starting from zero policies, demonstrated a clear learning curve: it detected 237 breaches, autonomously synthesized 234 new policies, and reduced the overall Attack Success Rate (ASR) to 45.58%. In a subsequent test on 520 benign prompts, the SISF achieved a 0.00% False Positive Rate (FPR), proving its ability to adapt without compromising user utility.   Conclusion: An architectural approach to AI safety, based on the principles of self-adaptation, is a viable and effective strategy. Our framework demonstrates a practical path towards building more robust, resilient, and scalable AI-driven systems, shifting safety assurance from a static, pre-deployment activity to an automated, runtime process.</div>
+    <div class="meta">
+        <a href="http://arxiv.org/abs/2511.07645v1" target="_blank">View on arXiv</a>
+    </div>
+</div>
+
+
+<div class="paper">
+    <h3>Multi-Agent GraphRAG: A Text-to-Cypher Framework for Labeled Property Graphs</h3>
+    <div class="scores">
+        <span class="score relevance">Relevance: 9/10</span>
+        <span class="score importance">Importance: 8/10</span>
+    </div>
+    <div class="abstract">While Retrieval-Augmented Generation (RAG) methods commonly draw information from unstructured documents, the emerging paradigm of GraphRAG aims to leverage structured data such as knowledge graphs. Most existing GraphRAG efforts focus on Resource Description Framework (RDF) knowledge graphs, relying on triple representations and SPARQL queries. However, the potential of Cypher and Labeled Property Graph (LPG) databases to serve as scalable and effective reasoning engines within GraphRAG pipelines remains underexplored in current research literature. To fill this gap, we propose Multi-Agent GraphRAG, a modular LLM agentic system for text-to-Cypher query generation serving as a natural language interface to LPG-based graph data. Our proof-of-concept system features an LLM-based workflow for automated Cypher queries generation and execution, using Memgraph as the graph database backend. Iterative content-aware correction and normalization, reinforced by an aggregated feedback loop, ensures both semantic and syntactic refinement of generated queries. We evaluate our system on the CypherBench graph dataset covering several general domains with diverse types of queries. In addition, we demonstrate performance of the proposed workflow on a property graph derived from the IFC (Industry Foundation Classes) data, representing a digital twin of a building. This highlights how such an approach can bridge AI with real-world applications at scale, enabling industrial digital automation use cases.</div>
+    <div class="meta">
+        <a href="http://arxiv.org/abs/2511.08274v1" target="_blank">View on arXiv</a>
+    </div>
+</div>
+
+
+<div class="paper">
+    <h3>Thinker: Training LLMs in Hierarchical Thinking for Deep Search via Multi-Turn Interaction</h3>
+    <div class="scores">
+        <span class="score relevance">Relevance: 9/10</span>
+        <span class="score importance">Importance: 8/10</span>
+    </div>
+    <div class="abstract">Efficient retrieval of external knowledge bases and web pages is crucial for enhancing the reasoning abilities of LLMs. Previous works on training LLMs to leverage external retrievers for solving complex problems have predominantly employed end-to-end reinforcement learning. However, these approaches neglect supervision over the reasoning process, making it difficult to guarantee logical coherence and rigor. To address these limitations, we propose Thinker, a hierarchical thinking model for deep search through multi-turn interaction, making the reasoning process supervisable and verifiable. It decomposes complex problems into independently solvable sub-problems, each dually represented in both natural language and an equivalent logical function to support knowledge base and web searches. Concurrently, dependencies between sub-problems are passed as parameters via these logical functions, enhancing the logical coherence of the problem-solving process. To avoid unnecessary external searches, we perform knowledge boundary determination to check if a sub-problem is within the LLM's intrinsic knowledge, allowing it to answer directly. Experimental results indicate that with as few as several hundred training samples, the performance of Thinker is competitive with established baselines. Furthermore, when scaled to the full training set, Thinker significantly outperforms these methods across various datasets and model sizes. The source code is available at https://github.com/OpenSPG/KAG-Thinker.</div>
+    <div class="meta">
+        <a href="http://arxiv.org/abs/2511.07943v1" target="_blank">View on arXiv</a>
+    </div>
+</div>
+
+
+<div class="paper">
+    <h3>Stress Testing Factual Consistency Metrics for Long-Document Summarization</h3>
+    <div class="scores">
+        <span class="score relevance">Relevance: 9/10</span>
+        <span class="score importance">Importance: 8/10</span>
+    </div>
+    <div class="abstract">Evaluating the factual consistency of abstractive text summarization remains a significant challenge, particularly for long documents, where conventional metrics struggle with input length limitations and long-range dependencies. In this work, we systematically evaluate the reliability of six widely used reference-free factuality metrics, originally proposed for short-form summarization, in the long-document setting. We probe metric robustness through seven factuality-preserving perturbations applied to summaries, namely paraphrasing, simplification, synonym replacement, logically equivalent negations, vocabulary reduction, compression, and source text insertion, and further analyze their sensitivity to retrieval context and claim information density. Across three long-form benchmark datasets spanning science fiction, legal, and scientific domains, our results reveal that existing short-form metrics produce inconsistent scores for semantically equivalent summaries and exhibit declining reliability for information-dense claims whose content is semantically similar to many parts of the source document. While expanding the retrieval context improves stability in some domains, no metric consistently maintains factual alignment under long-context conditions. Finally, our results highlight concrete directions for improving factuality evaluation, including multi-span reasoning, context-aware calibration, and training on meaning-preserving variations to enhance robustness in long-form summarization. We release all code, perturbed data, and scripts required to reproduce our results at https://github.com/zainmujahid/metricEval-longSum.</div>
+    <div class="meta">
+        <a href="http://arxiv.org/abs/2511.07689v1" target="_blank">View on arXiv</a>
+    </div>
+</div>
+
+
+<div class="paper">
+    <h3>The Path Not Taken: RLVR Provably Learns Off the Principals</h3>
+    <div class="scores">
+        <span class="score relevance">Relevance: 9/10</span>
+        <span class="score importance">Importance: 8/10</span>
+    </div>
+    <div class="abstract">Reinforcement Learning with Verifiable Rewards (RLVR) reliably improves the reasoning performance of large language models, yet it appears to modify only a small fraction of parameters. We revisit this paradox and show that sparsity is a surface artifact of a model-conditioned optimization bias: for a fixed pretrained model, updates consistently localize to preferred parameter regions, highly consistent across runs and largely invariant to datasets and RL recipes. We mechanistically explain these dynamics with a Three-Gate Theory: Gate I (KL Anchor) imposes a KL-constrained update; Gate II (Model Geometry) steers the step off principal directions into low-curvature, spectrum-preserving subspaces; and Gate III (Precision) hides micro-updates in non-preferred regions, making the off-principal bias appear as sparsity. We then validate this theory and, for the first time, provide a parameter-level characterization of RLVR's learning dynamics: RLVR learns off principal directions in weight space, achieving gains via minimal spectral drift, reduced principal-subspace rotation, and off-principal update alignment. In contrast, SFT targets principal weights, distorts the spectrum, and even lags RLVR.   Together, these results provide the first parameter-space account of RLVR's training dynamics, revealing clear regularities in how parameters evolve. Crucially, we show that RL operates in a distinct optimization regime from SFT, so directly adapting SFT-era parameter-efficient fine-tuning (PEFT) methods can be flawed, as evidenced by our case studies on advanced sparse fine-tuning and LoRA variants. We hope this work charts a path toward a white-box understanding of RLVR and the design of geometry-aware, RLVR-native learning algorithms, rather than repurposed SFT-era heuristics.</div>
+    <div class="meta">
+        <a href="http://arxiv.org/abs/2511.08567v1" target="_blank">View on arXiv</a>
+    </div>
+</div>
+
+
+<div class="paper">
+    <h3>Private-RAG: Answering Multiple Queries with LLMs while Keeping Your Data Private</h3>
+    <div class="scores">
+        <span class="score relevance">Relevance: 9/10</span>
+        <span class="score importance">Importance: 8/10</span>
+    </div>
+    <div class="abstract">Retrieval-augmented generation (RAG) enhances large language models (LLMs) by retrieving documents from an external corpus at inference time. When this corpus contains sensitive information, however, unprotected RAG systems are at risk of leaking private information. Prior work has introduced differential privacy (DP) guarantees for RAG, but only in single-query settings, which fall short of realistic usage. In this paper, we study the more practical multi-query setting and propose two DP-RAG algorithms. The first, MURAG, leverages an individual privacy filter so that the accumulated privacy loss only depends on how frequently each document is retrieved rather than the total number of queries. The second, MURAG-ADA, further improves utility by privately releasing query-specific thresholds, enabling more precise selection of relevant documents. Our experiments across multiple LLMs and datasets demonstrate that the proposed methods scale to hundreds of queries within a practical DP budget ($\varepsilon\approx10$), while preserving meaningful utility.</div>
+    <div class="meta">
+        <a href="http://arxiv.org/abs/2511.07637v1" target="_blank">View on arXiv</a>
+    </div>
+</div>
+
+
+<div class="paper">
+    <h3>Knowledge-Augmented Long-CoT Generation for Complex Biomolecular Reasoning</h3>
+    <div class="scores">
+        <span class="score relevance">Relevance: 9/10</span>
+        <span class="score importance">Importance: 8/10</span>
+    </div>
+    <div class="abstract">Understanding complex biomolecular mechanisms requires multi-step reasoning across molecular interactions, signaling cascades, and metabolic pathways. While large language models(LLMs) show promise in such tasks, their application to biomolecular problems is hindered by logical inconsistencies and the lack of grounding in domain knowledge. Existing approaches often exacerbate these issues: reasoning steps may deviate from biological facts or fail to capture long mechanistic dependencies. To address these challenges, we propose a Knowledge-Augmented Long-CoT Reasoning framework that integrates LLMs with knowledge graph-based multi-hop reasoning chains. The framework constructs mechanistic chains via guided multi-hop traversal and pruning on the knowledge graph; these chains are then incorporated into supervised fine-tuning to improve factual grounding and further refined with reinforcement learning to enhance reasoning reliability and consistency. Furthermore, to overcome the shortcomings of existing benchmarks, which are often restricted in scale and scope and lack annotations for deep reasoning chains, we introduce PrimeKGQA, a comprehensive benchmark for biomolecular question answering. Experimental results on both PrimeKGQA and existing datasets demonstrate that although larger closed-source models still perform well on relatively simple tasks, our method demonstrates clear advantages as reasoning depth increases, achieving state-of-the-art performance on multi-hop tasks that demand traversal of structured biological knowledge. These findings highlight the effectiveness of combining structured knowledge with advanced reasoning strategies for reliable and interpretable biomolecular reasoning.</div>
+    <div class="meta">
+        <a href="http://arxiv.org/abs/2511.08024v1" target="_blank">View on arXiv</a>
+    </div>
+</div>
+
+
+<div class="paper">
+    <h3>Green AI: A systematic review and meta-analysis of its definitions, lifecycle models, hardware and measurement attempts</h3>
+    <div class="scores">
+        <span class="score relevance">Relevance: 9/10</span>
+        <span class="score importance">Importance: 8/10</span>
+    </div>
+    <div class="abstract">Across the Artificial Intelligence (AI) lifecycle - from hardware to development, deployment, and reuse - burdens span energy, carbon, water, and embodied impacts. Cloud provider tools improve transparency but remain heterogeneous and often omit water and value chain effects, limiting comparability and reproducibility. Addressing these multi dimensional burdens requires a lifecycle approach linking phase explicit mapping with system levers (hardware, placement, energy mix, cooling, scheduling) and calibrated measurement across facility, system, device, and workload levels. This article (i) establishes a unified, operational definition of Green AI distinct from Sustainable AI; (ii) formalizes a five phase lifecycle mapped to Life Cycle Assessment (LCA) stages, making energy, carbon, water, and embodied impacts first class; (iii) specifies governance via Plan Do Check Act (PDCA) cycles with decision gateways; (iv) systematizes hardware and system level strategies across the edge cloud continuum to reduce embodied burdens; and (v) defines a calibrated measurement framework combining estimator models with direct metering to enable reproducible, provider agnostic comparisons. Combining definition, lifecycle processes, hardware strategies, and calibrated measurement, this article offers actionable, evidence based guidance for researchers, practitioners, and policymakers.</div>
+    <div class="meta">
+        <a href="http://arxiv.org/abs/2511.07090v3" target="_blank">View on arXiv</a>
+    </div>
+</div>
+
+
+<div class="paper">
+    <h3>Do LLMs Feel? Teaching Emotion Recognition with Prompts, Retrieval, and Curriculum Learning</h3>
+    <div class="scores">
+        <span class="score relevance">Relevance: 10/10</span>
+        <span class="score importance">Importance: 7/10</span>
+    </div>
+    <div class="abstract">Emotion Recognition in Conversation (ERC) is a crucial task for understanding human emotions and enabling natural human-computer interaction. Although Large Language Models (LLMs) have recently shown great potential in this field, their ability to capture the intrinsic connections between explicit and implicit emotions remains limited. We propose a novel ERC training framework, PRC-Emo, which integrates Prompt engineering, demonstration Retrieval, and Curriculum learning, with the goal of exploring whether LLMs can effectively perceive emotions in conversational contexts. Specifically, we design emotion-sensitive prompt templates based on both explicit and implicit emotional cues to better guide the model in understanding the speaker's psychological states. We construct the first dedicated demonstration retrieval repository for ERC, which includes training samples from widely used datasets, as well as high-quality dialogue examples generated by LLMs and manually verified. Moreover, we introduce a curriculum learning strategy into the LoRA fine-tuning process, incorporating weighted emotional shifts between same-speaker and different-speaker utterances to assign difficulty levels to dialogue samples, which are then organized in an easy-to-hard training sequence. Experimental results on two benchmark datasets -- IEMOCAP and MELD -- show that our method achieves new state-of-the-art (SOTA) performance, demonstrating the effectiveness and generalizability of our approach in improving LLM-based emotional understanding.</div>
+    <div class="meta">
+        <a href="http://arxiv.org/abs/2511.07061v2" target="_blank">View on arXiv</a>
+    </div>
+</div>
+
+
+<div class="paper">
+    <h3>LoRA on the Go: Instance-level Dynamic LoRA Selection and Merging</h3>
+    <div class="scores">
+        <span class="score relevance">Relevance: 9/10</span>
+        <span class="score importance">Importance: 8/10</span>
+    </div>
+    <div class="abstract">Low-Rank Adaptation (LoRA) has emerged as a parameter-efficient approach for fine-tuning large language models.However, conventional LoRA adapters are typically trained for a single task, limiting their applicability in real-world settings where inputs may span diverse and unpredictable domains. At inference time, existing approaches combine multiple LoRAs for improving performance on diverse tasks, while usually requiring labeled data or additional task-specific training, which is expensive at scale. In this work, we introduce LoRA on the Go (LoGo), a training-free framework that dynamically selects and merges adapters at the instance level without any additional requirements. LoGo leverages signals extracted from a single forward pass through LoRA adapters, to identify the most relevant adapters and determine their contributions on-the-fly. Across 5 NLP benchmarks, 27 datasets, and 3 model families, LoGo outperforms training-based baselines on some tasks upto a margin of 3.6% while remaining competitive on other tasks and maintaining inference throughput, highlighting its effectiveness and practicality.</div>
+    <div class="meta">
+        <a href="http://arxiv.org/abs/2511.07129v1" target="_blank">View on arXiv</a>
+    </div>
+</div>
+
+
+<div class="paper">
+    <h3>Prudential Reliability of Large Language Models in Reinsurance: Governance, Assurance, and Capital Efficiency</h3>
+    <div class="scores">
+        <span class="score relevance">Relevance: 9/10</span>
+        <span class="score importance">Importance: 8/10</span>
+    </div>
+    <div class="abstract">This paper develops a prudential framework for assessing the reliability of large language models (LLMs) in reinsurance. A five-pillar architecture--governance, data lineage, assurance, resilience, and regulatory alignment--translates supervisory expectations from Solvency II, SR 11-7, and guidance from EIOPA (2025), NAIC (2023), and IAIS (2024) into measurable lifecycle controls. The framework is implemented through the Reinsurance AI Reliability and Assurance Benchmark (RAIRAB), which evaluates whether governance-embedded LLMs meet prudential standards for grounding, transparency, and accountability. Across six task families, retrieval-grounded configurations achieved higher grounding accuracy (0.90), reduced hallucination and interpretive drift by roughly 40%, and nearly doubled transparency. These mechanisms lower informational frictions in risk transfer and capital allocation, showing that existing prudential doctrines already accommodate reliable AI when governance is explicit, data are traceable, and assurance is verifiable.</div>
+    <div class="meta">
+        <a href="http://arxiv.org/abs/2511.08082v1" target="_blank">View on arXiv</a>
+    </div>
+</div>
+
+
+<div class="paper">
+    <h3>Towards a Standard, Enterprise-Relevant Agentic AI Benchmark: Lessons from 5.5 billion tokens' worth of agentic AI evaluations</h3>
+    <div class="scores">
+        <span class="score relevance">Relevance: 9/10</span>
+        <span class="score importance">Importance: 8/10</span>
+    </div>
+    <div class="abstract">Enterprise adoption of agentic AI systems requires reliable evaluation methods that reflect real-world deployment scenarios. Traditional LLM benchmarks suffer from training data contamination and fail to measure agentic capabilities such as multi-step tool use and decision-making under uncertainty. We present the Kamiwaza Agentic Merit Index (KAMI) v0.1, an enterprise-focused benchmark that addresses both contamination resistance and agentic evaluation. Through 170,000 LLM test items processing over 5.5 billion tokens across 35 model configurations, we demonstrate that traditional benchmark rankings poorly predict practical agentic performance. Notably, newer generation models like Llama 4 or Qwen 3 do not always outperform their older generation variants on enterprise-relevant tasks, contradicting traditional benchmark trends. We also present insights on cost-performance tradeoffs, model-specific behavioral patterns, and the impact of reasoning capabilities on token efficiency -- findings critical for enterprises making deployment decisions.</div>
+    <div class="meta">
+        <a href="http://arxiv.org/abs/2511.08042v1" target="_blank">View on arXiv</a>
+    </div>
+</div>
+
+
+<div class="paper">
+    <h3>Consensus Sampling for Safer Generative AI</h3>
+    <div class="scores">
+        <span class="score relevance">Relevance: 9/10</span>
+        <span class="score importance">Importance: 8/10</span>
+    </div>
+    <div class="abstract">Many approaches to AI safety rely on inspecting model outputs or activations, yet certain risks are inherently undetectable by inspection alone. We propose a complementary, architecture-agnostic approach that enhances safety through the aggregation of multiple generative models, with the aggregated model inheriting its safety from the safest subset of a given size among them. Specifically, we present a consensus sampling algorithm that, given $k$ models and a prompt, achieves risk competitive with the average risk of the safest $s$ of the $k$ models, where $s$ is a chosen parameter, while abstaining when there is insufficient agreement between them. The approach leverages the models' ability to compute output probabilities, and we bound the probability of abstention when sufficiently many models are safe and exhibit adequate agreement. The algorithm is inspired by the provable copyright protection algorithm of Vyas et al. (2023). It requires some overlap among safe models, offers no protection when all models are unsafe, and may accumulate risk over repeated use. Nonetheless, our results provide a new, model-agnostic approach for AI safety by amplifying safety guarantees from an unknown subset of models within a collection to that of a single reliable model.</div>
+    <div class="meta">
+        <a href="http://arxiv.org/abs/2511.09493v1" target="_blank">View on arXiv</a>
+    </div>
+</div>
+
+    </div>
+</div>
+
+    </body>
+    </html>
+    
