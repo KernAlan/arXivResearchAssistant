@@ -1,0 +1,439 @@
+
+    <!DOCTYPE html>
+    <html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>ArXiv Research Digest</title>
+        <style>
+            
+body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    line-height: 1.5;
+    color: #2d3748;
+    margin: 0;
+    padding: 20px;
+    background: #f7fafc;
+}
+
+.digest {
+    max-width: 800px;
+    margin: 0 auto;
+    background: white;
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+}
+
+.header {
+    margin-bottom: 2rem;
+    padding-bottom: 1rem;
+    border-bottom: 2px solid #e2e8f0;
+}
+
+.header h2 {
+    margin: 0;
+    color: #2d3748;
+}
+
+.header p {
+    margin: 0.5rem 0 0;
+    color: #718096;
+}
+
+.highlights {
+    background: #f8fafc;
+    padding: 1.5rem;
+    border-radius: 8px;
+    margin-bottom: 3rem;
+    border: 1px solid #e2e8f0;
+}
+
+.highlights h3 {
+    color: #2d3748;
+    margin: 0 0 1rem 0;
+    font-size: 1.25rem;
+}
+
+.summary {
+    white-space: pre-line;
+    line-height: 1.6;
+}
+
+.summary ol {
+    padding-left: 1.5rem;
+    margin: 1rem 0;
+}
+
+.summary li {
+    margin-bottom: 0.75rem;
+    padding-left: 0.5rem;
+}
+
+.papers {
+    margin-top: 3rem;
+}
+
+.papers h3 {
+    color: #2d3748;
+    margin-bottom: 1.5rem;
+    padding-bottom: 1rem;
+    border-bottom: 2px solid #e2e8f0;
+}
+
+.paper {
+    margin-bottom: 2rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid #e2e8f0;
+}
+
+.paper:last-child {
+    border-bottom: none;
+}
+
+.paper h3 {
+    margin: 0 0 0.5rem;
+    color: #2d3748;
+}
+
+.paper .scores {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 0.5rem;
+}
+
+.paper .score {
+    padding: 0.25rem 0.5rem;
+    border-radius: 4px;
+    font-size: 0.875rem;
+}
+
+.paper .relevance {
+    background: #e6fffa;
+    color: #047481;
+}
+
+.paper .importance {
+    background: #ebf4ff;
+    color: #1a56db;
+}
+
+.paper .abstract {
+    color: #4a5568;
+    margin: 0.5rem 0;
+}
+
+.paper .meta {
+    font-size: 0.875rem;
+    color: #718096;
+}
+
+.paper .meta a {
+    color: #4299e1;
+    text-decoration: none;
+}
+
+.paper .meta a:hover {
+    text-decoration: underline;
+}
+
+        </style>
+    </head>
+    <body>
+        
+<div class="digest">
+    <div class="header">
+        <h2>ArXiv Research Digest</h2>
+        <p>Found 20 relevant papers out of 200 new submissions</p>
+    </div>
+    
+    <div class="highlights">
+        <h3>🔥 Key Highlights</h3>
+        Hey boss, found 5 cool papers today that I think you'll love:
+
+1. **Trustworthy AI in the Agentic Lakehouse: from Concurrency to Governance**  
+   They propose Bauplan, an "agent-first" lakehouse that reimplements data and compute isolation (think MVCC-inspired transactional semantics adapted for decoupled, multi-language agents) and ships a reference self-healing pipeline that lets agents reason over production data while preserving correctness. Practical takeaway: this is a near-term blueprint for running agents on sensitive corp data—avg score 9.5/10 (Relevance 10/10, Importance 9/10)—we should read the reference impl and scope a short feasibility spike (http://arxiv.org/abs/2511.16402v1).
+
+2. **A Compliance-Preserving Retrieval System for Aircraft MRO Task Search**  
+   They built a retrieval stack that preserves regulatory traceability by using revision-robust embeddings, vision-language parsing, and reranking so technicians preview ranked tasks but always open certified procedures in legacy viewers. Practical takeaway: concrete wins here—>90% retrieval accuracy and a 95% reduction in lookup time—avg 9.5/10—so for any regulated domain (aviation, pharma, ops) we should prototype their approach on one of our doc corpora and keep the legacy viewer intact (http://arxiv.org/abs/2511.15383v1).
+
+3. **Adversarial Poetry as a Universal Single-Turn Jailbreak Mechanism in Large Language Models**  
+   They show stylistic reframing (poetry) is a robust universal jailbreak across 25 models, boosting attack success rates up to 18× versus prose and averaging 62% ASR for hand-crafted poems. Practical takeaway: safety teams must immediately expand red-team suites to include stylistic/style-transfer attacks and update evals—this is scored 9.5/10 and underlines a big gap in current alignment/evaluation protocols (http://arxiv.org/abs/2511.15304v2).
+
+4. **Multi-Agent LLM Orchestration Achieves Deterministic, High-Quality Decision Support for Incident Response**  
+   MyAntFarm.ai demonstrates multi-agent orchestration gives deterministic, production-grade incident guidance (100% actionable vs 1.7% for single-agent) and introduces a Decision Quality (DQ) metric to capture validity, specificity and correctness. Practical takeaway: for incident-response and ops playbooks we should prioritize multi-agent architectures, adopt their DQ metric, and spin up their Dockerized repo for an internal benchmark—avg 9.5/10 and they release reproducible code/data to get us started (http://arxiv.org/abs/2511.15755v1).
+
+5. **Cognitive Foundations for Reasoning and Their Manifestation in LLMs**  
+   They map 28 cognitive elements, analyze 170K+ reasoning traces (vs human think-alouds), show models lack meta-cognitive controls and rely on shallow forward chaining, and demonstrate test-time reasoning scaffolds that improve complex-problem performance up to 60%. Practical takeaway: use their cognitive taxonomy and public traces to harden our reasoning evals and integrate test-time scaffolding into pipelines—avg 9.0/10; this is a direct playbook for making model outputs less brittle (http://arxiv.org/abs/2511.16660v1).
+
+Quick action plan for this week: spin up the MyAntFarm containers, run poetry-style jailbreaks against our prod models, and kick off two 2-day spikes—one to evaluate Bauplan feasibility on our data infra and one to prototype the compliance-preserving retrieval flow on a regulated dataset.
+    </div>
+    
+    <div class="papers">
+        <h3>📄 Detailed Papers</h3>
+        
+<div class="paper">
+    <h3>Trustworthy AI in the Agentic Lakehouse: from Concurrency to Governance</h3>
+    <div class="scores">
+        <span class="score relevance">Relevance: 10/10</span>
+        <span class="score importance">Importance: 9/10</span>
+    </div>
+    <div class="abstract">Even as AI capabilities improve, most enterprises do not consider agents trustworthy enough to work on production data. In this paper, we argue that the path to trustworthy agentic workflows begins with solving the infrastructure problem first: traditional lakehouses are not suited for agent access patterns, but if we design one around transactions, governance follows. In particular, we draw an operational analogy to MVCC in databases and show why a direct transplant fails in a decoupled, multi-language setting. We then propose an agent-first design, Bauplan, that reimplements data and compute isolation in the lakehouse. We conclude by sharing a reference implementation of a self-healing pipeline in Bauplan, which seamlessly couples agent reasoning with all the desired guarantees for correctness and trust.</div>
+    <div class="meta">
+        <a href="http://arxiv.org/abs/2511.16402v1" target="_blank">View on arXiv</a>
+    </div>
+</div>
+
+
+<div class="paper">
+    <h3>A Compliance-Preserving Retrieval System for Aircraft MRO Task Search</h3>
+    <div class="scores">
+        <span class="score relevance">Relevance: 10/10</span>
+        <span class="score importance">Importance: 9/10</span>
+    </div>
+    <div class="abstract">Aircraft Maintenance Technicians (AMTs) spend up to 30% of work time searching manuals, a documented efficiency bottleneck in MRO operations where every procedure must be traceable to certified sources. We present a compliance-preserving retrieval system that adapts LLM reranking and semantic search to aviation MRO environments by operating alongside, rather than replacing, certified legacy viewers. The system constructs revision-robust embeddings from ATA chapter hierarchies and uses vision-language parsing to structure certified content, allowing technicians to preview ranked tasks and access verified procedures in existing viewers. Evaluation on 49k synthetic queries achieves >90% retrieval accuracy, while bilingual controlled studies with 10 licensed AMTs demonstrate 90.9% top-10 success rate and 95% reduction in lookup time, from 6-15 minutes to 18 seconds per task. These gains provide concrete evidence that semantic retrieval can operate within strict regulatory constraints and meaningfully reduce operational workload in real-world multilingual MRO workflows.</div>
+    <div class="meta">
+        <a href="http://arxiv.org/abs/2511.15383v1" target="_blank">View on arXiv</a>
+    </div>
+</div>
+
+
+<div class="paper">
+    <h3>Adversarial Poetry as a Universal Single-Turn Jailbreak Mechanism in Large Language Models</h3>
+    <div class="scores">
+        <span class="score relevance">Relevance: 10/10</span>
+        <span class="score importance">Importance: 9/10</span>
+    </div>
+    <div class="abstract">We present evidence that adversarial poetry functions as a universal single-turn jailbreak technique for Large Language Models (LLMs). Across 25 frontier proprietary and open-weight models, curated poetic prompts yielded high attack-success rates (ASR), with some providers exceeding 90%. Mapping prompts to MLCommons and EU CoP risk taxonomies shows that poetic attacks transfer across CBRN, manipulation, cyber-offence, and loss-of-control domains. Converting 1,200 MLCommons harmful prompts into verse via a standardized meta-prompt produced ASRs up to 18 times higher than their prose baselines. Outputs are evaluated using an ensemble of 3 open-weight LLM judges, whose binary safety assessments were validated on a stratified human-labeled subset. Poetic framing achieved an average jailbreak success rate of 62% for hand-crafted poems and approximately 43% for meta-prompt conversions (compared to non-poetic baselines), substantially outperforming non-poetic baselines and revealing a systematic vulnerability across model families and safety training approaches. These findings demonstrate that stylistic variation alone can circumvent contemporary safety mechanisms, suggesting fundamental limitations in current alignment methods and evaluation protocols.</div>
+    <div class="meta">
+        <a href="http://arxiv.org/abs/2511.15304v2" target="_blank">View on arXiv</a>
+    </div>
+</div>
+
+
+<div class="paper">
+    <h3>Multi-Agent LLM Orchestration Achieves Deterministic, High-Quality Decision Support for Incident Response</h3>
+    <div class="scores">
+        <span class="score relevance">Relevance: 10/10</span>
+        <span class="score importance">Importance: 9/10</span>
+    </div>
+    <div class="abstract">Large language models (LLMs) promise to accelerate incident response in production systems, yet single-agent approaches generate vague, unusable recommendations. We present MyAntFarm.ai, a reproducible containerized framework demonstrating that multi-agent orchestration fundamentally transforms LLM-based incident response quality. Through 348 controlled trials comparing single-agent copilot versus multi-agent systems on identical incident scenarios, we find that multi-agent orchestration achieves 100% actionable recommendation rate versus 1.7% for single-agent approaches, an 80 times improvement in action specificity and 140 times improvement in solution correctness. Critically, multi-agent systems exhibit zero quality variance across all trials, enabling production SLA commitments impossible with inconsistent single-agent outputs. Both architectures achieve similar comprehension latency (approx.40s), establishing that the architectural value lies in deterministic quality, not speed. We introduce Decision Quality (DQ), a novel metric capturing validity, specificity, and correctness properties essential for operational deployment that existing LLM metrics do not address. These findings reframe multi-agent orchestration from a performance optimization to a production-readiness requirement for LLM-based incident response. All code, Docker configurations, and trial data are publicly available for reproduction.</div>
+    <div class="meta">
+        <a href="http://arxiv.org/abs/2511.15755v1" target="_blank">View on arXiv</a>
+    </div>
+</div>
+
+
+<div class="paper">
+    <h3>Cognitive Foundations for Reasoning and Their Manifestation in LLMs</h3>
+    <div class="scores">
+        <span class="score relevance">Relevance: 9/10</span>
+        <span class="score importance">Importance: 9/10</span>
+    </div>
+    <div class="abstract">Large language models solve complex problems yet fail on simpler variants, suggesting they achieve correct outputs through mechanisms fundamentally different from human reasoning. We synthesize cognitive science research into a taxonomy of 28 cognitive elements spanning computational constraints, meta-cognitive controls, knowledge representations, and transformation operations, then analyze their behavioral manifestations in reasoning traces. We propose a fine-grained cognitive evaluation framework and conduct the first large-scale analysis of 170K traces from 17 models across text, vision, and audio modalities, alongside 54 human think-aloud traces, which we make publicly available. Our analysis reveals systematic structural differences: humans employ hierarchical nesting and meta-cognitive monitoring while models rely on shallow forward chaining, with divergence most pronounced on ill-structured problems. Meta-analysis of 1,598 LLM reasoning papers reveals the research community concentrates on easily quantifiable behaviors (sequential organization: 55%, decomposition: 60%) while neglecting meta-cognitive controls (self-awareness: 16%, evaluation: 8%) that correlate with success. Models possess behavioral repertoires associated with success but fail to deploy them spontaneously. Leveraging these patterns, we develop test-time reasoning guidance that automatically scaffold successful structures, improving performance by up to 60% on complex problems. By bridging cognitive science and LLM research, we establish a foundation for developing models that reason through principled cognitive mechanisms rather than brittle spurious reasoning shortcuts or memorization, opening new directions for both improving model capabilities and testing theories of human cognition at scale.</div>
+    <div class="meta">
+        <a href="http://arxiv.org/abs/2511.16660v1" target="_blank">View on arXiv</a>
+    </div>
+</div>
+
+
+<div class="paper">
+    <h3>"To Survive, I Must Defect": Jailbreaking LLMs via the Game-Theory Scenarios</h3>
+    <div class="scores">
+        <span class="score relevance">Relevance: 9/10</span>
+        <span class="score importance">Importance: 9/10</span>
+    </div>
+    <div class="abstract">As LLMs become more common, non-expert users can pose risks, prompting extensive research into jailbreak attacks. However, most existing black-box jailbreak attacks rely on hand-crafted heuristics or narrow search spaces, which limit scalability. Compared with prior attacks, we propose Game-Theory Attack (GTA), an scalable black-box jailbreak framework. Concretely, we formalize the attacker's interaction against safety-aligned LLMs as a finite-horizon, early-stoppable sequential stochastic game, and reparameterize the LLM's randomized outputs via quantal response. Building on this, we introduce a behavioral conjecture "template-over-safety flip": by reshaping the LLM's effective objective through game-theoretic scenarios, the originally safety preference may become maximizing scenario payoffs within the template, which weakens safety constraints in specific contexts. We validate this mechanism with classical game such as the disclosure variant of the Prisoner's Dilemma, and we further introduce an Attacker Agent that adaptively escalates pressure to increase the ASR. Experiments across multiple protocols and datasets show that GTA achieves over 95% ASR on LLMs such as Deepseek-R1, while maintaining efficiency. Ablations over components, decoding, multilingual settings, and the Agent's core model confirm effectiveness and generalization. Moreover, scenario scaling studies further establish scalability. GTA also attains high ASR on other game-theoretic scenarios, and one-shot LLM-generated variants that keep the model mechanism fixed while varying background achieve comparable ASR. Paired with a Harmful-Words Detection Agent that performs word-level insertions, GTA maintains high ASR while lowering detection under prompt-guard models. Beyond benchmarks, GTA jailbreaks real-world LLM applications and reports a longitudinal safety monitoring of popular HuggingFace LLMs.</div>
+    <div class="meta">
+        <a href="http://arxiv.org/abs/2511.16278v1" target="_blank">View on arXiv</a>
+    </div>
+</div>
+
+
+<div class="paper">
+    <h3>AskDB: An LLM Agent for Natural Language Interaction with Relational Databases</h3>
+    <div class="scores">
+        <span class="score relevance">Relevance: 10/10</span>
+        <span class="score importance">Importance: 8/10</span>
+    </div>
+    <div class="abstract">Interacting with relational databases remains challenging for users across different expertise levels, particularly when composing complex analytical queries or performing administrative tasks. Existing systems typically address either natural language querying or narrow aspects of database administration, lacking a unified and intelligent interface for general-purpose database interaction. We introduce AskDB, a large language model powered agent designed to bridge this gap by supporting both data analysis and administrative operations over SQL databases through natural language. Built on Gemini 2, AskDB integrates two key innovations: a dynamic schema-aware prompting mechanism that effectively incorporates database metadata, and a task decomposition framework that enables the agent to plan and execute multi-step actions. These capabilities allow AskDB to autonomously debug derived SQL, retrieve contextual information via real-time web search, and adaptively refine its responses. We evaluate AskDB on a widely used Text-to-SQL benchmark and a curated set of DBA tasks, demonstrating strong performance in both analytical and administrative scenarios. Our results highlight the potential of AskDB as a unified and intelligent agent for relational database systems, offering an intuitive and accessible experience for end users.</div>
+    <div class="meta">
+        <a href="http://arxiv.org/abs/2511.16131v1" target="_blank">View on arXiv</a>
+    </div>
+</div>
+
+
+<div class="paper">
+    <h3>DEPO: Dual-Efficiency Preference Optimization for LLM Agents</h3>
+    <div class="scores">
+        <span class="score relevance">Relevance: 10/10</span>
+        <span class="score importance">Importance: 8/10</span>
+    </div>
+    <div class="abstract">Recent advances in large language models (LLMs) have greatly improved their reasoning and decision-making abilities when deployed as agents. Richer reasoning, however, often comes at the cost of longer chain of thought (CoT), hampering interaction efficiency in real-world scenarios. Nevertheless, there still lacks systematic definition of LLM agent efficiency, hindering targeted improvements. To this end, we introduce dual-efficiency, comprising (i) step-level efficiency, which minimizes tokens per step, and (ii) trajectory-level efficiency, which minimizes the number of steps to complete a task. Building on this definition, we propose DEPO, a dual-efficiency preference optimization method that jointly rewards succinct responses and fewer action steps. Experiments on WebShop and BabyAI show that DEPO cuts token usage by up to 60.9% and steps by up to 26.9%, while achieving up to a 29.3% improvement in performance. DEPO also generalizes to three out-of-domain math benchmarks and retains its efficiency gains when trained on only 25% of the data. Our project page is at https://opencausalab.github.io/DEPO.</div>
+    <div class="meta">
+        <a href="http://arxiv.org/abs/2511.15392v1" target="_blank">View on arXiv</a>
+    </div>
+</div>
+
+
+<div class="paper">
+    <h3>Securing AI Agents Against Prompt Injection Attacks</h3>
+    <div class="scores">
+        <span class="score relevance">Relevance: 10/10</span>
+        <span class="score importance">Importance: 8/10</span>
+    </div>
+    <div class="abstract">Retrieval-augmented generation (RAG) systems have become widely used for enhancing large language model capabilities, but they introduce significant security vulnerabilities through prompt injection attacks. We present a comprehensive benchmark for evaluating prompt injection risks in RAG-enabled AI agents and propose a multi-layered defense framework. Our benchmark includes 847 adversarial test cases across five attack categories: direct injection, context manipulation, instruction override, data exfiltration, and cross-context contamination. We evaluate three defense mechanisms: content filtering with embedding-based anomaly detection, hierarchical system prompt guardrails, and multi-stage response verification, across seven state-of-the-art language models. Our combined framework reduces successful attack rates from 73.2% to 8.7% while maintaining 94.3% of baseline task performance. We release our benchmark dataset and defense implementation to support future research in AI agent security.</div>
+    <div class="meta">
+        <a href="http://arxiv.org/abs/2511.15759v1" target="_blank">View on arXiv</a>
+    </div>
+</div>
+
+
+<div class="paper">
+    <h3>The Oracle and The Prism: A Decoupled and Efficient Framework for Generative Recommendation Explanation</h3>
+    <div class="scores">
+        <span class="score relevance">Relevance: 9/10</span>
+        <span class="score importance">Importance: 8/10</span>
+    </div>
+    <div class="abstract">The integration of Large Language Models (LLMs) into explainable recommendation systems often leads to a performance-efficiency trade-off in end-to-end architectures, where joint optimization of ranking and explanation can result in suboptimal compromises. To resolve this, we propose Prism, a novel decoupled framework that rigorously separates the recommendation process into a dedicated ranking stage and an explanation generation stage.   Inspired by knowledge distillation, Prism leverages a powerful teacher LLM (e.g., FLAN-T5-XXL) as an Oracle to produce high-fidelity explanatory knowledge. A compact, fine-tuned student model (e.g., BART-Base), the Prism, then specializes in synthesizing this knowledge into personalized explanations. This decomposition ensures that each component is optimized for its specific objective, eliminating inherent conflicts in coupled models.   Extensive experiments on benchmark datasets demonstrate that our 140M-parameter Prism model significantly outperforms its 11B-parameter teacher in human evaluations of faithfulness and personalization, while achieving a 24 times speedup and a 10 times reduction in memory consumption during inference. These results validate that decoupling, coupled with targeted distillation, provides an efficient and effective pathway to high-quality explainable recommendation.</div>
+    <div class="meta">
+        <a href="http://arxiv.org/abs/2511.16543v1" target="_blank">View on arXiv</a>
+    </div>
+</div>
+
+
+<div class="paper">
+    <h3>SDA: Steering-Driven Distribution Alignment for Open LLMs without Fine-Tuning</h3>
+    <div class="scores">
+        <span class="score relevance">Relevance: 9/10</span>
+        <span class="score importance">Importance: 8/10</span>
+    </div>
+    <div class="abstract">With the rapid advancement of large language models (LLMs), their deployment in real-world applications has become increasingly widespread. LLMs are expected to deliver robust performance across diverse tasks, user preferences, and practical scenarios. However, as demands grow, ensuring that LLMs produce responses aligned with human intent remains a foundational challenge. In particular, aligning model behavior effectively and efficiently during inference, without costly retraining or extensive supervision, is both a critical requirement and a non-trivial technical endeavor. To address the challenge, we propose SDA (Steering-Driven Distribution Alignment), a training-free and model-agnostic alignment framework designed for open-source LLMs. SDA dynamically redistributes model output probabilities based on user-defined alignment instructions, enhancing alignment between model behavior and human intents without fine-tuning. The method is lightweight, resource-efficient, and compatible with a wide range of open-source LLMs. It can function independently during inference or be integrated with training-based alignment strategies. Moreover, SDA supports personalized preference alignment, enabling flexible control over the model response behavior. Empirical results demonstrate that SDA consistently improves alignment performance across 8 open-source LLMs with varying scales and diverse origins, evaluated on three key alignment dimensions, helpfulness, harmlessness, and honesty (3H). Specifically, SDA achieves average gains of 64.4% in helpfulness, 30% in honesty and 11.5% in harmlessness across the tested models, indicating its effectiveness and generalization across diverse models and application scenarios.</div>
+    <div class="meta">
+        <a href="http://arxiv.org/abs/2511.16324v1" target="_blank">View on arXiv</a>
+    </div>
+</div>
+
+
+<div class="paper">
+    <h3>Multi-Agent Collaborative Reward Design for Enhancing Reasoning in Reinforcement Learning</h3>
+    <div class="scores">
+        <span class="score relevance">Relevance: 9/10</span>
+        <span class="score importance">Importance: 8/10</span>
+    </div>
+    <div class="abstract">We present CRM (Multi-Agent Collaborative Reward Model), a framework that replaces a single black-box reward model with a coordinated team of specialist evaluators to improve robustness and interpretability in RLHF. Conventional reward models struggle to jointly optimize multiple, sometimes conflicting, preference dimensions (e.g., factuality, helpfulness, safety) and offer limited transparency into why a score is assigned. CRM addresses these issues by decomposing preference evaluation into domain-specific agents that each produce partial signals, alongside global evaluators such as ranker-based and embedding-similarity rewards. A centralized aggregator fuses these signals at each timestep, balancing factors like step-wise correctness, multi-agent agreement, and repetition penalties, yielding a single training reward compatible with standard RL pipelines. The policy is optimized with advantage-based updates (e.g., GAE), while a value model regresses to the aggregated reward, enabling multi-perspective reward shaping without requiring additional human annotations beyond those used to train the evaluators. To support training and assessment, we introduce rewardBench, a benchmark and training suite aligned with the collaborative structure of CRM. Together, CRM and rewardBench provide a practical, modular path to more transparent reward modeling and more stable optimization.</div>
+    <div class="meta">
+        <a href="http://arxiv.org/abs/2511.16202v1" target="_blank">View on arXiv</a>
+    </div>
+</div>
+
+
+<div class="paper">
+    <h3>SkyRL-Agent: Efficient RL Training for Multi-turn LLM Agent</h3>
+    <div class="scores">
+        <span class="score relevance">Relevance: 9/10</span>
+        <span class="score importance">Importance: 8/10</span>
+    </div>
+    <div class="abstract">We introduce SkyRL-Agent, a framework for efficient, multi-turn, long-horizon agent training and evaluation. It provides efficient asynchronous dispatching, lightweight tool integration, and flexible backend interoperability, enabling seamless use with existing RL frameworks such as SkyRL-train, VeRL, and Tinker.   Using SkyRL-Agent, we train SA-SWE-32B, a software engineering agent trained from Qwen3-32B (24.4% Pass@1) purely with reinforcement learning. We introduce two key components: an optimized asynchronous pipeline dispatcher that achieves a 1.55x speedup over naive asynchronous batching, and a tool-enhanced training recipe leveraging an AST-based search tool to facilitate code navigation, boost rollout Pass@K, and improve training efficiency. Together, these optimizations enable SA-SWE-32B to reach 39.4% Pass@1 on SWE-Bench Verified with more than 2x cost reduction compared to prior models reaching similar performance. Despite being trained solely on SWE tasks, SA-SWE-32B generalizes effectively to other agentic tasks, including Terminal-Bench, BrowseComp-Plus, and WebArena. We further demonstrate SkyRL-Agent's extensibility through case studies on deep research, computer use, and memory agents, each trained using a different training backend.</div>
+    <div class="meta">
+        <a href="http://arxiv.org/abs/2511.16108v1" target="_blank">View on arXiv</a>
+    </div>
+</div>
+
+
+<div class="paper">
+    <h3>InfCode: Adversarial Iterative Refinement of Tests and Patches for Reliable Software Issue Resolution</h3>
+    <div class="scores">
+        <span class="score relevance">Relevance: 9/10</span>
+        <span class="score importance">Importance: 8/10</span>
+    </div>
+    <div class="abstract">Large language models have advanced software engineering automation, yet resolving real-world software issues remains difficult because it requires repository-level reasoning, accurate diagnostics, and strong verification signals. Existing agent-based and pipeline-based methods often rely on insufficient tests, which can lead to patches that satisfy verification but fail to fix the underlying defect. We present InfCode, an adversarial multi-agent framework for automated repository-level issue resolution. InfCode iteratively refines both tests and patches through adversarial interaction between a Test Patch Generator and a Code Patch Generator, while a Selector agent identifies the most reliable fix. The framework runs inside a containerized environment that supports realistic repository inspection, modification, and validation. Experiments on SWE-bench Lite and SWE-bench Verified using models such as DeepSeek-V3 and Claude 4.5 Sonnet show that InfCode consistently outperforms strong baselines. It achieves 79.4% performance on SWE-bench Verified, establishing a new state-of-the-art. We have released InfCode as an open-source project at https://github.com/Tokfinity/InfCode.</div>
+    <div class="meta">
+        <a href="http://arxiv.org/abs/2511.16004v1" target="_blank">View on arXiv</a>
+    </div>
+</div>
+
+
+<div class="paper">
+    <h3>Detecting Sleeper Agents in Large Language Models via Semantic Drift Analysis</h3>
+    <div class="scores">
+        <span class="score relevance">Relevance: 9/10</span>
+        <span class="score importance">Importance: 8/10</span>
+    </div>
+    <div class="abstract">Large Language Models (LLMs) can be backdoored to exhibit malicious behavior under specific deployment conditions while appearing safe during training a phenomenon known as "sleeper agents." Recent work by Hubinger et al. demonstrated that these backdoors persist through safety training, yet no practical detection methods exist. We present a novel dual-method detection system combining semantic drift analysis with canary baseline comparison to identify backdoored LLMs in real-time. Our approach uses Sentence-BERT embeddings to measure semantic deviation from safe baselines, complemented by injected canary questions that monitor response consistency. Evaluated on the official Cadenza-Labs dolphin-llama3-8B sleeper agent model, our system achieves 92.5% accuracy with 100% precision (zero false positives) and 85% recall. The combined detection method operates in real-time (<1s per query), requires no model modification, and provides the first practical solution to LLM backdoor detection. Our work addresses a critical security gap in AI deployment and demonstrates that embedding-based detection can effectively identify deceptive model behavior without sacrificing deployment efficiency.</div>
+    <div class="meta">
+        <a href="http://arxiv.org/abs/2511.15992v1" target="_blank">View on arXiv</a>
+    </div>
+</div>
+
+
+<div class="paper">
+    <h3>A Scalable NorthPole System with End-to-End Vertical Integration for Low-Latency and Energy-Efficient LLM Inference</h3>
+    <div class="scores">
+        <span class="score relevance">Relevance: 9/10</span>
+        <span class="score importance">Importance: 8/10</span>
+    </div>
+    <div class="abstract">A vertically integrated, end-to-end, research prototype system combines 288 NorthPole neural inference accelerator cards, offline training algorithms, a high-performance runtime stack, and a containerized inference pipeline to deliver a scalable and efficient cloud inference service. The system delivers 115 peta-ops at 4-bit integer precision and 3.7 PB/s of memory bandwidth across 18 2U servers, while consuming only 30 kW of power and weighing 730 kg in a 0.67 m^2 42U rack footprint. The system can run 3 simultaneous instances of the 8-billion-parameter open-source IBM Granite-3.3-8b-instruct model at 2,048 context length with 28 simultaneous users and a per-user inter-token latency of 2.8 ms. The system is scalable, modular, and reconfigurable, supporting various model sizes and context lengths, and is ideal for deploying agentic workflows for enterprise AI applications in existing data center (cloud, on-prem) environments. For example, the system can support 18 instances of a 3-billion-parameter model or a single instance of a 70-billion-parameter model.</div>
+    <div class="meta">
+        <a href="http://arxiv.org/abs/2511.15950v1" target="_blank">View on arXiv</a>
+    </div>
+</div>
+
+
+<div class="paper">
+    <h3>Thinking, Faithful and Stable: Mitigating Hallucinations in LLMs</h3>
+    <div class="scores">
+        <span class="score relevance">Relevance: 9/10</span>
+        <span class="score importance">Importance: 8/10</span>
+    </div>
+    <div class="abstract">This project develops a self correcting framework for large language models (LLMs) that detects and mitigates hallucinations during multi-step reasoning. Rather than relying solely on final answer correctness, our approach leverages fine grained uncertainty signals: 1) self-assessed confidence alignment, and 2) token-level entropy spikes to detect unreliable and unfaithful reasoning in real time. We design a composite reward function that penalizes unjustified high confidence and entropy spikes, while encouraging stable and accurate reasoning trajectories. These signals guide a reinforcement learning (RL) policy that makes the model more introspective and shapes the model's generation behavior through confidence-aware reward feedback, improving not just outcome correctness but the coherence and faithfulness of their intermediate reasoning steps. Experiments show that our method improves both final answer accuracy and reasoning calibration, with ablations validating the individual contribution of each signal.</div>
+    <div class="meta">
+        <a href="http://arxiv.org/abs/2511.15921v1" target="_blank">View on arXiv</a>
+    </div>
+</div>
+
+
+<div class="paper">
+    <h3>The Loss of Control Playbook: Degrees, Dynamics, and Preparedness</h3>
+    <div class="scores">
+        <span class="score relevance">Relevance: 9/10</span>
+        <span class="score importance">Importance: 8/10</span>
+    </div>
+    <div class="abstract">This research report addresses the absence of an actionable definition for Loss of Control (LoC) in AI systems by developing a novel taxonomy and preparedness framework. Despite increasing policy and research attention, existing LoC definitions vary significantly in scope and timeline, hindering effective LoC assessment and mitigation. To address this issue, we draw from an extensive literature review and propose a graded LoC taxonomy, based on the metrics of severity and persistence, that distinguishes between Deviation, Bounded LoC, and Strict LoC. We model pathways toward a societal state of vulnerability in which sufficiently advanced AI systems have acquired or could acquire the means to cause Bounded or Strict LoC once a catalyst, either misalignment or pure malfunction, materializes. We argue that this state becomes increasingly likely over time, absent strategic intervention, and propose a strategy to avoid reaching a state of vulnerability. Rather than focusing solely on intervening on AI capabilities and propensities potentially relevant for LoC or on preventing potential catalysts, we introduce a complementary framework that emphasizes three extrinsic factors: Deployment context, Affordances, and Permissions (the DAP framework). Compared to work on intrinsic factors and catalysts, this framework has the unfair advantage of being actionable today. Finally, we put forward a plan to maintain preparedness and prevent the occurrence of LoC outcomes should a state of societal vulnerability be reached, focusing on governance measures (threat modeling, deployment policies, emergency response) and technical controls (pre-deployment testing, control measures, monitoring) that could maintain a condition of perennial suspension.</div>
+    <div class="meta">
+        <a href="http://arxiv.org/abs/2511.15846v1" target="_blank">View on arXiv</a>
+    </div>
+</div>
+
+
+<div class="paper">
+    <h3>B+ANN: A Fast Billion-Scale Disk-based Nearest-Neighbor Index</h3>
+    <div class="scores">
+        <span class="score relevance">Relevance: 9/10</span>
+        <span class="score importance">Importance: 8/10</span>
+    </div>
+    <div class="abstract">Storing and processing of embedding vectors by specialized Vector databases (VDBs) has become the linchpin in building modern AI pipelines. Most current VDBs employ variants of a graph-based ap- proximate nearest-neighbor (ANN) index algorithm, HNSW, to an- swer semantic queries over stored vectors. Inspite of its wide-spread use, the HNSW algorithm suffers from several issues: in-memory design and implementation, random memory accesses leading to degradation in cache behavior, limited acceleration scope due to fine-grained pairwise computations, and support of only semantic similarity queries. In this paper, we present a novel disk-based ANN index, B+ANN, to address these issues: it first partitions input data into blocks containing semantically similar items, then builds an B+ tree variant to store blocks both in-memory and on disks, and finally, enables hybrid edge- and block-based in-memory traversals. As demonstrated by our experimantal evaluation, the proposed B+ANN disk-based index improves both quality (Recall value), and execution performance (Queries per second/QPS) over HNSW, by improving spatial and temporal locality for semantic operations, reducing cache misses (19.23% relative gain), and decreasing the memory consumption and disk-based build time by 24x over the DiskANN algorithm. Finally, it enables dissimilarity queries, which are not supported by similarity-oriented ANN indices.</div>
+    <div class="meta">
+        <a href="http://arxiv.org/abs/2511.15557v1" target="_blank">View on arXiv</a>
+    </div>
+</div>
+
+
+<div class="paper">
+    <h3>Identifying the Supply Chain of AI for Trustworthiness and Risk Management in Critical Applications</h3>
+    <div class="scores">
+        <span class="score relevance">Relevance: 9/10</span>
+        <span class="score importance">Importance: 8/10</span>
+    </div>
+    <div class="abstract">Risks associated with the use of AI, ranging from algorithmic bias to model hallucinations, have received much attention and extensive research across the AI community, from researchers to end-users. However, a gap exists in the systematic assessment of supply chain risks associated with the complex web of data sources, pre-trained models, agents, services, and other systems that contribute to the output of modern AI systems. This gap is particularly problematic when AI systems are used in critical applications, such as the food supply, healthcare, utilities, law, insurance, and transport.   We survey the current state of AI risk assessment and management, with a focus on the supply chain of AI and risks relating to the behavior and outputs of the AI system. We then present a proposed taxonomy specifically for categorizing AI supply chain entities. This taxonomy helps stakeholders, especially those without extensive AI expertise, to "consider the right questions" and systematically inventory dependencies across their organization's AI systems. Our contribution bridges a gap between the current state of AI governance and the urgent need for actionable risk assessment and management of AI use in critical applications.</div>
+    <div class="meta">
+        <a href="http://arxiv.org/abs/2511.15763v1" target="_blank">View on arXiv</a>
+    </div>
+</div>
+
+    </div>
+</div>
+
+    </body>
+    </html>
+    
