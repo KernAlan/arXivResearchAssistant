@@ -1,0 +1,444 @@
+
+    <!DOCTYPE html>
+    <html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>ArXiv Research Digest</title>
+        <style>
+            
+body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    line-height: 1.5;
+    color: #2d3748;
+    margin: 0;
+    padding: 20px;
+    background: #f7fafc;
+}
+
+.digest {
+    max-width: 800px;
+    margin: 0 auto;
+    background: white;
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+}
+
+.header {
+    margin-bottom: 2rem;
+    padding-bottom: 1rem;
+    border-bottom: 2px solid #e2e8f0;
+}
+
+.header h2 {
+    margin: 0;
+    color: #2d3748;
+}
+
+.header p {
+    margin: 0.5rem 0 0;
+    color: #718096;
+}
+
+.highlights {
+    background: #f8fafc;
+    padding: 1.5rem;
+    border-radius: 8px;
+    margin-bottom: 3rem;
+    border: 1px solid #e2e8f0;
+}
+
+.highlights h3 {
+    color: #2d3748;
+    margin: 0 0 1rem 0;
+    font-size: 1.25rem;
+}
+
+.summary {
+    white-space: pre-line;
+    line-height: 1.6;
+}
+
+.summary ol {
+    padding-left: 1.5rem;
+    margin: 1rem 0;
+}
+
+.summary li {
+    margin-bottom: 0.75rem;
+    padding-left: 0.5rem;
+}
+
+.papers {
+    margin-top: 3rem;
+}
+
+.papers h3 {
+    color: #2d3748;
+    margin-bottom: 1.5rem;
+    padding-bottom: 1rem;
+    border-bottom: 2px solid #e2e8f0;
+}
+
+.paper {
+    margin-bottom: 2rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid #e2e8f0;
+}
+
+.paper:last-child {
+    border-bottom: none;
+}
+
+.paper h3 {
+    margin: 0 0 0.5rem;
+    color: #2d3748;
+}
+
+.paper .scores {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 0.5rem;
+}
+
+.paper .score {
+    padding: 0.25rem 0.5rem;
+    border-radius: 4px;
+    font-size: 0.875rem;
+}
+
+.paper .relevance {
+    background: #e6fffa;
+    color: #047481;
+}
+
+.paper .importance {
+    background: #ebf4ff;
+    color: #1a56db;
+}
+
+.paper .abstract {
+    color: #4a5568;
+    margin: 0.5rem 0;
+}
+
+.paper .meta {
+    font-size: 0.875rem;
+    color: #718096;
+}
+
+.paper .meta a {
+    color: #4299e1;
+    text-decoration: none;
+}
+
+.paper .meta a:hover {
+    text-decoration: underline;
+}
+
+        </style>
+    </head>
+    <body>
+        
+<div class="digest">
+    <div class="header">
+        <h2>ArXiv Research Digest</h2>
+        <p>Found 20 relevant papers out of 107 new submissions</p>
+    </div>
+    
+    <div class="highlights">
+        <h3>🔥 Key Highlights</h3>
+        Hey boss, found 5 cool papers today that I think you'll love:
+
+1) **Detecting Sleeper Agents in Large Language Models via Semantic Drift Analysis**  
+This paper (avg score 9.5/10 — Relevance 10/10, Importance 9/10) introduces a practical dual-method detector that combines Sentence-BERT semantic-drift monitoring with injected canary-baseline checks to catch LLM backdoors in real time (92.5% accuracy, 100% precision, 85% recall, <1s/query) — see http://arxiv.org/abs/2511.15992v1.  
+For us this is a must-have runtime safety tool: next step is to prototype the detector in our inference pipeline and run it against internal and vendor models as part of pre-deploy security gating.
+
+2) **The Oracle and The Prism: A Decoupled and Efficient Framework for Generative Recommendation Explanation**  
+(avg 9.0/10 — Relevance 10/10, Importance 8/10) Prism decouples ranking and explanation by distilling a large teacher LLM into a 140M student that produces more faithful, personalized explanations while being ~24x faster and using ~10x less memory than the teacher (http://arxiv.org/abs/2511.16543v1).  
+This matters for productizing explainable recommendations: we should try a Prism-style distillation on one of our recommender pipelines to cut latency/cost while improving explanation faithfulness.
+
+3) **AskDB: An LLM Agent for Natural Language Interaction with Relational Databases**  
+(avg 9.0/10 — Relevance 10/10, Importance 8/10) AskDB (built on Gemini 2) uses schema-aware prompts plus task decomposition to support both complex Text-to-SQL analytics and DB admin tasks, including autonomous SQL debugging and adaptive refinement (http://arxiv.org/abs/2511.16131v1).  
+Practical win: we can reduce analyst/DBA friction — next step is to run AskDB against a sanitized staging warehouse (with RBAC/audit) to measure query correctness and safety for self-serve analytics.
+
+4) **InfCode: Adversarial Iterative Refinement of Tests and Patches for Reliable Software Issue Resolution**  
+(avg 9.0/10 — Relevance 10/10, Importance 8/10) InfCode is an adversarial multi-agent system that iteratively refines tests and code patches in a containerized repo environment, achieving SOTA 79.4% on SWE-bench Verified and released at https://github.com/Tokfinity/InfCode (http://arxiv.org/abs/2511.16004v1).  
+For our engineering org this could materially raise automated repair reliability — we should fork InfCode and run it on a handful of recent failing tickets to compare against our current CI/repair pipelines.
+
+5) **KRAL: Knowledge and Reasoning Augmented Learning for LLM-assisted Clinical Antimicrobial Therapy**  
+(avg 9.0/10 — Relevance 10/10, Importance 8/10) KRAL combines teacher-model reasoning distillation, heuristic semi-supervised augmentation (≈80% fewer manual labels), and agentic RL to boost clinical QA and reasoning (MEDQA +1.8% vs SFT, PUMCH reasoning +27%) at ~20% of conventional SFT cost (http://arxiv.org/abs/2511.15974v1).  
+This is a viable path for low-cost, privacy-preserving clinical assistants: let’s prototype KRAL-style distillation on a small, de‑identified clinical dataset to validate safety and cost savings.
+
+Quick action plan for this week: let’s spin up five short PoCs — sleeper-agent detector in inference, Prism distill on one recommender, AskDB on staging warehousing, InfCode on a couple recent bugs, and a tiny KRAL pilot on de-identified clinical data — and sync end-of-week with results.
+    </div>
+    
+    <div class="papers">
+        <h3>📄 Detailed Papers</h3>
+        
+<div class="paper">
+    <h3>Detecting Sleeper Agents in Large Language Models via Semantic Drift Analysis</h3>
+    <div class="scores">
+        <span class="score relevance">Relevance: 10/10</span>
+        <span class="score importance">Importance: 9/10</span>
+    </div>
+    <div class="abstract">Large Language Models (LLMs) can be backdoored to exhibit malicious behavior under specific deployment conditions while appearing safe during training a phenomenon known as "sleeper agents." Recent work by Hubinger et al. demonstrated that these backdoors persist through safety training, yet no practical detection methods exist. We present a novel dual-method detection system combining semantic drift analysis with canary baseline comparison to identify backdoored LLMs in real-time. Our approach uses Sentence-BERT embeddings to measure semantic deviation from safe baselines, complemented by injected canary questions that monitor response consistency. Evaluated on the official Cadenza-Labs dolphin-llama3-8B sleeper agent model, our system achieves 92.5% accuracy with 100% precision (zero false positives) and 85% recall. The combined detection method operates in real-time (<1s per query), requires no model modification, and provides the first practical solution to LLM backdoor detection. Our work addresses a critical security gap in AI deployment and demonstrates that embedding-based detection can effectively identify deceptive model behavior without sacrificing deployment efficiency.</div>
+    <div class="meta">
+        <a href="http://arxiv.org/abs/2511.15992v1" target="_blank">View on arXiv</a>
+    </div>
+</div>
+
+
+<div class="paper">
+    <h3>The Oracle and The Prism: A Decoupled and Efficient Framework for Generative Recommendation Explanation</h3>
+    <div class="scores">
+        <span class="score relevance">Relevance: 10/10</span>
+        <span class="score importance">Importance: 8/10</span>
+    </div>
+    <div class="abstract">The integration of Large Language Models (LLMs) into explainable recommendation systems often leads to a performance-efficiency trade-off in end-to-end architectures, where joint optimization of ranking and explanation can result in suboptimal compromises. To resolve this, we propose Prism, a novel decoupled framework that rigorously separates the recommendation process into a dedicated ranking stage and an explanation generation stage.   Inspired by knowledge distillation, Prism leverages a powerful teacher LLM (e.g., FLAN-T5-XXL) as an Oracle to produce high-fidelity explanatory knowledge. A compact, fine-tuned student model (e.g., BART-Base), the Prism, then specializes in synthesizing this knowledge into personalized explanations. This decomposition ensures that each component is optimized for its specific objective, eliminating inherent conflicts in coupled models.   Extensive experiments on benchmark datasets demonstrate that our 140M-parameter Prism model significantly outperforms its 11B-parameter teacher in human evaluations of faithfulness and personalization, while achieving a 24 times speedup and a 10 times reduction in memory consumption during inference. These results validate that decoupling, coupled with targeted distillation, provides an efficient and effective pathway to high-quality explainable recommendation.</div>
+    <div class="meta">
+        <a href="http://arxiv.org/abs/2511.16543v1" target="_blank">View on arXiv</a>
+    </div>
+</div>
+
+
+<div class="paper">
+    <h3>AskDB: An LLM Agent for Natural Language Interaction with Relational Databases</h3>
+    <div class="scores">
+        <span class="score relevance">Relevance: 10/10</span>
+        <span class="score importance">Importance: 8/10</span>
+    </div>
+    <div class="abstract">Interacting with relational databases remains challenging for users across different expertise levels, particularly when composing complex analytical queries or performing administrative tasks. Existing systems typically address either natural language querying or narrow aspects of database administration, lacking a unified and intelligent interface for general-purpose database interaction. We introduce AskDB, a large language model powered agent designed to bridge this gap by supporting both data analysis and administrative operations over SQL databases through natural language. Built on Gemini 2, AskDB integrates two key innovations: a dynamic schema-aware prompting mechanism that effectively incorporates database metadata, and a task decomposition framework that enables the agent to plan and execute multi-step actions. These capabilities allow AskDB to autonomously debug derived SQL, retrieve contextual information via real-time web search, and adaptively refine its responses. We evaluate AskDB on a widely used Text-to-SQL benchmark and a curated set of DBA tasks, demonstrating strong performance in both analytical and administrative scenarios. Our results highlight the potential of AskDB as a unified and intelligent agent for relational database systems, offering an intuitive and accessible experience for end users.</div>
+    <div class="meta">
+        <a href="http://arxiv.org/abs/2511.16131v1" target="_blank">View on arXiv</a>
+    </div>
+</div>
+
+
+<div class="paper">
+    <h3>InfCode: Adversarial Iterative Refinement of Tests and Patches for Reliable Software Issue Resolution</h3>
+    <div class="scores">
+        <span class="score relevance">Relevance: 10/10</span>
+        <span class="score importance">Importance: 8/10</span>
+    </div>
+    <div class="abstract">Large language models have advanced software engineering automation, yet resolving real-world software issues remains difficult because it requires repository-level reasoning, accurate diagnostics, and strong verification signals. Existing agent-based and pipeline-based methods often rely on insufficient tests, which can lead to patches that satisfy verification but fail to fix the underlying defect. We present InfCode, an adversarial multi-agent framework for automated repository-level issue resolution. InfCode iteratively refines both tests and patches through adversarial interaction between a Test Patch Generator and a Code Patch Generator, while a Selector agent identifies the most reliable fix. The framework runs inside a containerized environment that supports realistic repository inspection, modification, and validation. Experiments on SWE-bench Lite and SWE-bench Verified using models such as DeepSeek-V3 and Claude 4.5 Sonnet show that InfCode consistently outperforms strong baselines. It achieves 79.4% performance on SWE-bench Verified, establishing a new state-of-the-art. We have released InfCode as an open-source project at https://github.com/Tokfinity/InfCode.</div>
+    <div class="meta">
+        <a href="http://arxiv.org/abs/2511.16004v1" target="_blank">View on arXiv</a>
+    </div>
+</div>
+
+
+<div class="paper">
+    <h3>KRAL: Knowledge and Reasoning Augmented Learning for LLM-assisted Clinical Antimicrobial Therapy</h3>
+    <div class="scores">
+        <span class="score relevance">Relevance: 10/10</span>
+        <span class="score importance">Importance: 8/10</span>
+    </div>
+    <div class="abstract">Clinical antimicrobial therapy requires the dynamic integration of pathogen profiles, host factors, pharmacological properties of antimicrobials, and the severity of infection.This complexity imposes fundamental limitations on the applicability of Large Language Models (LLMs) in high-stakes clinical decision-making including knowledge gaps, data privacy concerns, high deployment costs, and limited reasoning capabilities. To address these challenges, we propose KRAL (Knowledge and Reasoning Augmented Learning), a low-cost, scalable, privacy-preserving paradigm that leverages teacher-model reasoning to automatically distill knowledge and reasoning trajectories via answer-to-question reverse generation, employs heuristic learning for semi-supervised data augmentation (reducing manual annotation requirements by approximately 80%), and utilizes agentic reinforcement learning to jointly enhance medical knowledge and reasoning while optimizing computational and memory efficiency. A hierarchical evaluation employing diverse teacher-model proxies reduces assessment costs, while modular interface design facilitates seamless system updates. Experimental results demonstrate that KRAL significantly outperforms traditional Retrieval-Augmented Generation (RAG) and Supervised Fine-Tuning (SFT) methods. It improves knowledge question-answering capability (Accuracy@1 on the external open-source benchmark MEDQA increased by 1.8% vs. SFT and 3.6% vs. RAG) and reasoning capability (Pass@1 on the external benchmark PUMCH Antimicrobial increased by 27% vs. SFT and 27.2% vs. RAG), achieved at ~20% of SFT's long-term training costs. This establishes KRAL as an effective solution for enhancing local LLMs' clinical diagnostic capabilities, enabling low-cost, high-safety deployment in complex medical decision support.</div>
+    <div class="meta">
+        <a href="http://arxiv.org/abs/2511.15974v1" target="_blank">View on arXiv</a>
+    </div>
+</div>
+
+
+<div class="paper">
+    <h3>A Scalable NorthPole System with End-to-End Vertical Integration for Low-Latency and Energy-Efficient LLM Inference</h3>
+    <div class="scores">
+        <span class="score relevance">Relevance: 10/10</span>
+        <span class="score importance">Importance: 8/10</span>
+    </div>
+    <div class="abstract">A vertically integrated, end-to-end, research prototype system combines 288 NorthPole neural inference accelerator cards, offline training algorithms, a high-performance runtime stack, and a containerized inference pipeline to deliver a scalable and efficient cloud inference service. The system delivers 115 peta-ops at 4-bit integer precision and 3.7 PB/s of memory bandwidth across 18 2U servers, while consuming only 30 kW of power and weighing 730 kg in a 0.67 m^2 42U rack footprint. The system can run 3 simultaneous instances of the 8-billion-parameter open-source IBM Granite-3.3-8b-instruct model at 2,048 context length with 28 simultaneous users and a per-user inter-token latency of 2.8 ms. The system is scalable, modular, and reconfigurable, supporting various model sizes and context lengths, and is ideal for deploying agentic workflows for enterprise AI applications in existing data center (cloud, on-prem) environments. For example, the system can support 18 instances of a 3-billion-parameter model or a single instance of a 70-billion-parameter model.</div>
+    <div class="meta">
+        <a href="http://arxiv.org/abs/2511.15950v1" target="_blank">View on arXiv</a>
+    </div>
+</div>
+
+
+<div class="paper">
+    <h3>Taming the Long-Tail: Efficient Reasoning RL Training with Adaptive Drafter</h3>
+    <div class="scores">
+        <span class="score relevance">Relevance: 9/10</span>
+        <span class="score importance">Importance: 8/10</span>
+    </div>
+    <div class="abstract">The emergence of Large Language Models (LLMs) with strong reasoning capabilities marks a significant milestone, unlocking new frontiers in complex problem-solving. However, training these reasoning models, typically using Reinforcement Learning (RL), encounters critical efficiency bottlenecks: response generation during RL training exhibits a persistent long-tail distribution, where a few very long responses dominate execution time, wasting resources and inflating costs. To address this, we propose TLT, a system that accelerates reasoning RL training losslessly by integrating adaptive speculative decoding. Applying speculative decoding in RL is challenging due to the dynamic workloads, evolving target model, and draft model training overhead. TLT overcomes these obstacles with two synergistic components: (1) Adaptive Drafter, a lightweight draft model trained continuously on idle GPUs during long-tail generation to maintain alignment with the target model at no extra cost; and (2) Adaptive Rollout Engine, which maintains a memory-efficient pool of pre-captured CUDAGraphs and adaptively select suitable SD strategies for each input batch. Evaluations demonstrate that TLT achieves over 1.7x end-to-end RL training speedup over state-of-the-art systems, preserves the model accuracy, and yields a high-quality draft model as a free byproduct suitable for efficient deployment. Code is released at https://github.com/mit-han-lab/fastrl.</div>
+    <div class="meta">
+        <a href="http://arxiv.org/abs/2511.16665v1" target="_blank">View on arXiv</a>
+    </div>
+</div>
+
+
+<div class="paper">
+    <h3>Cognitive Foundations for Reasoning and Their Manifestation in LLMs</h3>
+    <div class="scores">
+        <span class="score relevance">Relevance: 9/10</span>
+        <span class="score importance">Importance: 8/10</span>
+    </div>
+    <div class="abstract">Large language models solve complex problems yet fail on simpler variants, suggesting they achieve correct outputs through mechanisms fundamentally different from human reasoning. We synthesize cognitive science research into a taxonomy of 28 cognitive elements spanning computational constraints, meta-cognitive controls, knowledge representations, and transformation operations, then analyze their behavioral manifestations in reasoning traces. We propose a fine-grained cognitive evaluation framework and conduct the first large-scale analysis of 170K traces from 17 models across text, vision, and audio modalities, alongside 54 human think-aloud traces, which we make publicly available. Our analysis reveals systematic structural differences: humans employ hierarchical nesting and meta-cognitive monitoring while models rely on shallow forward chaining, with divergence most pronounced on ill-structured problems. Meta-analysis of 1,598 LLM reasoning papers reveals the research community concentrates on easily quantifiable behaviors (sequential organization: 55%, decomposition: 60%) while neglecting meta-cognitive controls (self-awareness: 16%, evaluation: 8%) that correlate with success. Models possess behavioral repertoires associated with success but fail to deploy them spontaneously. Leveraging these patterns, we develop test-time reasoning guidance that automatically scaffold successful structures, improving performance by up to 60% on complex problems. By bridging cognitive science and LLM research, we establish a foundation for developing models that reason through principled cognitive mechanisms rather than brittle spurious reasoning shortcuts or memorization, opening new directions for both improving model capabilities and testing theories of human cognition at scale.</div>
+    <div class="meta">
+        <a href="http://arxiv.org/abs/2511.16660v1" target="_blank">View on arXiv</a>
+    </div>
+</div>
+
+
+<div class="paper">
+    <h3>WER is Unaware: Assessing How ASR Errors Distort Clinical Understanding in Patient Facing Dialogue</h3>
+    <div class="scores">
+        <span class="score relevance">Relevance: 9/10</span>
+        <span class="score importance">Importance: 8/10</span>
+    </div>
+    <div class="abstract">As Automatic Speech Recognition (ASR) is increasingly deployed in clinical dialogue, standard evaluations still rely heavily on Word Error Rate (WER). This paper challenges that standard, investigating whether WER or other common metrics correlate with the clinical impact of transcription errors. We establish a gold-standard benchmark by having expert clinicians compare ground-truth utterances to their ASR-generated counterparts, labeling the clinical impact of any discrepancies found in two distinct doctor-patient dialogue datasets. Our analysis reveals that WER and a comprehensive suite of existing metrics correlate poorly with the clinician-assigned risk labels (No, Minimal, or Significant Impact). To bridge this evaluation gap, we introduce an LLM-as-a-Judge, programmatically optimized using GEPA to replicate expert clinical assessment. The optimized judge (Gemini-2.5-Pro) achieves human-comparable performance, obtaining 90% accuracy and a strong Cohen's $κ$ of 0.816. This work provides a validated, automated framework for moving ASR evaluation beyond simple textual fidelity to a necessary, scalable assessment of safety in clinical dialogue.</div>
+    <div class="meta">
+        <a href="http://arxiv.org/abs/2511.16544v1" target="_blank">View on arXiv</a>
+    </div>
+</div>
+
+
+<div class="paper">
+    <h3>Trustworthy AI in the Agentic Lakehouse: from Concurrency to Governance</h3>
+    <div class="scores">
+        <span class="score relevance">Relevance: 9/10</span>
+        <span class="score importance">Importance: 8/10</span>
+    </div>
+    <div class="abstract">Even as AI capabilities improve, most enterprises do not consider agents trustworthy enough to work on production data. In this paper, we argue that the path to trustworthy agentic workflows begins with solving the infrastructure problem first: traditional lakehouses are not suited for agent access patterns, but if we design one around transactions, governance follows. In particular, we draw an operational analogy to MVCC in databases and show why a direct transplant fails in a decoupled, multi-language setting. We then propose an agent-first design, Bauplan, that reimplements data and compute isolation in the lakehouse. We conclude by sharing a reference implementation of a self-healing pipeline in Bauplan, which seamlessly couples agent reasoning with all the desired guarantees for correctness and trust.</div>
+    <div class="meta">
+        <a href="http://arxiv.org/abs/2511.16402v1" target="_blank">View on arXiv</a>
+    </div>
+</div>
+
+
+<div class="paper">
+    <h3>An Agent-Based Framework for the Automatic Validation of Mathematical Optimization Models</h3>
+    <div class="scores">
+        <span class="score relevance">Relevance: 9/10</span>
+        <span class="score importance">Importance: 8/10</span>
+    </div>
+    <div class="abstract">Recently, using Large Language Models (LLMs) to generate optimization models from natural language descriptions has became increasingly popular. However, a major open question is how to validate that the generated models are correct and satisfy the requirements defined in the natural language description. In this work, we propose a novel agent-based method for automatic validation of optimization models that builds upon and extends methods from software testing to address optimization modeling . This method consists of several agents that initially generate a problem-level testing API, then generate tests utilizing this API, and, lastly, generate mutations specific to the optimization model (a well-known software testing technique assessing the fault detection power of the test suite). In this work, we detail this validation framework and show, through experiments, the high quality of validation provided by this agent ensemble in terms of the well-known software testing measure called mutation coverage.</div>
+    <div class="meta">
+        <a href="http://arxiv.org/abs/2511.16383v1" target="_blank">View on arXiv</a>
+    </div>
+</div>
+
+
+<div class="paper">
+    <h3>SDA: Steering-Driven Distribution Alignment for Open LLMs without Fine-Tuning</h3>
+    <div class="scores">
+        <span class="score relevance">Relevance: 9/10</span>
+        <span class="score importance">Importance: 8/10</span>
+    </div>
+    <div class="abstract">With the rapid advancement of large language models (LLMs), their deployment in real-world applications has become increasingly widespread. LLMs are expected to deliver robust performance across diverse tasks, user preferences, and practical scenarios. However, as demands grow, ensuring that LLMs produce responses aligned with human intent remains a foundational challenge. In particular, aligning model behavior effectively and efficiently during inference, without costly retraining or extensive supervision, is both a critical requirement and a non-trivial technical endeavor. To address the challenge, we propose SDA (Steering-Driven Distribution Alignment), a training-free and model-agnostic alignment framework designed for open-source LLMs. SDA dynamically redistributes model output probabilities based on user-defined alignment instructions, enhancing alignment between model behavior and human intents without fine-tuning. The method is lightweight, resource-efficient, and compatible with a wide range of open-source LLMs. It can function independently during inference or be integrated with training-based alignment strategies. Moreover, SDA supports personalized preference alignment, enabling flexible control over the model response behavior. Empirical results demonstrate that SDA consistently improves alignment performance across 8 open-source LLMs with varying scales and diverse origins, evaluated on three key alignment dimensions, helpfulness, harmlessness, and honesty (3H). Specifically, SDA achieves average gains of 64.4% in helpfulness, 30% in honesty and 11.5% in harmlessness across the tested models, indicating its effectiveness and generalization across diverse models and application scenarios.</div>
+    <div class="meta">
+        <a href="http://arxiv.org/abs/2511.16324v1" target="_blank">View on arXiv</a>
+    </div>
+</div>
+
+
+<div class="paper">
+    <h3>Multi-Agent Collaborative Reward Design for Enhancing Reasoning in Reinforcement Learning</h3>
+    <div class="scores">
+        <span class="score relevance">Relevance: 9/10</span>
+        <span class="score importance">Importance: 8/10</span>
+    </div>
+    <div class="abstract">We present CRM (Multi-Agent Collaborative Reward Model), a framework that replaces a single black-box reward model with a coordinated team of specialist evaluators to improve robustness and interpretability in RLHF. Conventional reward models struggle to jointly optimize multiple, sometimes conflicting, preference dimensions (e.g., factuality, helpfulness, safety) and offer limited transparency into why a score is assigned. CRM addresses these issues by decomposing preference evaluation into domain-specific agents that each produce partial signals, alongside global evaluators such as ranker-based and embedding-similarity rewards. A centralized aggregator fuses these signals at each timestep, balancing factors like step-wise correctness, multi-agent agreement, and repetition penalties, yielding a single training reward compatible with standard RL pipelines. The policy is optimized with advantage-based updates (e.g., GAE), while a value model regresses to the aggregated reward, enabling multi-perspective reward shaping without requiring additional human annotations beyond those used to train the evaluators. To support training and assessment, we introduce rewardBench, a benchmark and training suite aligned with the collaborative structure of CRM. Together, CRM and rewardBench provide a practical, modular path to more transparent reward modeling and more stable optimization.</div>
+    <div class="meta">
+        <a href="http://arxiv.org/abs/2511.16202v1" target="_blank">View on arXiv</a>
+    </div>
+</div>
+
+
+<div class="paper">
+    <h3>Operon: Incremental Construction of Ragged Data via Named Dimensions</h3>
+    <div class="scores">
+        <span class="score relevance">Relevance: 9/10</span>
+        <span class="score importance">Importance: 8/10</span>
+    </div>
+    <div class="abstract">Modern data processing workflows frequently encounter ragged data: collections with variable-length elements that arise naturally in domains like natural language processing, scientific measurements, and autonomous AI agents. Existing workflow engines lack native support for tracking the shapes and dependencies inherent to ragged data, forcing users to manage complex indexing and dependency bookkeeping manually. We present Operon, a Rust-based workflow engine that addresses these challenges through a novel formalism of named dimensions with explicit dependency relations. Operon provides a domain-specific language where users declare pipelines with dimension annotations that are statically verified for correctness, while the runtime system dynamically schedules tasks as data shapes are incrementally discovered during execution. We formalize the mathematical foundation for reasoning about partial shapes and prove that Operon's incremental construction algorithm guarantees deterministic and confluent execution in parallel settings. The system's explicit modeling of partially-known states enables robust persistence and recovery mechanisms, while its per-task multi-queue architecture achieves efficient parallelism across heterogeneous task types. Empirical evaluation demonstrates that Operon outperforms an existing workflow engine with 14.94x baseline overhead reduction while maintaining near-linear end-to-end output rates as workloads scale, making it particularly suitable for large-scale data generation pipelines in machine learning applications.</div>
+    <div class="meta">
+        <a href="http://arxiv.org/abs/2511.16080v1" target="_blank">View on arXiv</a>
+    </div>
+</div>
+
+
+<div class="paper">
+    <h3>CARE-RAG - Clinical Assessment and Reasoning in RAG</h3>
+    <div class="scores">
+        <span class="score relevance">Relevance: 9/10</span>
+        <span class="score importance">Importance: 8/10</span>
+    </div>
+    <div class="abstract">Access to the right evidence does not guarantee that large language models (LLMs) will reason with it correctly. This gap between retrieval and reasoning is especially concerning in clinical settings, where outputs must align with structured protocols. We study this gap using Written Exposure Therapy (WET) guidelines as a testbed. In evaluating model responses to curated clinician-vetted questions, we find that errors persist even when authoritative passages are provided. To address this, we propose an evaluation framework that measures accuracy, consistency, and fidelity of reasoning. Our results highlight both the potential and the risks: retrieval-augmented generation (RAG) can constrain outputs, but safe deployment requires assessing reasoning as rigorously as retrieval.</div>
+    <div class="meta">
+        <a href="http://arxiv.org/abs/2511.15994v1" target="_blank">View on arXiv</a>
+    </div>
+</div>
+
+
+<div class="paper">
+    <h3>Utilizing Large Language Models for Zero-Shot Medical Ontology Extension from Clinical Notes</h3>
+    <div class="scores">
+        <span class="score relevance">Relevance: 9/10</span>
+        <span class="score importance">Importance: 7/10</span>
+    </div>
+    <div class="abstract">Integrating novel medical concepts and relationships into existing ontologies can significantly enhance their coverage and utility for both biomedical research and clinical applications. Clinical notes, as unstructured documents rich with detailed patient observations, offer valuable context-specific insights and represent a promising yet underutilized source for ontology extension. Despite this potential, directly leveraging clinical notes for ontology extension remains largely unexplored. To address this gap, we propose CLOZE, a novel framework that uses large language models (LLMs) to automatically extract medical entities from clinical notes and integrate them into hierarchical medical ontologies. By capitalizing on the strong language understanding and extensive biomedical knowledge of pre-trained LLMs, CLOZE effectively identifies disease-related concepts and captures complex hierarchical relationships. The zero-shot framework requires no additional training or labeled data, making it a cost-efficient solution. Furthermore, CLOZE ensures patient privacy through automated removal of protected health information (PHI). Experimental results demonstrate that CLOZE provides an accurate, scalable, and privacy-preserving ontology extension framework, with strong potential to support a wide range of downstream applications in biomedical research and clinical informatics.</div>
+    <div class="meta">
+        <a href="http://arxiv.org/abs/2511.16548v1" target="_blank">View on arXiv</a>
+    </div>
+</div>
+
+
+<div class="paper">
+    <h3>SkyRL-Agent: Efficient RL Training for Multi-turn LLM Agent</h3>
+    <div class="scores">
+        <span class="score relevance">Relevance: 9/10</span>
+        <span class="score importance">Importance: 7/10</span>
+    </div>
+    <div class="abstract">We introduce SkyRL-Agent, a framework for efficient, multi-turn, long-horizon agent training and evaluation. It provides efficient asynchronous dispatching, lightweight tool integration, and flexible backend interoperability, enabling seamless use with existing RL frameworks such as SkyRL-train, VeRL, and Tinker.   Using SkyRL-Agent, we train SA-SWE-32B, a software engineering agent trained from Qwen3-32B (24.4% Pass@1) purely with reinforcement learning. We introduce two key components: an optimized asynchronous pipeline dispatcher that achieves a 1.55x speedup over naive asynchronous batching, and a tool-enhanced training recipe leveraging an AST-based search tool to facilitate code navigation, boost rollout Pass@K, and improve training efficiency. Together, these optimizations enable SA-SWE-32B to reach 39.4% Pass@1 on SWE-Bench Verified with more than 2x cost reduction compared to prior models reaching similar performance. Despite being trained solely on SWE tasks, SA-SWE-32B generalizes effectively to other agentic tasks, including Terminal-Bench, BrowseComp-Plus, and WebArena. We further demonstrate SkyRL-Agent's extensibility through case studies on deep research, computer use, and memory agents, each trained using a different training backend.</div>
+    <div class="meta">
+        <a href="http://arxiv.org/abs/2511.16108v1" target="_blank">View on arXiv</a>
+    </div>
+</div>
+
+
+<div class="paper">
+    <h3>A Mathematical Framework for Custom Reward Functions in Job Application Evaluation using Reinforcement Learning</h3>
+    <div class="scores">
+        <span class="score relevance">Relevance: 9/10</span>
+        <span class="score importance">Importance: 7/10</span>
+    </div>
+    <div class="abstract">Conventional Applicant Tracking Systems (ATS) tend to be inflexible keyword-matchers, and deny gifted candidates a role due to a few minor semantic mismatches. This article describes a new two-step process to design a more refined resume evaluation model based on a small language model (<600M parameters) that is finetuned using GRPO on a custom reward function. To begin with, Supervised Fine-Tuning (SFT) was used to build a solid baseline model. Second, this SFT model was also optimized with the help of Reinforcement Learning (RL) through GRPO under the guidance of a new, multi-component reward function that can holistically assess candidates beyond simple keyword matching. We indicate that the RL application presents a critical problem of reward hacking due to the initial experiments of aggressive penalties, which produces faulty, excessively negative model behaviors. We have overcome this challenge by refining the reward function repeatedly and training hyperparameters into a stable "gentle polishing process" of the reward function. Our resulting GRPO-polished model demonstrates significant real-world efficacy, achieving a final accuracy of 91% on unseen test data. The model shows a strong ability to correctly identify qualified candidates (recall of 0.85 for the 'SELECTED' class) while also showing exceptional precision (1.0), confirming its reliability. These results indicate that a properly executed, two-step fine-tuning procedure can indeed effectively refine a small language model to be able to conduct fine-tuned and human-like candidate scoring, overcoming the drawbacks of both traditional ATS and naive RL usage.</div>
+    <div class="meta">
+        <a href="http://arxiv.org/abs/2511.16073v1" target="_blank">View on arXiv</a>
+    </div>
+</div>
+
+
+<div class="paper">
+    <h3>InfCode-C++: Intent-Guided Semantic Retrieval and AST-Structured Search for C++ Issue Resolution</h3>
+    <div class="scores">
+        <span class="score relevance">Relevance: 9/10</span>
+        <span class="score importance">Importance: 7/10</span>
+    </div>
+    <div class="abstract">Large language model (LLM) agents have recently shown strong performance on repository-level issue resolution, but existing systems are almost exclusively designed for Python and rely heavily on lexical retrieval and shallow code navigation. These approaches transfer poorly to C++ projects, where overloaded identifiers, nested namespaces, template instantiations, and deep control-flow structures make context retrieval and fault localization substantially more difficult. As a result, state-of-the-art Python-oriented agents show a drastic performance drop on the C++ subset of MultiSWE-bench. We introduce INFCODE-C++, the first C++-aware autonomous system for end-to-end issue resolution. The system combines two complementary retrieval mechanisms -- semantic code-intent retrieval and deterministic AST-structured querying -- to construct accurate, language-aware context for repair.These components enable precise localization and robust patch synthesis in large, statically typed C++ repositories. Evaluated on the \texttt{MultiSWE-bench-CPP} benchmark, INFCODE-C++ achieves a resolution rate of 25.58\%, outperforming the strongest prior agent by 10.85 percentage points and more than doubling the performance of MSWE-agent. Ablation and behavioral studies further demonstrate the critical role of semantic retrieval, structural analysis, and accurate reproduction in C++ issue resolution. INFCODE-C++ highlights the need for language-aware reasoning in multi-language software agents and establishes a foundation for future research on scalable, LLM-driven repair for complex, statically typed ecosystems.</div>
+    <div class="meta">
+        <a href="http://arxiv.org/abs/2511.16005v1" target="_blank">View on arXiv</a>
+    </div>
+</div>
+
+
+<div class="paper">
+    <h3>JudgeBoard: Benchmarking and Enhancing Small Language Models for Reasoning Evaluation</h3>
+    <div class="scores">
+        <span class="score relevance">Relevance: 9/10</span>
+        <span class="score importance">Importance: 7/10</span>
+    </div>
+    <div class="abstract">While small language models (SLMs) have shown promise on various reasoning tasks, their ability to judge the correctness of answers remains unclear compared to large language models (LLMs). Prior work on LLM-as-a-judge frameworks typically relies on comparing candidate answers against ground-truth labels or other candidate answers using predefined metrics like entailment. However, this approach is inherently indirect and difficult to fully automate, offering limited support for fine-grained and scalable evaluation of reasoning outputs. In this work, we propose JudgeBoard, a novel evaluation pipeline that directly queries models to assess the correctness of candidate answers without requiring extra answer comparisons. We focus on two core reasoning domains: mathematical reasoning and science/commonsense reasoning, and construct task-specific evaluation leaderboards using both accuracy-based ranking and an Elo-based rating system across five benchmark datasets, enabling consistent model comparison as judges rather than comparators. To improve judgment performance in lightweight models, we propose MAJ (Multi-Agent Judging), a novel multi-agent evaluation framework that leverages multiple interacting SLMs with distinct reasoning profiles to approximate LLM-level judgment accuracy through collaborative deliberation. Experimental results reveal a significant performance gap between SLMs and LLMs in isolated judging tasks. However, our MAJ framework substantially improves the reliability and consistency of SLMs. On the MATH dataset, MAJ using smaller-sized models as backbones performs comparatively well or even better than their larger-sized counterparts. Our findings highlight that multi-agent SLM systems can potentially match or exceed LLM performance in judgment tasks, with implications for scalable and efficient assessment.</div>
+    <div class="meta">
+        <a href="http://arxiv.org/abs/2511.15958v1" target="_blank">View on arXiv</a>
+    </div>
+</div>
+
+    </div>
+</div>
+
+    </body>
+    </html>
+    
