@@ -1,0 +1,430 @@
+
+    <!DOCTYPE html>
+    <html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>ArXiv Research Digest</title>
+        <style>
+            
+body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    line-height: 1.5;
+    color: #2d3748;
+    margin: 0;
+    padding: 20px;
+    background: #f7fafc;
+}
+
+.digest {
+    max-width: 800px;
+    margin: 0 auto;
+    background: white;
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+}
+
+.header {
+    margin-bottom: 2rem;
+    padding-bottom: 1rem;
+    border-bottom: 2px solid #e2e8f0;
+}
+
+.header h2 {
+    margin: 0;
+    color: #2d3748;
+}
+
+.header p {
+    margin: 0.5rem 0 0;
+    color: #718096;
+}
+
+.highlights {
+    background: #f8fafc;
+    padding: 1.5rem;
+    border-radius: 8px;
+    margin-bottom: 3rem;
+    border: 1px solid #e2e8f0;
+}
+
+.highlights h3 {
+    color: #2d3748;
+    margin: 0 0 1rem 0;
+    font-size: 1.25rem;
+}
+
+.summary {
+    white-space: pre-line;
+    line-height: 1.6;
+}
+
+.summary ol {
+    padding-left: 1.5rem;
+    margin: 1rem 0;
+}
+
+.summary li {
+    margin-bottom: 0.75rem;
+    padding-left: 0.5rem;
+}
+
+.papers {
+    margin-top: 3rem;
+}
+
+.papers h3 {
+    color: #2d3748;
+    margin-bottom: 1.5rem;
+    padding-bottom: 1rem;
+    border-bottom: 2px solid #e2e8f0;
+}
+
+.paper {
+    margin-bottom: 2rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid #e2e8f0;
+}
+
+.paper:last-child {
+    border-bottom: none;
+}
+
+.paper h3 {
+    margin: 0 0 0.5rem;
+    color: #2d3748;
+}
+
+.paper .scores {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 0.5rem;
+}
+
+.paper .score {
+    padding: 0.25rem 0.5rem;
+    border-radius: 4px;
+    font-size: 0.875rem;
+}
+
+.paper .relevance {
+    background: #e6fffa;
+    color: #047481;
+}
+
+.paper .importance {
+    background: #ebf4ff;
+    color: #1a56db;
+}
+
+.paper .abstract {
+    color: #4a5568;
+    margin: 0.5rem 0;
+}
+
+.paper .meta {
+    font-size: 0.875rem;
+    color: #718096;
+}
+
+.paper .meta a {
+    color: #4299e1;
+    text-decoration: none;
+}
+
+.paper .meta a:hover {
+    text-decoration: underline;
+}
+
+        </style>
+    </head>
+    <body>
+        
+<div class="digest">
+    <div class="header">
+        <h2>ArXiv Research Digest</h2>
+        <p>Found 20 relevant papers out of 200 new submissions</p>
+    </div>
+    
+    <div class="highlights">
+        <h3>🔥 Key Highlights</h3>
+        Hey boss, found 5 cool papers today that I think you'll love:
+<ol>
+<li><b>SWAN: Sparse Winnowed Attention for Reduced Inference Memory via Decompression-Free KV-Cache Compression</b> — They propose a decompression-free KV-cache compression that rotates and prunes the cache with an offline orthogonal matrix plus a small dense buffer, yielding ~50–60% per-token memory savings while keeping performance near the uncompressed baseline. Practical next step: given the paper's high score (9.5/10, relevance 10/10) we should spike integrating SWAN-style pruning into our serving stack and run memory-vs-latency sweeps using its runtime-tunable knob (paper: http://arxiv.org/abs/2511.18936v1). </li>
+<li><b>NEZHA: A Zero-sacrifice and Hyperspeed Decoding Architecture for Generative Recommendations</b> — NEZHA embeds a lightweight autoregressive draft head into the main model to do self-drafting plus a model-free hash-set verifier, giving huge decoding speedups for recommendation without extra verifier/draft models and without hurting quality. Practical next step: since this is production-proven (Taobao deployment, billion-level ad revenue) and scored 9.5/10, we should prototype NEZHA’s self-drafting pattern in our recommender generation pipeline to cut tail latency and evaluate the hash-set verifier for hallucination control (paper: http://arxiv.org/abs/2511.18793v1). </li>
+<li><b>General Agentic Memory Via Deep Research</b> — GAM introduces a JIT memory design with a lightweight Memorizer + a Researcher that pulls full context from a universal page-store at request-time, improving memory-grounded task completion while reducing offline memory loss. Practical next step: with a 9.5/10 score and clear RL-friendly design, we should trial GAM’s page-store + researcher flow in one of our agent prototypes to reduce context bloat and measure retrieval latency/quality tradeoffs (paper: http://arxiv.org/abs/2511.18423v1). </li>
+<li><b>OmniStruct: Universal Text-to-Structure Generation across Diverse Schemas</b> — OmniStruct gives a unified benchmark and shows that small models fine-tuned on synthetic text-to-structure data can match much larger models (rivaling GPT-4o) across extraction, tables, and function-calling tasks without supervised data. Practical next step: scored 9.5/10 for relevance, so we should generate task-specific synthetic data for our schema needs and fine-tune a compact model to replace some costly API calls for structured outputs (paper: http://arxiv.org/abs/2511.18335v1). </li>
+<li><b>A Multimodal Conversational Agent for Tabular Data Analysis (Talk2Data)</b> — Talk2Data is a multimodal pipeline (Whisper ASR, Qwen-coder, sandboxed execution, Coqui TTS) that supports voice/text multi-turn data queries and returns plots/tables with 95.8% accuracy and ~1.7s model-only generation time, showing a 7B model hits the best accuracy-latency-cost sweet spot. Practical next step: with a 9.0/10 score for relevance, we should prototype a sandboxed, multimodal dataplane for our analytics team (start with the 7B config) and test end-to-end UX + verifiable execution on a couple internal datasets (paper: http://arxiv.org/abs/2511.18405v1). </li>
+</ol>
+Quick action ask: this week let’s run five short spikes — integrate SWAN pruning into our KV flow, prototype NEZHA self-drafting in the recommender, adapt GAM’s page-store pattern in one agent, fine-tune a small OmniStruct model on synthetic schemas, and build a minimal Talk2Data pipeline (7B + sandbox) to validate latency/accuracy tradeoffs.
+    </div>
+    
+    <div class="papers">
+        <h3>📄 Detailed Papers</h3>
+        
+<div class="paper">
+    <h3>SWAN: Sparse Winnowed Attention for Reduced Inference Memory via Decompression-Free KV-Cache Compression</h3>
+    <div class="scores">
+        <span class="score relevance">Relevance: 10/10</span>
+        <span class="score importance">Importance: 9/10</span>
+    </div>
+    <div class="abstract">Large Language Models (LLMs) face a significant bottleneck during autoregressive inference due to the massive memory footprint of the Key-Value (KV) cache. Existing compression techniques like token eviction, quantization, or other low-rank methods often risk information loss, have fixed limits, or introduce significant computational overhead from explicit decompression steps. In this work, we introduce SWAN, a novel, fine-tuning-free framework that eliminates this overhead. Our method uses an offline orthogonal matrix to rotate and prune the KV-cache, which is then used directly in the attention computation without any reconstruction. Our extensive experiments demonstrate that SWAN, augmented with a small dense buffer, offers a robust trade-off, maintaining performance close to the uncompressed baseline even at aggressive 50-60% memory savings per-token on KV-cache. A key advantage is its runtime-tunable compression level, allowing operators to dynamically adjust the memory footprint, a flexibility absent in methods requiring fixed offline configurations. This combination of a decompression-free design, high performance under compression, and adaptability makes SWAN a practical and efficient solution for serving LLMs with long contexts.</div>
+    <div class="meta">
+        <a href="http://arxiv.org/abs/2511.18936v1" target="_blank">View on arXiv</a>
+    </div>
+</div>
+
+
+<div class="paper">
+    <h3>NEZHA: A Zero-sacrifice and Hyperspeed Decoding Architecture for Generative Recommendations</h3>
+    <div class="scores">
+        <span class="score relevance">Relevance: 10/10</span>
+        <span class="score importance">Importance: 9/10</span>
+    </div>
+    <div class="abstract">Generative Recommendation (GR), powered by Large Language Models (LLMs), represents a promising new paradigm for industrial recommender systems. However, their practical application is severely hindered by high inference latency, which makes them infeasible for high-throughput, real-time services and limits their overall business impact. While Speculative Decoding (SD) has been proposed to accelerate the autoregressive generation process, existing implementations introduce new bottlenecks: they typically require separate draft models and model-based verifiers, requiring additional training and increasing the latency overhead. In this paper, we address these challenges with NEZHA, a novel architecture that achieves hyperspeed decoding for GR systems without sacrificing recommendation quality. Specifically, NEZHA integrates a nimble autoregressive draft head directly into the primary model, enabling efficient self-drafting. This design, combined with a specialized input prompt structure, preserves the integrity of sequence-to-sequence generation. Furthermore, to tackle the critical problem of hallucination, a major source of performance degradation, we introduce an efficient, model-free verifier based on a hash set. We demonstrate the effectiveness of NEZHA through extensive experiments on public datasets and have successfully deployed the system on Taobao since October 2025, driving the billion-level advertising revenue and serving hundreds of millions of daily active users.</div>
+    <div class="meta">
+        <a href="http://arxiv.org/abs/2511.18793v1" target="_blank">View on arXiv</a>
+    </div>
+</div>
+
+
+<div class="paper">
+    <h3>General Agentic Memory Via Deep Research</h3>
+    <div class="scores">
+        <span class="score relevance">Relevance: 10/10</span>
+        <span class="score importance">Importance: 9/10</span>
+    </div>
+    <div class="abstract">Memory is critical for AI agents, yet the widely-adopted static memory, aiming to create readily available memory in advance, is inevitably subject to severe information loss. To address this limitation, we propose a novel framework called \textbf{general agentic memory (GAM)}. GAM follows the principle of "\textbf{just-in time (JIT) compilation}" where it focuses on creating optimized contexts for its client at runtime while keeping only simple but useful memory during the offline stage. To this end, GAM employs a duo-design with the following components. 1) \textbf{Memorizer}, which highlights key historical information using a lightweight memory, while maintaining complete historical information within a universal page-store. 2) \textbf{Researcher}, which retrieves and integrates useful information from the page-store for its online request guided by the pre-constructed memory. This design allows GAM to effectively leverage the agentic capabilities and test-time scalability of frontier large language models (LLMs), while also facilitating end-to-end performance optimization through reinforcement learning. In our experimental study, we demonstrate that GAM achieves substantial improvement on various memory-grounded task completion scenarios against existing memory systems.</div>
+    <div class="meta">
+        <a href="http://arxiv.org/abs/2511.18423v1" target="_blank">View on arXiv</a>
+    </div>
+</div>
+
+
+<div class="paper">
+    <h3>OmniStruct: Universal Text-to-Structure Generation across Diverse Schemas</h3>
+    <div class="scores">
+        <span class="score relevance">Relevance: 10/10</span>
+        <span class="score importance">Importance: 9/10</span>
+    </div>
+    <div class="abstract">The ability of Large Language Models (LLMs) to generate structured outputs that follow arbitrary schemas is crucial to a wide range of downstream tasks that require diverse structured representations of results such as information extraction, table generation, and function calling. While modern LLMs excel in generating unstructured responses in natural language, whether this advancement translates to a strong performance on text-to-structure tasks remains unclear. To bridge this gap, we first introduce OmniStruct, a comprehensive benchmark for assessing LLMs' capabilities on diverse text-to-structure tasks such as information extraction, table generation, and function calling. We build OmniStruct by identifying existing datasets across a wide range of tasks that are suitable for a structured answer format, and adapting them under a unified text-to-structure problem setting. To facilitate the development of efficient text-to-structure models, we collect high-quality training data via synthetic task generation. Without using any supervised data for OmniStruct tasks, our experiments demonstrate the possibility of fine-tuning much smaller models on synthetic data into universal structured generation models that can rival the performance of GPT-4o.</div>
+    <div class="meta">
+        <a href="http://arxiv.org/abs/2511.18335v1" target="_blank">View on arXiv</a>
+    </div>
+</div>
+
+
+<div class="paper">
+    <h3>A Multimodal Conversational Agent for Tabular Data Analysis</h3>
+    <div class="scores">
+        <span class="score relevance">Relevance: 10/10</span>
+        <span class="score importance">Importance: 8/10</span>
+    </div>
+    <div class="abstract">Large language models (LLMs) can reshape information processing by handling data analysis, visualization, and interpretation in an interactive, context-aware dialogue with users, including voice interaction, while maintaining high performance. In this article, we present Talk2Data, a multimodal LLM-driven conversational agent for intuitive data exploration. The system lets users query datasets with voice or text instructions and receive answers as plots, tables, statistics, or spoken explanations. Built on LLMs, the suggested design combines OpenAI Whisper automatic speech recognition (ASR) system, Qwen-coder code generation LLM/model, custom sandboxed execution tools, and Coqui library for text-to-speech (TTS) within an agentic orchestration loop. Unlike text-only analysis tools, it adapts responses across modalities and supports multi-turn dialogues grounded in dataset context. In an evaluation of 48 tasks on three datasets, our prototype achieved 95.8% accuracy with model-only generation time under 1.7 seconds (excluding ASR and execution time). A comparison across five LLM sizes (1.5B-32B) revealed accuracy-latency-cost trade-offs, with a 7B model providing the best balance for interactive use. By routing between conversation with user and code execution, constrained to a transparent sandbox, with simultaneously grounding prompts in schema-level context, the Talk2Data agent reliably retrieves actionable insights from tables while making computations verifiable. In the article, except for the Talk2Data agent itself, we discuss implications for human-data interaction, trust in LLM-driven analytics, and future extensions toward large-scale multimodal assistants.</div>
+    <div class="meta">
+        <a href="http://arxiv.org/abs/2511.18405v1" target="_blank">View on arXiv</a>
+    </div>
+</div>
+
+
+<div class="paper">
+    <h3>Be My Eyes: Extending Large Language Models to New Modalities Through Multi-Agent Collaboration</h3>
+    <div class="scores">
+        <span class="score relevance">Relevance: 9/10</span>
+        <span class="score importance">Importance: 8/10</span>
+    </div>
+    <div class="abstract">Large Language Models (LLMs) have demonstrated remarkable capabilities in challenging, knowledge-intensive reasoning tasks. However, extending LLMs to perceive and reason over a new modality (e.g., vision), often requires costly development of large-scale vision language models (VLMs) with LLMs as backbones. Smaller VLMs are more efficient and adaptable but often lack the broad knowledge and reasoning capabilities of frontier LLMs. In this work, we propose BeMyEyes, a modular, multi-agent framework for extending LLMs to multimodal reasoning by orchestrating collaboration between efficient, adaptable VLMs as perceivers and powerful LLMs as reasoners through conversations. We then introduce a data synthesis and supervised fine-tuning pipeline to train the perceiver agent to effectively collaborate with the reasoner agent. By combining the complementary strengths of perception and reasoning agents, BeMyEyes avoids the need for training large-scale multimodal models, preserves the generalization and reasoning capabilities of LLMs, and allows flexible extension to new domains and modalities. Experiments show that our framework unlocks the multimodal reasoning capabilities for LLMs, enabling a lightweight and fully open-source solution, i.e. equipping text-only DeepSeek-R1 with Qwen2.5-VL-7B perceiver, to outperform large-scale proprietary VLMs such as GPT-4o on a wide range of knowledge-intensive multimodal tasks. These results demonstrate the effectiveness, modularity, and scalability of our multi-agent approach for building future multimodal reasoning systems.</div>
+    <div class="meta">
+        <a href="http://arxiv.org/abs/2511.19417v1" target="_blank">View on arXiv</a>
+    </div>
+</div>
+
+
+<div class="paper">
+    <h3>DR Tulu: Reinforcement Learning with Evolving Rubrics for Deep Research</h3>
+    <div class="scores">
+        <span class="score relevance">Relevance: 9/10</span>
+        <span class="score importance">Importance: 8/10</span>
+    </div>
+    <div class="abstract">Deep research models perform multi-step research to produce long-form, well-attributed answers. However, most open deep research models are trained on easily verifiable short-form QA tasks via reinforcement learning with verifiable rewards (RLVR), which does not extend to realistic long-form tasks. We address this with Reinforcement Learning with Evolving Rubrics (RLER), in which we construct and maintain rubrics that co-evolve with the policy model during training; this allows the rubrics to incorporate information that the model has newly explored and to provide discriminative, on-policy feedback. Using RLER, we develop Deep Research Tulu (DR Tulu-8B), the first open model that is directly trained for open-ended, long-form deep research. Across four long-form deep research benchmarks in science, healthcare and general domains, DR Tulu substantially outperforms existing open deep research models, and matches or exceeds proprietary deep research systems, while being significantly smaller and cheaper per query. To facilitate future research, we release all data, models, and code, including our new MCP-based agent infrastructure for deep research systems.</div>
+    <div class="meta">
+        <a href="http://arxiv.org/abs/2511.19399v1" target="_blank">View on arXiv</a>
+    </div>
+</div>
+
+
+<div class="paper">
+    <h3>PRInTS: Reward Modeling for Long-Horizon Information Seeking</h3>
+    <div class="scores">
+        <span class="score relevance">Relevance: 9/10</span>
+        <span class="score importance">Importance: 8/10</span>
+    </div>
+    <div class="abstract">Information-seeking is a core capability for AI agents, requiring them to gather and reason over tool-generated information across long trajectories. However, such multi-step information-seeking tasks remain challenging for agents backed by language models. While process reward models (PRMs) can guide agents by ranking candidate steps at test-time, existing PRMs, designed for short reasoning with binary judgment, cannot capture richer dimensions of information-seeking steps, such as tool interactions and reasoning over tool outputs, nor handle the rapidly growing context in long-horizon tasks. To address these limitations, we introduce PRInTS, a generative PRM trained with dual capabilities: (1) dense scoring based on the PRM's reasoning across multiple step quality dimensions (e.g., interpretation of tool outputs, tool call informativeness) and (2) trajectory summarization that compresses the growing context while preserving essential information for step evaluation. Extensive evaluations across FRAMES, GAIA (levels 1-3), and WebWalkerQA (easy-hard) benchmarks on multiple models, along with ablations, reveal that best-of-n sampling with PRInTS enhances information-seeking abilities of open-source models as well as specialized agents, matching or surpassing the performance of frontier models with a much smaller backbone agent and outperforming other strong reward modeling baselines.</div>
+    <div class="meta">
+        <a href="http://arxiv.org/abs/2511.19314v1" target="_blank">View on arXiv</a>
+    </div>
+</div>
+
+
+<div class="paper">
+    <h3>OrdMoE: Preference Alignment via Hierarchical Expert Group Ranking in Multimodal Mixture-of-Experts LLMs</h3>
+    <div class="scores">
+        <span class="score relevance">Relevance: 9/10</span>
+        <span class="score importance">Importance: 8/10</span>
+    </div>
+    <div class="abstract">Preference learning has recently emerged as a pivotal strategy for post-training alignment of Multimodal Large Language Models (MLLMs). However, existing approaches predominantly rely on external human-annotated preference data, which is costly and labor-intensive to collect. In this work, we propose OrdMoE, a novel preference alignment framework that bypasses the reliance on external human preferences entirely by leveraging intrinsic signals within Mixture-of-Experts (MoE) architectures. Specifically, we observe that the router's expert selection scores implicitly encode a quality-aware ranking of responses (i.e. higher-scoring experts consistently generate higher-quality outputs). Building on this insight, OrdMoE constructs an internal preference hierarchy by grouping experts into ranked tiers based on their per-token routing scores and activating each tier separately to produce a sequence of responses with increasing quality. This yields a zero-cost, self-supervised preference ordering over generated responses, which can be directly optimized using standard preference learning objectives. Extensive experiments across multiple multimodal benchmarks demnstrate that OrdMoE significantly enhances both alignment and overall performance of multimodal Mixture-of-Experts LLMs, achieving competitive results without requiring any human-annotated preference data.</div>
+    <div class="meta">
+        <a href="http://arxiv.org/abs/2511.19023v1" target="_blank">View on arXiv</a>
+    </div>
+</div>
+
+
+<div class="paper">
+    <h3>FastForward Pruning: Efficient LLM Pruning via Single-Step Reinforcement Learning</h3>
+    <div class="scores">
+        <span class="score relevance">Relevance: 9/10</span>
+        <span class="score importance">Importance: 8/10</span>
+    </div>
+    <div class="abstract">Pruning is an effective method for compressing Large Language Models, but finding an optimal, non-uniform layer-wise sparsity allocation remains a key challenge. While heuristic methods are fast but yield suboptimal performance, more powerful search-based approaches like Reinforcement Learning are often hindered by prohibitive computational costs on large-scale models. To overcome this efficiency barrier, we propose FastForward Pruning. Its core is a decoupled, single-step RL framework that separates policy optimization from the complex budget satisfaction problem. Such a decoupling is crucial for efficiently searching the vast policy space of LLMs. This curriculum-based strategy begins with low-cost, simple tasks and gradually increases in complexity, significantly reducing the search's computational overhead. Evaluated on the LLaMA, Mistral, and OPT model families, our framework discovers pruning policies that achieve superior performance over strong heuristic baselines. Crucially, when compared to other search-based algorithms, our method achieves competitive or superior results at a fraction of the computational cost, demonstrating a clear advantage in search efficiency.</div>
+    <div class="meta">
+        <a href="http://arxiv.org/abs/2511.18977v1" target="_blank">View on arXiv</a>
+    </div>
+</div>
+
+
+<div class="paper">
+    <h3>LLM-CSEC: Empirical Evaluation of Security in C/C++ Code Generated by Large Language Models</h3>
+    <div class="scores">
+        <span class="score relevance">Relevance: 9/10</span>
+        <span class="score importance">Importance: 8/10</span>
+    </div>
+    <div class="abstract">The security of code generated by large language models (LLMs) is a significant concern, as studies indicate that such code often contains vulnerabilities and lacks essential defensive programming constructs. This work focuses on examining and evaluating the security of LLM-generated code, particularly in the context of C/C++. We categorized known vulnerabilities using the Common Weakness Enumeration (CWE) and, to study their criticality, mapped them to CVEs. We used ten different LLMs for code generation and analyzed the outputs through static analysis. The amount of CWEs present in AI-generated code is concerning. Our findings highlight the need for developers to be cautious when using LLM-generated code. This study provides valuable insights to advance automated code generation and encourage further research in this domain.</div>
+    <div class="meta">
+        <a href="http://arxiv.org/abs/2511.18966v1" target="_blank">View on arXiv</a>
+    </div>
+</div>
+
+
+<div class="paper">
+    <h3>Defending Large Language Models Against Jailbreak Exploits with Responsible AI Considerations</h3>
+    <div class="scores">
+        <span class="score relevance">Relevance: 9/10</span>
+        <span class="score importance">Importance: 8/10</span>
+    </div>
+    <div class="abstract">Large Language Models (LLMs) remain susceptible to jailbreak exploits that bypass safety filters and induce harmful or unethical behavior. This work presents a systematic taxonomy of existing jailbreak defenses across prompt-level, model-level, and training-time interventions, followed by three proposed defense strategies. First, a Prompt-Level Defense Framework detects and neutralizes adversarial inputs through sanitization, paraphrasing, and adaptive system guarding. Second, a Logit-Based Steering Defense reinforces refusal behavior through inference-time vector steering in safety-sensitive layers. Third, a Domain-Specific Agent Defense employs the MetaGPT framework to enforce structured, role-based collaboration and domain adherence. Experiments on benchmark datasets show substantial reductions in attack success rate, achieving full mitigation under the agent-based defense. Overall, this study highlights how jailbreaks pose a significant security threat to LLMs and identifies key intervention points for prevention, while noting that defense strategies often involve trade-offs between safety, performance, and scalability. Code is available at: https://github.com/Kuro0911/CS5446-Project</div>
+    <div class="meta">
+        <a href="http://arxiv.org/abs/2511.18933v1" target="_blank">View on arXiv</a>
+    </div>
+</div>
+
+
+<div class="paper">
+    <h3>Nemotron-Flash: Towards Latency-Optimal Hybrid Small Language Models</h3>
+    <div class="scores">
+        <span class="score relevance">Relevance: 9/10</span>
+        <span class="score importance">Importance: 8/10</span>
+    </div>
+    <div class="abstract">Efficient deployment of small language models (SLMs) is essential for numerous real-world applications with stringent latency constraints. While previous work on SLM design has primarily focused on reducing the number of parameters to achieve parameter-optimal SLMs, parameter efficiency does not necessarily translate into proportional real-device speed-ups. This work aims to identify the key determinants of SLMs' real-device latency and offer generalizable principles and methodologies for SLM design and training when real-device latency is the primary consideration. Specifically, we identify two central architectural factors: depth-width ratios and operator choices. The former is crucial for small-batch-size latency, while the latter affects both latency and large-batch-size throughput. In light of this, we first study latency-optimal depth-width ratios, with the key finding that although deep-thin models generally achieve better accuracy under the same parameter budget, they may not lie on the accuracy-latency trade-off frontier. Next, we explore emerging efficient attention alternatives to evaluate their potential as candidate building operators. Using the identified promising operators, we construct an evolutionary search framework to automatically discover latency-optimal combinations of these operators within hybrid SLMs, thereby advancing the accuracy-latency frontier. In addition to architectural improvements, we further enhance SLM training using a weight normalization technique that enables more effective weight updates and improves final convergence. Combining these methods, we introduce a new family of hybrid SLMs, called Nemotron-Flash, which significantly advances the accuracy-efficiency frontier of state-of-the-art SLMs, e.g., achieving over +5.5% average accuracy, 1.3x/1.9x lower latency, and 18.7x/45.6x higher throughput compared to Qwen3-1.7B/0.6B, respectively.</div>
+    <div class="meta">
+        <a href="http://arxiv.org/abs/2511.18890v1" target="_blank">View on arXiv</a>
+    </div>
+</div>
+
+
+<div class="paper">
+    <h3>Pre-Filtering Code Suggestions using Developer Behavioral Telemetry to Optimize LLM-Assisted Programming</h3>
+    <div class="scores">
+        <span class="score relevance">Relevance: 9/10</span>
+        <span class="score importance">Importance: 8/10</span>
+    </div>
+    <div class="abstract">Large Language Models (LLMs) are increasingly integrated into code editors to provide AI-powered code suggestions. Yet many of these suggestions are ignored, resulting in wasted computation, increased latency, and unnecessary interruptions. We introduce a lightweight pre-filtering model that predicts the likelihood of suggestion acceptance before invoking the LLM, using only real-time developer telemetry such as typing speed, file navigation, and editing activity. Deployed in a production-grade Visual Studio Code plugin over four months of naturalistic use, our approach nearly doubled acceptance rates (18.4% -> 34.2%) while suppressing 35% of low-value LLM calls. These findings demonstrate that behavioral signals alone can meaningfully improve both user experience and system efficiency in LLM-assisted programming, highlighting the value of timing-aware, privacy-preserving adaptation mechanisms. The filter operates solely on pre-invocation editor telemetry and never inspects code or prompts.</div>
+    <div class="meta">
+        <a href="http://arxiv.org/abs/2511.18849v1" target="_blank">View on arXiv</a>
+    </div>
+</div>
+
+
+<div class="paper">
+    <h3>HERMES: Towards Efficient and Verifiable Mathematical Reasoning in LLMs</h3>
+    <div class="scores">
+        <span class="score relevance">Relevance: 9/10</span>
+        <span class="score importance">Importance: 8/10</span>
+    </div>
+    <div class="abstract">Informal mathematics has been central to modern large language model (LLM) reasoning, offering flexibility and enabling efficient construction of arguments. However, purely informal reasoning is prone to logical gaps and subtle errors that are difficult to detect and correct. In contrast, formal theorem proving provides rigorous, verifiable mathematical reasoning, where each inference step is checked by a trusted compiler in systems such as Lean, but lacks the exploratory freedom of informal problem solving. This mismatch leaves current LLM-based math agents without a principled way to combine the strengths of both paradigms. In this work, we introduce Hermes, the first tool-assisted agent that explicitly interleaves informal reasoning with formally verified proof steps in Lean. The framework performs intermediate formal checking to prevent reasoning drift and employs a memory module that maintains proof continuity across long, multi-step reasoning chains, enabling both exploration and verification within a single workflow. We evaluate Hermes on four challenging mathematical reasoning benchmarks using LLMs of varying parameter scales, from small models to state-of-the-art systems. Across all settings, Hermes reliably improves the reasoning accuracy of base models while substantially reducing token usage and computational cost compared to reward-based approaches. On difficult datasets such as AIME'25, Hermes achieves up to a 67% accuracy improvement while using 80% fewer total inference FLOPs. The implementation and codebase are publicly available at https://github.com/aziksh-ospanov/HERMES.</div>
+    <div class="meta">
+        <a href="http://arxiv.org/abs/2511.18760v1" target="_blank">View on arXiv</a>
+    </div>
+</div>
+
+
+<div class="paper">
+    <h3>RhinoInsight: Improving Deep Research through Control Mechanisms for Model Behavior and Context</h3>
+    <div class="scores">
+        <span class="score relevance">Relevance: 9/10</span>
+        <span class="score importance">Importance: 8/10</span>
+    </div>
+    <div class="abstract">Large language models are evolving from single-turn responders into tool-using agents capable of sustained reasoning and decision-making for deep research. Prevailing systems adopt a linear pipeline of plan to search to write to a report, which suffers from error accumulation and context rot due to the lack of explicit control over both model behavior and context. We introduce RhinoInsight, a deep research framework that adds two control mechanisms to enhance robustness, traceability, and overall quality without parameter updates. First, a Verifiable Checklist module transforms user requirements into traceable and verifiable sub-goals, incorporates human or LLM critics for refinement, and compiles a hierarchical outline to anchor subsequent actions and prevent non-executable planning. Second, an Evidence Audit module structures search content, iteratively updates the outline, and prunes noisy context, while a critic ranks and binds high-quality evidence to drafted content to ensure verifiability and reduce hallucinations. Our experiments demonstrate that RhinoInsight achieves state-of-the-art performance on deep research tasks while remaining competitive on deep search tasks.</div>
+    <div class="meta">
+        <a href="http://arxiv.org/abs/2511.18743v1" target="_blank">View on arXiv</a>
+    </div>
+</div>
+
+
+<div class="paper">
+    <h3>HuggingR$^{4}$: A Progressive Reasoning Framework for Discovering Optimal Model Companions</h3>
+    <div class="scores">
+        <span class="score relevance">Relevance: 9/10</span>
+        <span class="score importance">Importance: 8/10</span>
+    </div>
+    <div class="abstract">Large Language Models (LLMs) have made remarkable progress in their ability to interact with external interfaces. Selecting reasonable external interfaces has thus become a crucial step in constructing LLM agents. In contrast to invoking API tools, directly calling AI models across different modalities from the community (e.g., HuggingFace) poses challenges due to the vast scale (> 10k), metadata gaps, and unstructured descriptions. Current methods for model selection often involve incorporating entire model descriptions into prompts, resulting in prompt bloat, wastage of tokens and limited scalability. To address these issues, we propose HuggingR$^4$, a novel framework that combines Reasoning, Retrieval, Refinement, and Reflection, to efficiently select models. Specifically, We first perform multiple rounds of reasoning and retrieval to get a coarse list of candidate models. Then, we conduct fine-grained refinement by analyzing candidate model descriptions, followed by reflection to assess results and determine if retrieval scope expansion is necessary. This method reduces token consumption considerably by decoupling user query processing from complex model description handling. Through a pre-established vector database, complex model descriptions are stored externally and retrieved on-demand, allowing the LLM to concentrate on interpreting user intent while accessing only relevant candidate models without prompt bloat. In the absence of standardized benchmarks, we construct a multimodal human-annotated dataset comprising 14,399 user requests across 37 tasks and conduct a thorough evaluation. HuggingR$^4$ attains a workability rate of 92.03% and a reasonability rate of 82.46%, surpassing existing method by 26.51% and 33.25% respectively on GPT-4o-mini.</div>
+    <div class="meta">
+        <a href="http://arxiv.org/abs/2511.18715v1" target="_blank">View on arXiv</a>
+    </div>
+</div>
+
+
+<div class="paper">
+    <h3>Low-Rank GEMM: Efficient Matrix Multiplication via Low-Rank Approximation with FP8 Acceleration</h3>
+    <div class="scores">
+        <span class="score relevance">Relevance: 9/10</span>
+        <span class="score importance">Importance: 8/10</span>
+    </div>
+    <div class="abstract">Large matrix multiplication is a cornerstone of modern machine learning workloads, yet traditional approaches suffer from cubic computational complexity (e.g., $\mathcal{O}(n^3)$ for a matrix of size $n\times n$). We present Low-Rank GEMM, a novel approach that leverages low-rank matrix approximations to achieve sub-quadratic complexity while maintaining hardware-accelerated performance through FP8 precision and intelligent kernel selection. On a NVIDIA RTX 4090, our implementation achieves up to 378 TFLOPS on matrices up to $N=20480$, providing 75\% memory savings and $7.8\times$ speedup over PyTorch FP32 for large matrices. The system automatically adapts to hardware capabilities, selecting optimal decomposition methods (SVD, randomized SVD) and precision levels based on matrix characteristics and available accelerators. Comprehensive benchmarking on NVIDIA RTX 4090 demonstrates that Low-Rank GEMM becomes the fastest approach for matrices $N\geq10240$, surpassing traditional cuBLAS implementations through memory bandwidth optimization rather than computational shortcuts.</div>
+    <div class="meta">
+        <a href="http://arxiv.org/abs/2511.18674v1" target="_blank">View on arXiv</a>
+    </div>
+</div>
+
+
+<div class="paper">
+    <h3>Kitty: Accurate and Efficient 2-bit KV Cache Quantization with Dynamic Channel-wise Precision Boost</h3>
+    <div class="scores">
+        <span class="score relevance">Relevance: 9/10</span>
+        <span class="score importance">Importance: 8/10</span>
+    </div>
+    <div class="abstract">The KV cache is a dominant memory bottleneck for LLM inference. While 4-bit KV quantization preserves accuracy, 2-bit often degrades it, especially on long-context reasoning. We close this gap via an algorithm-system co-design for mixed-precision KV caching: Kitty. On the algorithm side, extensive experiments show that Dynamic Channel-wise Precision Boost -- which ranks Key-cache channels by sensitivity and keeps only a small fraction at higher precision -- maintains near-zero loss in accuracy drop while approaching 2-bit memory. The main challenge is handling dynamic 4-bit channel boosts while keeping the page layout coalesced and the dequantization uniform, with no scattered reads or hard-coded masks. Kitty addresses these issues by decompose each mixed-precision Key page into two tensors with unified 2-bit precision. Based on this, Kitty provides a page-centric KV layout, Triton-compatible page dequantization kernels, and a lightweight runtime pipeline that preserves coalescing and avoids divergence. Across seven tasks and two model families (Qwen3, LLaMA3), Kitty cuts KV memory by nearly 8x with negligible accuracy loss, enabling up to 8x larger batches and 2.1x-4.1x higher throughput under the same memory budget. We release the full implementation of Kitty at https://github.com/Summer-Summer/Kitty.</div>
+    <div class="meta">
+        <a href="http://arxiv.org/abs/2511.18643v1" target="_blank">View on arXiv</a>
+    </div>
+</div>
+
+
+<div class="paper">
+    <h3>Strategic Decision Framework for Enterprise LLM Adoption</h3>
+    <div class="scores">
+        <span class="score relevance">Relevance: 10/10</span>
+        <span class="score importance">Importance: 7/10</span>
+    </div>
+    <div class="abstract">Organizations are rapidly adopting Large Language Models (LLMs) to transform their operations, yet they lack clear guidance on key decisions for adoption and implementation. While LLMs offer powerful capabilities in content generation, assisted coding, and process automation, businesses face critical challenges in data security, LLM solution development approach, infrastructure requirements, and deployment strategies. Healthcare providers must protect patient data while leveraging LLMs for medical analysis, financial institutions need to balance automated customer service with regulatory compliance, and software companies seek to enhance development productivity while maintaining code security.   This article presents a systematic six-step decision framework for LLM adoption, helping organizations navigate from initial application selection to final deployment. Based on extensive interviews and analysis of successful and failed implementations, our framework provides practical guidance for business leaders to align technological capabilities with business objectives. Through key decision points and real-world examples from both B2B and B2C contexts, organizations can make informed decisions about LLM adoption while ensuring secure and efficient integration across various use cases, from customer service automation to content creation and advanced analytics.</div>
+    <div class="meta">
+        <a href="http://arxiv.org/abs/2511.18589v1" target="_blank">View on arXiv</a>
+    </div>
+</div>
+
+    </div>
+</div>
+
+    </body>
+    </html>
+    
