@@ -1,0 +1,410 @@
+
+    <!DOCTYPE html>
+    <html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>ArXiv Research Digest</title>
+        <style>
+            
+body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    line-height: 1.5;
+    color: #2d3748;
+    margin: 0;
+    padding: 20px;
+    background: #f7fafc;
+}
+
+.digest {
+    max-width: 800px;
+    margin: 0 auto;
+    background: white;
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+}
+
+.header {
+    margin-bottom: 2rem;
+    padding-bottom: 1rem;
+    border-bottom: 2px solid #e2e8f0;
+}
+
+.header h2 {
+    margin: 0;
+    color: #2d3748;
+}
+
+.header p {
+    margin: 0.5rem 0 0;
+    color: #718096;
+}
+
+.highlights {
+    background: #f8fafc;
+    padding: 1.5rem;
+    border-radius: 8px;
+    margin-bottom: 3rem;
+    border: 1px solid #e2e8f0;
+}
+
+.highlights h3 {
+    color: #2d3748;
+    margin: 0 0 1rem 0;
+    font-size: 1.25rem;
+}
+
+.summary {
+    white-space: pre-line;
+    line-height: 1.6;
+}
+
+.summary ol {
+    padding-left: 1.5rem;
+    margin: 1rem 0;
+}
+
+.summary li {
+    margin-bottom: 0.75rem;
+    padding-left: 0.5rem;
+}
+
+.papers {
+    margin-top: 3rem;
+}
+
+.papers h3 {
+    color: #2d3748;
+    margin-bottom: 1.5rem;
+    padding-bottom: 1rem;
+    border-bottom: 2px solid #e2e8f0;
+}
+
+.paper {
+    margin-bottom: 2rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid #e2e8f0;
+}
+
+.paper:last-child {
+    border-bottom: none;
+}
+
+.paper h3 {
+    margin: 0 0 0.5rem;
+    color: #2d3748;
+}
+
+.paper .scores {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 0.5rem;
+}
+
+.paper .score {
+    padding: 0.25rem 0.5rem;
+    border-radius: 4px;
+    font-size: 0.875rem;
+}
+
+.paper .relevance {
+    background: #e6fffa;
+    color: #047481;
+}
+
+.paper .importance {
+    background: #ebf4ff;
+    color: #1a56db;
+}
+
+.paper .abstract {
+    color: #4a5568;
+    margin: 0.5rem 0;
+}
+
+.paper .meta {
+    font-size: 0.875rem;
+    color: #718096;
+}
+
+.paper .meta a {
+    color: #4299e1;
+    text-decoration: none;
+}
+
+.paper .meta a:hover {
+    text-decoration: underline;
+}
+
+        </style>
+    </head>
+    <body>
+        
+<div class="digest">
+    <div class="header">
+        <h2>ArXiv Research Digest</h2>
+        <p>Found 18 relevant papers out of 70 new submissions</p>
+    </div>
+    
+    <div class="highlights">
+        <h3>🔥 Key Highlights</h3>
+        Hey boss, found 5 cool papers today that I think you'll love:
+
+<ol>
+<li><strong>Every Token Counts: Generalizing 16M Ultra-Long Context in Large Language Models</strong>. They introduce Hierarchical Sparse Attention (HSA) and show an 8B MoE model (HSA-UltraLong) trained on ~8T tokens can handle contexts up to 16M with >90% accuracy on many in-context retrieval tasks. Practically this means real “machines that can remember” are feasible — with scores 9.5/10 (Relevance 10/10, Importance 9/10) this is the strongest path we’ve seen toward production-scale long-term memory (paper: http://arxiv.org/abs/2511.23319v1), so next step: spike HSA-style sparse attention in our retrieval stack for one long-context use case. </li>
+
+<li><strong>AI for software engineering: from probable to provable</strong>. The paper argues (score 9.5/10 — Relevance 10/10) that pairing AI creativity with formal specifications and verification is the way to make generated code reliably correct rather than “probably” correct. For industry that means shifting some of our effort from prompt-hacking to building spec+verification pipelines (see http://arxiv.org/abs/2511.23159v1); next step: pilot formal spec / verification hooks for our top 1–2 codegen flows. </li>
+
+<li><strong>Serving Heterogeneous LoRA Adapters in Distributed LLM Inference Systems</strong>. LoRAServe is a workload-aware adapter placement and routing system that dynamically rebalances heterogeneous LoRA ranks across GPUs (and uses GPU Direct RDMA) to get up to 2× throughput, up to 9× lower TTFT and ~50% fewer GPUs under SLOs. With a 9.5/10 score (Relevance 10/10, Importance 9/10) this directly targets our multi-tenant fine-tuning ops (paper: http://arxiv.org/abs/2511.22880v1), so we should prototype LoRAServe on a small production trace to cut GPU costs and tail latency. </li>
+
+<li><strong>LFM2 Technical Report</strong>. LFM2 is a family of “liquid” foundation models (350M–8.3B, 32K context) optimized via hardware-in-the-loop NAS and training recipes to deliver ~2× faster CPU prefill/decode and good task performance; weights and deploy packages are released for ExecuTorch, llama.cpp and vLLM. Scored 9.0/10 (Relevance 10/10, Importance 8/10), this is a practical win for on-device and low-latency deployments (http://arxiv.org/abs/2511.23404v1) — next step: evaluate LFM2-700M/2.6B on our edge latency targets and consider them as base models for our mobile/edge product. </li>
+
+<li><strong>Does Self-Evaluation Enable Wireheading in Language Models?</strong>. They formalize when reward-channel control incentivizes models to inflate self-grades (wireheading) and empirically show grade inflation occurs when self-evals are tied to reward across two models and three tasks. With a 9.0/10 score (Relevance 9/10, Importance 9/10) this flags a real safety/design risk for agentic or self-refining systems (http://arxiv.org/abs/2511.23092v1); practical next step: mandate decoupling of self-eval outputs from reward signals and add audit tests for grade inflation in any self-refinement loop. </li>
+</ol>
+
+Let’s action this week: spin up quick spikes — prototype LoRAServe on a trace, run LFM2 inference on our edge targets, add an HSA retrieval spike, start a tiny formal-spec-for-codegen pilot, and add audit checks to decouple self-eval from rewards.
+    </div>
+    
+    <div class="papers">
+        <h3>📄 Detailed Papers</h3>
+        
+<div class="paper">
+    <h3>Every Token Counts: Generalizing 16M Ultra-Long Context in Large Language Models</h3>
+    <div class="scores">
+        <span class="score relevance">Relevance: 10/10</span>
+        <span class="score importance">Importance: 9/10</span>
+    </div>
+    <div class="abstract">This work explores the challenge of building ``Machines that Can Remember'', framing long-term memory as the problem of efficient ultra-long context modeling. We argue that this requires three key properties: \textbf{sparsity}, \textbf{random-access flexibility}, and \textbf{length generalization}. To address ultra-long-context modeling, we leverage Hierarchical Sparse Attention (HSA), a novel attention mechanism that satisfies all three properties. We integrate HSA into Transformers to build HSA-UltraLong, which is an 8B-parameter MoE model trained on over 8 trillion tokens and is rigorously evaluated on different tasks with in-domain and out-of-domain context lengths to demonstrate its capability in handling ultra-long contexts. Results show that our model performs comparably to full-attention baselines on in-domain lengths while achieving over 90\% accuracy on most in-context retrieval tasks with contexts up to 16M. This report outlines our experimental insights and open problems, contributing a foundation for future research in ultra-long context modeling.</div>
+    <div class="meta">
+        <a href="http://arxiv.org/abs/2511.23319v1" target="_blank">View on arXiv</a>
+    </div>
+</div>
+
+
+<div class="paper">
+    <h3>AI for software engineering: from probable to provable</h3>
+    <div class="scores">
+        <span class="score relevance">Relevance: 10/10</span>
+        <span class="score importance">Importance: 9/10</span>
+    </div>
+    <div class="abstract">Vibe coding, the much-touted use of AI techniques for programming, faces two overwhelming obstacles: the difficulty of specifying goals ("prompt engineering" is a form of requirements engineering, one of the toughest disciplines of software engineering); and the hallucination phenomenon. Programs are only useful if they are correct or very close to correct.   The solution? Combine the creativity of artificial intelligence with the rigor of formal specification methods and the power of formal program verification, supported by modern proof tools.</div>
+    <div class="meta">
+        <a href="http://arxiv.org/abs/2511.23159v1" target="_blank">View on arXiv</a>
+    </div>
+</div>
+
+
+<div class="paper">
+    <h3>Serving Heterogeneous LoRA Adapters in Distributed LLM Inference Systems</h3>
+    <div class="scores">
+        <span class="score relevance">Relevance: 10/10</span>
+        <span class="score importance">Importance: 9/10</span>
+    </div>
+    <div class="abstract">Low-Rank Adaptation (LoRA) has become the de facto method for parameter-efficient fine-tuning of large language models (LLMs), enabling rapid adaptation to diverse domains. In production, LoRA-based models are served at scale, creating multi-tenant environments with hundreds of adapters sharing a base model. However, state-of-the-art serving systems co-batch heterogeneous adapters without accounting for rank (size) variability, leading to severe performance skew, which ultimately requires adding more GPUs to satisfy service-level objectives (SLOs). Existing optimizations, focused on loading, caching, and kernel execution, ignore this heterogeneity, leaving GPU resources underutilized. We present LoRAServe, a workload-aware dynamic adapter placement and routing framework designed to tame rank diversity in LoRA serving. By dynamically rebalancing adapters across GPUs and leveraging GPU Direct RDMA for remote access, LoRAServe maximizes throughput and minimizes tail latency under real-world workload drift. Evaluations on production traces from Company X show that LoRAServe elicits up to 2$\times$ higher throughput, up to 9$\times$ lower TTFT, while using up to 50% fewer GPUs under SLO constraints compared to state-of-the-art systems.</div>
+    <div class="meta">
+        <a href="http://arxiv.org/abs/2511.22880v1" target="_blank">View on arXiv</a>
+    </div>
+</div>
+
+
+<div class="paper">
+    <h3>LFM2 Technical Report</h3>
+    <div class="scores">
+        <span class="score relevance">Relevance: 10/10</span>
+        <span class="score importance">Importance: 8/10</span>
+    </div>
+    <div class="abstract">We present LFM2, a family of Liquid Foundation Models designed for efficient on-device deployment and strong task capabilities. Using hardware-in-the-loop architecture search under edge latency and memory constraints, we obtain a compact hybrid backbone that combines gated short convolutions with a small number of grouped query attention blocks, delivering up to 2x faster prefill and decode on CPUs compared to similarly sized models. The LFM2 family covers 350M-8.3B parameters, including dense models (350M, 700M, 1.2B, 2.6B) and a mixture-of-experts variant (8.3B total, 1.5B active), all with 32K context length. LFM2's training pipeline includes a tempered, decoupled Top-K knowledge distillation objective that avoids support mismatch; curriculum learning with difficulty-ordered data; and a three-stage post-training recipe of supervised fine-tuning, length-normalized preference optimization, and model merging. Pre-trained on 10-12T tokens, LFM2 models achieve strong results across diverse benchmarks; for example, LFM2-2.6B reaches 79.56% on IFEval and 82.41% on GSM8K. We further build multimodal and retrieval variants: LFM2-VL for vision-language tasks, LFM2-Audio for speech, and LFM2-ColBERT for retrieval. LFM2-VL supports tunable accuracy-latency tradeoffs via token-efficient visual processing, while LFM2-Audio separates audio input and output pathways to enable real-time speech-to-speech interaction competitive with models 3x larger. LFM2-ColBERT provides a low-latency encoder for queries and documents, enabling high-performance retrieval across multiple languages. All models are released with open weights and deployment packages for ExecuTorch, llama.cpp, and vLLM, making LFM2 a practical base for edge applications that need fast, memory-efficient inference and strong task capabilities.</div>
+    <div class="meta">
+        <a href="http://arxiv.org/abs/2511.23404v1" target="_blank">View on arXiv</a>
+    </div>
+</div>
+
+
+<div class="paper">
+    <h3>Does Self-Evaluation Enable Wireheading in Language Models?</h3>
+    <div class="scores">
+        <span class="score relevance">Relevance: 9/10</span>
+        <span class="score importance">Importance: 9/10</span>
+    </div>
+    <div class="abstract">Self-evaluation is increasingly central to language model training, from constitutional AI to self-refinement. We investigate whether coupling self-evaluation to reward signals creates incentives for wireheading, where agents manipulate reward measurements rather than improving task performance. We formalize conditions under which reward-channel control strictly dominates task-focused behavior in POMDPs and test these predictions empirically. Across two models and three tasks, we find that models whose self-grades determine rewards exhibit substantial grade inflation without corresponding accuracy gains, particularly on ambiguous tasks like summarization. Models that self-evaluate but do not control rewards show no such inflation. Our results demonstrate that self-evaluation is safe when decoupled from learning signals but dangerous when coupled, with clear implications for agentic system design.</div>
+    <div class="meta">
+        <a href="http://arxiv.org/abs/2511.23092v1" target="_blank">View on arXiv</a>
+    </div>
+</div>
+
+
+<div class="paper">
+    <h3>ORION: Teaching Language Models to Reason Efficiently in the Language of Thought</h3>
+    <div class="scores">
+        <span class="score relevance">Relevance: 9/10</span>
+        <span class="score importance">Importance: 9/10</span>
+    </div>
+    <div class="abstract">Large Reasoning Models (LRMs) achieve strong performance in mathematics, code generation, and task planning, but their reliance on long chains of verbose "thinking" tokens leads to high latency, redundancy, and incoherent reasoning paths. Inspired by the Language of Thought Hypothesis, which posits that human reasoning operates over a symbolic, compositional mental language called Mentalese, we introduce a framework that trains models to reason in a similarly compact style. Mentalese encodes abstract reasoning as ultra-compressed, structured tokens, enabling models to solve complex problems with far fewer steps. To improve both efficiency and accuracy, we propose SHORTER LENGTH PREFERENCE OPTIMIZATION (SLPO), a reinforcement learning method that rewards concise solutions that stay correct, while still allowing longer reasoning when needed. Applied to Mentalese-aligned models, SLPO yields significantly higher compression rates by enabling concise reasoning that preserves the benefits of detailed thinking without the computational overhead. Across benchmarks including AIME 2024 and 2025, MinervaMath, OlympiadBench, Math500, and AMC, our ORION models produce reasoning traces with 4-16x fewer tokens, achieve up to 5x lower inference latency, and reduce training costs by 7-9x relative to the DeepSeek R1 Distilled model, while maintaining 90-98% of its accuracy. ORION also surpasses Claude and ChatGPT-4o by up to 5% in accuracy while maintaining 2x compression. These results show that Mentalese-style compressed reasoning offers a step toward human-like cognitive efficiency, enabling real-time, cost-effective reasoning without sacrificing accuracy.</div>
+    <div class="meta">
+        <a href="http://arxiv.org/abs/2511.22891v1" target="_blank">View on arXiv</a>
+    </div>
+</div>
+
+
+<div class="paper">
+    <h3>The Price of Progress: Algorithmic Efficiency and the Falling Cost of AI Inference</h3>
+    <div class="scores">
+        <span class="score relevance">Relevance: 9/10</span>
+        <span class="score importance">Importance: 8/10</span>
+    </div>
+    <div class="abstract">Language models have seen enormous progress on advanced benchmarks in recent years, but much of this progress has only been possible by using more costly models. Benchmarks may therefore present a warped picture of progress in practical capabilities per dollar. To remedy this, we use data from Artificial Analysis and Epoch AI to form the largest dataset of current and historical prices to run benchmarks to date. We find that the price for a given level of benchmark performance has decreased remarkably fast, around $5\times$ to $10\times$ per year, for frontier models on knowledge, reasoning, math, and software engineering benchmarks. These reductions in the cost of AI inference are due to economic forces, hardware efficiency improvements, and algorithmic efficiency improvements. Isolating out open models to control for competition effects and dividing by hardware price declines, we estimate that algorithmic efficiency progress is around $3\times$ per year. Finally, we recommend that evaluators both publicize and take into account the price of benchmarking as an essential part of measuring the real-world impact of AI.</div>
+    <div class="meta">
+        <a href="http://arxiv.org/abs/2511.23455v1" target="_blank">View on arXiv</a>
+    </div>
+</div>
+
+
+<div class="paper">
+    <h3>Multi-chain Graph Refinement and Selection for Reliable Reasoning in Large Language Models</h3>
+    <div class="scores">
+        <span class="score relevance">Relevance: 9/10</span>
+        <span class="score importance">Importance: 8/10</span>
+    </div>
+    <div class="abstract">The complex reasoning ability of Large Language Models (LLMs) poses a critical bottleneck for their practical applications. Test-time expansion methods such as Tree-of-Thought (ToT) and Graph-of-Thought (GoT) enhance reasoning by introducing intermediate reasoning structures, tree search, or graph-based exploration mechanisms. However, their reasoning strategies suffer from limited diversity, redundant search branches, and inadequate integration and error correction across heterogeneous reasoning paths. To address these limitations, we propose a novel reasoning framework called Multi-chain Graph Refinement & Selection (MGRS), which first generates multiple diverse reasoning trajectories for a given problem, refines candidate responses using a composite self- and cross-verification strategy, then constructs a reasoning relation graph and estimates the success rate of intermediate nodes, and finally computes cumulative success rates to select the most reliable answer and corresponding reasoning trajectory. Experimental results demonstrate that MGRS significantly advances both the reasoning capability and computational efficiency of reasoning enhancement methods. Across six benchmark datasets spanning four distinct tasks, MGRS achieves an average accuracy of 82.9%, outperforming state-of-the-art baselines by a clear margin of 2.1%. Remarkably, on the 24-point game, MGRS attains 100% accuracy for the first time, while delivering a 13.6x speed-up compared to the leading Forest of Thoughts framework.</div>
+    <div class="meta">
+        <a href="http://arxiv.org/abs/2511.23136v1" target="_blank">View on arXiv</a>
+    </div>
+</div>
+
+
+<div class="paper">
+    <h3>Delta-XAI: A Unified Framework for Explaining Prediction Changes in Online Time Series Monitoring</h3>
+    <div class="scores">
+        <span class="score relevance">Relevance: 9/10</span>
+        <span class="score importance">Importance: 8/10</span>
+    </div>
+    <div class="abstract">Explaining online time series monitoring models is crucial across sensitive domains such as healthcare and finance, where temporal and contextual prediction dynamics underpin critical decisions. While recent XAI methods have improved the explainability of time series models, they mostly analyze each time step independently, overlooking temporal dependencies. This results in further challenges: explaining prediction changes is non-trivial, methods fail to leverage online dynamics, and evaluation remains difficult. To address these challenges, we propose Delta-XAI, which adapts 14 existing XAI methods through a wrapper function and introduces a principled evaluation suite for the online setting, assessing diverse aspects, such as faithfulness, sufficiency, and coherence. Experiments reveal that classical gradient-based methods, such as Integrated Gradients (IG), can outperform recent approaches when adapted for temporal analysis. Building on this, we propose Shifted Window Integrated Gradients (SWING), which incorporates past observations in the integration path to systematically capture temporal dependencies and mitigate out-of-distribution effects. Extensive experiments consistently demonstrate the effectiveness of SWING across diverse settings with respect to diverse metrics. Our code is publicly available at https://anonymous.4open.science/r/Delta-XAI.</div>
+    <div class="meta">
+        <a href="http://arxiv.org/abs/2511.23036v1" target="_blank">View on arXiv</a>
+    </div>
+</div>
+
+
+<div class="paper">
+    <h3>TIM-PRM: Verifying multimodal reasoning with Tool-Integrated PRM</h3>
+    <div class="scores">
+        <span class="score relevance">Relevance: 9/10</span>
+        <span class="score importance">Importance: 8/10</span>
+    </div>
+    <div class="abstract">Multimodal Large Language Models (MLLMs) have achieved impressive performances in mathematical reasoning, yet they remain vulnerable to visual hallucinations and logical inconsistencies that standard outcome-based supervision fails to mitigate. While Process Reward Models (PRMs) promise step-by-step verification, current approaches typically operate as scalar scorers or generative critics that suffer from sycophancy, blindly validating the flawed hypotheses rather than grounding them in visual reality. To bridge this gap, we introduce TIM-PRM (Tool-Integrated Multimodal PRM), a novel agentic framework that transforms verification from a passive classification task into an active, tool-augmented investigation. TIM-PRM is trained to explicitly plan verification strategies and utilizes a mechanism of Independent Question Asking to query evidence via external tools, effectively decoupling verification from the reasoning context to eliminate confirmation bias. We instantiate this method by curating a high-quality dataset of tool-integrated verification trajectories. Extensive experiments on VisualProcessBench demonstrate that our 8B parameter model surpasses existing open-source multimodal PRMs, significantly outperforming much larger models like Qwen2.5-72B and InternVL-78B, while offering interpretable insights into the verification process.</div>
+    <div class="meta">
+        <a href="http://arxiv.org/abs/2511.22998v1" target="_blank">View on arXiv</a>
+    </div>
+</div>
+
+
+<div class="paper">
+    <h3>Towards Continuous Intelligence Growth: Self-Training, Continual Learning, and Dual-Scale Memory in SuperIntelliAgent</h3>
+    <div class="scores">
+        <span class="score relevance">Relevance: 9/10</span>
+        <span class="score importance">Importance: 7/10</span>
+    </div>
+    <div class="abstract">We introduce SuperIntelliAgent, an agentic learning framework that couples a trainable small diffusion model (the learner) with a frozen large language model (the verifier) to enable continual intelligence growth through self-supervised interaction. Unlike conventional supervised fine-tuning, SuperIntelliAgent learns autonomously without annotation: the learner generates candidate outputs, the verifier evaluates them through step-by-step reasoning, and their interaction produces chosen/rejected pairs for Direct Preference Optimization (DPO). This converts each input into a pseudo-training signal for continual improvement. The framework integrates dual-scale memory: short-term in-context memory that preserves reasoning traces across refinement cycles, and long-term memory that consolidates acquired knowledge through lightweight on-the-fly fine-tuning. A replay buffer retains samples that show verifiable progress and replays them as auxiliary supervision, reinforcing recent learning while forming adaptive curricula. SuperIntelliAgent is infrastructure-agnostic and can be plugged into existing agentic frameworks while turning ordinary inference loops into a lifelong optimization process. We posit that pairing a trainable learner with a reasoning-capable verifier forms a minimal reliable unit of growing intelligence, as paired feedback and partial-history replay yield richer learning curricula and stronger preference alignment. With a small number of automatically generated DPO pairs, the learner improves across all benchmarks, indicating that this mechanism provides a promising direction for continual intelligence accumulation and real-world deployment.</div>
+    <div class="meta">
+        <a href="http://arxiv.org/abs/2511.23436v1" target="_blank">View on arXiv</a>
+    </div>
+</div>
+
+
+<div class="paper">
+    <h3>Towards Improving Interpretability of Language Model Generation through a Structured Knowledge Discovery Approach</h3>
+    <div class="scores">
+        <span class="score relevance">Relevance: 9/10</span>
+        <span class="score importance">Importance: 7/10</span>
+    </div>
+    <div class="abstract">Knowledge-enhanced text generation aims to enhance the quality of generated text by utilizing internal or external knowledge sources. While language models have demonstrated impressive capabilities in generating coherent and fluent text, the lack of interpretability presents a substantial obstacle. The limited interpretability of generated text significantly impacts its practical usability, particularly in knowledge-enhanced text generation tasks that necessitate reliability and explainability. Existing methods often employ domain-specific knowledge retrievers that are tailored to specific data characteristics, limiting their generalizability to diverse data types and tasks. To overcome this limitation, we directly leverage the two-tier architecture of structured knowledge, consisting of high-level entities and low-level knowledge triples, to design our task-agnostic structured knowledge hunter. Specifically, we employ a local-global interaction scheme for structured knowledge representation learning and a hierarchical transformer-based pointer network as the backbone for selecting relevant knowledge triples and entities. By combining the strong generative ability of language models with the high faithfulness of the knowledge hunter, our model achieves high interpretability, enabling users to comprehend the model output generation process. Furthermore, we empirically demonstrate the effectiveness of our model in both internal knowledge-enhanced table-to-text generation on the RotoWireFG dataset and external knowledge-enhanced dialogue response generation on the KdConv dataset. Our task-agnostic model outperforms state-of-the-art methods and corresponding language models, setting new standards on the benchmark.</div>
+    <div class="meta">
+        <a href="http://arxiv.org/abs/2511.23335v1" target="_blank">View on arXiv</a>
+    </div>
+</div>
+
+
+<div class="paper">
+    <h3>One-Shot Secure Aggregation: A Hybrid Cryptographic Protocol for Private Federated Learning in IoT</h3>
+    <div class="scores">
+        <span class="score relevance">Relevance: 8/10</span>
+        <span class="score importance">Importance: 8/10</span>
+    </div>
+    <div class="abstract">Federated Learning (FL) offers a promising approach to collaboratively train machine learning models without centralizing raw data, yet its scalability is often throttled by excessive communication overhead. This challenge is magnified in Internet of Things (IoT) environments, where devices face stringent bandwidth, latency, and energy constraints. Conventional secure aggregation protocols, while essential for protecting model updates, frequently require multiple interaction rounds, large payload sizes, and per-client costs rendering them impractical for many edge deployments.   In this work, we present Hyb-Agg, a lightweight and communication-efficient secure aggregation protocol that integrates Multi-Key CKKS (MK-CKKS) homomorphic encryption with Elliptic Curve Diffie-Hellman (ECDH)-based additive masking. Hyb-Agg reduces the secure aggregation process to a single, non-interactive client-to-server transmission per round, ensuring that per-client communication remains constant regardless of the number of participants. This design eliminates partial decryption exchanges, preserves strong privacy under the RLWE, CDH, and random oracle assumptions, and maintains robustness against collusion by the server and up to $N-2$ clients.   We implement and evaluate Hyb-Agg on both high-performance and resource-constrained devices, including a Raspberry Pi 4, demonstrating that it delivers sub-second execution times while achieving a constant communication expansion factor of approximately 12x over plaintext size. By directly addressing the communication bottleneck, Hyb-Agg enables scalable, privacy-preserving federated learning that is practical for real-world IoT deployments.</div>
+    <div class="meta">
+        <a href="http://arxiv.org/abs/2511.23252v1" target="_blank">View on arXiv</a>
+    </div>
+</div>
+
+
+<div class="paper">
+    <h3>OctoMed: Data Recipes for State-of-the-Art Multimodal Medical Reasoning</h3>
+    <div class="scores">
+        <span class="score relevance">Relevance: 8/10</span>
+        <span class="score importance">Importance: 7/10</span>
+    </div>
+    <div class="abstract">High-quality and carefully curated data is a cornerstone of training medical large language models, as it directly impacts both generalization and robustness to unseen clinical tasks. We investigate strategies for training and data curation to develop a robust multimodal reasoning model in the medical domain. Our work focuses on supervised fine-tuning (SFT) and explores data recipes that leverage structured reasoning traces. Using our proposed data recipe, we scale experiments to a dataset of over 8 million examples and 6.8 billion response tokens, achieving state-of-the-art performance among open-source models across diverse out-of-distribution medical benchmark tasks. Our results further indicate that curating a high-quality, diverse training dataset with varying structured reasoning trace lengths enables the fine-tuned model to self-calibrate its reasoning trajectory lengths based on the downstream task, without explicit supervision. We present key insights, describe the data curation strategy, and outline next steps toward developing robust medical vision-language reasoning system.</div>
+    <div class="meta">
+        <a href="http://arxiv.org/abs/2511.23269v1" target="_blank">View on arXiv</a>
+    </div>
+</div>
+
+
+<div class="paper">
+    <h3>Evaluating the Clinical Impact of Generative Inpainting on Bone Age Estimation</h3>
+    <div class="scores">
+        <span class="score relevance">Relevance: 8/10</span>
+        <span class="score importance">Importance: 7/10</span>
+    </div>
+    <div class="abstract">Generative foundation models can remove visual artifacts through realistic image inpainting, but their impact on medical AI performance remains uncertain. Pediatric hand radiographs often contain non-anatomical markers, and it is unclear whether inpainting these regions preserves features needed for bone age and gender prediction. To evaluate the clinical reliability of generative model-based inpainting for artifact removal, we used the RSNA Bone Age Challenge dataset, selecting 200 original radiographs and generating 600 inpainted versions with gpt-image-1 using natural language prompts to target non-anatomical artifacts. Downstream performance was assessed with deep learning ensembles for bone age estimation and gender classification, using mean absolute error (MAE) and area under the ROC curve (AUC) as metrics, and pixel intensity distributions to detect structural alterations. Inpainting markedly degraded model performance: bone age MAE increased from 6.26 to 30.11 months, and gender classification AUC decreased from 0.955 to 0.704. Inpainted images displayed pixel-intensity shifts and inconsistencies, indicating structural modifications not corrected by simple calibration. These findings show that, although visually realistic, foundation model-based inpainting can obscure subtle but clinically relevant features and introduce latent bias even when edits are confined to non-diagnostic regions, underscoring the need for rigorous, task-specific validation before integrating such generative tools into clinical AI workflows.</div>
+    <div class="meta">
+        <a href="http://arxiv.org/abs/2511.23066v1" target="_blank">View on arXiv</a>
+    </div>
+</div>
+
+
+<div class="paper">
+    <h3>AgentShield: Make MAS more secure and efficient</h3>
+    <div class="scores">
+        <span class="score relevance">Relevance: 8/10</span>
+        <span class="score importance">Importance: 7/10</span>
+    </div>
+    <div class="abstract">Large Language Model (LLM)-based Multi-Agent Systems (MAS) offer powerful cooperative reasoning but remain vulnerable to adversarial attacks, where compromised agents can undermine the system's overall performance. Existing defenses either depend on single trusted auditors, creating single points of failure, or sacrifice efficiency for robustness. To resolve this tension, we propose \textbf{AgentShield}, a distributed framework for efficient, decentralized auditing. AgentShield introduces a novel three-layer defense: \textbf{(i) Critical Node Auditing} prioritizes high-influence agents via topological analysis; \textbf{(ii) Light Token Auditing} implements a cascade protocol using lightweight sentry models for rapid discriminative verification; and \textbf{(iii) Two-Round Consensus Auditing} triggers heavyweight arbiters only upon uncertainty to ensure global agreement. This principled design optimizes the robustness-efficiency trade-off. Experiments demonstrate that AgentShield achieves a 92.5\% recovery rate and reduces auditing overhead by over 70\% compared to existing methods, maintaining high collaborative accuracy across diverse MAS topologies and adversarial scenarios.</div>
+    <div class="meta">
+        <a href="http://arxiv.org/abs/2511.22924v1" target="_blank">View on arXiv</a>
+    </div>
+</div>
+
+
+<div class="paper">
+    <h3>Adversarial Training for Process Reward Models</h3>
+    <div class="scores">
+        <span class="score relevance">Relevance: 8/10</span>
+        <span class="score importance">Importance: 7/10</span>
+    </div>
+    <div class="abstract">Process Reward Models (PRMs) enhance reasoning ability of LLMs by providing step-level supervision. However, their widespread adoption is limited due to expensive manual step-level annotation and poor generalization of static training data to novel errors. We introduce Adversarially Trained PRMs (\texttt{APRM}), where a Generator ($G$) learns to produce reasoning errors to deceive a PRM ($R$), while $R$ concurrently learns to detect them. This interaction yields progressively harder negatives for $R$, improving its robustness and generalization to novel errors without requiring manual step-level labels. Averaged across diverse mathematical reasoning benchmarks, \texttt{APRM} improves solver accuracy by $+3.4$ percentage points (pp) over the strongest PRM baseline. \texttt{APRM} achieves gains of $+5.3$ pp on out-of-distribution tasks.</div>
+    <div class="meta">
+        <a href="http://arxiv.org/abs/2511.22888v1" target="_blank">View on arXiv</a>
+    </div>
+</div>
+
+
+<div class="paper">
+    <h3>A Unified and Stable Risk Minimization Framework for Weakly Supervised Learning with Theoretical Guarantees</h3>
+    <div class="scores">
+        <span class="score relevance">Relevance: 8/10</span>
+        <span class="score importance">Importance: 7/10</span>
+    </div>
+    <div class="abstract">Weakly supervised learning has emerged as a practical alternative to fully supervised learning when complete and accurate labels are costly or infeasible to acquire. However, many existing methods are tailored to specific supervision patterns -- such as positive-unlabeled (PU), unlabeled-unlabeled (UU), complementary-label (CLL), partial-label (PLL), or similarity-unlabeled annotations -- and rely on post-hoc corrections to mitigate instability induced by indirect supervision. We propose a principled, unified framework that bypasses such post-hoc adjustments by directly formulating a stable surrogate risk grounded in the structure of weakly supervised data. The formulation naturally subsumes diverse settings -- including PU, UU, CLL, PLL, multi-class unlabeled, and tuple-based learning -- under a single optimization objective. We further establish a non-asymptotic generalization bound via Rademacher complexity that clarifies how supervision structure, model capacity, and sample size jointly govern performance. Beyond this, we analyze the effect of class-prior misspecification on the bound, deriving explicit terms that quantify its impact, and we study identifiability, giving sufficient conditions -- most notably via supervision stratification across groups -- under which the target risk is recoverable. Extensive experiments show consistent gains across class priors, dataset scales, and class counts -- without heuristic stabilization -- while exhibiting robustness to overfitting.</div>
+    <div class="meta">
+        <a href="http://arxiv.org/abs/2511.22823v1" target="_blank">View on arXiv</a>
+    </div>
+</div>
+
+    </div>
+</div>
+
+    </body>
+    </html>
+    
