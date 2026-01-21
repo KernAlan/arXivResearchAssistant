@@ -177,7 +177,60 @@ Papers to evaluate:
     - Paper makes agents reliable → Score EXACTLY 10
     - Paper is just "useful" or "interesting" → 8 or below
     """
-    
+
+    GITHUB_SCORING_PROMPT = """
+    I'm Alan Kern. Evaluate this GitHub repo for my work.
+
+    I use LLMs for: WRITING (long-form), building agents/products, coding.
+
+    Score TWO dimensions:
+
+    **RELEVANCE** (1-10): How relevant is this to my work?
+    - 10 = Directly addresses writing, agents, or LLM product building
+    - 7-9 = Related to AI/ML, could be useful
+    - 4-6 = Tangentially related
+    - 1-3 = Not relevant (crypto, games, pure devops, etc.)
+
+    **IMPACT** (1-10): How game-changing is this?
+    - 10 = GAME CHANGER - fundamentally new capability
+      (solves long-form coherence, makes agents reliable, new LLM paradigm)
+    - 9 = Major breakthrough, would change how I architect systems
+    - 8 = Solid innovation, worth adopting
+    - 6-7 = Incremental improvement, interesting
+    - 1-5 = Nothing new, or not useful
+
+    BE HARSH on impact. Most repos are 5 or below. Only true breakthroughs get 9-10.
+
+    Also write a 2-3 sentence SUMMARY explaining:
+    1. What this repo actually does (in plain English)
+    2. Why it matters (or doesn't) for someone building AI products
+
+    Return JSON:
+    {
+      "relevance": N,
+      "impact": N,
+      "summary": "2-3 sentences explaining what it does and why it matters"
+    }
+    """
+
+    GITHUB_EXECUTIVE_SUMMARY_PROMPT = """
+    You are writing a quick executive briefing for your boss, Alan Kern, about today's GitHub trending repos.
+
+    Alan uses LLMs for: long-form writing, building agents/products, and coding.
+
+    Write a casual, direct summary (3-5 sentences) that answers:
+    - Were there any repos worth his attention today?
+    - What's the overall theme/vibe of what's trending?
+    - Any action items or things to check out?
+
+    Be honest - if nothing is exciting, say so. Don't hype mediocre repos.
+
+    Format: Just plain text, conversational tone. Like you're giving a quick verbal update.
+
+    Here are today's scored repos:
+    {repos}
+    """
+
     # File paths and directories
     PATHS = {
         "data_dir": "data",  # Directory for storing data files
@@ -197,6 +250,8 @@ Papers to evaluate:
         self.model_config = self.MODEL_CONFIG.copy()
         self.interest = self.DEFAULT_INTEREST
         self.arbitrage_interest = self.ARBITRAGE_INTEREST
+        self.github_scoring_prompt = self.GITHUB_SCORING_PROMPT
+        self.github_executive_summary_prompt = self.GITHUB_EXECUTIVE_SUMMARY_PROMPT
     
     @property
     def user(self) -> Dict[str, Any]:
