@@ -114,7 +114,7 @@ Papers to evaluate:
         "papers_per_batch": 8,
         "temperature": 1.0,
         "threshold": 7.5,
-        "arbitrage_threshold": 8.5,
+        "arbitrage_threshold": 9.0,
         "max_tokens": 1800,
         "top_p": 1.0
     }
