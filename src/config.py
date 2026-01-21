@@ -25,16 +25,40 @@ Key rules:
 
     QUICK_SCORING_PROMPT = """For each paper below, evaluate its relevance to production AI engineering and its importance as a breakthrough.
 
-Return a JSON object with scores array like this:
+You MUST return a JSON object with exactly {num_papers} scores in the array, one for each paper.
+The scores array should look like this:
 {{
     "scores": [
-        {{"Relevancy score": 0, "Importance score": 0}},
-        {{"Relevancy score": 0, "Importance score": 0}}
+        {{
+            "Relevancy score": 8, 
+            "Importance score": 6, 
+            "Arbitrage score": 9, 
+            "Arbitrage reason": "Reasoning for the arbitrage score goes here..."
+        }},
+        {{
+            "Relevancy score": 5, 
+            "Importance score": 7, 
+            "Arbitrage score": 2, 
+            "Arbitrage reason": "N/A"
+        }}
     ]
 }}
 
+Each paper must have a Relevancy score, Importance score, and Arbitrage score between 1 and 10.
+
+SCORING GUIDELINES:
+- **Relevance/Importance**: Standard academic scoring.
+- **Arbitrage Score (CRITICAL)**: Treat this as the "Intern Notification Score".
+    - **Base Score is 5.**
+    - **Score > 8.5**: Reserved for "Must Read Immediately" papers that fundamentally shift how we build AI. 
+    - **Criteria**: Focus on Novel Architectures, New Capabilities, and Deep Explanations.
+    - **Filter**: Ignore incremental stats-chasing, pure speedups without capability gain, and fluff/marketing.
+
 My interests are:
 {interest}
+
+Also, evaluate for 'Arbitrage Discovery' potential based on these criteria:
+{arbitrage_interest}
 
 Papers to evaluate:
 {papers}
@@ -85,13 +109,20 @@ Papers to evaluate:
 
     # Model Configuration
     MODEL_CONFIG = {
-        "name": "gpt-5-mini",
+        "name": "gpt-4.1-mini",
         "provider": "openai",
         "papers_per_batch": 8,
         "temperature": 1.0,
         "threshold": 7.5,
+        "arbitrage_threshold": 8.5,
         "max_tokens": 1800,
         "top_p": 1.0
+    }
+
+    # Telegram Configuration
+    TELEGRAM_CONFIG = {
+        "bot_token": None,  # Set via environment variable TELEGRAM_BOT_TOKEN
+        "chat_id": None,    # Set via environment variable TELEGRAM_CHAT_ID
     }
 
     # User Configuration
@@ -109,6 +140,42 @@ Papers to evaluate:
     Particularly this means understanding how to orchestrate LLMs, how to make them more reliable, how to make them more cost effective,
     how to store memories and state, how to architect retrieval better, and how to generally simulate human intelligence and human-like behavior
     for market problems. But I am also generally interested in all things AI and how the landscape is evolving.
+    """
+
+    ARBITRAGE_INTEREST = """
+    I'm Alan Kern. Score papers based on PRACTICAL IMPACT to my work.
+
+    I use LLMs daily for: WRITING (long-form, creative), building products/agents, coding.
+
+    USE THE FULL SCALE. Don't be conservative. If something deserves a 10, give it a 10.
+
+    **HOW TO SCORE - Think in terms of IMPACT MULTIPLIER:**
+
+    **10** = "This transforms an industry OR makes my work 10x easier"
+    - Solves long-form writing coherence? That's 10. I struggle with this daily and it affects the entire writing industry.
+    - Eliminates hallucinations reliably? That's 10. Game-changer for every LLM application.
+    - Makes agents actually reliable? That's 10. Opens up entirely new product categories.
+
+    **9** = "This is a major breakthrough I need to adopt immediately"
+    - Significant improvement to writing, agents, or product building
+    - Clear competitive advantage if I use this before others
+
+    **8** = "Directly useful, will change how I work"
+
+    **6-7** = "Interesting, might be useful later"
+
+    **1-5** = "Not relevant to my work"
+    - Infrastructure (KV cache, quantization) - I use APIs
+    - Pure SOTA-chasing (but evaluation benchmarks that help me pick tools ARE useful)
+    - Training techniques (I don't train)
+
+    BE DECISIVE. When a paper matches a 10 example, score it 10. Not 9. TEN.
+
+    EXPLICIT RULES:
+    - Paper solves long-form writing coherence → Score EXACTLY 10
+    - Paper eliminates hallucinations → Score EXACTLY 10
+    - Paper makes agents reliable → Score EXACTLY 10
+    - Paper is just "useful" or "interesting" → 8 or below
     """
     
     # File paths and directories
@@ -129,6 +196,7 @@ Papers to evaluate:
         self.user_config = self.DEFAULT_USER_CONFIG.copy()
         self.model_config = self.MODEL_CONFIG.copy()
         self.interest = self.DEFAULT_INTEREST
+        self.arbitrage_interest = self.ARBITRAGE_INTEREST
     
     @property
     def user(self) -> Dict[str, Any]:
@@ -137,6 +205,10 @@ Papers to evaluate:
     @property
     def model(self) -> Dict[str, Any]:
         return self.model_config
+
+    @property
+    def telegram(self) -> Dict[str, Any]:
+        return self.TELEGRAM_CONFIG
 
 # Global config instance
 config = Config() 

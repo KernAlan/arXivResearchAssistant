@@ -16,7 +16,9 @@ def score_papers(
     papers: List[Dict],
     interest: str,
     model_config: Dict,
-    threshold: float = 7.5
+    threshold: float = 7.5,
+    arbitrage_interest: str = "",
+    arbitrage_threshold: float = 8.5
 ) -> Tuple[List[Dict], bool]:
     """Score papers for relevance and importance"""
     logger.info(f"Scoring {len(papers)} papers")
@@ -30,7 +32,7 @@ def score_papers(
     had_hallucination = False
     
     for chunk in tqdm(paper_chunks, desc="Scoring papers"):
-        prompt = create_quick_scoring_prompt(interest, chunk)
+        prompt = create_quick_scoring_prompt(interest, chunk, arbitrage_interest=arbitrage_interest)
         response = openai_completion(
             prompt,
             OpenAIDecodingArguments(
@@ -40,7 +42,12 @@ def score_papers(
             provider=model_config.get("provider", "openai")
         )
         
-        chunk_scored, chunk_hallu = process_scoring_response(chunk, response, threshold)
+        chunk_scored, chunk_hallu = process_scoring_response(
+            chunk, 
+            response, 
+            threshold, 
+            arbitrage_threshold=arbitrage_threshold
+        )
         scored_papers.extend(chunk_scored)
         had_hallucination = had_hallucination or chunk_hallu
     

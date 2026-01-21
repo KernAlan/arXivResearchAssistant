@@ -7,9 +7,7 @@ import openai
 logger = logging.getLogger(__name__)
 
 
-_FIXED_TEMPERATURE_MODELS = {
-    "gpt-5-mini",
-}
+_FIXED_TEMPERATURE_MODELS = set()
 
 
 def _normalize_model_name(model_name: str) -> str:

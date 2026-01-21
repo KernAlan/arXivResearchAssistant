@@ -8,6 +8,7 @@ from ..constants import get_topic_abbreviation
 from .summary import SummaryService
 from .arxiv import ArxivService
 from .subjects import process_subject_fields
+from .telegram import TelegramService
 
 logger = logging.getLogger(__name__)
 
@@ -16,6 +17,7 @@ class PaperService:
         self.config = config
         self.summary_service = SummaryService(config.model)
         self.arxiv_service = ArxivService()
+        self.telegram_service = TelegramService(config)
     
     def get_papers(self) -> List[Dict]:
         """Get papers based on config"""
@@ -62,11 +64,23 @@ class PaperService:
         
         # Score papers
         logger.info("Scoring papers...")
-        return relevancy.score_papers(
+        scored_papers, had_hallucination = relevancy.score_papers(
             papers,
             self.config.interest,
-            self.config.model
+            self.config.model,
+            threshold=self.config.model.get("threshold", 7.5),
+            arbitrage_interest=self.config.arbitrage_interest,
+            arbitrage_threshold=self.config.model.get("arbitrage_threshold", 8.5)
         )
+
+        # Send Telegram alerts for high arbitrage papers
+        arbitrage_threshold = self.config.model.get("arbitrage_threshold", 8.5)
+        for paper in scored_papers:
+            if paper.get('arbitrage_score', 0) >= arbitrage_threshold:
+                logger.info(f"Found arbitrage paper: {paper['title']}. Sending Telegram alert...")
+                self.telegram_service.send_alert(paper)
+
+        return scored_papers, had_hallucination
     
     def generate_summary(self, scored_papers: List[Dict]) -> str:
         """Generate executive summary"""
