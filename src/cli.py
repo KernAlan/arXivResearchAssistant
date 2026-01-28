@@ -141,8 +141,8 @@ def score(title: str, abstract: str):
 
     response = openai_completion(
         prompt,
-        OpenAIDecodingArguments(temperature=config.model.get("temperature", 1.0)),
-        model_name=config.model.get("name", "gpt-4.1-mini"),
+        OpenAIDecodingArguments(),
+        model_name=config.model.get("name", "gpt-5-mini"),
         provider=config.model.get("provider", "openai")
     )
 
@@ -292,8 +292,8 @@ Return only valid JSON: {{"relevance": N, "impact": N, "summary": "..."}}"""
     try:
         response = openai_completion(
             prompt,
-            OpenAIDecodingArguments(temperature=0.3, max_tokens=400),
-            model_name=config.model.get("name", "gpt-4.1-mini"),
+            OpenAIDecodingArguments(max_tokens=16000),
+            model_name=config.model.get("name", "gpt-5-mini"),
             provider=config.model.get("provider", "openai")
         )
 
@@ -326,8 +326,8 @@ def _generate_executive_summary(scored_repos: list) -> str:
     try:
         response = openai_completion(
             prompt,
-            OpenAIDecodingArguments(temperature=0.7, max_tokens=300),
-            model_name=config.model.get("name", "gpt-4.1-mini"),
+            OpenAIDecodingArguments(max_tokens=16000),
+            model_name=config.model.get("name", "gpt-5-mini"),
             provider=config.model.get("provider", "openai")
         )
         return response.strip()

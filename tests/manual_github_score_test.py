@@ -20,7 +20,7 @@ Return only valid JSON: {{"score": N, "reason": "..."}}"""
 
     response = openai_completion(
         prompt,
-        OpenAIDecodingArguments(temperature=0.3, max_tokens=200),
+        OpenAIDecodingArguments(max_tokens=16000),
         model_name=config.model.get('name'),
         provider=config.model.get('provider')
     )

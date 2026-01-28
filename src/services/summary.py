@@ -71,8 +71,7 @@ class SummaryService:
             response = openai_completion(
                 prompt,
                 OpenAIDecodingArguments(
-                    temperature=self.model_config.get("summary_temperature", 1.0),
-                    max_tokens=2500,  # Increased to allow room for reasoning + output
+                    max_tokens=16000,
                     top_p=self.model_config.get("top_p", 1.0)
                 ),
                 model_name=self.model_config.get("summary_name", self.model_config.get("name", "gpt-5-mini")),

@@ -109,13 +109,12 @@ Papers to evaluate:
 
     # Model Configuration
     MODEL_CONFIG = {
-        "name": "gpt-4.1-mini",
+        "name": "gpt-5-mini",
         "provider": "openai",
         "papers_per_batch": 8,
-        "temperature": 1.0,
-        "threshold": 7.5,
+        "threshold": 8.5,
         "arbitrage_threshold": 9.0,
-        "max_tokens": 1800,
+        "max_tokens": 16000,
         "top_p": 1.0
     }
 

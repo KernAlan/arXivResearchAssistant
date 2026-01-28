@@ -42,7 +42,7 @@ def _sample_papers():
 
 
 def _service():
-    return SummaryService({"summary_temperature": 0.0, "top_p": 1.0, "provider": "openai"})
+    return SummaryService({"top_p": 1.0, "provider": "openai"})
 
 
 @patch("src.services.summary.openai_completion", return_value="   ")

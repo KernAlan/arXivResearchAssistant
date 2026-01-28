@@ -35,9 +35,7 @@ def score_papers(
         prompt = create_quick_scoring_prompt(interest, chunk, arbitrage_interest=arbitrage_interest)
         response = openai_completion(
             prompt,
-            OpenAIDecodingArguments(
-                temperature=model_config.get("temperature", 1.0)
-            ),
+            OpenAIDecodingArguments(),
             model_name=model_config.get("name", "gpt-4"),
             provider=model_config.get("provider", "openai")
         )
