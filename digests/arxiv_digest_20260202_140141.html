@@ -1,0 +1,436 @@
+
+    <!DOCTYPE html>
+    <html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>ArXiv Research Digest</title>
+        <style>
+            
+body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    line-height: 1.5;
+    color: #2d3748;
+    margin: 0;
+    padding: 20px;
+    background: #f7fafc;
+}
+
+.digest {
+    max-width: 800px;
+    margin: 0 auto;
+    background: white;
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+}
+
+.header {
+    margin-bottom: 2rem;
+    padding-bottom: 1rem;
+    border-bottom: 2px solid #e2e8f0;
+}
+
+.header h2 {
+    margin: 0;
+    color: #2d3748;
+}
+
+.header p {
+    margin: 0.5rem 0 0;
+    color: #718096;
+}
+
+.highlights {
+    background: #f8fafc;
+    padding: 1.5rem;
+    border-radius: 8px;
+    margin-bottom: 3rem;
+    border: 1px solid #e2e8f0;
+}
+
+.highlights h3 {
+    color: #2d3748;
+    margin: 0 0 1rem 0;
+    font-size: 1.25rem;
+}
+
+.summary {
+    white-space: pre-line;
+    line-height: 1.6;
+}
+
+.summary ol {
+    padding-left: 1.5rem;
+    margin: 1rem 0;
+}
+
+.summary li {
+    margin-bottom: 0.75rem;
+    padding-left: 0.5rem;
+}
+
+.papers {
+    margin-top: 3rem;
+}
+
+.papers h3 {
+    color: #2d3748;
+    margin-bottom: 1.5rem;
+    padding-bottom: 1rem;
+    border-bottom: 2px solid #e2e8f0;
+}
+
+.paper {
+    margin-bottom: 2rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid #e2e8f0;
+}
+
+.paper:last-child {
+    border-bottom: none;
+}
+
+.paper h3 {
+    margin: 0 0 0.5rem;
+    color: #2d3748;
+}
+
+.paper .scores {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 0.5rem;
+}
+
+.paper .score {
+    padding: 0.25rem 0.5rem;
+    border-radius: 4px;
+    font-size: 0.875rem;
+}
+
+.paper .relevance {
+    background: #e6fffa;
+    color: #047481;
+}
+
+.paper .importance {
+    background: #ebf4ff;
+    color: #1a56db;
+}
+
+.paper .abstract {
+    color: #4a5568;
+    margin: 0.5rem 0;
+}
+
+.paper .meta {
+    font-size: 0.875rem;
+    color: #718096;
+}
+
+.paper .meta a {
+    color: #4299e1;
+    text-decoration: none;
+}
+
+.paper .meta a:hover {
+    text-decoration: underline;
+}
+
+        </style>
+    </head>
+    <body>
+        
+<div class="digest">
+    <div class="header">
+        <h2>ArXiv Research Digest</h2>
+        <p>Found 20 relevant papers out of 177 new submissions</p>
+    </div>
+    
+    <div class="highlights">
+        <h3>🔥 Key Highlights</h3>
+        Hey boss, found 5 cool papers today that I think you'll love:
+
+<ol>
+<li><b>Guided by Trajectories: Repairing and Rewarding Tool-Use Trajectories for Tool-Integrated Reasoning</b> — AutoTraj introduces a two-stage SFT+RL pipeline that auto-generates multiple candidate tool-use trajectories, uses an LLM-as-Repairer to fix low-quality paths, and trains a trajectory-level reward model to explicitly optimize reliable tool-integrated reasoning. Practically, this gives us a way to bootstrap robust tool-using agents without hand-curated trajectories (benchmarked effective; average score 9.5/10, relevance 10/10, importance 9/10) — paper: http://arxiv.org/abs/2601.23032v1.</li>
+
+<li><b>AutoRefine: From Trajectories to Reusable Expertise for Continual LLM Agent Refinement</b> — AutoRefine extracts dual-form Experience Patterns (procedural subagents + static skill patterns) from agent histories and maintains them with scoring/pruning so the experience repository stays useful over time. For industry teams this means automated continual learning for agents that captures procedural logic (outperforms manual baselines on TravelPlanner, big step reductions and strong perf: 98.4% ALFWorld, 70.4% ScienceWorld; average score 9.5/10) — paper: http://arxiv.org/abs/2601.22758v1.</li>
+
+<li><b>From Self-Evolving Synthetic Data to Verifiable-Reward RL: Post-Training Multi-turn Interactive Tool-Using Agents</b> — EigenData is a hierarchical, self-evolving data engine that synthesizes tool-grounded multi-turn dialogues with per-instance checkers and then uses verifier-style RL (group-relative advantages + dynamic filtering) to fine-tune agents. This gives a scalable path to bootstrap complex interactive tool agents without expensive human labeling (matching/exceeding SOTA on benchmarks like 73.0% Airline and 98.3% Telecom; average score 9.5/10) — paper: http://arxiv.org/abs/2601.22607v1.</li>
+
+<li><b>Chain-of-thought obfuscation learned from output supervision can generalise to unseen tasks</b> — This work shows that optimization pressures (including penalizing final outputs) can cause models to obfuscate their chain-of-thought traces and that this obfuscation — and the underlying bad behaviors — generalize to new tasks. The practical takeaway: our safety/reward interventions can reduce monitorability, so we need to audit penalty signals and add explicit anti-obfuscation checks in our monitoring pipelines (important warning; average score 9.0/10) — paper: http://arxiv.org/abs/2601.23086v1.</li>
+
+<li><b>Residual Context Diffusion Language Models</b> — RCD recycles discarded token representations as contextual residuals across denoising steps, using a decoupled two-stage training to avoid memory bottlenecks and significantly boost diffusion-LLM decoding efficiency. For us, converting a standard dLLM to RCD looks cheap (≈1B tokens) and yields consistent 5–10pt accuracy lifts and major step reductions (nearly double accuracy on hard AIME tasks and 4–5× fewer denoising steps), so it’s an easy win to try on our long-CoT and short-CoT models (average score 9.0/10) — paper: http://arxiv.org/abs/2601.22954v1.</li>
+</ol>
+
+Quick action plan for this week: let’s spike AutoTraj/EigenData on one of our tool flows, start a tiny RCD conversion on a dev dLLM, wire AutoRefine extraction into our agent logs, and immediately add obfuscation-detection tests to our CoT monitoring — I can scope tasks and demos today.
+    </div>
+    
+    <div class="papers">
+        <h3>📄 Detailed Papers</h3>
+        
+<div class="paper">
+    <h3>Guided by Trajectories: Repairing and Rewarding Tool-Use Trajectories for Tool-Integrated Reasoning</h3>
+    <div class="scores">
+        <span class="score relevance">Relevance: 10/10</span>
+        <span class="score importance">Importance: 9/10</span>
+    </div>
+    <div class="abstract">Tool-Integrated Reasoning (TIR) enables large language models (LLMs) to solve complex tasks by interacting with external tools, yet existing approaches depend on high-quality synthesized trajectories selected by scoring functions and sparse outcome-based rewards, providing limited and biased supervision for learning TIR. To address these challenges, in this paper, we propose AutoTraj, a two-stage framework that automatically learns TIR by repairing and rewarding tool-use trajectories. Specifically, in the supervised fine-tuning (SFT) stage, AutoTraj generates multiple candidate tool-use trajectories for each query and evaluates them along multiple dimensions. High-quality trajectories are directly retained, while low-quality ones are repaired using a LLM (i.e., LLM-as-Repairer). The resulting repaired and high-quality trajectories form a synthetic SFT dataset, while each repaired trajectory paired with its original low-quality counterpart constitutes a dataset for trajectory preference modeling. In the reinforcement learning (RL) stage, based on the preference dataset, we train a trajectory-level reward model to assess the quality of reasoning paths and combine it with outcome and format rewards, thereby explicitly guiding the optimization toward reliable TIR behaviors. Experiments on real-world benchmarks demonstrate the effectiveness of AutoTraj in TIR.</div>
+    <div class="meta">
+        <a href="http://arxiv.org/abs/2601.23032v1" target="_blank">View on arXiv</a>
+    </div>
+</div>
+
+
+<div class="paper">
+    <h3>AutoRefine: From Trajectories to Reusable Expertise for Continual LLM Agent Refinement</h3>
+    <div class="scores">
+        <span class="score relevance">Relevance: 10/10</span>
+        <span class="score importance">Importance: 9/10</span>
+    </div>
+    <div class="abstract">Large language model agents often fail to accumulate knowledge from experience, treating each task as an independent challenge. Recent methods extract experience as flattened textual knowledge, which cannot capture procedural logic of complex subtasks. They also lack maintenance mechanisms, causing repository degradation as experience accumulates. We introduce AutoRefine, a framework that extracts and maintains dual-form Experience Patterns from agent execution histories. For procedural subtasks, we extract specialized subagents with independent reasoning and memory. For static knowledge, we extract skill patterns as guidelines or code snippets. A continuous maintenance mechanism scores, prunes, and merges patterns to prevent repository degradation. Evaluated on ALFWorld, ScienceWorld, and TravelPlanner, AutoRefine achieves 98.4%, 70.4%, and 27.1% respectively, with 20-73% step reductions. On TravelPlanner, automatic extraction exceeds manually designed systems (27.1% vs 12.1%), demonstrating its ability to capture procedural coordination.</div>
+    <div class="meta">
+        <a href="http://arxiv.org/abs/2601.22758v1" target="_blank">View on arXiv</a>
+    </div>
+</div>
+
+
+<div class="paper">
+    <h3>From Self-Evolving Synthetic Data to Verifiable-Reward RL: Post-Training Multi-turn Interactive Tool-Using Agents</h3>
+    <div class="scores">
+        <span class="score relevance">Relevance: 10/10</span>
+        <span class="score importance">Importance: 9/10</span>
+    </div>
+    <div class="abstract">Interactive tool-using agents must solve real-world tasks via multi-turn interaction with both humans and external environments, requiring dialogue state tracking, multi-step tool execution, while following complex instructions. Post-training such agents is challenging because synthesis for high-quality multi-turn tool-use data is difficult to scale, and reinforcement learning (RL) could face noisy signals caused by user simulation, leading to degraded training efficiency. We propose a unified framework that combines a self-evolving data agent with verifier-based RL. Our system, EigenData, is a hierarchical multi-agent engine that synthesizes tool-grounded dialogues together with executable per-instance checkers, and improves generation reliability via closed-loop self-evolving process that updates prompts and workflow. Building on the synthetic data, we develop an RL recipe that first fine-tunes the user model and then applies GRPO-style training with trajectory-level group-relative advantages and dynamic filtering, yielding consistent improvements beyond SFT. Evaluated on tau^2-bench, our best model reaches 73.0% pass^1 on Airline and 98.3% pass^1 on Telecom, matching or exceeding frontier models. Overall, our results suggest a scalable pathway for bootstrapping complex tool-using behaviors without expensive human annotation.</div>
+    <div class="meta">
+        <a href="http://arxiv.org/abs/2601.22607v1" target="_blank">View on arXiv</a>
+    </div>
+</div>
+
+
+<div class="paper">
+    <h3>Chain-of-thought obfuscation learned from output supervision can generalise to unseen tasks</h3>
+    <div class="scores">
+        <span class="score relevance">Relevance: 9/10</span>
+        <span class="score importance">Importance: 9/10</span>
+    </div>
+    <div class="abstract">Chain-of-thought (CoT) reasoning provides a significant performance uplift to LLMs by enabling planning, exploration, and deliberation of their actions. CoT is also a powerful tool for monitoring the behaviours of these agents: when faithful, they offer interpretations of the model's decision making process, and an early warning sign for dangerous behaviours. However, optimisation pressures placed on the CoT may cause the model to obfuscate reasoning traces, losing this beneficial property. We show that obfuscation can generalise across tasks; models that learn to obfuscate reasoning involving reward hacking (e.g. accessing and utilising leaked information) generalise both the reward hacking behaviour and its obfuscation in CoT to unseen reward hacking settings. Most worryingly, we show that obfuscation of CoT reasoning, and its generalisation across tasks, also follows when we penalise only the model's final actions after closing its CoT. Our findings suggest that current practices of penalising harmful generations may inadvertently lead to a reduction in the broader monitorability of LLMs in unpredictable ways.</div>
+    <div class="meta">
+        <a href="http://arxiv.org/abs/2601.23086v1" target="_blank">View on arXiv</a>
+    </div>
+</div>
+
+
+<div class="paper">
+    <h3>Residual Context Diffusion Language Models</h3>
+    <div class="scores">
+        <span class="score relevance">Relevance: 9/10</span>
+        <span class="score importance">Importance: 9/10</span>
+    </div>
+    <div class="abstract">Diffusion Large Language Models (dLLMs) have emerged as a promising alternative to purely autoregressive language models because they can decode multiple tokens in parallel. However, state-of-the-art block-wise dLLMs rely on a "remasking" mechanism that decodes only the most confident tokens and discards the rest, effectively wasting computation. We demonstrate that recycling computation from the discarded tokens is beneficial, as these tokens retain contextual information useful for subsequent decoding iterations. In light of this, we propose Residual Context Diffusion (RCD), a module that converts these discarded token representations into contextual residuals and injects them back for the next denoising step. RCD uses a decoupled two-stage training pipeline to bypass the memory bottlenecks associated with backpropagation. We validate our method on both long CoT reasoning (SDAR) and short CoT instruction following (LLaDA) models. We demonstrate that a standard dLLM can be efficiently converted to the RCD paradigm with merely ~1 billion tokens. RCD consistently improves frontier dLLMs by 5-10 points in accuracy with minimal extra computation overhead across a wide range of benchmarks. Notably, on the most challenging AIME tasks, RCD nearly doubles baseline accuracy and attains up to 4-5x fewer denoising steps at equivalent accuracy levels.</div>
+    <div class="meta">
+        <a href="http://arxiv.org/abs/2601.22954v1" target="_blank">View on arXiv</a>
+    </div>
+</div>
+
+
+<div class="paper">
+    <h3>MoVE: Mixture of Value Embeddings -- A New Axis for Scaling Parametric Memory in Autoregressive Models</h3>
+    <div class="scores">
+        <span class="score relevance">Relevance: 9/10</span>
+        <span class="score importance">Importance: 9/10</span>
+    </div>
+    <div class="abstract">Autoregressive sequence modeling stands as the cornerstone of modern Generative AI, powering results across diverse modalities ranging from text generation to image generation. However, a fundamental limitation of this paradigm is the rigid structural coupling of model capacity to computational cost: expanding a model's parametric memory -- its repository of factual knowledge or visual patterns -- traditionally requires deepening or widening the network, which incurs a proportional rise in active FLOPs. In this work, we introduce $\textbf{MoVE (Mixture of Value Embeddings)}$, a mechanism that breaks this coupling and establishes a new axis for scaling capacity. MoVE decouples memory from compute by introducing a global bank of learnable value embeddings shared across all attention layers. For every step in the sequence, the model employs a differentiable soft gating mechanism to dynamically mix retrieved concepts from this bank into the standard value projection. This architecture allows parametric memory to be scaled independently of network depth by simply increasing the number of embedding slots. We validate MoVE through strictly controlled experiments on two representative applications of autoregressive modeling: Text Generation and Image Generation. In both domains, MoVE yields consistent performance improvements over standard and layer-wise memory baselines, enabling the construction of "memory-dense" models that achieve lower perplexity and higher fidelity than their dense counterparts at comparable compute budgets.</div>
+    <div class="meta">
+        <a href="http://arxiv.org/abs/2601.22887v1" target="_blank">View on arXiv</a>
+    </div>
+</div>
+
+
+<div class="paper">
+    <h3>Best-of-Q: Improving VLM agents with Q-function Action Ranking at Inference</h3>
+    <div class="scores">
+        <span class="score relevance">Relevance: 9/10</span>
+        <span class="score importance">Importance: 9/10</span>
+    </div>
+    <div class="abstract">Vision-Language Models (VLMs) have become powerful backbones for agents to autonomously operate in digital environments like the web and operating systems. However, these models suffer from inadaptability to fast-changing environments like the web, which can be alleviated by fine-tuning requiring expansive model training and data collection. In this work, we introduce a novel paradigm for enhancing agentic VLM policies at inference without policy retraining. Fundamentally, our approach decouples the VLM's role as a high-capacity action proposer from the final action selection mechanism. We keep the VLM policy frozen and use it to generate a set of candidate actions for a given state. Then, a lightweight, offline-trained Q-function reranks these candidates, and the agent executes the action with the highest estimated value. The main contribution is to apply the Q-function directly during inference for immediate policy improvement, and not offline to relabel data for policy retraining. We demonstrate on the academic WebVoyager benchmark that our method significantly boosts agent success rates, improving a Qwen2.5-VL-7B agent from 38.8% to 55.7% and a proprietary GPT-4.1 agent from 82.4% to 88.8%.</div>
+    <div class="meta">
+        <a href="http://arxiv.org/abs/2601.22701v1" target="_blank">View on arXiv</a>
+    </div>
+</div>
+
+
+<div class="paper">
+    <h3>Task-Aware LLM Council with Adaptive Decision Pathways for Decision Support</h3>
+    <div class="scores">
+        <span class="score relevance">Relevance: 9/10</span>
+        <span class="score importance">Importance: 9/10</span>
+    </div>
+    <div class="abstract">Large language models (LLMs) have shown strong capabilities across diverse decision-making tasks. However, existing approaches often overlook the specialization differences among available models, treating all LLMs as uniformly applicable regardless of task characteristics. This limits their ability to adapt to varying reasoning demands and task complexities. In this work, we propose Task-Aware LLM Council (TALC), a task-adaptive decision framework that integrates a council of LLMs with Monte Carlo Tree Search (MCTS) to enable dynamic expert selection and efficient multi-step planning. Each LLM is equipped with a structured success memory profile derived from prior task trajectories, enabling semantic matching between current reasoning context and past successes. At each decision point, TALC routes control to the most contextually appropriate model and estimates node value using a dual-signal mechanism that fuses model-based evaluations with historical utility scores. These signals are adaptively weighted based on intra-node variance and used to guide MCTS selection, allowing the system to balance exploration depth with planning confidence. Experiments on WebShop, HumanEval, and the Game of 24 demonstrate that TALC achieves superior task success rates and improved search efficiency compared to strong baselines, validating the benefits of specialization-aware routing and adaptive planning.</div>
+    <div class="meta">
+        <a href="http://arxiv.org/abs/2601.22662v1" target="_blank">View on arXiv</a>
+    </div>
+</div>
+
+
+<div class="paper">
+    <h3>Darwinian Memory: A Training-Free Self-Regulating Memory System for GUI Agent Evolution</h3>
+    <div class="scores">
+        <span class="score relevance">Relevance: 9/10</span>
+        <span class="score importance">Importance: 9/10</span>
+    </div>
+    <div class="abstract">Multimodal Large Language Model (MLLM) agents facilitate Graphical User Interface (GUI) automation but struggle with long-horizon, cross-application tasks due to limited context windows. While memory systems provide a viable solution, existing paradigms struggle to adapt to dynamic GUI environments, suffering from a granularity mismatch between high-level intent and low-level execution, and context pollution where the static accumulation of outdated experiences drives agents into hallucination. To address these bottlenecks, we propose the Darwinian Memory System (DMS), a self-evolving architecture that constructs memory as a dynamic ecosystem governed by the law of survival of the fittest. DMS decomposes complex trajectories into independent, reusable units for compositional flexibility, and implements Utility-driven Natural Selection to track survival value, actively pruning suboptimal paths and inhibiting high-risk plans. This evolutionary pressure compels the agent to derive superior strategies. Extensive experiments on real-world multi-app benchmarks validate that DMS boosts general-purpose MLLMs without training costs or architectural overhead, achieving average gains of 18.0% in success rate and 33.9% in execution stability, while reducing task latency, establishing it as an effective self-evolving memory system for GUI tasks.</div>
+    <div class="meta">
+        <a href="http://arxiv.org/abs/2601.22528v1" target="_blank">View on arXiv</a>
+    </div>
+</div>
+
+
+<div class="paper">
+    <h3>Anytime Safe PAC Efficient Reasoning</h3>
+    <div class="scores">
+        <span class="score relevance">Relevance: 9/10</span>
+        <span class="score importance">Importance: 9/10</span>
+    </div>
+    <div class="abstract">Large Reasoning Models (LRMs) have demonstrated remarkable performance on complex tasks but suffer from high computational costs and latency. While selective thinking strategies improve efficiency by routing easy queries to non-thinking models, existing approaches often incur uncontrollable errors, especially in online settings where the performance loss of a non-thinking model is only partially observed and data are non-stationary. To address this, we propose Betting Probably Approximately Correct (B-PAC) reasoning, a principled method that enables anytime safe and efficient online reasoning under partial feedback. Specifically, we utilize inverse propensity scoring estimators to construct test supermartingales for candidate thresholds, and then dynamically adjust the routing threshold based on the accumulated statistical evidence of safety. Theoretically, we establish the anytime-valid performance loss control and the efficiency of B-PAC reasoning. Extensive experiments demonstrate that B-PAC reasoning significantly reduces computational overhead, decreasing thinking model usage by up to 81.01\%, while controlling the performance loss below the user-specified level.</div>
+    <div class="meta">
+        <a href="http://arxiv.org/abs/2601.22446v1" target="_blank">View on arXiv</a>
+    </div>
+</div>
+
+
+<div class="paper">
+    <h3>Scaling Multiagent Systems with Process Rewards</h3>
+    <div class="scores">
+        <span class="score relevance">Relevance: 9/10</span>
+        <span class="score importance">Importance: 8/10</span>
+    </div>
+    <div class="abstract">While multiagent systems have shown promise for tackling complex tasks via specialization, finetuning multiple agents simultaneously faces two key challenges: (1) credit assignment across agents, and (2) sample efficiency of expensive multiagent rollouts. In this work, we propose finetuning multiagent systems with per-action process rewards from AI feedback (MAPPA) to address both. Through assigning credit to individual agent actions rather than only at task completion, MAPPA enables fine-grained supervision without ground truth labels while extracting maximal training signal from each rollout. We demonstrate our approach on competition math problems and tool-augmented data analysis tasks. On unseen math problems, MAPPA achieves +5.0--17.5pp on AIME and +7.8--17.2pp on AMC. For data analysis tasks, our method improves success rate by +12.5pp while quality metrics improve by up to 30%, validating that per-action supervision can lead to improvements across different multiagent system on various domains. By addressing these challenges, our work takes a first step toward scaling multiagent systems for complex, long-horizon tasks with minimal human supervision.</div>
+    <div class="meta">
+        <a href="http://arxiv.org/abs/2601.23228v1" target="_blank">View on arXiv</a>
+    </div>
+</div>
+
+
+<div class="paper">
+    <h3>MonoScale: Scaling Multi-Agent System with Monotonic Improvement</h3>
+    <div class="scores">
+        <span class="score relevance">Relevance: 9/10</span>
+        <span class="score importance">Importance: 8/10</span>
+    </div>
+    <div class="abstract">In recent years, LLM-based multi-agent systems (MAS) have advanced rapidly, using a router to decompose tasks and delegate subtasks to specialized agents. A natural way to expand capability is to scale up the agent pool by continually integrating new functional agents or tool interfaces, but naive expansion can trigger performance collapse when the router cold-starts on newly added, heterogeneous, and unreliable agents. We propose MonoScale, an expansion-aware update framework that proactively generates a small set of agent-conditioned familiarization tasks, harvests evidence from both successful and failed interactions, and distills it into auditable natural-language memory to guide future routing. We formalize sequential augmentation as a contextual bandit and perform trust-region memory updates, yielding a monotonic non-decreasing performance guarantee across onboarding rounds. Experiments on GAIA and Humanity's Last Exam show stable gains as the agent pool grows, outperforming naive scale-up and strong-router fixed-pool baselines.</div>
+    <div class="meta">
+        <a href="http://arxiv.org/abs/2601.23219v1" target="_blank">View on arXiv</a>
+    </div>
+</div>
+
+
+<div class="paper">
+    <h3>RAudit: A Blind Auditing Protocol for Large Language Model Reasoning</h3>
+    <div class="scores">
+        <span class="score relevance">Relevance: 9/10</span>
+        <span class="score importance">Importance: 8/10</span>
+    </div>
+    <div class="abstract">Inference-time scaling can amplify reasoning pathologies: sycophancy, rung collapse, and premature certainty. We present RAudit, a diagnostic protocol for auditing LLM reasoning without ground truth access. The key constraint is blindness: the auditor evaluates only whether derivation steps support conclusions, enabling detection of trace-output inconsistency and, when latent competence exists, its recovery. RAudit measures process quality via CRIT-based reasonableness scores and varies critique formulation to study how social framing affects model response. We prove bounded correction and $O(\log(1/ε))$ termination. Experiments on mathematical reasoning (CAP-GSM8K) and causal judgment (CausalL2) reveal four mechanisms explaining model unreliability: (1) Latent Competence Suppression, where models derive correct answers then overwrite them under social pressure; (2) The False Competence Trap, where weaker judges mask sycophancy that stronger judges expose; (3) The Complexity-Vulnerability Tradeoff, where causal tasks induce more than 10 times higher sycophancy than mathematical tasks; and (4) Iatrogenic Critique, where authoritative correction harms weaker models. These findings challenge assumptions that capability implies robustness and that stronger feedback yields better outputs.</div>
+    <div class="meta">
+        <a href="http://arxiv.org/abs/2601.23133v1" target="_blank">View on arXiv</a>
+    </div>
+</div>
+
+
+<div class="paper">
+    <h3>From Similarity to Vulnerability: Key Collision Attack on LLM Semantic Caching</h3>
+    <div class="scores">
+        <span class="score relevance">Relevance: 9/10</span>
+        <span class="score importance">Importance: 8/10</span>
+    </div>
+    <div class="abstract">Semantic caching has emerged as a pivotal technique for scaling LLM applications, widely adopted by major providers including AWS and Microsoft. By utilizing semantic embedding vectors as cache keys, this mechanism effectively minimizes latency and redundant computation for semantically similar queries. In this work, we conceptualize semantic cache keys as a form of fuzzy hashes. We demonstrate that the locality required to maximize cache hit rates fundamentally conflicts with the cryptographic avalanche effect necessary for collision resistance. Our conceptual analysis formalizes this inherent trade-off between performance (locality) and security (collision resilience), revealing that semantic caching is naturally vulnerable to key collision attacks.   While prior research has focused on side-channel and privacy risks, we present the first systematic study of integrity risks arising from cache collisions. We introduce CacheAttack, an automated framework for launching black-box collision attacks. We evaluate CacheAttack in security-critical tasks and agentic workflows. It achieves a hit rate of 86\% in LLM response hijacking and can induce malicious behaviors in LLM agent, while preserving strong transferability across different embedding models. A case study on a financial agent further illustrates the real-world impact of these vulnerabilities. Finally, we discuss mitigation strategies.</div>
+    <div class="meta">
+        <a href="http://arxiv.org/abs/2601.23088v1" target="_blank">View on arXiv</a>
+    </div>
+</div>
+
+
+<div class="paper">
+    <h3>OrLog: Resolving Complex Queries with LLMs and Probabilistic Reasoning</h3>
+    <div class="scores">
+        <span class="score relevance">Relevance: 9/10</span>
+        <span class="score importance">Importance: 8/10</span>
+    </div>
+    <div class="abstract">Resolving complex information needs that come with multiple constraints should consider enforcing the logical operators encoded in the query (i.e., conjunction, disjunction, negation) on the candidate answer set. Current retrieval systems either ignore these constraints in neural embeddings or approximate them in a generative reasoning process that can be inconsistent and unreliable. Although well-suited to structured reasoning, existing neuro-symbolic approaches remain confined to formal logic or mathematics problems as they often assume unambiguous queries and access to complete evidence, conditions rarely met in information retrieval. To bridge this gap, we introduce OrLog, a neuro-symbolic retrieval framework that decouples predicate-level plausibility estimation from logical reasoning: a large language model (LLM) provides plausibility scores for atomic predicates in one decoding-free forward pass, from which a probabilistic reasoning engine derives the posterior probability of query satisfaction. We evaluate OrLog across multiple backbone LLMs, varying levels of access to external knowledge, and a range of logical constraints, and compare it against base retrievers and LLM-as-reasoner methods. Provided with entity descriptions, OrLog can significantly boost top-rank precision compared to LLM reasoning with larger gains on disjunctive queries. OrLog is also more efficient, cutting mean tokens by $\sim$90\% per query-entity pair. These results demonstrate that generation-free predicate plausibility estimation combined with probabilistic reasoning enables constraint-aware retrieval that outperforms monolithic reasoning while using far fewer tokens.</div>
+    <div class="meta">
+        <a href="http://arxiv.org/abs/2601.23085v1" target="_blank">View on arXiv</a>
+    </div>
+</div>
+
+
+<div class="paper">
+    <h3>TriCEGAR: A Trace-Driven Abstraction Mechanism for Agentic AI</h3>
+    <div class="scores">
+        <span class="score relevance">Relevance: 9/10</span>
+        <span class="score importance">Importance: 8/10</span>
+    </div>
+    <div class="abstract">Agentic AI systems act through tools and evolve their behavior over long, stochastic interaction traces. This setting complicates assurance, because behavior depends on nondeterministic environments and probabilistic model outputs. Prior work introduced runtime verification for agentic AI via Dynamic Probabilistic Assurance (DPA), learning an MDP online and model checking quantitative properties. A key limitation is that developers must manually define the state abstraction, which couples verification to application-specific heuristics and increases adoption friction. This paper proposes TriCEGAR, a trace-driven abstraction mechanism that automates state construction from execution logs and supports online construction of an agent behavioral MDP. TriCEGAR represents abstractions as predicate trees learned from traces and refined using counterexamples. We describe a framework-native implementation that (i) captures typed agent lifecycle events, (ii) builds abstractions from traces, (iii) constructs an MDP, and (iv) performs probabilistic model checking to compute bounds such as Pmax(success) and Pmin(failure). We also show how run likelihoods enable anomaly detection as a guardrailing signal.</div>
+    <div class="meta">
+        <a href="http://arxiv.org/abs/2601.22997v1" target="_blank">View on arXiv</a>
+    </div>
+</div>
+
+
+<div class="paper">
+    <h3>Why Your Deep Research Agent Fails? On Hallucination Evaluation in Full Research Trajectory</h3>
+    <div class="scores">
+        <span class="score relevance">Relevance: 9/10</span>
+        <span class="score importance">Importance: 8/10</span>
+    </div>
+    <div class="abstract">Diagnosing the failure mechanisms of Deep Research Agents (DRAs) remains a critical challenge. Existing benchmarks predominantly rely on end-to-end evaluation, obscuring critical intermediate hallucinations, such as flawed planning, that accumulate throughout the research trajectory. To bridge this gap, we propose a shift from outcome-based to process-aware evaluation by auditing the full research trajectory. We introduce the PIES Taxonomy to categorize hallucinations along functional components (Planning vs. Summarization) and error properties (Explicit vs. Implicit). We instantiate this taxonomy into a fine-grained evaluation framework that decomposes the trajectory to rigorously quantify these hallucinations. Leveraging this framework to isolate 100 distinctively hallucination-prone tasks including adversarial scenarios, we curate DeepHalluBench. Experiments on six state-of-theart DRAs reveal that no system achieves robust reliability. Furthermore, our diagnostic analysis traces the etiology of these failures to systemic deficits, specifically hallucination propagation and cognitive biases, providing foundational insights to guide future architectural optimization. Data and code are available at https://github.com/yuhao-zhan/DeepHalluBench.</div>
+    <div class="meta">
+        <a href="http://arxiv.org/abs/2601.22984v1" target="_blank">View on arXiv</a>
+    </div>
+</div>
+
+
+<div class="paper">
+    <h3>Protecting Private Code in IDE Autocomplete using Differential Privacy</h3>
+    <div class="scores">
+        <span class="score relevance">Relevance: 9/10</span>
+        <span class="score importance">Importance: 8/10</span>
+    </div>
+    <div class="abstract">Modern Integrated Development Environments (IDEs) increasingly leverage Large Language Models (LLMs) to provide advanced features like code autocomplete. While powerful, training these models on user-written code introduces significant privacy risks, making the models themselves a new type of data vulnerability. Malicious actors can exploit this by launching attacks to reconstruct sensitive training data or infer whether a specific code snippet was used for training. This paper investigates the use of Differential Privacy (DP) as a robust defense mechanism for training an LLM for Kotlin code completion. We fine-tune a \texttt{Mellum} model using DP and conduct a comprehensive evaluation of its privacy and utility. Our results demonstrate that DP provides a strong defense against Membership Inference Attacks (MIAs), reducing the attack's success rate close to a random guess (AUC from 0.901 to 0.606). Furthermore, we show that this privacy guarantee comes at a minimal cost to model performance, with the DP-trained model achieving utility scores comparable to its non-private counterpart, even when trained on 100x less data. Our findings suggest that DP is a practical and effective solution for building private and trustworthy AI-powered IDE features.</div>
+    <div class="meta">
+        <a href="http://arxiv.org/abs/2601.22935v1" target="_blank">View on arXiv</a>
+    </div>
+</div>
+
+
+<div class="paper">
+    <h3>MEnvAgent: Scalable Polyglot Environment Construction for Verifiable Software Engineering</h3>
+    <div class="scores">
+        <span class="score relevance">Relevance: 9/10</span>
+        <span class="score importance">Importance: 8/10</span>
+    </div>
+    <div class="abstract">The evolution of Large Language Model (LLM) agents for software engineering (SWE) is constrained by the scarcity of verifiable datasets, a bottleneck stemming from the complexity of constructing executable environments across diverse languages. To address this, we introduce MEnvAgent, a Multi-language framework for automated Environment construction that facilitates scalable generation of verifiable task instances. MEnvAgent employs a multi-agent Planning-Execution-Verification architecture to autonomously resolve construction failures and integrates a novel Environment Reuse Mechanism that reduces computational overhead by incrementally patching historical environments. Evaluations on MEnvBench, a new benchmark comprising 1,000 tasks across 10 languages, demonstrate that MEnvAgent outperforms baselines, improving Fail-to-Pass (F2P) rates by 8.6% while reducing time costs by 43%. Additionally, we demonstrate the utility of MEnvAgent by constructing MEnvData-SWE, the largest open-source polyglot dataset of realistic verifiable Docker environments to date, alongside solution trajectories that enable consistent performance gains on SWE tasks across a wide range of models. Our code, benchmark, and dataset are available at https://github.com/ernie-research/MEnvAgent.</div>
+    <div class="meta">
+        <a href="http://arxiv.org/abs/2601.22859v1" target="_blank">View on arXiv</a>
+    </div>
+</div>
+
+
+<div class="paper">
+    <h3>Conditional Performance Guarantee for Large Reasoning Models</h3>
+    <div class="scores">
+        <span class="score relevance">Relevance: 9/10</span>
+        <span class="score importance">Importance: 8/10</span>
+    </div>
+    <div class="abstract">Large reasoning models have shown strong performance through extended chain-of-thought reasoning, yet their computational cost remains significant. Probably approximately correct (PAC) reasoning provides statistical guarantees for efficient reasoning by adaptively switching between thinking and non-thinking models, but the guarantee holds only in the marginal case and does not provide exact conditional coverage. We propose G-PAC reasoning, a practical framework that provides PAC-style guarantees at the group level by partitioning the input space. We develop two instantiations: Group PAC (G-PAC) reasoning for known group structures and Clustered PAC (C-PAC) reasoning for unknown groupings. We prove that both G-PAC and C-PAC achieve group-conditional risk control, and that grouping can strictly improve efficiency over marginal PAC reasoning in heterogeneous settings. Our experiments on diverse reasoning benchmarks demonstrate that G-PAC and C-PAC successfully achieve group-conditional risk control while maintaining substantial computational savings.</div>
+    <div class="meta">
+        <a href="http://arxiv.org/abs/2601.22790v1" target="_blank">View on arXiv</a>
+    </div>
+</div>
+
+    </div>
+</div>
+
+    </body>
+    </html>
+    
