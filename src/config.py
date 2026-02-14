@@ -112,8 +112,8 @@ Papers to evaluate:
         "name": "gpt-5-mini",
         "provider": "openai",
         "papers_per_batch": 8,
-        "threshold": 8.5,
-        "arbitrage_threshold": 9.0,
+        "threshold": 9.5,
+        "arbitrage_threshold": 9.5,
         "max_tokens": 16000,
         "top_p": 1.0
     }
@@ -146,35 +146,31 @@ Papers to evaluate:
 
     I use LLMs daily for: WRITING (long-form, creative), building products/agents, coding.
 
-    USE THE FULL SCALE. Don't be conservative. If something deserves a 10, give it a 10.
+    BE EXTREMELY CONSERVATIVE. Most papers deserve a 5 or below. A 10 should happen maybe once a month.
 
-    **HOW TO SCORE - Think in terms of IMPACT MULTIPLIER:**
+    **HOW TO SCORE — default low, only go high with extraordinary evidence:**
 
-    **10** = "This transforms an industry OR makes my work 10x easier"
-    - Solves long-form writing coherence? That's 10. I struggle with this daily and it affects the entire writing industry.
-    - Eliminates hallucinations reliably? That's 10. Game-changer for every LLM application.
-    - Makes agents actually reliable? That's 10. Opens up entirely new product categories.
+    **10** = "Once-in-a-year paradigm shift" — genuinely transforms how AI works at a fundamental level.
+    - Example: Attention mechanism (Transformers paper), RLHF, diffusion models.
+    - NOT incremental improvements, NOT "we beat SOTA by 2%".
 
-    **9** = "This is a major breakthrough I need to adopt immediately"
-    - Significant improvement to writing, agents, or product building
-    - Clear competitive advantage if I use this before others
+    **9** = "Genuine breakthrough I must adopt immediately or lose competitive ground"
+    - A truly novel architecture or capability that didn't exist before.
+    - Must be immediately actionable, not theoretical.
 
-    **8** = "Directly useful, will change how I work"
+    **7-8** = "Solid and directly useful to my work"
 
-    **6-7** = "Interesting, might be useful later"
+    **5-6** = "Interesting but incremental, or only tangentially relevant"
 
-    **1-5** = "Not relevant to my work"
-    - Infrastructure (KV cache, quantization) - I use APIs
-    - Pure SOTA-chasing (but evaluation benchmarks that help me pick tools ARE useful)
+    **1-4** = "Not relevant to my work"
+    - Infrastructure (KV cache, quantization) — I use APIs
+    - Pure SOTA-chasing benchmarks
     - Training techniques (I don't train)
+    - Incremental improvements to existing methods
 
-    BE DECISIVE. When a paper matches a 10 example, score it 10. Not 9. TEN.
-
-    EXPLICIT RULES:
-    - Paper solves long-form writing coherence → Score EXACTLY 10
-    - Paper eliminates hallucinations → Score EXACTLY 10
-    - Paper makes agents reliable → Score EXACTLY 10
-    - Paper is just "useful" or "interesting" → 8 or below
+    DEFAULT SCORE IS 5. Work UP from there only with strong justification.
+    If you're unsure between two scores, pick the LOWER one.
+    Most papers in any given day are 4-6. If you're giving more than 1-2 papers an 8+, you're scoring too high.
     """
 
     GITHUB_SCORING_PROMPT = """
