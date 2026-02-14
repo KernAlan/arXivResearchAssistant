@@ -32,7 +32,7 @@ def create_quick_scoring_prompt(interest: str, papers: List[Dict], arbitrage_int
         papers=papers_text
     )
 
-def process_scoring_response(papers: List[Dict], response: str, threshold: float, arbitrage_threshold: float = 8.5) -> Tuple[List[Dict], bool]:
+def process_scoring_response(papers: List[Dict], response: str, threshold: float, arbitrage_threshold: float = 9.5) -> Tuple[List[Dict], bool]:
     """Process scoring response from LLM"""
     try:
         # Clean up response - remove markdown code blocks if present
