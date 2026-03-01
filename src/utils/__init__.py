@@ -1,4 +1,4 @@
-"""Utility functions for ArXiv Digest"""
+"""Utility functions for AI Reader"""
 from .last_run import get_last_run_date, save_last_run_date
 from .filtering import filter_ai_papers
 from .scoring import create_quick_scoring_prompt, process_scoring_response, OpenAIDecodingArguments

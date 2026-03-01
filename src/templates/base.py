@@ -140,7 +140,7 @@ def render_base(content: str) -> str:
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>ArXiv Research Digest</title>
+        <title>AI Reader</title>
         <style>
             {BASE_STYLE}
         </style>

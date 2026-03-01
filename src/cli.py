@@ -1,4 +1,4 @@
-"""Command line interface for ArXiv Digest"""
+"""Command line interface for AI Reader"""
 import logging
 from datetime import datetime
 from pathlib import Path
@@ -31,7 +31,7 @@ logger = logging.getLogger(__name__)
 
 @click.group()
 def cli():
-    """ArXiv Research Digest CLI"""
+    """AI Reader CLI"""
     pass
 
 @cli.command()

@@ -1,4 +1,4 @@
-"""Configuration management for ArxivDigest"""
+"""Configuration management for AI Reader"""
 from typing import Dict, Any
 
 class Config:
@@ -112,8 +112,8 @@ Papers to evaluate:
         "name": "gpt-5-mini",
         "provider": "openai",
         "papers_per_batch": 8,
-        "threshold": 9.5,
-        "arbitrage_threshold": 9.5,
+        "threshold": 9.0,
+        "arbitrage_threshold": 9.0,
         "max_tokens": 16000,
         "top_p": 1.0
     }

@@ -1,4 +1,4 @@
-"""Utility functions for ArXiv Digest"""
+"""Utility functions for AI Reader"""
 import dataclasses
 import logging
 import math

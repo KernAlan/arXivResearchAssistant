@@ -1,4 +1,4 @@
-ArXiv Research Assistant
+AI Reader
 ====================
 
 Daily digest of new arXiv papers and GitHub trending repos, scored for relevance and delivered with Telegram alerts.
@@ -6,7 +6,7 @@ Daily digest of new arXiv papers and GitHub trending repos, scored for relevance
 Features
 --------
 
-- **ArXiv Digest** — Fetches new papers, scores them with an LLM for relevance, importance, and "arbitrage" discovery potential, then generates an HTML digest.
+- **ArXiv Papers** — Fetches new papers, scores them with an LLM for relevance, importance, and "arbitrage" discovery potential, then generates an HTML digest.
 - **GitHub Trending** — Scrapes GitHub trending repos, scores each for relevance and impact, and generates an HTML report.
 - **Telegram Alerts** — Sends real-time notifications for high-scoring papers and repos that cross your configured thresholds.
 - **Automated Daily Pipeline** — GitHub Actions workflow runs daily and commits digests to the repo.
@@ -53,7 +53,7 @@ Setup
 Usage
 -----
 
-### ArXiv Digest
+### ArXiv Papers
 
 ```
 python -m src.cli generate [OPTIONS]

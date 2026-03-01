@@ -55,7 +55,7 @@ PAPER_STYLE = """
 DIGEST_TEMPLATE = """
 <div class="digest">
     <div class="header">
-        <h2>ArXiv Research Digest</h2>
+        <h2>AI Reader</h2>
         <p>Found {matching_papers} relevant papers out of {total_papers} new submissions</p>
     </div>
     

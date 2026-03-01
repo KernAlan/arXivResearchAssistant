@@ -16,7 +16,7 @@ class EmailService:
         html_content: str,
         to_email: str,
         from_email: str,
-        subject: str = "ArXiv Research Digest"
+        subject: str = "AI Reader Digest"
     ) -> bool:
         """Send digest email using SendGrid"""
         message = Mail(

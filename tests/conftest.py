@@ -1,4 +1,4 @@
-"""Test configuration for the ArXiv Research Assistant project."""
+"""Test configuration for the AI Reader project."""
 
 from unittest.mock import MagicMock
 import sys
