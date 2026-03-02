@@ -126,7 +126,7 @@ with gr.Blocks() as demo:
                     # Email Setup, Optional
                     Send an email to the below address using the configuration on the right. Requires a sendgrid token. These values are not needed to use the right side of this page.
 
-                    To create a scheduled job for this, see our [Github Repository](https://github.com/KernAlan/arXivResearchAssistant)
+                    To create a scheduled job for this, see our [Github Repository](https://github.com/KernAlan/ai-reader)
                     """,
                     interactive=False, show_label=False)
                 email = gr.Textbox(label="Email address", type="email", placeholder="")

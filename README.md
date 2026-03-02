@@ -27,8 +27,8 @@ Setup
 
 2. Clone and install:
    ```
-   git clone https://github.com/KernAlan/arXivResearchAssistant.git
-   cd ArxivResearchAssistant
+   git clone https://github.com/KernAlan/ai-reader.git
+   cd ai-reader
    pip install -r requirements.txt
    ```
 
