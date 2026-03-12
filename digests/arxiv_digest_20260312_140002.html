@@ -1,0 +1,193 @@
+
+    <!DOCTYPE html>
+    <html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>AI Reader</title>
+        <style>
+            
+body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    line-height: 1.5;
+    color: #2d3748;
+    margin: 0;
+    padding: 20px;
+    background: #f7fafc;
+}
+
+.digest {
+    max-width: 800px;
+    margin: 0 auto;
+    background: white;
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+}
+
+.header {
+    margin-bottom: 2rem;
+    padding-bottom: 1rem;
+    border-bottom: 2px solid #e2e8f0;
+}
+
+.header h2 {
+    margin: 0;
+    color: #2d3748;
+}
+
+.header p {
+    margin: 0.5rem 0 0;
+    color: #718096;
+}
+
+.highlights {
+    background: #f8fafc;
+    padding: 1.5rem;
+    border-radius: 8px;
+    margin-bottom: 3rem;
+    border: 1px solid #e2e8f0;
+}
+
+.highlights h3 {
+    color: #2d3748;
+    margin: 0 0 1rem 0;
+    font-size: 1.25rem;
+}
+
+.summary {
+    white-space: pre-line;
+    line-height: 1.6;
+}
+
+.summary ol {
+    padding-left: 1.5rem;
+    margin: 1rem 0;
+}
+
+.summary li {
+    margin-bottom: 0.75rem;
+    padding-left: 0.5rem;
+}
+
+.papers {
+    margin-top: 3rem;
+}
+
+.papers h3 {
+    color: #2d3748;
+    margin-bottom: 1.5rem;
+    padding-bottom: 1rem;
+    border-bottom: 2px solid #e2e8f0;
+}
+
+.paper {
+    margin-bottom: 2rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid #e2e8f0;
+}
+
+.paper:last-child {
+    border-bottom: none;
+}
+
+.paper h3 {
+    margin: 0 0 0.5rem;
+    color: #2d3748;
+}
+
+.paper .scores {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 0.5rem;
+}
+
+.paper .score {
+    padding: 0.25rem 0.5rem;
+    border-radius: 4px;
+    font-size: 0.875rem;
+}
+
+.paper .relevance {
+    background: #e6fffa;
+    color: #047481;
+}
+
+.paper .importance {
+    background: #ebf4ff;
+    color: #1a56db;
+}
+
+.paper .abstract {
+    color: #4a5568;
+    margin: 0.5rem 0;
+}
+
+.paper .meta {
+    font-size: 0.875rem;
+    color: #718096;
+}
+
+.paper .meta a {
+    color: #4299e1;
+    text-decoration: none;
+}
+
+.paper .meta a:hover {
+    text-decoration: underline;
+}
+
+        </style>
+    </head>
+    <body>
+        
+<div class="digest">
+    <div class="header">
+        <h2>AI Reader</h2>
+        <p>Found 2 relevant papers out of 200 new submissions</p>
+    </div>
+    
+    <div class="highlights">
+        <h3>🔥 Key Highlights</h3>
+        Hey boss, found 2 cool papers today that I think you'll love:
+<ol>
+<li><strong>DUCTILE: Agentic LLM Orchestration of Engineering Analysis in Product Development Practice</strong> — The team shows an agentic orchestration pattern that cleanly separates adaptive LLM-led orchestration from deterministic, verified tool execution so the agent can interpret design docs, handle input deviations (formats, units, naming, methodology) and route work to engineering tools without breaking automation; this approach scored 9.5/10 (Relevance 10/10, Importance 9/10) and was validated on an aerospace structural analysis workflow to produce methodologically compliant results. Practical impact: we can make brittle engineering pipelines resilient to evolving interfaces by adding an LLM coordinator + supervised handoff to our verified tools, but we should plan UX/verification for the engineer-in-the-loop to avoid supervisory fatigue — see http://arxiv.org/abs/2603.10249v1 for details.</li>
+<li><strong>Compatibility at a Cost: Systematic Discovery and Exploitation of MCP Clause-Compliance Vulnerabilities</strong> — This paper (9.0/10, Relevance 9/10, Importance 9/10) exposes a new attack surface in the MCP interoperability spec where relaxed/optional clauses enable “compatibility‑abusing” attacks (silent prompt injection, DoS, etc.) and presents a cross-language IR + LLM-guided static analysis + modality-guided pipeline to find exploitable non-compliance in SDKs. Practical impact: if we use or provide MCP-compliant SDKs, we need an automated clause-compliance audit (and tightened clause enforcement) in our CI/CD and security reviews to avoid these attacks — full method and examples at http://arxiv.org/abs/2603.10163v1.</li>
+</ol>
+Let’s pilot DUCTILE on one brittle analysis pipeline this week and slot an MCP clause-compliance scan into our security backlog.
+    </div>
+    
+    <div class="papers">
+        <h3>📄 Detailed Papers</h3>
+        
+<div class="paper">
+    <h3>DUCTILE: Agentic LLM Orchestration of Engineering Analysis in Product Development Practice</h3>
+    <div class="scores">
+        <span class="score relevance">Relevance: 10/10</span>
+        <span class="score importance">Importance: 9/10</span>
+    </div>
+    <div class="abstract">Engineering analysis automation in product development relies on rigid interfaces between tools, data formats and documented processes. When these interfaces change, as they routinely do as the product evolves in the engineering ecosystem, the automation support breaks. This paper presents a DUCTILE (Delegated, User-supervised Coordination of Tool- and document-Integrated LLM-Enabled) agentic orchestration, an approach for developing, executing and evaluating LLM-based agentic automation support of engineering analysis tasks. The approach separates adaptive orchestration, performed by the LLM agent, from deterministic execution, performed by verified engineering tools. The agent interprets documented design practices, inspects input data and adapts the processing path, while the engineer supervises and exercises final judgment. DUCTILE is demonstrated on an industrial structural analysis task at an aerospace manufacturer, where the agent handled input deviations in format, units, naming conventions and methodology that would break traditional scripted pipelines. Evaluation against expert-defined acceptance criteria and deployment with practicing engineers confirm that the approach produces correct, methodologically compliant results across repeated independent runs. The paper discusses practical consequences of adopting agentic automation, including unintended effects on the nature of engineering work and the tension between removing mundane tasks and creating an exhausting supervisory role.</div>
+    <div class="meta">
+        <a href="http://arxiv.org/abs/2603.10249v1" target="_blank">View on arXiv</a>
+    </div>
+</div>
+
+
+<div class="paper">
+    <h3>Compatibility at a Cost: Systematic Discovery and Exploitation of MCP Clause-Compliance Vulnerabilities</h3>
+    <div class="scores">
+        <span class="score relevance">Relevance: 9/10</span>
+        <span class="score importance">Importance: 9/10</span>
+    </div>
+    <div class="abstract">The Model Context Protocol (MCP) is a recently proposed interoperability standard that unifies how AI agents connect with external tools and data sources. By defining a set of common client-server message exchange clauses, MCP replaces fragmented integrations with a standardized, plug-and-play framework. However, to be compatible with diverse AI agents, the MCP specification relaxes many behavioral constraints into optional clauses, leading to misuse-prone SDK implementation. We identify it as a new attack surface that allows adversaries to achieve multiple attacks (e.g, silent prompt injection, DoS, etc.), named as \emph{compatibility-abusing attacks}.   In this work, we present the first systematic framework for analyzing this new attack surface across multi-language MCP SDKs. First, we construct a universal and language-agnostic intermediate representation (IR) generator that normalizes SDKs of different languages. Next, based on the new IR, we propose auditable static analysis with LLM-guided semantic reasoning for cross-language/clause compliance analysis. Third, by formalizing the attack semantics of the MCP clauses, we build three attack modalities and develop a modality-guided pipeline to uncover exploitable non-compliance issues.</div>
+    <div class="meta">
+        <a href="http://arxiv.org/abs/2603.10163v1" target="_blank">View on arXiv</a>
+    </div>
+</div>
+
+    </div>
+</div>
+
+    </body>
+    </html>
+    
