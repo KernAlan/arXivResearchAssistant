@@ -1,0 +1,180 @@
+
+    <!DOCTYPE html>
+    <html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>AI Reader</title>
+        <style>
+            
+body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    line-height: 1.5;
+    color: #2d3748;
+    margin: 0;
+    padding: 20px;
+    background: #f7fafc;
+}
+
+.digest {
+    max-width: 800px;
+    margin: 0 auto;
+    background: white;
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+}
+
+.header {
+    margin-bottom: 2rem;
+    padding-bottom: 1rem;
+    border-bottom: 2px solid #e2e8f0;
+}
+
+.header h2 {
+    margin: 0;
+    color: #2d3748;
+}
+
+.header p {
+    margin: 0.5rem 0 0;
+    color: #718096;
+}
+
+.highlights {
+    background: #f8fafc;
+    padding: 1.5rem;
+    border-radius: 8px;
+    margin-bottom: 3rem;
+    border: 1px solid #e2e8f0;
+}
+
+.highlights h3 {
+    color: #2d3748;
+    margin: 0 0 1rem 0;
+    font-size: 1.25rem;
+}
+
+.summary {
+    white-space: pre-line;
+    line-height: 1.6;
+}
+
+.summary ol {
+    padding-left: 1.5rem;
+    margin: 1rem 0;
+}
+
+.summary li {
+    margin-bottom: 0.75rem;
+    padding-left: 0.5rem;
+}
+
+.papers {
+    margin-top: 3rem;
+}
+
+.papers h3 {
+    color: #2d3748;
+    margin-bottom: 1.5rem;
+    padding-bottom: 1rem;
+    border-bottom: 2px solid #e2e8f0;
+}
+
+.paper {
+    margin-bottom: 2rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid #e2e8f0;
+}
+
+.paper:last-child {
+    border-bottom: none;
+}
+
+.paper h3 {
+    margin: 0 0 0.5rem;
+    color: #2d3748;
+}
+
+.paper .scores {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 0.5rem;
+}
+
+.paper .score {
+    padding: 0.25rem 0.5rem;
+    border-radius: 4px;
+    font-size: 0.875rem;
+}
+
+.paper .relevance {
+    background: #e6fffa;
+    color: #047481;
+}
+
+.paper .importance {
+    background: #ebf4ff;
+    color: #1a56db;
+}
+
+.paper .abstract {
+    color: #4a5568;
+    margin: 0.5rem 0;
+}
+
+.paper .meta {
+    font-size: 0.875rem;
+    color: #718096;
+}
+
+.paper .meta a {
+    color: #4299e1;
+    text-decoration: none;
+}
+
+.paper .meta a:hover {
+    text-decoration: underline;
+}
+
+        </style>
+    </head>
+    <body>
+        
+<div class="digest">
+    <div class="header">
+        <h2>AI Reader</h2>
+        <p>Found 1 relevant papers out of 146 new submissions</p>
+    </div>
+    
+    <div class="highlights">
+        <h3>🔥 Key Highlights</h3>
+        Hey boss, found 1 cool paper today that I think you'll love:
+<ol>
+<li><b>SpecForge: A Flexible and Efficient Open-Source Training Framework for Speculative Decoding</b> — Introduces SpecForge (and the SpecBundle draft models), a production-oriented open-source framework that uses target-draft decoupling, hybrid parallelism, and optimized kernels to train high-quality EAGLE-3 draft models and achieve up to 9.9x faster training for Qwen3-235B-A22B and up to 4.48x end-to-end inference speedup on SGLang. This matters because (avg score 8.5/10 — relevance 9/10, importance 8/10) it finally addresses the draft-model and infrastructure gaps blocking speculative decoding adoption; next step for us is to try the released models and integration path (paper: http://arxiv.org/abs/2603.18567v1) to measure real latency/cost wins on our inference stack.</li>
+</ol>
+
+Let’s spin up a quick POC this week: plug a SpecBundle draft into one of our LLM endpoints, run end-to-end latency and cost comparisons, and report back with go/no-go numbers.
+    </div>
+    
+    <div class="papers">
+        <h3>📄 Detailed Papers</h3>
+        
+<div class="paper">
+    <h3>SpecForge: A Flexible and Efficient Open-Source Training Framework for Speculative Decoding</h3>
+    <div class="scores">
+        <span class="score relevance">Relevance: 9/10</span>
+        <span class="score importance">Importance: 8/10</span>
+    </div>
+    <div class="abstract">Large language models incur high inference latency due to sequential autoregressive decoding. Speculative decoding alleviates this bottleneck by using a lightweight draft model to propose multiple tokens for batched verification. However, its adoption has been limited by the lack of high-quality draft models and scalable training infrastructure. We introduce SpecForge, an open-source, production-oriented framework for training speculative decoding models with full support for EAGLE-3. SpecForge incorporates target-draft decoupling, hybrid parallelism, optimized training kernels, and integration with production-grade inference engines, enabling up to 9.9x faster EAGLE-3 training for Qwen3-235B-A22B. In addition, we release SpecBundle, a suite of production-grade EAGLE-3 draft models trained with SpecForge for mainstream open-source LLMs. Through a systematic study of speculative decoding training recipes, SpecBundle addresses the scarcity of high-quality drafts in the community, and our draft models achieve up to 4.48x end-to-end inference speedup on SGLang, establishing SpecForge as a practical foundation for real-world speculative decoding deployment.</div>
+    <div class="meta">
+        <a href="http://arxiv.org/abs/2603.18567v1" target="_blank">View on arXiv</a>
+    </div>
+</div>
+
+    </div>
+</div>
+
+    </body>
+    </html>
+    
